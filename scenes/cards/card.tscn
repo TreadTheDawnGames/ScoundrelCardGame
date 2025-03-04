@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf0yq1t70q2w3"]
+
+[ext_resource type="Script" uid="uid://b2ly22oubeuou" path="res://scripts/cards/card.gd" id="1_0qqw3"]
+[ext_resource type="Texture2D" uid="uid://21bqvc5q7icu" path="res://assets/cards/AceOfPotions.png" id="1_45qsb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqw3"]
+size = Vector2(25, 35)
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_0qqw3")
+
+[node name="GrabArea" type="Area2D" parent="."]
+collision_layer = 1638400
+collision_mask = 1048576
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+shape = SubResource("RectangleShape2D_0qqw3")
+
+[node name="Art" type="Sprite2D" parent="."]
+texture = ExtResource("1_45qsb")
