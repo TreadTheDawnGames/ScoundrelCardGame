@@ -57,6 +57,12 @@ func SetDrawn(isDrawn : bool) -> void:
 	return
 	
 func _process(_delta: float) -> void:
+	if(PlayZone && Data):
+		if(grabbed && usable && not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && not Played):
+			Played = true
+			usable = false
+			Data.PlayCard(PlayZone.PlayType, self)
+	
 	if(hovered):
 		if(grabbed):
 			if(not usable):
@@ -96,11 +102,7 @@ func _process(_delta: float) -> void:
 		pos.y = lerp(position.y, OGPos.y, 0.1)
 		position = pos
 		
-	if(PlayZone):
-		if(usable && not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && not Played):
-			Played = true
-			usable = false
-			Data.PlayCard(PlayZone.PlayType, self)
+
 	return
 
 func Hovered() -> void:
