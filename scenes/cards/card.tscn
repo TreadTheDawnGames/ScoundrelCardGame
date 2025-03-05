@@ -19,8 +19,8 @@ scale = Vector2(2, 2)
 script = ExtResource("1_0qqw3")
 
 [node name="GrabArea" type="Area2D" parent="."]
-collision_layer = 1638400
-collision_mask = 1048576
+collision_layer = 1638401
+collision_mask = 1048577
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
 shape = SubResource("RectangleShape2D_0qqw3")

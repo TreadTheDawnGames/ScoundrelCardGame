@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://obwt4udpkhb5"]
+[gd_scene load_steps=4 format=3 uid="uid://obwt4udpkhb5"]
 
 [ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="2_yqjtg"]
 
-[node name="Game" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(107, 149)
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -11,3 +17,39 @@ offset_left = 131.0
 offset_top = 45.0
 offset_right = 131.0
 offset_bottom = 45.0
+
+[node name="CardPlayArea" type="Area2D" parent="."]
+script = ExtResource("2_yqjtg")
+PlayType = "Type1"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardPlayArea"]
+position = Vector2(101, 126)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="CardPlayArea2" type="Area2D" parent="."]
+script = ExtResource("2_yqjtg")
+PlayType = "Type2"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardPlayArea2"]
+position = Vector2(240, 125)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="CardPlayArea3" type="Area2D" parent="."]
+script = ExtResource("2_yqjtg")
+PlayType = "Type3"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardPlayArea3"]
+position = Vector2(384, 126)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="CardPlayArea4" type="Area2D" parent="."]
+script = ExtResource("2_yqjtg")
+PlayType = "Type4"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardPlayArea4"]
+position = Vector2(515, 127)
+shape = SubResource("RectangleShape2D_lnu2h")
