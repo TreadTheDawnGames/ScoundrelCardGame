@@ -14,6 +14,8 @@ var grabbedOffset : Vector2;
 var lastMousePos : Vector2;
 var OGPos : Vector2;
 
+var Data : CardData
+
 var usable : bool = false
 
 var cardName : String = ""
@@ -23,10 +25,10 @@ var OGMask : int;
 var myRect : Rect2;
 
 func _ready() -> void:
-	SetUp(false)
+	SetUp(null, false)
 	return
 
-func SetUp(isAesthetic : bool) -> void:
+func SetUp(data : CardData, isAesthetic : bool) -> void:
 	GrabbableArea = get_node("GrabArea")
 	GrabbableArea.area_entered.connect(CardEnteredZone)
 	GrabbableArea.area_exited.connect(CardExitedZone)
@@ -37,6 +39,8 @@ func SetUp(isAesthetic : bool) -> void:
 		GrabbableArea.mouse_exited.connect(Unhovered)
 	OGMask = GrabbableArea.collision_mask
 	SetDrawn(isAesthetic)
+	if(data!=null):
+		Data = data
 	cardName = "This is a new card with a new name. It needs to be changed. This line of code is probably near line 40 of card.gd"
 	return
 	
