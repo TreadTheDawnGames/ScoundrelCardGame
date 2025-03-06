@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://obwt4udpkhb5"]
+[gd_scene load_steps=4 format=3 uid="uid://obwt4udpkhb5"]
 
-[ext_resource type="Script" uid="uid://diucdqprkca4y" path="res://scripts/debug_tools.gd" id="1_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/debug_tools.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="2_yqjtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
@@ -13,16 +12,6 @@ anchors_preset = 0
 script = ExtResource("1_lnu2h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Card" parent="CanvasLayer" instance=ExtResource("1_uwrxv")]
-offset_left = 131.0
-offset_top = 45.0
-offset_right = 131.0
-offset_bottom = 45.0
-
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
 
 [node name="CardPlayArea" type="Area2D" parent="."]
 position = Vector2(145, 141)

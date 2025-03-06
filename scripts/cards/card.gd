@@ -7,6 +7,7 @@ var GrabbableArea : Area2D;
 
 var grabbed : bool = false
 var hovered : bool = false;
+@export
 var beingDrawn : bool = false;
 @export var returnToHome : bool = false
 
@@ -29,9 +30,9 @@ var PlayZone : CardPlayArea = null
 var Played : bool
 
 func _ready() -> void:
-	SetUp(Test_CardData.new("", "TestCard"), false)
-	printerr("[Card] Manually setting card to drawn in _ready()")
-	SetDrawn(true)
+	#SetUp(Test_CardData.new("", "TestCard"), false)
+	# printerr("[Card] Manually setting card to drawn in _ready()")
+	#SetDrawn(true)
 	return
 
 func SetUp(data : CardData, isAesthetic : bool) -> void:
@@ -127,13 +128,14 @@ func Unhovered() -> void:
 func CardEnteredZone(node : Node2D) -> void:
 	print("CardEntered")
 	if(node is not CardPlayArea):
-		printerr("Trying to play a card on not a CardPlayArea.")
 		return
 	PlayZone = node
 	
 	return
-func CardExitedZone(playZone : CardPlayArea) -> void:
-	print("Card exited zone: " + playZone.name + " PlayType: " + playZone.PlayType)
+func CardExitedZone(node : Node2D) -> void:
+	if(node is not CardPlayArea):
+		return
+	print("Card exited zone: " + node.name + " PlayType: " + node.PlayType)
 	PlayZone = null
 	return
 	
