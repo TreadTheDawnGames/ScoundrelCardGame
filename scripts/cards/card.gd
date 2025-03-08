@@ -3,7 +3,7 @@ class_name Card
 var area2D;
 
 var GrabbableArea : Area2D;
-@onready var Art: Sprite2D = $Art
+var Art: Sprite2D
 
 var grabbed : bool = false
 var hovered : bool = false;
@@ -36,6 +36,7 @@ func _ready() -> void:
 	return
 
 func SetUp(data : CardData, isAesthetic : bool) -> void:
+	Art = get_node("Art")
 	GrabbableArea = get_node("GrabArea")
 	GrabbableArea.area_entered.connect(CardEnteredZone)
 	GrabbableArea.area_exited.connect(CardExitedZone)
@@ -48,7 +49,9 @@ func SetUp(data : CardData, isAesthetic : bool) -> void:
 	SetDrawn(isAesthetic)
 	if(data):
 		Data = data
-	cardName = "This is a new card with a new name. It needs to be changed. This line of code is probably near line 40 of card.gd"
+		cardName = Data.CardName
+		Art.texture = Data.Art
+		Data.SpecialSetup()
 	return
 	
 func SetDrawn(isDrawn : bool) -> void:
@@ -121,6 +124,7 @@ func Unhovered() -> void:
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		return
 	remove_from_group("DraggableHovered")
+	get_parent().move_child(self, get_parent().get_child_count())
 	z_index = 0
 	hovered = false
 	return

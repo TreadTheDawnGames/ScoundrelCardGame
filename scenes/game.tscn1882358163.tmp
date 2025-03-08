@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://obwt4udpkhb5"]
+
+[ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/debug_tools.gd" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://bl780wqdrgw1p" path="res://scripts/cards/DEBUG_card_counter.gd" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://dothocn01nsgi" path="res://scenes/DEBUG_draw_card_button.gd" id="4_lbhrr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(105, 143)
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lnu2h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 257.0
+offset_bottom = 40.0
+text = "Cards in deck: "
+script = ExtResource("2_yqjtg")
+
+[node name="CardPlayArea2" type="Area2D" parent="."]
+position = Vector2(514, 156)
+script = ExtResource("3_lnu2h")
+PlayType = "Type2"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardPlayArea2"]
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="CardPlayArea" type="Area2D" parent="."]
+position = Vector2(164, 152)
+script = ExtResource("3_lnu2h")
+PlayType = "Type1"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardPlayArea"]
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 28.0
+offset_right = 97.0
+offset_bottom = 59.0
+text = "draw card"
+script = ExtResource("4_lbhrr")

@@ -5,6 +5,9 @@ func _ready() -> void:
 
 func ButtonAction():
 	var card = CardFactory.CreateCardFromData(Deck.DrawCard())
-	card.SetDrawn(true)
-	owner.get_node("CanvasLayer").add_child(card)
+	if(card):
+		card.SetDrawn(true)
+		owner.get_node("CanvasLayer").add_child(card)
+	else:
+		print("no card")
 	return

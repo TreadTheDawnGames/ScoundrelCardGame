@@ -15,11 +15,15 @@ func BuryCard(card : CardData) -> void:
 	return
 	
 func DrawCard(fromBottom : bool = false) -> CardData:
-	if(fromBottom):
-		return Cards.pop_back()
+	if(Count() > 0):
+		if(fromBottom):
+			return Cards.pop_back()
+		else:
+			return Cards.pop_front()
 	else:
-		return Cards.pop_front()
-	
+		print("There are no cards in " + name + " to draw.")
+		return null
+
 func DrawCardAt(index : int) -> CardData:
 	return Cards.pop_at(index)
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf0yq1t70q2w3"]
+[gd_scene load_steps=3 format=3 uid="uid://cf0yq1t70q2w3"]
 
 [ext_resource type="Script" uid="uid://b2ly22oubeuou" path="res://scripts/cards/card.gd" id="1_0qqw3"]
-[ext_resource type="Texture2D" uid="uid://21bqvc5q7icu" path="res://assets/cards/AceOfPotions.png" id="1_45qsb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqw3"]
 size = Vector2(25, 35)
@@ -26,4 +25,3 @@ collision_mask = 1048577
 shape = SubResource("RectangleShape2D_0qqw3")
 
 [node name="Art" type="Sprite2D" parent="."]
-texture = ExtResource("1_45qsb")

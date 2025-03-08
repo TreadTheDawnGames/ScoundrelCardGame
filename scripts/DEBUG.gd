@@ -1,9 +1,14 @@
 extends Node
 
 var newCardAction = createCard
+@export
+var textures : Array[Texture2D]
+
+func RandTex() -> Texture:
+	return textures.pick_random()
 
 func createCard():
-	var card = CardFactory.CreateCardFromData(Test_CardData.new("", "CardName"))
+	var card = CardFactory.CreateCardFromData(Test_CardData.new("CardName", RandTex()))
 	card.SetDrawn(true)
 	get_node("CanvasLayer").add_child(card)
 	return
