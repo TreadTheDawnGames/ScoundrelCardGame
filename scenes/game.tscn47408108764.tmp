@@ -1,28 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://obwt4udpkhb5"]
+[gd_scene load_steps=7 format=3 uid="uid://obwt4udpkhb5"]
 
 [ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/DEBUG/DEBUG_tools.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://c23nf6g11kafv" path="res://assets/cards/AceOfGhosts_3.png" id="2_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://21bqvc5q7icu" path="res://assets/cards/AceOfPotions.png" id="3_gee14"]
 [ext_resource type="Texture2D" uid="uid://db22iswbwmunq" path="res://assets/cards/AceOfWeapons_1.png" id="4_0tnpc"]
-[ext_resource type="Script" uid="uid://bl780wqdrgw1p" path="res://scripts/DEBUG/DEBUG_card_counter.gd" id="5_gee14"]
-[ext_resource type="Script" uid="uid://csc60awap4om5" path="res://scripts/Managers/room_manager.gd" id="5_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="6_p57ef"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_yqjtg")
 textures = Array[Texture2D]([ExtResource("2_u5sy4"), ExtResource("3_gee14"), ExtResource("4_0tnpc")])
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_right = 392.0
-offset_bottom = 24.0
-text = "Cards in deck: 0"
-script = ExtResource("5_gee14")
-
-[node name="RoomManager" type="Node" parent="."]
-script = ExtResource("5_u5sy4")
-
-[node name="CardBoard" type="Node2D" parent="."]
-position = Vector2(576, 324)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_uwrxv")
 cardSceneSource = ExtResource("6_p57ef")

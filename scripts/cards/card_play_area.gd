@@ -1,5 +1,5 @@
 extends Area2D
-class_name CardPlayArea
+class_name TDCardPlayArea
 
 @export
 var PlayType : String

@@ -1,27 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf0yq1t70q2w3"]
 
-[ext_resource type="Script" uid="uid://b2ly22oubeuou" path="res://scripts/cards/card.gd" id="1_0qqw3"]
+[ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scripts/scoundrel/TDCard_Base.gd" id="1_45qsb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqw3"]
 size = Vector2(25, 35)
 
-[node name="Card" type="Control"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-script = ExtResource("1_0qqw3")
+[node name="Card" type="Area2D"]
+script = ExtResource("1_45qsb")
 
-[node name="GrabArea" type="Area2D" parent="."]
-collision_layer = 1638401
-collision_mask = 1048577
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0qqw3")
 
 [node name="Art" type="Sprite2D" parent="."]

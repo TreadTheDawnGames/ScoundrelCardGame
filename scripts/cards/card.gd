@@ -1,146 +1,134 @@
-extends Control
-class_name Card
+extends Area2D
+class_name TDCard
 var area2D;
 
-var GrabbableArea : Area2D;
-var Art: Sprite2D
-
 var grabbed : bool = false
-var hovered : bool = false;
+var _hovered : bool = false;
+var _beingDrawn : bool = false;
+## If true, the card will return to its original position with a Lerp function.
 @export
-var beingDrawn : bool = false;
-@export var returnToHome : bool = false
+var returnToHome : bool = false
+## The speed at which to return. Only matters if beingDrawn is true.
+@export
+var returnSpeed : float = 0.1
 
-var grabbedOffset : Vector2;
-var lastMousePos : Vector2;
+var _grabbedOffset : Vector2;
+var _lastMousePos : Vector2;
 var OGPos : Vector2;
 
-var Data : CardData
+var Data : TDCardData
 
 var usable : bool = false
 
-var cardName : String = ""
+var CardName : String = ""
 
-var OGMask : int;
+var _OGMask : int;
 
-var myRect : Rect2;
+var _PlayZone : TDCardPlayArea = null
 
-var PlayZone : CardPlayArea = null
+var _Played : bool
 
-var Played : bool
-
-func _ready() -> void:
-	#SetUp(Test_CardData.new("", "TestCard"), false)
-	# printerr("[Card] Manually setting card to drawn in _ready()")
-	#SetDrawn(true)
-	return
-
-func SetUp(data : CardData, isAesthetic : bool) -> void:
-	Art = get_node("Art")
-	GrabbableArea = get_node("GrabArea")
-	GrabbableArea.area_entered.connect(CardEnteredZone)
-	GrabbableArea.area_exited.connect(CardExitedZone)
+func SetUp(data : TDCardData, isAesthetic : bool) -> void:
+	area_entered.connect(CardEnteredZone)
+	area_exited.connect(CardExitedZone)
 	if(not isAesthetic):
 		mouse_entered.connect(Hovered)
 		mouse_exited.connect(Unhovered)
-		GrabbableArea.mouse_entered.connect(Hovered)
-		GrabbableArea.mouse_exited.connect(Unhovered)
-	OGMask = GrabbableArea.collision_mask
+	_OGMask = collision_mask
 	SetDrawn(isAesthetic)
 	if(data):
 		Data = data
-		cardName = Data.CardName
-		Art.texture = Data.Art
-		Data.SpecialSetup()
+		CardName = Data.CardName
+		Data.SpecialSetup(self)
 	return
 	
 func SetDrawn(isDrawn : bool) -> void:
-	GrabbableArea.collision_mask = OGMask if isDrawn else 0
-	GrabbableArea.set_collision_layer_value(17, isDrawn)
-	beingDrawn = !beingDrawn
+	collision_mask = _OGMask if isDrawn else 0
+	set_collision_layer_value(17, isDrawn)
+	_beingDrawn = !_beingDrawn
 	return
-	
-func _process(_delta: float) -> void:
-	if(PlayZone && Data):
-		if(grabbed && usable && not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && not Played):
-			Played = true
+
+func _PlayCard() -> void:
+	if(_PlayZone && Data):
+		if(grabbed && usable && not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && not _Played):
+			_Played = true
 			usable = false
-			Data.PlayCard(PlayZone.PlayType, self)
-	
-	if(hovered):
-		if(grabbed):
-			if(not usable):
-				Art.scale = Art.scale.lerp(Vector2(1.33,1.33), 0.25)
-			else:
-				Art.scale = Art.scale.lerp(Vector2(0.75, 0.75), 0.25) 
-		else:
-			Art.scale = Art.scale.lerp(Vector2(1.25,1.25), 0.25)
-	
+			Data.PlayCard(_PlayZone.PlayType, self)
+	return
+
+func _DragDropLogic() -> void:
+	if(_hovered):
+		if(Data):
+			Data.WhileHovered(self)
+			
 		if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not grabbed):
 			if(IsOnTop()):
-				grabbedOffset = position - get_global_mouse_position()
+				_grabbedOffset = position - get_global_mouse_position()
+				if(Data):
+					Data.GrabAction(self)
 				grabbed = true
 				
 		elif(not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and grabbed):
-			var spaceState = get_world_2d().direct_space_state
-			var query = PhysicsRayQueryParameters2D.create(lastMousePos, get_global_mouse_position(), 65536)
-			var result = spaceState.intersect_ray(query)
-		
-			if(result.is_empty()):
-				hovered = false
+			if(Data):
+				Data.DropAction(self)
 			grabbed = false
-		lastMousePos = get_global_mouse_position()
-	else:
-		Art.scale = Art.scale.lerp(Vector2.ONE, 0.25)
-	if(PlayZone!=null):
+			
+		_lastMousePos = get_global_mouse_position()
+	if(_PlayZone!=null):
 		usable = true
 	else:
 		usable = false
-		
 	
 	if(grabbed):
-		position = get_global_mouse_position() + grabbedOffset
+		position = get_global_mouse_position() + _grabbedOffset
 	elif returnToHome:
-		var pos = position
-		pos.x = lerp(position.x, OGPos.x, 0.1)
-		pos.y = lerp(position.y, OGPos.y, 0.1)
-		position = pos
-		
+		position.lerp(OGPos, returnSpeed)
+	return
+
+func _process(_delta: float) -> void:
+	if(Data):
+		Data.Frame(self)
+	
+	_PlayCard()
+	_DragDropLogic()	
+
 
 	return
 
 func Hovered() -> void:
-	if(beingDrawn):
+	if(_beingDrawn):
 		return
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		return
 	add_to_group("DraggableHovered")
+	if(Data):
+		Data.HoverEnterAction(self)
 	z_index = 500
-	
-	hovered = true
+	_hovered = true
 	return
 
 func Unhovered() -> void:
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		return
 	remove_from_group("DraggableHovered")
-	get_parent().move_child(self, get_parent().get_child_count())
+	if(Data):
+		Data.HoverExitAction(self)
 	z_index = 0
-	hovered = false
+	_hovered = false
 	return
 	
 func CardEnteredZone(node : Node2D) -> void:
 	print("CardEntered")
-	if(node is not CardPlayArea):
+	if(node is not TDCardPlayArea):
 		return
-	PlayZone = node
+	_PlayZone = node
 	
 	return
 func CardExitedZone(node : Node2D) -> void:
-	if(node is not CardPlayArea):
+	if(node is not TDCardPlayArea):
 		return
 	print("Card exited zone: " + node.name + " PlayType: " + node.PlayType)
-	PlayZone = null
+	_PlayZone = null
 	return
 	
 	

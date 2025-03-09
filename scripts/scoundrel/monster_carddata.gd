@@ -1,5 +1,5 @@
-extends CardData
-class_name CardData_Monster
+extends TDCardData_Art
+class_name TDCardData_Monster
 
 var DamageValue : int
 enum MonsterType {Ghost, Goblin}
@@ -11,10 +11,9 @@ func _init(cardName : String, art : Texture2D, damageValue : int, type : Monster
 	Type = type
 	return
 
-func PlayCard(playType : String, card : Card) -> void:
+func PlayCard(playType : String, _card : TDCard) -> void:
 	match playType:
 		"Attack":
 			print("Attack")
 		_: print("Something else went wrong")
-	return
 	return

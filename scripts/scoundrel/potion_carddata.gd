@@ -1,5 +1,5 @@
-extends CardData
-class_name CardData_Potion
+extends TDCardData_Art
+class_name TDCardData_Potion
 
 var HealthValue : int
 
@@ -12,7 +12,7 @@ func _init(name : String, art : Texture2D, healthValue : int):
 	HealthValue = healthValue
 	return
 
-func PlayCard(name : String, card : Card) -> void:
+func PlayCard(name : String, _card : TDCard) -> void:
 	match name:
 		"Heal":
 			print("Heal")
