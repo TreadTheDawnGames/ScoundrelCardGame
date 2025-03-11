@@ -14,7 +14,16 @@ func AddCard(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, g
 	card.SetDrawn(true)
 	_board.push_back(card)
 	return card
-
+	
+func AddCardFromSource(source : PackedScene, data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null):
+	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos)
+	if(!card):
+		return
+	add_child(card)
+	card.SetDrawn(true)
+	_board.push_back(card)
+	return card
+	
 func RemoveCard(card : TDCard):
 	_board.erase(card)
 	card.queue_free()
@@ -35,7 +44,7 @@ func DeselectAll() -> void:
 	_selectedCards.resize(0)
 	return
 
-func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null) -> TDCard:
+func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null, source : PackedScene = null) -> TDCard:
 	if(!data || !cardSceneSource):
 		var reason : String = ""
 		if(!data):
@@ -47,7 +56,12 @@ func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool
 		reason += "."
 		printerr("[CardBoard] Unable to create card: " + reason)
 		return null
-	var unpackedScene = cardSceneSource.instantiate()
+	var unpackedScene
+	if(source):
+		unpackedScene = source
+	else:
+		unpackedScene = cardSceneSource.instantiate()
+	
 	if(unpackedScene is TDCard):
 		unpackedScene.SetUp(data, isAesthetic, useGoToPos, goToPos)
 	else:
@@ -55,3 +69,4 @@ func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool
 		unpackedScene.queue_free()
 		return null
 	return unpackedScene
+	
