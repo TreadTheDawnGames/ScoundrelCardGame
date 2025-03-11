@@ -12,10 +12,11 @@ func _init(name : String, art : Texture2D, healthValue : int):
 	HealthValue = healthValue
 	return
 
-func PlayCard(name : String, _card : TDCard) -> void:
-	match name:
-		"Heal":
+func PlayCard(name : String, card : TDCard) -> void:
+	if(name.contains("Equip")):
 			print("Heal")
-		"PotionAbility":
+			card.FreeMarker()
+			card.queue_free()
+	elif(name.contains("Equip")):
 			PotionAbility()
 	return

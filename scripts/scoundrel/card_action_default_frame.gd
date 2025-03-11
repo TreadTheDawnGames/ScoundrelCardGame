@@ -12,5 +12,4 @@ func Run(card : TDCard) -> void:
 			card.Art.scale = card.Art.scale.lerp(Vector2(1.25,1.25), 0.25)
 	else:
 		card.Art.scale = card.Art.scale.lerp(Vector2.ONE, 0.25)
-
 	return

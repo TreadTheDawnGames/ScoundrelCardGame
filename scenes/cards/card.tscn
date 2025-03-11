@@ -1,11 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf0yq1t70q2w3"]
 
-[ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scripts/scoundrel/TDCard_Base.gd" id="1_45qsb"]
+[ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scripts/scoundrel/TDCard_Art.gd" id="1_45qsb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqw3"]
 size = Vector2(25, 35)
 
 [node name="Card" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_45qsb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

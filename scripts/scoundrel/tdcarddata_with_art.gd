@@ -14,3 +14,13 @@ func SpecialSetup(card : TDCard):
 
 func Frame(card : TDCard) -> void:
 	TDCardActions_DefOf.Frame.Run(card)
+	
+func HoverEnterAction(card : TDCard):
+	card.z_index = 500
+	card.get_parent().move_child(card, 0)
+	return
+	
+func HoverExitAction(card : TDCard):
+	card.z_index = 0
+	card.get_parent().move_child(card, card.get_parent().get_child_count()-1)
+	return

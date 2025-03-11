@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name TDCardBoard
 
 var _board : Array[TDCard]
@@ -6,8 +6,8 @@ var _selectedCards : Array[TDCard]
 @export
 var cardSceneSource : PackedScene
 
-func AddCard(data : TDCardData, isAesthetic : bool) -> TDCard:
-	var card = CreateCardFromData(data, isAesthetic)
+func AddCard(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null) -> TDCard:
+	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos)
 	if(!card):
 		return
 	add_child(card)
@@ -35,7 +35,7 @@ func DeselectAll() -> void:
 	_selectedCards.resize(0)
 	return
 
-func CreateCardFromData(data : TDCardData, isAesthetic : bool) -> TDCard:
+func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null) -> TDCard:
 	if(!data || !cardSceneSource):
 		var reason : String = ""
 		if(!data):
@@ -49,7 +49,7 @@ func CreateCardFromData(data : TDCardData, isAesthetic : bool) -> TDCard:
 		return null
 	var unpackedScene = cardSceneSource.instantiate()
 	if(unpackedScene is TDCard):
-		unpackedScene.SetUp(data, isAesthetic)
+		unpackedScene.SetUp(data, isAesthetic, useGoToPos, goToPos)
 	else:
 		printerr("\""+unpackedScene.name+"\"" + " is not a TDCard. The root node of your card object must be a TDCard.")
 		unpackedScene.queue_free()

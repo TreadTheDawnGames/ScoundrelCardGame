@@ -8,8 +8,9 @@ func _init(name : String, art : Texture2D, weaponStrength : int) -> void:
 	WeaponStrength = weaponStrength
 	return
 
-func PlayCard(name : String, _card : TDCard) -> void:
-	match name:
-		"Equip":
-			print("Equipped " + CardName)
+func PlayCard(name : String, card : TDCard) -> void:
+	if(name.contains("Equip")):
+		print("Equipped " + CardName)
+		card.FreeMarker()
+		card.queue_free()
 	return

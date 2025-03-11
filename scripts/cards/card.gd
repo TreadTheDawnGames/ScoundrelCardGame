@@ -14,7 +14,7 @@ var returnSpeed : float = 0.1
 
 var _grabbedOffset : Vector2;
 var _lastMousePos : Vector2;
-var OGPos : Vector2;
+var LocationMarker : TDCardPositionMarker2D;
 
 var Data : TDCardData
 
@@ -28,7 +28,7 @@ var _PlayZone : TDCardPlayArea = null
 
 var _Played : bool
 
-func SetUp(data : TDCardData, isAesthetic : bool) -> void:
+func SetUp(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, marker : TDCardPositionMarker2D = null) -> void:
 	area_entered.connect(CardEnteredZone)
 	area_exited.connect(CardExitedZone)
 	if(not isAesthetic):
@@ -36,6 +36,10 @@ func SetUp(data : TDCardData, isAesthetic : bool) -> void:
 		mouse_exited.connect(Unhovered)
 	_OGMask = collision_mask
 	SetDrawn(isAesthetic)
+	returnToHome = useGoToPos
+	if(returnToHome):
+		FillMarker(marker)
+	
 	if(data):
 		Data = data
 		CardName = Data.CardName
@@ -63,7 +67,7 @@ func _DragDropLogic() -> void:
 			
 		if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not grabbed):
 			if(IsOnTop()):
-				_grabbedOffset = position - get_global_mouse_position()
+				_grabbedOffset = global_position - get_global_mouse_position()
 				if(Data):
 					Data.GrabAction(self)
 				grabbed = true
@@ -72,23 +76,28 @@ func _DragDropLogic() -> void:
 			if(Data):
 				Data.DropAction(self)
 			grabbed = false
-			
 		_lastMousePos = get_global_mouse_position()
-	if(_PlayZone!=null):
+
+	if(_PlayZone):
 		usable = true
+		if(Data):
+			Data.EnterUsable(_PlayZone.PlayType, self)
 	else:
 		usable = false
-	
+		if(Data):
+			Data.ExitUsable(self)
+
 	if(grabbed):
-		position = get_global_mouse_position() + _grabbedOffset
+		global_position = get_global_mouse_position() + _grabbedOffset
 	elif returnToHome:
-		position.lerp(OGPos, returnSpeed)
+		if(LocationMarker):
+			if(global_position.distance_to(LocationMarker.global_position) > 0.01):
+				global_position = global_position.lerp(LocationMarker.global_position, returnSpeed)
 	return
 
 func _process(_delta: float) -> void:
 	if(Data):
 		Data.Frame(self)
-	
 	_PlayCard()
 	_DragDropLogic()	
 
@@ -103,7 +112,6 @@ func Hovered() -> void:
 	add_to_group("DraggableHovered")
 	if(Data):
 		Data.HoverEnterAction(self)
-	z_index = 500
 	_hovered = true
 	return
 
@@ -113,7 +121,6 @@ func Unhovered() -> void:
 	remove_from_group("DraggableHovered")
 	if(Data):
 		Data.HoverExitAction(self)
-	z_index = 0
 	_hovered = false
 	return
 	
@@ -122,8 +129,8 @@ func CardEnteredZone(node : Node2D) -> void:
 	if(node is not TDCardPlayArea):
 		return
 	_PlayZone = node
-	
 	return
+	
 func CardExitedZone(node : Node2D) -> void:
 	if(node is not TDCardPlayArea):
 		return
@@ -131,9 +138,19 @@ func CardExitedZone(node : Node2D) -> void:
 	_PlayZone = null
 	return
 	
-	
 func IsOnTop() -> bool:
 	for card in get_tree().get_nodes_in_group("DraggableHovered"):
 		if(card.get_index() > get_index()):
 			return false
 	return true
+
+##Remember to free the marker before freeing the card.
+func FreeMarker():
+	LocationMarker.SetUnfilled()
+	LocationMarker = null
+	return
+
+func FillMarker(marker : TDCardPositionMarker2D):
+	marker.SetFilled()
+	LocationMarker = marker
+	return

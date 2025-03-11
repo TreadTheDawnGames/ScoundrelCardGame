@@ -2,7 +2,7 @@ extends TDCardData_Art
 class_name TDCardData_Monster
 
 var DamageValue : int
-enum MonsterType {Ghost, Goblin}
+enum MonsterType {Ghost, Beast}
 var Type : MonsterType
 
 func _init(cardName : String, art : Texture2D, damageValue : int, type : MonsterType):
@@ -11,9 +11,19 @@ func _init(cardName : String, art : Texture2D, damageValue : int, type : Monster
 	Type = type
 	return
 
-func PlayCard(playType : String, _card : TDCard) -> void:
-	match playType:
-		"Attack":
+func EnterUsable(playType : String, card : TDCard):
+	if(not playType.contains("Attack")):
+		card.usable = false
+	return
+	
+
+func ExitUsable(card : TDCard):
+	card.usable = false
+	return
+
+func PlayCard(playType : String, card : TDCard) -> void:
+	if(playType.contains("Attack")):
 			print("Attack")
-		_: print("Something else went wrong")
+			card.FreeMarker()
+			card.queue_free()
 	return
