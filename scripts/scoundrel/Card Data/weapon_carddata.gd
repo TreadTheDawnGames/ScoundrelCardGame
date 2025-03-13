@@ -9,11 +9,10 @@ func _init(name : String, art : Texture2D, weaponStrength : int) -> void:
 	return
 	
 func SpecialSetup(card:TDCard)->void:
-	
 	if(CheckCardValid(card)):
 		card.collision_shape_2d.disabled = true
 	else:
-		printerr("Unable to set up card: \"" + card.CardName + ".\" It is not of type TDCard_Weapon.")
+		printerr("Unable to set up card: \"" + card.CardName + ".\" It is not of type TDCard_Weapon. " + card.get_class())
 	return
 
 func PlayCard(name : String, card : TDCard) -> void:

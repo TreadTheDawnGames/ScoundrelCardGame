@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkrd6d61648ll"]
+
+[ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_weapon.gd" id="1_ebgte"]
+[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="2_gjhn1"]
+[ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_lurak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lurak"]
+size = Vector2(25, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41fbe"]
+size = Vector2(25, 35)
+
+[node name="TdCardWeapon" type="Area2D"]
+script = ExtResource("1_ebgte")
+metadata/_custom_type_script = "uid://duk5bk1m0kddv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lurak")
+
+[node name="Art" type="Sprite2D" parent="."]
+
+[node name="UseMonsterArea" type="Area2D" parent="."]
+script = ExtResource("2_gjhn1")
+PlayType = "Attack"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UseMonsterArea"]
+shape = SubResource("RectangleShape2D_41fbe")
+
+[node name="MonsterPosMarker" type="Marker2D" parent="."]
+position = Vector2(12, 17)
+script = ExtResource("3_lurak")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"

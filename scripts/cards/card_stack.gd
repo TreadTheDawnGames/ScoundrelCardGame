@@ -32,10 +32,13 @@ func DrawCard(fromBottom : bool = false) -> TDCardData:
 func DrawCardAt(index : int) -> TDCardData:
 	return Cards.pop_at(index)
 
+## Returns the card on top of the deck
+func Peek() -> TDCardData:
+	return Cards.back()
+	
 ## Returns the card data at index.
-func GetAt(index : int) -> TDCardData:
+func PeekAt(index : int) -> TDCardData:
 	return Cards.get(index)
-
 ##Places card at index.
 func BuryAt(index : int, card : TDCardData):
 	return Cards.insert(index, card)

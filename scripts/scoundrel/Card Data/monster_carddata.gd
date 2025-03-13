@@ -12,13 +12,9 @@ func _init(cardName : String, art : Texture2D, damageValue : int, type : Monster
 	return
 
 func EnterUsable(playType : String, card : TDCard):
-	if(not playType.contains("Attack")):
-		card.usable = false
 	return
 	
-
 func ExitUsable(card : TDCard):
-	card.usable = false
 	return
 
 func PlayCard(playType : String, card : TDCard) -> void:
@@ -27,3 +23,8 @@ func PlayCard(playType : String, card : TDCard) -> void:
 			card.FreeMarker()
 			card.queue_free()
 	return
+
+func CheckCardValid(card : TDCard) -> bool:
+	if(card is not TDCard_Monster):
+		return false
+	return true

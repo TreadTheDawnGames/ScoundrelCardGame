@@ -16,7 +16,7 @@ func AddCard(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, g
 	return card
 	
 func AddCardFromSource(source : PackedScene, data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null):
-	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos)
+	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos, source)
 	if(!card):
 		return
 	add_child(card)
@@ -58,14 +58,14 @@ func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool
 		return null
 	var unpackedScene
 	if(source):
-		unpackedScene = source
+		unpackedScene = source.instantiate()
 	else:
 		unpackedScene = cardSceneSource.instantiate()
 	
 	if(unpackedScene is TDCard):
 		unpackedScene.SetUp(data, isAesthetic, useGoToPos, goToPos)
 	else:
-		printerr("\""+unpackedScene.name+"\"" + " is not a TDCard. The root node of your card object must be a TDCard.")
+		printerr("\""+unpackedScene.get_class()+"\"" + " is not a TDCard. The root node of your card object must be a TDCard.")
 		unpackedScene.queue_free()
 		return null
 	return unpackedScene
