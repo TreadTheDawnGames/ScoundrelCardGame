@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dud3m4x0pe4dj"]
+
+[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="1_i6wsr"]
+[ext_resource type="Texture2D" uid="uid://tsunvcmv3tmp" path="res://assets/UI/DiscardPanel.png" id="2_oxwir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir15t"]
+size = Vector2(37, 51)
+
+[node name="DiscardPlayArea" type="Area2D"]
+script = ExtResource("1_i6wsr")
+_PlayType = "Discard"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ir15t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_oxwir")

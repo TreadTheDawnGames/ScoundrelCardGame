@@ -7,68 +7,91 @@
 [ext_resource type="Texture2D" uid="uid://db22iswbwmunq" path="res://assets/cards/AceOfWeapons_1.png" id="4_0tnpc"]
 [ext_resource type="Script" uid="uid://bl780wqdrgw1p" path="res://scripts/DEBUG/DEBUG_card_counter.gd" id="5_gee14"]
 [ext_resource type="Texture2D" uid="uid://dqi5umfyo82n1" path="res://assets/cards/TenOfBeasts.png" id="5_kvpfn"]
-[ext_resource type="Script" uid="uid://csc60awap4om5" path="res://scripts/Managers/room_manager.gd" id="5_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="6_p57ef"]
-[ext_resource type="PackedScene" uid="uid://c8tsl4hngvv64" path="res://scenes/cards/TDCard_Monster.tscn" id="8_dinhu"]
+[ext_resource type="Texture2D" uid="uid://7kx26xg2mgak" path="res://assets/UI/HeartIcon.png" id="7_ir15t"]
+[ext_resource type="PackedScene" uid="uid://blkiokofo6p7o" path="res://scenes/play_areas/heal_play_area.tscn" id="8_ca42v"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="9_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://dkrd6d61648ll" path="res://scenes/cards/TDCard_Weapon.tscn" id="10_kvuet"]
-[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="10_vtaks"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvpfn"]
-size = Vector2(61, 87)
+[ext_resource type="PackedScene" uid="uid://dud3m4x0pe4dj" path="res://scenes/play_areas/discard_play_area.tscn" id="9_ir15t"]
+[ext_resource type="PackedScene" uid="uid://dkyfwxrcvk1u" path="res://scenes/play_areas/equip_play_area.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="17_rysoc"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
 textures = Array[Texture2D]([ExtResource("2_u5sy4"), ExtResource("3_gee14"), ExtResource("4_0tnpc"), ExtResource("5_kvpfn")])
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 offset_right = 392.0
 offset_bottom = 24.0
 text = "Cards in deck: 0"
 script = ExtResource("5_gee14")
 
-[node name="RoomManager" type="Node" parent="." node_paths=PackedStringArray("roomSlots")]
-script = ExtResource("5_u5sy4")
-roomSlots = [NodePath("../Slot1"), NodePath("../Slot2"), NodePath("../Slot3"), NodePath("../Slot4")]
-monsterCard = ExtResource("8_dinhu")
-potionCard = ExtResource("6_p57ef")
-weaponCard = ExtResource("10_kvuet")
+[node name="HealthIcon" type="TextureRect" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 24.0
+offset_right = 44.0
+offset_bottom = 64.0
+texture = ExtResource("7_ir15t")
+
+[node name="HealthText" type="RichTextLabel" parent="CanvasLayer/HealthIcon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Err"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TDCardPlayArea" parent="." instance=ExtResource("17_rysoc")]
+position = Vector2(647, 382)
+_PlayType = "Potion"
+
+[node name="HealPlayArea" parent="." instance=ExtResource("8_ca42v")]
+position = Vector2(708, 382)
+_PlayType = "Heal"
+
+[node name="EquipPlayArea" parent="." instance=ExtResource("13_kvuet")]
+position = Vector2(379, 380)
+
+[node name="DiscardPlayArea" parent="." instance=ExtResource("9_ir15t")]
+position = Vector2(794, 317)
 
 [node name="CardBoard" type="Node2D" parent="."]
-position = Vector2(576, 324)
+position = Vector2(401, 251)
 script = ExtResource("1_uwrxv")
 cardSceneSource = ExtResource("6_p57ef")
 
-[node name="Slot1" type="Marker2D" parent="."]
-position = Vector2(405, 206)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 326)
+zoom = Vector2(2, 2)
+
+[node name="RoomSlots" type="Node2D" parent="."]
+
+[node name="Slot1" type="Marker2D" parent="RoomSlots"]
+position = Vector2(446, 249)
 script = ExtResource("9_0tnpc")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 
-[node name="Slot2" type="Marker2D" parent="."]
-position = Vector2(518, 204)
+[node name="Slot2" type="Marker2D" parent="RoomSlots"]
+position = Vector2(520, 248)
 script = ExtResource("9_0tnpc")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 
-[node name="Slot3" type="Marker2D" parent="."]
-position = Vector2(614, 203)
+[node name="Slot3" type="Marker2D" parent="RoomSlots"]
+position = Vector2(606, 246)
 script = ExtResource("9_0tnpc")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 
-[node name="Slot4" type="Marker2D" parent="."]
-position = Vector2(704, 202)
-script = ExtResource("9_0tnpc")
-metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
-
-[node name="TDCardPlayArea" type="Area2D" parent="."]
-script = ExtResource("10_vtaks")
-_PlayType = "Equip"
-metadata/_custom_type_script = "uid://e6s4cpiydw0p"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TDCardPlayArea"]
-position = Vector2(227, 378)
-shape = SubResource("RectangleShape2D_kvpfn")
-
-[node name="EquippedSlot" type="Marker2D" parent="TDCardPlayArea"]
-position = Vector2(227, 379)
+[node name="Slot4" type="Marker2D" parent="RoomSlots"]
+position = Vector2(699, 245)
 script = ExtResource("9_0tnpc")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"

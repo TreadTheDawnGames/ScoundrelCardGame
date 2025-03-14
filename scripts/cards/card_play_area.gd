@@ -10,3 +10,5 @@ func _ready() -> void:
 	return
 
 func GetPlayType() -> String: return _PlayType
+
+func ValidPlayType(type : String) -> bool: return _PlayType.contains(type)

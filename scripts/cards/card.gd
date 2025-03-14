@@ -150,10 +150,19 @@ func FreeMarker():
 	LocationMarker = null
 	return
 
+## Automatically frees the current marker if the card already has one.
 func FillMarker(marker : TDCardPositionMarker2D):
+	if(LocationMarker):
+		FreeMarker()
 	if(marker):
 		marker.SetFilled()
 		LocationMarker = marker
 	else:
 		printerr("Attempted to set card marker to a null instance.")
+	return
+
+#technically got this name from Brave AI
+func _exit_tree() -> void:
+	if(LocationMarker):
+		printerr(name + ": Make sure to free the card marker first!")
 	return

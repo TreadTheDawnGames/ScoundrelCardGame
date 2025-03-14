@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5hbhxvcl6ohh"]
+
+[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="1_emqnq"]
+[ext_resource type="Texture2D" uid="uid://crfqnddummvx" path="res://assets/UI/PotionPanel.png" id="2_kg4ki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_264po"]
+size = Vector2(37, 51)
+
+[node name="TDCardPlayArea" type="Area2D"]
+script = ExtResource("1_emqnq")
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_264po")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kg4ki")

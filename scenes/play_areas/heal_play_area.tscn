@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://blkiokofo6p7o"]
+
+[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="1_yscxh"]
+[ext_resource type="Texture2D" uid="uid://eft5lcki5bye" path="res://assets/UI/HealPanel.png" id="2_07qsl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7q0ai"]
+size = Vector2(37, 51)
+
+[node name="HealPlayArea" type="Area2D"]
+script = ExtResource("1_yscxh")
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7q0ai")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_07qsl")
