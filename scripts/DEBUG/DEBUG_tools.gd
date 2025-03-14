@@ -35,5 +35,6 @@ func _process(_delta: float) -> void:
 		TDCardData_Monster.new("AceOfGhosts", textures[3], 10,TDCardData_Monster.MonsterType.Beast),
 		]
 		Deck.PutArray(cardsToPut)
+	if(Input.is_action_just_pressed("Debug-Shuffle")):
 		Deck.Shuffle()
 	return

@@ -57,7 +57,7 @@ func _PlayCard() -> void:
 		if(grabbed && usable && not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && not _Played):
 			_Played = true
 			usable = false
-			Data.PlayCard(_PlayZone.PlayType, self)
+			Data.PlayCard(_PlayZone, self)
 	return
 
 func _DragDropLogic() -> void:
@@ -81,7 +81,7 @@ func _DragDropLogic() -> void:
 	if(_PlayZone):
 		usable = true
 		if(Data):
-			Data.EnterUsable(_PlayZone.PlayType, self)
+			Data.EnterUsable(_PlayZone, self)
 	else:
 		usable = false
 		if(Data):
@@ -134,7 +134,7 @@ func CardEnteredZone(node : Node2D) -> void:
 func CardExitedZone(node : Node2D) -> void:
 	if(node is not TDCardPlayArea):
 		return
-	print("Card exited zone: " + node.name + " PlayType: " + node.PlayType)
+	print("Card exited zone: " + node.name + " PlayType: " + node.GetPlayType())
 	_PlayZone = null
 	return
 	
@@ -151,6 +151,9 @@ func FreeMarker():
 	return
 
 func FillMarker(marker : TDCardPositionMarker2D):
-	marker.SetFilled()
-	LocationMarker = marker
+	if(marker):
+		marker.SetFilled()
+		LocationMarker = marker
+	else:
+		printerr("Attempted to set card marker to a null instance.")
 	return

@@ -1,8 +1,8 @@
 extends TDCardData
 class_name Test_CardData
 
-func PlayCard(playType : String, card : TDCard) -> void:
-	match playType:
+func PlayCard(_playArea : TDCardPlayArea, card : TDCard) -> void:
+	match _playArea.GetPlayType():
 		"Type1":
 			print("Played Type1")
 			Deck.StackCard(self)

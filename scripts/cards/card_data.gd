@@ -33,10 +33,10 @@ func GrabAction(_card : TDCard) -> void:
 	#printerr("[CardData] CardData is intended to be used as an abstract class. Please create a new class and inherit it:  GrabAction has not been implemented. card: " + card.cardName)
 	return
 
-func EnterUsable(_playType : String, _card : TDCard) -> void:
+func EnterUsable(_playArea : TDCardPlayArea, _card : TDCard) -> void:
 	return
 
-func PlayCard(_playType : String, _card : TDCard) -> void:
+func PlayCard(_playArea : TDCardPlayArea, _card : TDCard) -> void:
 	#printerr("[CardData] CardData is intended to be used as an abstract class. Please create a new class and inherit it: PlayCard has not been implemented. card: " + card.cardName + " playType: " + playType)
 	return
 

@@ -61,9 +61,14 @@ metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 
 [node name="TDCardPlayArea" type="Area2D" parent="."]
 script = ExtResource("10_vtaks")
-PlayType = "Equip"
+_PlayType = "Equip"
 metadata/_custom_type_script = "uid://e6s4cpiydw0p"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TDCardPlayArea"]
 position = Vector2(227, 378)
 shape = SubResource("RectangleShape2D_kvpfn")
+
+[node name="EquippedSlot" type="Marker2D" parent="TDCardPlayArea"]
+position = Vector2(227, 379)
+script = ExtResource("9_0tnpc")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"

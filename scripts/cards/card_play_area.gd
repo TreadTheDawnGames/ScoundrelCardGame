@@ -2,9 +2,11 @@ extends Area2D
 class_name TDCardPlayArea
 
 @export
-var PlayType : String
+var _PlayType : String
 
 func _ready() -> void:
-	if(!PlayType or PlayType.length() <= 0):
-		printerr("[CardPlayArea] PlayType not set. Card will not play properly when attempting to play here.")
+	if(!_PlayType or _PlayType.length() <= 0):
+		printerr("["+str(get_path())+"] PlayType not set. Card will not play properly when attempting to play here.")
 	return
+
+func GetPlayType() -> String: return _PlayType

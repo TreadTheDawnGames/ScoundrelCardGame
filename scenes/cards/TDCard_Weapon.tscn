@@ -21,7 +21,7 @@ shape = SubResource("RectangleShape2D_lurak")
 
 [node name="UseMonsterArea" type="Area2D" parent="."]
 script = ExtResource("2_gjhn1")
-PlayType = "Attack"
+_PlayType = "Monster"
 metadata/_custom_type_script = "uid://e6s4cpiydw0p"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UseMonsterArea"]
