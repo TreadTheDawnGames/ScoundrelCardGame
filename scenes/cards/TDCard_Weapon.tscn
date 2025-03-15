@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dkrd6d61648ll"]
 
-[ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_WEAPON.gd" id="1_ebgte"]
+[ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_weapon.gd" id="1_ebgte"]
 [ext_resource type="Script" uid="uid://c46b2csnvnnhm" path="res://addons/tooltips/tooltip.gd" id="2_23a4c"]
 [ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="2_gjhn1"]
 [ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_2nvpw"]

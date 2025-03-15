@@ -25,7 +25,7 @@ var standardDeck : Array[CardInfo] = [
 	CardInfo.new("KingofWeapons", CardInfo.SuitType.Weapons, false, "res://assets/cards/KingofWeapons.png", 13),
 	CardInfo.new("AceofWeapons", CardInfo.SuitType.Weapons, false, "res://assets/cards/AceofWeapons.png", 14),
 	#Potions
-	CardInfo.new("2ofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/2ofPotions.png", 2),
+	CardInfo.new("2ofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/2ofPotions.png", 2, "+1 Max Health"),
 	CardInfo.new("3ofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/3ofPotions.png", 3),
 	CardInfo.new("4ofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/4ofPotions.png", 4),
 	CardInfo.new("5ofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/5ofPotions.png", 5),
@@ -39,33 +39,33 @@ var standardDeck : Array[CardInfo] = [
 	CardInfo.new("KingofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/KingofPotions.png", 13),
 	CardInfo.new("AceofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/AceofPotions.png", 14),
 	#Ghosts
-	CardInfo.new("2ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/2ofGhosts.png", 2, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("3ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/3ofGhosts.png", 3, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("4ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/4ofGhosts.png", 4, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("5ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/5ofGhosts.png", 5, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("6ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/6ofGhosts.png", 6, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("7ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/7ofGhosts.png", 7, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("8ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/8ofGhosts.png", 8, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("9ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/9ofGhosts.png", 9, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("10ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/10ofGhosts.png", 10, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("JackofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/JackofGhosts.png", 11, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("QueenofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/QueenofGhosts.png", 12, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("KingofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/KingofGhosts.png", 13, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("AceofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/AceofGhosts.png", 14, TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("2ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/2ofGhosts.png", 2, "", TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("3ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/3ofGhosts.png", 3, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("4ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/4ofGhosts.png", 4, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("5ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/5ofGhosts.png", 5, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("6ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/6ofGhosts.png", 6, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("7ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/7ofGhosts.png", 7, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("8ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/8ofGhosts.png", 8, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("9ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/9ofGhosts.png", 9, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("10ofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/10ofGhosts.png", 10,"", TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("JackofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/JackofGhosts.png", 11,"", TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("QueenofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/QueenofGhosts.png", 12, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("KingofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/KingofGhosts.png", 13,"", TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("AceofGhosts", CardInfo.SuitType.Monsters, false, "res://assets/cards/AceofGhosts.png", 14,"", TDCardData_Monster.MonsterType.Ghost),
 	#Beasts
-	CardInfo.new("2ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/2ofBeasts.png", 2, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("3ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/3ofBeasts.png", 3, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("4ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/4ofBeasts.png", 4, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("5ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/5ofBeasts.png", 5, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("6ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/6ofBeasts.png", 6, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("7ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/7ofBeasts.png", 7, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("8ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/8ofBeasts.png", 8, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("9ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/9ofBeasts.png", 9, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("10ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/10ofBeasts.png", 10, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("JackofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/JackofBeasts.png", 11, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("QueenofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/QueenofBeasts.png", 12, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("KingofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/KingofBeasts.png", 13, TDCardData_Monster.MonsterType.Ghost),
-	CardInfo.new("AceofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/AceofBeasts.png", 14, TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("2ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/2ofBeasts.png", 2, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("3ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/3ofBeasts.png", 3, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("4ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/4ofBeasts.png", 4, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("5ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/5ofBeasts.png", 5, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("6ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/6ofBeasts.png", 6, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("7ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/7ofBeasts.png", 7, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("8ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/8ofBeasts.png", 8, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("9ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/9ofBeasts.png", 9, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("10ofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/10ofBeasts.png", 10, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("JackofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/JackofBeasts.png", 11, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("QueenofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/QueenofBeasts.png", 12, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("KingofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/KingofBeasts.png", 13, "",TDCardData_Monster.MonsterType.Ghost),
+	CardInfo.new("AceofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/AceofBeasts.png", 14, "",TDCardData_Monster.MonsterType.Ghost),
 ]
 
 signal ReplenishedRoom
@@ -147,8 +147,9 @@ class CardInfo:
 	var MonsterType : TDCardData_Monster.MonsterType
 	enum SuitType {Monsters, Potions, Weapons}
 	var Suit : SuitType
+	var PodDes : String
 	
-	func _init(cardName : String, suit : SuitType, isMonster : bool, texturePath : String, value : int, monsterType : TDCardData_Monster.MonsterType = TDCardData_Monster.MonsterType.Ghost):
+	func _init(cardName : String, suit : SuitType, isMonster : bool, texturePath : String, value : int,  potionDescription : String = "", monsterType : TDCardData_Monster.MonsterType = TDCardData_Monster.MonsterType.Ghost):
 		CardName = cardName
 		IsMonster = isMonster
 		TexturePath = texturePath
@@ -156,4 +157,5 @@ class CardInfo:
 		Suit = suit
 		if(IsMonster):
 			MonsterType = monsterType
+		PodDes = potionDescription
 		return

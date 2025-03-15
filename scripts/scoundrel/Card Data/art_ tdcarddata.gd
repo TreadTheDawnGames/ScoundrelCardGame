@@ -18,6 +18,7 @@ func SpecialSetup(card : TDCard):
 	card.Art = card.get_node("Art")
 	card.Art.texture = Art
 	card.tooltip = card.get_node("Tooltip")
+	card.tooltip.Setup()
 	pass
 
 func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:

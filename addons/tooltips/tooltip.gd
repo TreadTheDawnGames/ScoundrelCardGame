@@ -50,13 +50,15 @@ func _init() -> void:
 	pass
 
 
-func _ready() -> void:
+func Setup() -> void:
+	owner_node = get_node(owner_path)
 	# create the visuals
 	_visuals = visuals_res.instantiate()
 	add_child(_visuals)
 	# calculate the extents
 	extents = _visuals.get_rect().size
 	# connect signals
+	print(owner.name)
 	owner_node.connect("mouse_entered", _mouse_entered)
 	owner_node.connect("mouse_exited", _mouse_exited)
 	# initialize the timer

@@ -24,6 +24,9 @@ func _process(_delta: float) -> void:
 		LoadDeck()
 	if(Input.is_action_just_pressed("Debug-Shuffle")):
 		Deck.Shuffle()
+	if(Input.is_action_just_pressed("Debug-Flee")):
+		Room.Flee()
+		Room.ReplenishRoom()
 	return
 	
 func LoadDeck():
@@ -36,7 +39,7 @@ func LoadDeck():
 				data = TDCardData_Monster.new(info.CardName, info.TexturePath, info.Value, info.MonsterType)
 				pass
 			info.SuitType.Potions:
-				data = TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value)
+				data = TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.PodDes)
 				pass
 			info.SuitType.Weapons:
 				data = TDCardData_Weapon.new(info.CardName, info.TexturePath, info.Value)
