@@ -9,9 +9,11 @@
 size = Vector2(37, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yixvd"]
-size = Vector2(37, 51)
+size = Vector2(18.5, 25.5)
 
 [node name="EquipPlayArea" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_34dq7")
 _PlayType = "Equip"
 metadata/_custom_type_script = "uid://e6s4cpiydw0p"
@@ -28,6 +30,8 @@ metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 texture = ExtResource("3_34dq7")
 
 [node name="MonsterPlayArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_jw8q3")
 _PlayType = "Monster"
 metadata/_custom_type_script = "uid://e6s4cpiydw0p"

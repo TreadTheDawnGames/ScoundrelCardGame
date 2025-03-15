@@ -1,20 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8tsl4hngvv64"]
 
-[ext_resource type="Script" uid="uid://bq1tl0uaei7gf" path="res://scripts/scoundrel/Cards/tdcard_monster.gd" id="1_gjhn1"]
+[ext_resource type="Script" uid="uid://bq1tl0uaei7gf" path="res://scripts/scoundrel/Cards/tdcard_MONSTER.gd" id="1_gjhn1"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_lurak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1esk"]
 size = Vector2(25, 35)
 
 [node name="TdCardMonster" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
 script = ExtResource("1_gjhn1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="GrabArea" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t1esk")
 
 [node name="Art" type="Sprite2D" parent="."]
 
 [node name="MonsterStackMarker" type="Marker2D" parent="."]
-position = Vector2(12.5, 17.5)
+position = Vector2(6, 8.5)
 script = ExtResource("3_lurak")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"

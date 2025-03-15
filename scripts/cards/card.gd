@@ -15,6 +15,7 @@ var returnSpeed : float = 0.1
 var _grabbedOffset : Vector2;
 var _lastMousePos : Vector2;
 var LocationMarker : TDCardPositionMarker2D;
+@onready var grab_area: CollisionShape2D = $GrabArea
 
 var Data : TDCardData
 
@@ -31,6 +32,7 @@ var _Played : bool
 func SetUp(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, marker : TDCardPositionMarker2D = null) -> void:
 	area_entered.connect(CardEnteredZone)
 	area_exited.connect(CardExitedZone)
+	grab_area = get_node("GrabArea")
 	if(not isAesthetic):
 		mouse_entered.connect(Hovered)
 		mouse_exited.connect(Unhovered)
@@ -98,8 +100,10 @@ func _DragDropLogic() -> void:
 func _process(_delta: float) -> void:
 	if(Data):
 		Data.Frame(self)
+		
 	_PlayCard()
-	_DragDropLogic()	
+	_DragDropLogic()
+	
 
 
 	return
@@ -165,4 +169,12 @@ func FillMarker(marker : TDCardPositionMarker2D):
 func _exit_tree() -> void:
 	if(LocationMarker):
 		printerr(name + ": Make sure to free the card marker first!")
+	return
+
+func StopDoDragDrop():
+	grab_area.disabled = true
+	grabbed = false
+	return
+func StartDoDragDrop():
+	grab_area.disabled = false
 	return

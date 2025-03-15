@@ -8,11 +8,11 @@ var SlainMonsters : Array[TDCard]
 var equipped:bool = false
 var weaponArea : Weapon_TDCardPlayArea
 
-func _init(name : String, art : Texture2D, weaponStrength : int) -> void:
+func _init(name : String, art : String, weaponStrength : int) -> void:
 	super._init(name, art)
 	useName = "Equip, Discard"
 	WeaponStrength = weaponStrength
-	LastMonsterValue = WeaponStrength +1
+	LastMonsterValue = 15
 	return
 	
 func SpecialSetup(card:TDCard)->void:
@@ -56,6 +56,7 @@ func Unequip(card : TDCard):
 		weaponArea.SetEquipped(false)
 		
 	for monster in SlainMonsters:
+		monster.FreeMarker()
 		monster.queue_free()
 	card.FreeMarker()
 	card.queue_free()
@@ -77,10 +78,14 @@ func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
 	
 func GetUnfilledCardSlot() -> TDCardPositionMarker2D:
 	for slot : TDCardPositionMarker2D in MonsterSlots:
-		print(slot.get_class())
-		if(!slot.isFilled):
-			return slot
+		if(is_instance_valid(slot)):
+			if(!slot.isFilled):
+				return slot
 	return null
+
+func DropAction(card : TDCard):
+	card.get_parent().move_child(card, 0)
+	return
 
 func UpdateLastMonster(monstStr : int):
 	LastMonsterValue = monstStr

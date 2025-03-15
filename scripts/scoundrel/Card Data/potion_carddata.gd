@@ -10,7 +10,7 @@ func PotionAbility(card : TDCard) -> void:
 	card.queue_free()
 	return
 
-func _init(name : String, art : Texture2D, healthValue : int):
+func _init(name : String, art : String, healthValue : int):
 	super._init(name, art)
 	useName = "Heal, Potion"
 	HealthValue = healthValue

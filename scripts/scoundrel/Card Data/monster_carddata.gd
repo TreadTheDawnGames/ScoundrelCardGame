@@ -4,14 +4,26 @@ class_name TDCardData_Monster
 var MonsterStrength : int
 enum MonsterType {Ghost, Beast}
 var Type : MonsterType
+var slain : bool = false
 
-func _init(cardName : String, art : Texture2D, monsterStrength : int, type : MonsterType):
+func _init(cardName : String, art : String, monsterStrength : int, type : MonsterType):
 	super._init(cardName, art)
 	useName = "Monster"
 	MonsterStrength = monsterStrength
 	Type = type
 	return
 
+func HoverEnterAction(card : TDCard):
+	if(!slain):
+		super.HoverEnterAction(card)
+	return
+	
+func Frame(card : TDCard):
+	if(slain):
+		card.Art.scale = card.Art.scale.lerp(Vector2.ONE, 0.25)
+	else:
+		super.Frame(card)
+	return
 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.get_parent() is not TDCard_Weapon):
@@ -34,6 +46,8 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 				monsterCard.FreeMarker()
 				card.queue_free()
 	Room.RemoveFromRoom(card)
+	slain = true
+	card.StopDoDragDrop()
 	return
 
 func _CheckCardValid(card : TDCard) -> bool:
@@ -42,7 +56,7 @@ func _CheckCardValid(card : TDCard) -> bool:
 	return true
 
 func _WeaponValid(weaponData : TDCardData_Weapon) -> bool:
-	if(weaponData.WeaponStrength >= MonsterStrength and weaponData.LastMonsterValue > MonsterStrength):
+	if(weaponData.LastMonsterValue > MonsterStrength):
 		return true
 	return false
 

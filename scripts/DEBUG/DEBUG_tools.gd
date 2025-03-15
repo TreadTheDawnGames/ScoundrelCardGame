@@ -10,12 +10,13 @@ func RandTex() -> Texture:
 	
 func _ready():
 	LoadDeck()
+	Deck.Shuffle()
 	Room.ReplenishRoom()
 	return
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("Debug-NewCard")):
-		card_board.AddCard(TDCardData_Monster.new("CardName", RandTex(), 14,TDCardData_Monster.MonsterType.Ghost), false, true)
+		card_board.AddCard(TDCardData_Monster.new("CardName", RandTex().resource_path, 14,TDCardData_Monster.MonsterType.Ghost), false, true)
 	if(Input.is_action_just_pressed("Debug-ReplenishRoom")):
 		Room.ReplenishRoom()
 	if(Input.is_action_just_pressed("Debug-PopulateDeck")):
@@ -26,23 +27,21 @@ func _process(_delta: float) -> void:
 	return
 	
 func LoadDeck():
-	var cardsToPut : Array[TDCardData] = [
-	TDCardData_Monster.new("AceOfGhosts", textures[0], 14,TDCardData_Monster.MonsterType.Ghost),
-	TDCardData_Potion.new("AceOfPotions", textures[1], 14),
-	TDCardData_Weapon.new("AceOfWeapons", textures[2], 14),
-	TDCardData_Monster.new("AceOfGhosts", textures[3], 10,TDCardData_Monster.MonsterType.Beast),
-	TDCardData_Monster.new("AceOfGhosts", textures[0], 14,TDCardData_Monster.MonsterType.Ghost),
-	TDCardData_Potion.new("AceOfPotions", textures[1], 14),
-	TDCardData_Weapon.new("AceOfWeapons", textures[2], 14),
-	TDCardData_Monster.new("AceOfGhosts", textures[3], 10,TDCardData_Monster.MonsterType.Beast),
-	TDCardData_Monster.new("AceOfGhosts", textures[0], 14,TDCardData_Monster.MonsterType.Ghost),
-	TDCardData_Potion.new("AceOfPotions", textures[1], 14),
-	TDCardData_Weapon.new("AceOfWeapons", textures[2], 14),
-	TDCardData_Monster.new("AceOfGhosts", textures[3], 10,TDCardData_Monster.MonsterType.Beast),
-	TDCardData_Monster.new("AceOfGhosts", textures[0], 14,TDCardData_Monster.MonsterType.Ghost),
-	TDCardData_Potion.new("AceOfPotions", textures[1], 14),
-	TDCardData_Weapon.new("AceOfWeapons", textures[2], 14),
-	TDCardData_Monster.new("AceOfGhosts", textures[3], 10,TDCardData_Monster.MonsterType.Beast),
-	]
+	var cardsToPut : Array[TDCardData] = []
+	
+	for info in Room.standardDeck:
+		var data
+		match (info.Suit):
+			info.SuitType.Monsters:
+				data = TDCardData_Monster.new(info.CardName, info.TexturePath, info.Value, info.MonsterType)
+				pass
+			info.SuitType.Potions:
+				data = TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value)
+				pass
+			info.SuitType.Weapons:
+				data = TDCardData_Weapon.new(info.CardName, info.TexturePath, info.Value)
+				pass
+		if(data):
+			cardsToPut.append(data)
 	Deck.PutArray(cardsToPut)
 	return

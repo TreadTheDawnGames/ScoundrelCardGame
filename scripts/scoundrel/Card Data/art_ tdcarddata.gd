@@ -6,9 +6,12 @@ var useName : String
 func IsUsable(areaPlayName : String) -> bool:
 	return useName.contains(areaPlayName)
 
-func _init(name : String, art : Texture2D):
+func _init(name : String, art : String):
 	super._init(name)
-	Art = art
+	if(ResourceLoader.exists(art)):
+		Art = load(art)
+	else:
+		printerr(art + " does not exist.")
 	return
 
 func SpecialSetup(card : TDCard):

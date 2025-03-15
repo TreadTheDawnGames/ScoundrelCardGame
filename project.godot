@@ -44,6 +44,14 @@ Debug-Shuffle={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="DiscardArea"
+2d_physics/layer_2="EquipPlayArea"
+2d_physics/layer_3="HealPlayArea"
+2d_physics/layer_4="PotionPlayArea"
+2d_physics/layer_5="MonsterPlayArea"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
