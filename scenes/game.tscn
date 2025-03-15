@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dud3m4x0pe4dj" path="res://scenes/play_areas/discard_play_area.tscn" id="9_ir15t"]
 [ext_resource type="PackedScene" uid="uid://dkyfwxrcvk1u" path="res://scenes/play_areas/equip_play_area.tscn" id="13_kvuet"]
 [ext_resource type="Texture2D" uid="uid://qp6d471c7u4m" path="res://assets/cards/CardRear.png" id="14_ir15t"]
-[ext_resource type="Script" uid="uid://bxnwhhm6ss7fq" path="res://scenes/flee_button.gd" id="16_ca42v"]
+[ext_resource type="Script" uid="uid://bxnwhhm6ss7fq" path="res://scripts/scoundrel/flee_button.gd" id="16_ca42v"]
 [ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="17_rysoc"]
 
 [node name="Game" type="Node2D"]

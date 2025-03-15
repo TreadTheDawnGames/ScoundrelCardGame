@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgpw51gfo6yit"]
+
+[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="1_w0grc"]
+[ext_resource type="Script" uid="uid://bxa1mgn3sgbjg" path="res://potion_tooltip.gd" id="2_wb7um"]
+
+[node name="TDCard_Potion" instance=ExtResource("1_w0grc")]
+
+[node name="Tooltip" parent="." index="1"]
+script = ExtResource("2_wb7um")
+visuals_res = null

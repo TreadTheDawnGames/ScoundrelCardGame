@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf0yq1t70q2w3"]
+[gd_scene load_steps=5 format=3 uid="uid://cf0yq1t70q2w3"]
 
 [ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scripts/scoundrel/Cards/TDCard_Art.gd" id="1_45qsb"]
+[ext_resource type="Script" uid="uid://c46b2csnvnnhm" path="res://addons/tooltips/tooltip.gd" id="2_jl6rh"]
+[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_73nwn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqw3"]
 size = Vector2(25, 35)
@@ -12,5 +14,14 @@ script = ExtResource("1_45qsb")
 
 [node name="GrabArea" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0qqw3")
+
+[node name="Tooltip" type="Node" parent="."]
+script = ExtResource("2_jl6rh")
+visuals_res = ExtResource("3_73nwn")
+owner_path = NodePath("..")
+follow_mouse = false
+offset_x = -36.0
+offset_y = -50.0
+metadata/_custom_type_script = "uid://c46b2csnvnnhm"
 
 [node name="Art" type="Sprite2D" parent="."]

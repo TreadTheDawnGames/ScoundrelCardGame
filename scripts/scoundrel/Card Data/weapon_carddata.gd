@@ -48,6 +48,7 @@ func Equip(card : TDCard):
 	card.useMonsterCollisionShape.disabled = false
 	equipped = true
 	card._Played = false
+	card.tooltip.show_tooltip = false
 	return
 
 func Unequip(card : TDCard):
@@ -84,6 +85,8 @@ func GetUnfilledCardSlot() -> TDCardPositionMarker2D:
 	return null
 
 func DropAction(card : TDCard):
+	if(!equipped):
+		super.DropAction(card)
 	card.get_parent().move_child(card, 0)
 	return
 

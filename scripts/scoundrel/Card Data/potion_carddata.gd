@@ -2,6 +2,12 @@ extends TDCardData_Art
 class_name TDCardData_Potion
 
 var HealthValue : int
+var AbilityDescription : String
+
+func SpecialSetup(card : TDCard):
+	if(card is TDCard_Base):
+		var potionCard : TDCard_Base = card
+	pass
 
 func PotionAbility(card : TDCard) -> void:
 	print("Potion Ability")

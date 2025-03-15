@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl88k3sc12ja2"]
+
+[ext_resource type="Texture2D" uid="uid://bfhm4nxhldnhk" path="res://assets/UI/Tooltip.png" id="1_q5gyf"]
+[ext_resource type="FontFile" uid="uid://b65tlnsb4ba2g" path="res://assets/UI/Fonts/TreadTheDawnPix.ttf" id="2_hojtq"]
+
+[node name="ToolTipBase" type="NinePatchRect"]
+offset_right = 73.0
+offset_bottom = 28.0
+texture = ExtResource("1_q5gyf")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 70.0
+offset_bottom = 25.0
+theme_override_fonts/normal_font = ExtResource("2_hojtq")
+theme_override_font_sizes/normal_font_size = 16
+text = "Tooltip :)"
+horizontal_alignment = 1
+vertical_alignment = 1

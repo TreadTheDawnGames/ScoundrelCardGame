@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg20qvswbokks"]
+
+[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="1_lt72e"]
+[ext_resource type="Script" uid="uid://cqcp32bdln2f6" path="res://scenes/Tooltips/potion_tool_tip.gd" id="2_lr02w"]
+
+[node name="PotionToolTip" instance=ExtResource("1_lt72e")]
+script = ExtResource("2_lr02w")
+
+[node name="RichTextLabel" parent="." index="0"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 72.0
+offset_bottom = 27.0
+text = "+1 Max health"
+scroll_active = false
+autowrap_mode = 1

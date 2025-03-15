@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkrd6d61648ll"]
+[gd_scene load_steps=8 format=3 uid="uid://dkrd6d61648ll"]
 
 [ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_WEAPON.gd" id="1_ebgte"]
+[ext_resource type="Script" uid="uid://c46b2csnvnnhm" path="res://addons/tooltips/tooltip.gd" id="2_23a4c"]
 [ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="2_gjhn1"]
+[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_2nvpw"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_lurak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lurak"]
@@ -18,6 +20,15 @@ metadata/_custom_type_script = "uid://duk5bk1m0kddv"
 
 [node name="GrabArea" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lurak")
+
+[node name="Tooltip" type="Node" parent="."]
+script = ExtResource("2_23a4c")
+visuals_res = ExtResource("3_2nvpw")
+owner_path = NodePath("..")
+follow_mouse = false
+offset_x = -36.0
+offset_y = -50.0
+metadata/_custom_type_script = "uid://c46b2csnvnnhm"
 
 [node name="Art" type="Sprite2D" parent="."]
 
