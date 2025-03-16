@@ -8,22 +8,20 @@ func SpecialSetup(card : TDCard):
 	super.SpecialSetup(card)
 	if(card is TDCard_Base):
 		var potionCard : TDCard_Base = card
-		var potionTT : Tooltip_Potion = potionCard.tooltip
+		var potionTT : Tooltip = potionCard.tooltip
 		potionTT._visuals.abilityDescription = AbilityDescription
 	pass
 
-func PotionAbility(card : TDCard) -> void:
-	print("Potion Ability")
-	Health.IncreaseMaxHealth(1)
-	card.FreeMarker()
-	card.queue_free()
+func PotionAbility(_card : TDCard) -> void:
+	print("Potion Ability: " + CardName)
 	return
 
-func _init(name : String, art : String, healthValue : int, abilityDescription : String):
+func _init(name : String, art : String, healthValue : int, abilityDescription : String = ""):
 	super._init(name, art)
 	useName = "Heal, Potion"
 	HealthValue = healthValue
-	AbilityDescription = abilityDescription
+	if(abilityDescription.length()>0):
+		AbilityDescription = abilityDescription
 	return
 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:

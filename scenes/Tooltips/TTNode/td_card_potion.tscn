@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgpw51gfo6yit"]
 
 [ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scripts/scoundrel/Cards/TDCard_Art.gd" id="1_w0grc"]
-[ext_resource type="Script" uid="uid://bxa1mgn3sgbjg" path="res://potion_tooltip.gd" id="2_wb7um"]
+[ext_resource type="Script" uid="uid://bxa1mgn3sgbjg" path="res://scripts/scoundrel/tooltips/tooltip.gd" id="2_wb7um"]
 [ext_resource type="PackedScene" uid="uid://cg20qvswbokks" path="res://scenes/Tooltips/potion_tool_tip.tscn" id="3_wb7um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wb7um"]

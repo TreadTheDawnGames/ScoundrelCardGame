@@ -150,7 +150,8 @@ func IsOnTop() -> bool:
 
 ##Remember to free the marker before freeing the card.
 func FreeMarker():
-	LocationMarker.SetUnfilled()
+	if(LocationMarker):
+		LocationMarker.SetUnfilled()
 	LocationMarker = null
 	return
 
