@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://u1uq6phvu322"]
+[gd_scene load_steps=2 format=3 uid="uid://cmbd65d3oely2"]
 
 [ext_resource type="Script" uid="uid://dojtx1o6xvbia" path="res://scripts/Managers/attack_bonus_manager.gd" id="1_5q82q"]
 

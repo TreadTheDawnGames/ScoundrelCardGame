@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://obwt4udpkhb5"]
+[gd_scene load_steps=21 format=3 uid="uid://obwt4udpkhb5"]
 
 [ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/DEBUG/DEBUG_tools.gd" id="1_yqjtg"]
@@ -18,13 +18,8 @@
 [ext_resource type="Script" uid="uid://bxnwhhm6ss7fq" path="res://scripts/scoundrel/flee_button.gd" id="16_ca42v"]
 [ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="17_rysoc"]
 [ext_resource type="FontFile" uid="uid://b65tlnsb4ba2g" path="res://assets/UI/Fonts/TreadTheDawnPix.ttf" id="18_264po"]
+[ext_resource type="PackedScene" uid="uid://dkrd6d61648ll" path="res://scenes/cards/TDCard_Weapon.tscn" id="19_1kice"]
 [ext_resource type="Script" uid="uid://frdiot7biqw2" path="res://scenes/game_setup.gd" id="19_5newe"]
-[ext_resource type="PackedScene" uid="uid://cov4qstnbqs4v" path="res://scenes/cards/td_card_data_character.tscn" id="20_37s47"]
-[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="21_37s47"]
-[ext_resource type="Texture2D" uid="uid://c7w55ty7sbcav" path="res://assets/UI/SelectPanel.png" id="22_bt5mj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
-size = Vector2(37, 51)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -33,40 +28,42 @@ specialDeck = true
 
 [node name="DungeonNodes" type="Node2D" parent="."]
 visible = false
-position = Vector2(-16, 8)
-scale = Vector2(4, 4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DungeonNodes"]
 
 [node name="DiscardPlayArea" parent="DungeonNodes" instance=ExtResource("9_ir15t")]
-position = Vector2(268.75, 40.25)
+position = Vector2(694, 293)
 collision_mask = 0
 
 [node name="EquipPlayArea" parent="DungeonNodes" instance=ExtResource("13_kvuet")]
-position = Vector2(48.75, 116.25)
+position = Vector2(474, 369)
 
 [node name="HealPlayArea" parent="DungeonNodes" instance=ExtResource("8_ca42v")]
-position = Vector2(223.75, 117.25)
+position = Vector2(649, 370)
 collision_layer = 4
 collision_mask = 0
 _PlayType = "Heal"
 
 [node name="PotionPlayArea" parent="DungeonNodes" instance=ExtResource("17_rysoc")]
-position = Vector2(174.75, 117.25)
+position = Vector2(600, 370)
 collision_layer = 8
 collision_mask = 0
 _PlayType = "Potion"
 
 [node name="CardBoard" type="Node2D" parent="DungeonNodes"]
-position = Vector2(76.75, 40.25)
+position = Vector2(502, 293)
 script = ExtResource("1_uwrxv")
 cardSceneSource = ExtResource("6_p57ef")
 
 [node name="CardRear" type="Sprite2D" parent="DungeonNodes/CardBoard"]
 texture = ExtResource("14_ir15t")
 
+[node name="Camera2D" type="Camera2D" parent="DungeonNodes"]
+position = Vector2(575, 326)
+zoom = Vector2(4, 4)
+
 [node name="RoomSlots" type="Node2D" parent="DungeonNodes"]
-position = Vector2(76.75, 40.25)
+position = Vector2(502, 293)
 
 [node name="Slot1" type="Marker2D" parent="DungeonNodes/RoomSlots"]
 position = Vector2(33, 0)
@@ -89,29 +86,26 @@ script = ExtResource("9_0tnpc")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 
 [node name="Button" type="Button" parent="DungeonNodes"]
-offset_left = 28.75
-offset_top = 30.25
-offset_right = 59.75
-offset_bottom = 52.25
+offset_left = 454.0
+offset_top = 283.0
+offset_right = 485.0
+offset_bottom = 305.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 10
 text = "Flee!"
 script = ExtResource("16_ca42v")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DungeonNodes"]
-offset_left = 4.0
-offset_top = -2.0
-offset_right = 396.0
-offset_bottom = 22.0
-scale = Vector2(0.25, 0.25)
+offset_right = 392.0
+offset_bottom = 24.0
 text = "Cards in deck: 0"
 script = ExtResource("5_gee14")
 
 [node name="HealthIcon" type="TextureRect" parent="DungeonNodes"]
-offset_left = 6.75
-offset_top = 91.25
-offset_right = 22.75
-offset_bottom = 107.25
+offset_left = 432.0
+offset_top = 344.0
+offset_right = 448.0
+offset_bottom = 360.0
 texture = ExtResource("7_ir15t")
 
 [node name="HealthText" type="RichTextLabel" parent="DungeonNodes/HealthIcon"]
@@ -135,10 +129,10 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="AttackBonusIcon" type="TextureRect" parent="DungeonNodes"]
-offset_left = 6.75
-offset_top = 108.25
-offset_right = 22.75
-offset_bottom = 124.25
+offset_left = 432.0
+offset_top = 361.0
+offset_right = 448.0
+offset_bottom = 377.0
 texture = ExtResource("8_rysoc")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DungeonNodes/AttackBonusIcon"]
@@ -153,14 +147,13 @@ fit_content = true
 scroll_active = false
 
 [node name="Pregame" type="Node2D" parent="."]
-scale = Vector2(4, 4)
 script = ExtResource("19_5newe")
 
 [node name="Panel" type="Panel" parent="Pregame"]
-offset_left = 12.0
-offset_top = 5.25
-offset_right = 282.0
-offset_bottom = 155.25
+offset_left = 440.0
+offset_top = 251.0
+offset_right = 710.0
+offset_bottom = 401.0
 mouse_filter = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Pregame/Panel"]
@@ -180,40 +173,22 @@ vertical_alignment = 1
 
 [node name="TDCardBoard" type="Node2D" parent="Pregame"]
 script = ExtResource("1_uwrxv")
-cardSceneSource = ExtResource("20_37s47")
+cardSceneSource = ExtResource("19_1kice")
 metadata/_custom_type_script = "uid://b86xq610d61j6"
 
 [node name="StartingCardsSlots" type="Node2D" parent="Pregame"]
-position = Vector2(-18, 2)
 
 [node name="TDCardPositionMarker2D" type="Marker2D" parent="Pregame/StartingCardsSlots"]
-position = Vector2(102, 80.25)
+position = Vector2(530, 326)
 script = ExtResource("9_0tnpc")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 
 [node name="TDCardPositionMarker2D2" type="Marker2D" parent="Pregame/StartingCardsSlots"]
-position = Vector2(147, 80.25)
+position = Vector2(575, 326)
 script = ExtResource("9_0tnpc")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 
 [node name="TDCardPositionMarker2D3" type="Marker2D" parent="Pregame/StartingCardsSlots"]
-position = Vector2(192, 80.25)
+position = Vector2(620, 326)
 script = ExtResource("9_0tnpc")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
-
-[node name="TDCardPlayArea" type="Area2D" parent="Pregame"]
-position = Vector2(246, 82.25)
-collision_layer = 32
-collision_mask = 0
-script = ExtResource("21_37s47")
-_PlayType = "Select"
-metadata/_custom_type_script = "uid://e6s4cpiydw0p"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pregame/TDCardPlayArea"]
-shape = SubResource("RectangleShape2D_e1j6l")
-
-[node name="Sprite2D" type="Sprite2D" parent="Pregame/TDCardPlayArea"]
-texture = ExtResource("22_bt5mj")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(575, 326)

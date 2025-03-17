@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cov4qstnbqs4v"]
+
+[ext_resource type="PackedScene" uid="uid://dkrd6d61648ll" path="res://scenes/cards/TDCard_Weapon.tscn" id="1_5cyrl"]
+
+[node name="TDCardData_Character" instance=ExtResource("1_5cyrl")]
+collision_mask = 32

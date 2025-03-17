@@ -50,7 +50,7 @@ func _init() -> void:
 	pass
 
 
-func Setup() -> void:
+func Setup(lore : String) -> void:
 	owner_node = get_node(owner_path)
 	# create the visuals
 	_visuals = visuals_res.instantiate()
@@ -67,9 +67,12 @@ func Setup() -> void:
 	_timer.connect("timeout", _custom_show)
 	# default to hide
 	_visuals.hide()
+	_visuals.lore = lore
 
 
 func _process(delta: float) -> void:
+	if(!_visuals):
+		return
 	if _visuals.visible:
 		if(!show_tooltip):
 			_visuals.hide()

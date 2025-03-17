@@ -172,10 +172,10 @@ func _exit_tree() -> void:
 		printerr(name + ": Make sure to free the card marker first!")
 	return
 
-func StopDoDragDrop():
+func StopMouseDetectable():
 	grab_area.disabled = true
 	grabbed = false
 	return
-func StartDoDragDrop():
+func StartMouseDetectable():
 	grab_area.disabled = false
 	return

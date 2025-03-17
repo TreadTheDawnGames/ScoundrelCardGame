@@ -1,58 +1,75 @@
 extends Node2D
-@onready var card_board: TDCardBoard = $CardBoard
+class_name GameHub
+@onready var card_board: TDCardBoard = $DungeonNodes/CardBoard
+@onready var dungeon_nodes: Node2D = $DungeonNodes
+@onready var pregame: Node2D = $Pregame
 
 
 @export
 var textures : Array[Texture2D]
+@export var specialDeck : bool = false
 
 func RandTex() -> Texture:
 	return textures.pick_random()
 	
 func _ready():
-	LoadDeck()
+	LoadDeck(specialDeck)
 	Deck.Shuffle()
 	Room.ReplenishRoom()
 	return
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("Debug-NewCard")):
-		card_board.AddCard(TDCardData_Monster.new("CardName", RandTex().resource_path, 14,TDCardData_Monster.MonsterType.Ghost), false, true)
+		card_board.AddCard(TDCardData_Monster.new("Dev card", RandTex().resource_path, 14,TDCardData_Monster.MonsterType.Ghost, "Dev card: Monster"), false, true)
 	if(Input.is_action_just_pressed("Debug-ReplenishRoom")):
 		Room.ReplenishRoom()
 	if(Input.is_action_just_pressed("Debug-PopulateDeck")):
 		print("The P button was pressed")
-		LoadDeck()
+		LoadDeck(specialDeck)
 	if(Input.is_action_just_pressed("Debug-Shuffle")):
 		Deck.Shuffle()
 	if(Input.is_action_just_pressed("Debug-Flee")):
 		Room.Flee()
 		Room.ReplenishRoom()
+	if(Input.is_action_just_pressed("Debug-AddAttackBonus")):
+		AttackBonus.AddToAttackBonus(1)
+	if(Input.is_action_just_pressed("Debug-AddPassiveBonus")):
+		AttackBonus.AddToPassiveBonus(1)
 	return
 	
-func LoadDeck():
+func LoadDeck(special : bool):
 	var cardsToPut : Array[TDCardData] = []
 	
-	for info in Room.standardDeck:
+	var deckToUse
+	if(special):
+		deckToUse = Room.specialDeck
+	else:
+		deckToUse = Room.standardDeck
+		
+	for info in deckToUse:
 		var data
 		match (info.Suit):
 			info.SuitType.Monsters:
-				data = TDCardData_Monster.new(info.CardName, info.TexturePath, info.Value, info.MonsterType)
+				data = TDCardData_Monster.new(info.CardName, info.TexturePath, info.Value, info.MonsterType, info.Lore)
 				pass
 			info.SuitType.Potions:
-				data = PotionCard(info)
+				if(special):
+					data = PotionCard(info)
+				else:
+					data = TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.Lore)
 				pass
 			info.SuitType.Weapons:
-				data = TDCardData_Weapon.new(info.CardName, info.TexturePath, info.Value)
+				data = TDCardData_Weapon.new(info.CardName, info.TexturePath, info.Value, info.Lore)
 				pass
 		if(data):
 			cardsToPut.append(data)
 	Deck.PutArray(cardsToPut)
 	return
 
-func PotionCard(info : RoomManager.CardInfo) -> TDCardData_Potion:
+func PotionCard(info : CardInfo) -> TDCardData_Potion:
 	if(info.CardName.contains("2ofPotions")):
-		return TwoOfPotions.new(info.CardName, info.TexturePath, info.Value, info.PodDes)
+		return TwoOfPotions.new(info.CardName, info.TexturePath, info.Value, info.Lore)
 	elif info.CardName.contains("7ofPotions"):
-		return SevenOfPotions.new(info.CardName, info.TexturePath, info.Value, info.PodDes)
+		return SevenOfPotions.new(info.CardName, info.TexturePath, info.Value, info.Lore)
 	else:
-		return TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.PodDes)
+		return TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.Lore)

@@ -2,7 +2,7 @@ extends Node
 class_name HealthManager
 
 #Technically used the Brave search AI to get /root/
-@onready var health_text: RichTextLabel = $"/root/Game/CanvasLayer/HealthIcon/HealthText"
+@onready var health_text: RichTextLabel = $"/root/Game/DungeonNodes/HealthIcon/HealthText"
 
 @export
 var maxHealth : int = 20
@@ -24,6 +24,11 @@ func Damage(amount : int):
 		amount = 0
 	Heal(-amount)
 	CheckDead()
+	return
+
+func SetMaxHealth(value : int):
+	maxHealth = value
+	_ready()
 	return
 
 func IncreaseMaxHealth(amount : int):

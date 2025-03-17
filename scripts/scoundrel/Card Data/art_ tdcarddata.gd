@@ -2,12 +2,14 @@ extends TDCardData
 class_name TDCardData_Art
 var Art : Texture2D
 var useName : String
+var Lore : String = ""
 
 func IsUsable(areaPlayName : String) -> bool:
 	return useName.contains(areaPlayName)
 
-func _init(name : String, art : String):
+func _init(name : String, art : String, lore : String):
 	super._init(name)
+	Lore = lore
 	if(ResourceLoader.exists(art)):
 		Art = load(art)
 	else:
@@ -18,7 +20,7 @@ func SpecialSetup(card : TDCard):
 	card.Art = card.get_node("Art")
 	card.Art.texture = Art
 	card.tooltip = card.get_node("Tooltip")
-	card.tooltip.Setup()
+	card.tooltip.Setup(Lore)
 	pass
 
 func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
@@ -31,7 +33,6 @@ func GrabAction(card : TDCard):
 	return
 
 func DropAction(card: TDCard):
-	print("dropped")
 	var myCard : TDCard_Base = card
 	myCard.tooltip.show_tooltip = true
 	myCard.tooltip._mouse_entered()

@@ -4,3 +4,4 @@
 
 [node name="Health" type="Node"]
 script = ExtResource("1_ic5i0")
+maxHealth = 11

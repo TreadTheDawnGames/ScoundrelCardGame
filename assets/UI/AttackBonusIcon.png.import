@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://21bqvc5q7icu"
-path="res://.godot/imported/AceofPotions.png-39fac9e81780f9f31dc5301074d72c68.ctex"
+uid="uid://c0vlc5aygscs5"
+path="res://.godot/imported/AttackBonusIcon.png-c6c7587be19df0b2642943793b59eaaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/AceofPotions.png"
-dest_files=["res://.godot/imported/AceofPotions.png-39fac9e81780f9f31dc5301074d72c68.ctex"]
+source_file="res://assets/UI/AttackBonusIcon.png"
+dest_files=["res://.godot/imported/AttackBonusIcon.png-c6c7587be19df0b2642943793b59eaaf.ctex"]
 
 [params]
 

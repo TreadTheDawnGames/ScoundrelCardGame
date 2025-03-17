@@ -2,16 +2,16 @@ extends TDCardData_Art
 class_name TDCardData_Potion
 
 var HealthValue : int
+var AbilityDescription : String
 
-func SpecialSetup(card : TDCard):
-	super.SpecialSetup(card)
-	pass
-
-func PotionAbility(_card : TDCard) -> void:
-	print("Potion Ability: " + CardName)
+func PotionAbility(card : TDCard) -> void:
+	print("Potion Ability")
+	Health.IncreaseMaxHealth(1)
+	card.FreeMarker()
+	card.queue_free()
 	return
 
-func _init(name : String, art : String, healthValue : int, lore : String = ""):
+func _init(name : String, art : String, healthValue : int, lore : String):
 	super._init(name, art, lore)
 	useName = "Heal, Potion"
 	HealthValue = healthValue
