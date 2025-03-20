@@ -20,8 +20,8 @@ func PlayCard(_playArea : TDCardPlayArea, card : TDCard):
 	var game : GameHub = card.get_tree().root.get_node("Game")
 	game.dungeon_nodes.show()
 	Health.SetMaxHealth(Value)
-	game.pregame.hide()
 	SpecialAction()
+	game.pregame.queue_free()
 	return
 
 func SpecialAction():

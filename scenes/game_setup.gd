@@ -15,7 +15,11 @@ func _ready() -> void:
 	
 	var i = 0
 	for info in royalty:
-		var data = TDCardData_Character.new(info.CardName, info.TexturePath, info.Value, info.Lore)
+		var data
+		if(info.CardName.contains("Jack")):
+			data = Character_Jack.new(info.CardName, info.TexturePath, info.Value, info.Lore)
+		else:
+			data = TDCardData_Character.new(info.CardName, info.TexturePath, info.Value, info.Lore)
 		_cardBoard.AddCard(data,false,true, roomSlots[i])
 		i+=1
 		
