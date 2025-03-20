@@ -21,8 +21,6 @@ script = ExtResource("2_wb7um")
 visuals_res = ExtResource("3_wb7um")
 owner_path = NodePath("..")
 follow_mouse = false
-offset_x = -36.0
-offset_y = -50.0
 metadata/_custom_type_script = "uid://bxa1mgn3sgbjg"
 
 [node name="Art" type="Sprite2D" parent="."]

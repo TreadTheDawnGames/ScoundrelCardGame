@@ -168,7 +168,7 @@ func FillMarker(marker : TDCardPositionMarker2D):
 
 #technically got this name from Brave AI
 func _exit_tree() -> void:
-	if(LocationMarker):
+	if(is_instance_valid(LocationMarker)):
 		printerr(name + ": Make sure to free the card marker first!")
 	return
 

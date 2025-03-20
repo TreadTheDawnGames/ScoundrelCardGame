@@ -17,8 +17,8 @@ extends Node
 @export var owner_path: NodePath
 @export_range (0, 10, 0.05) var delay = 0.5
 @export var follow_mouse: bool = true
-@export_range (-100, 100, 1) var offset_x : float
-@export_range (-100, 100, 1) var offset_y : float
+@export_range (-400, 400, 1) var offset_x : float
+@export_range (-400, 400, 1) var offset_y : float
 @export_range (0, 100, 1) var padding_x : float
 @export_range (0, 100, 1) var padding_y : float
 @export var show_tooltip : bool = true
@@ -58,7 +58,6 @@ func Setup(lore : String) -> void:
 	# calculate the extents
 	extents = _visuals.get_rect().size
 	# connect signals
-	print(owner.name)
 	owner_node.connect("mouse_entered", _mouse_entered)
 	owner_node.connect("mouse_exited", _mouse_exited)
 	# initialize the timer

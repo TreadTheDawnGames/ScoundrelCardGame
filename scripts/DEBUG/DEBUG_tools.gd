@@ -53,10 +53,7 @@ func LoadDeck(special : bool):
 				data = TDCardData_Monster.new(info.CardName, info.TexturePath, info.Value, info.MonsterType, info.Lore)
 				pass
 			info.SuitType.Potions:
-				if(special):
-					data = PotionCard(info)
-				else:
-					data = TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.Lore)
+				data = TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.PotionAbility)
 				pass
 			info.SuitType.Weapons:
 				data = TDCardData_Weapon.new(info.CardName, info.TexturePath, info.Value, info.Lore)
@@ -65,11 +62,3 @@ func LoadDeck(special : bool):
 			cardsToPut.append(data)
 	Deck.PutArray(cardsToPut)
 	return
-
-func PotionCard(info : CardInfo) -> TDCardData_Potion:
-	if(info.CardName.contains("2ofPotions")):
-		return TwoOfPotions.new(info.CardName, info.TexturePath, info.Value, info.Lore)
-	elif info.CardName.contains("7ofPotions"):
-		return SevenOfPotions.new(info.CardName, info.TexturePath, info.Value, info.Lore)
-	else:
-		return TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.Lore)

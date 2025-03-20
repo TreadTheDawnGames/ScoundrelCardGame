@@ -21,16 +21,15 @@ metadata/_custom_type_script = "uid://duk5bk1m0kddv"
 [node name="GrabArea" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lurak")
 
+[node name="Art" type="Sprite2D" parent="."]
+
 [node name="Tooltip" type="Node" parent="."]
 script = ExtResource("2_23a4c")
 visuals_res = ExtResource("3_2nvpw")
 owner_path = NodePath("..")
 follow_mouse = false
-offset_x = -36.0
-offset_y = -50.0
+offset_x = -25.0
 metadata/_custom_type_script = "uid://c46b2csnvnnhm"
-
-[node name="Art" type="Sprite2D" parent="."]
 
 [node name="UseMonsterArea" type="Area2D" parent="."]
 collision_layer = 16

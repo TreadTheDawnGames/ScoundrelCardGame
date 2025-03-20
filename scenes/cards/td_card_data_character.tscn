@@ -4,3 +4,7 @@
 
 [node name="TDCardData_Character" instance=ExtResource("1_5cyrl")]
 collision_mask = 32
+
+[node name="Tooltip" parent="." index="2"]
+offset_x = -73.0
+offset_y = -145.0
