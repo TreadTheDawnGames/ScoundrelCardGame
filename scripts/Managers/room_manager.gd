@@ -21,7 +21,7 @@ var specialDeck : Array[CardInfo]=[
 	CardInfo.new("10ofWeapons", CardInfo.SuitType.Weapons, false, "res://assets/cards/10ofWeapons.png", 10),
 	CardInfo.new("AceofWeapons", CardInfo.SuitType.Weapons, false, "res://assets/cards/AceofWeapons.png", 14),
 	#Potions
-	CardInfo.CreatePotion("2ofPotions", "res://assets/cards/2ofPotions.png", 2, "+1 Max Health.", PotionAbilities.TwoOfPotions()),
+	CardInfo.CreatePotion("2ofPotions", "res://assets/cards/2ofPotions.png", 2, "+1 Max Health.", PotionAbilities.TwoOfPotions),
 	CardInfo.new("3ofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/3ofPotions.png", 3),
 	CardInfo.new("4ofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/4ofPotions.png", 4),
 	CardInfo.new("5ofPotions", CardInfo.SuitType.Potions, false, "res://assets/cards/5ofPotions.png", 5),
@@ -62,7 +62,8 @@ var specialDeck : Array[CardInfo]=[
 	CardInfo.new("QueenofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/QueenofBeasts.png", 12, "",TDCardData_Monster.MonsterType.Ghost),
 	CardInfo.new("KingofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/KingofBeasts.png", 13, "",TDCardData_Monster.MonsterType.Ghost),
 	CardInfo.new("AceofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/AceofBeasts.png", 14, "",TDCardData_Monster.MonsterType.Ghost),
-]
+	]
+
 var standardDeck : Array[CardInfo] = [
 	#Weapons
 	CardInfo.new("2ofWeapons", CardInfo.SuitType.Weapons, false, "res://assets/cards/2ofWeapons.png", 2),
@@ -120,7 +121,7 @@ var standardDeck : Array[CardInfo] = [
 	CardInfo.new("QueenofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/QueenofBeasts.png", 12, "",TDCardData_Monster.MonsterType.Ghost),
 	CardInfo.new("KingofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/KingofBeasts.png", 13, "",TDCardData_Monster.MonsterType.Ghost),
 	CardInfo.new("AceofBeasts", CardInfo.SuitType.Monsters, false, "res://assets/cards/AceofBeasts.png", 14, "",TDCardData_Monster.MonsterType.Ghost),
-]
+	]
 
 signal ReplenishedRoom
 
