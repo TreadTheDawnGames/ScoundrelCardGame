@@ -1,0 +1,82 @@
+class_name PotionAbilities
+
+static func TwoOfPotions(card : TDCard):
+	Health.IncreaseMaxHealth(1)
+	card.FreeMarker()
+	card.queue_free()
+	return
+	
+
+static func ThreeOfPotions(card : TDCard):
+	print("Performed " + str(card.CardName)+"'s action.")
+	card.FreeMarker()
+	card.queue_free()
+	return
+
+static func FourOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return
+
+static func FiveOfPotions(card : TDCard):
+	AttackBonus.AddToAttackBonus(2)
+	card.FreeMarker()
+	card.queue_free()
+	return
+
+static func SixOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return
+
+static func SevenOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	Room.RemoveFromRoom(card)
+	Room.Flee()
+	Room.ReplenishRoom()
+	return
+
+static func EightOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return
+
+static func NineOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return
+
+static func TenOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return
+
+static func JackOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return
+
+static func QueenOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return
+
+static func KingOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return
+
+static func AceOfPotions(card : TDCard):
+	card.FreeMarker()
+	card.queue_free()
+	print("Performed " + str(card.CardName)+"'s action.")
+	return

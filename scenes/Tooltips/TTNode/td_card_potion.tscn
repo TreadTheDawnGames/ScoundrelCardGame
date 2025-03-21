@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgpw51gfo6yit"]
 
-[ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scripts/scoundrel/Cards/TDCard_Art.gd" id="1_w0grc"]
-[ext_resource type="Script" uid="uid://bxa1mgn3sgbjg" path="res://scripts/scoundrel/tooltips/tooltip.gd" id="2_wb7um"]
+[ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scripts/scoundrel/Cards/TDCard_Base.gd" id="1_w0grc"]
+[ext_resource type="Script" uid="uid://c46b2csnvnnhm" path="res://addons/tooltips/tooltip.gd" id="2_wb7um"]
 [ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_wb7um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wb7um"]
@@ -21,6 +21,7 @@ script = ExtResource("2_wb7um")
 visuals_res = ExtResource("3_wb7um")
 owner_path = NodePath("..")
 follow_mouse = false
-metadata/_custom_type_script = "uid://bxa1mgn3sgbjg"
+offset_x = -73.0
+offset_y = -145.0
 
 [node name="Art" type="Sprite2D" parent="."]

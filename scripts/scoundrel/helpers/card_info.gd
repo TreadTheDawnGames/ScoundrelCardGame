@@ -8,7 +8,7 @@ var MonsterType : TDCardData_Monster.MonsterType
 enum SuitType {Monsters, Potions, Weapons}
 var Suit : SuitType
 var Lore : String
-var PotionAbility : Callable
+var Ability : Callable
 
 func _init(cardName : String, suit : SuitType, isMonster : bool, texturePath : String, value : int,  lore : String = "", monsterType : TDCardData_Monster.MonsterType = TDCardData_Monster.MonsterType.Ghost):
 	CardName = cardName
@@ -21,7 +21,7 @@ func _init(cardName : String, suit : SuitType, isMonster : bool, texturePath : S
 	Lore = lore
 	return
 
-static func CreatePotion(cardName : String, texturePath : String, value : int,  lore : String, ability : Callable) -> CardInfo:
-	var card = CardInfo.new(cardName, SuitType.Potions, false, texturePath, value, lore)
-	card.PotionAbility = ability
+static func CreateCardWithAbility(cardName : String, suit : SuitType, isMonster : bool, texturePath : String, value : int,  lore : String, ability:Callable, monsterType : TDCardData_Monster.MonsterType = TDCardData_Monster.MonsterType.Ghost) -> CardInfo:
+	var card = CardInfo.new(cardName, suit, isMonster, texturePath, value, lore, monsterType)
+	card.Ability = ability
 	return card

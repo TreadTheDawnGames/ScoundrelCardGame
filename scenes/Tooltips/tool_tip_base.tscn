@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dl88k3sc12ja2"]
 
 [ext_resource type="Texture2D" uid="uid://bfhm4nxhldnhk" path="res://assets/UI/Tooltip.png" id="1_q5gyf"]
-[ext_resource type="FontFile" uid="uid://b65tlnsb4ba2g" path="res://assets/UI/Fonts/TreadTheDawnPix.ttf" id="2_hojtq"]
 [ext_resource type="Script" uid="uid://cx2l7nmdlkryw" path="res://scenes/Tooltips/tool_tip_base.gd" id="2_s3eni"]
+[ext_resource type="FontFile" uid="uid://byhu3275bckuh" path="res://assets/UI/Fonts/TreadTheDawnPixL.ttf" id="3_s3eni"]
 
 [node name="ToolTipBase" type="NinePatchRect"]
 offset_right = 146.0
@@ -21,7 +21,8 @@ offset_top = 2.0
 offset_right = 144.0
 offset_bottom = 54.0
 theme_override_constants/outline_size = -3
-theme_override_fonts/normal_font = ExtResource("2_hojtq")
+theme_override_fonts/normal_font = ExtResource("3_s3eni")
 theme_override_font_sizes/normal_font_size = 16
+text = "If you see this count it as an easter egg."
 horizontal_alignment = 1
 vertical_alignment = 1

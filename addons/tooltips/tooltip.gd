@@ -67,6 +67,7 @@ func Setup(lore : String) -> void:
 	# default to hide
 	_visuals.hide()
 	_visuals.lore = lore
+	_visuals.position = Vector2(99999,99999)
 
 
 func _process(delta: float) -> void:
@@ -76,18 +77,7 @@ func _process(delta: float) -> void:
 		if(!show_tooltip):
 			_visuals.hide()
 			return
-		var border = get_viewport().size - padding
-		extents = _visuals.get_rect().size
-		var base_pos = _get_screen_pos()
-		# test if need to display to the left
-		var final_x = base_pos.x + offset.x
-		if final_x + extents.x > border.x:
-			final_x = base_pos.x - offset.x - extents.x
-		# test if need to display below
-		var final_y = base_pos.y - extents.y - offset.y
-		if final_y < padding.y:
-			final_y = base_pos.y + offset.y
-		_visuals.position = Vector2(final_x, final_y)
+		_visuals.position = _determine_position()
 
 
 #####################################
@@ -97,6 +87,21 @@ func _process(delta: float) -> void:
 #####################################
 # HELPER FUNCTIONS
 #####################################
+
+func _determine_position() -> Vector2:
+	var border = get_viewport().size - padding
+	extents = _visuals.get_rect().size
+	var base_pos = _get_screen_pos()
+	# test if need to display to the left
+	var final_x = base_pos.x + offset.x
+	if final_x + extents.x > border.x:
+		final_x = base_pos.x - offset.x - extents.x
+	# test if need to display below
+	var final_y = base_pos.y - extents.y - offset.y
+	if final_y < padding.y:
+		final_y = base_pos.y + offset.y
+	return Vector2(final_x, final_y)
+
 func _mouse_entered() -> void:
 	_timer.start(delay)
 

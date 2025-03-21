@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8tsl4hngvv64"]
 
-[ext_resource type="Script" uid="uid://bq1tl0uaei7gf" path="res://scripts/scoundrel/Cards/tdcard_monster.gd" id="1_gjhn1"]
+[ext_resource type="Script" uid="uid://bq1tl0uaei7gf" path="res://scripts/scoundrel/Cards/tdcard_MONSTER.gd" id="1_gjhn1"]
 [ext_resource type="Script" uid="uid://c46b2csnvnnhm" path="res://addons/tooltips/tooltip.gd" id="2_41fbe"]
 [ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_cnx8j"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_lurak"]
@@ -21,8 +21,8 @@ script = ExtResource("2_41fbe")
 visuals_res = ExtResource("3_cnx8j")
 owner_path = NodePath("..")
 follow_mouse = false
-offset_x = -36.0
-offset_y = -50.0
+offset_x = -73.0
+offset_y = -145.0
 metadata/_custom_type_script = "uid://c46b2csnvnnhm"
 
 [node name="Art" type="Sprite2D" parent="."]

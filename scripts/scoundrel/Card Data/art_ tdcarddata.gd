@@ -19,8 +19,10 @@ func _init(name : String, art : String, lore : String):
 func SpecialSetup(card : TDCard):
 	card.Art = card.get_node("Art")
 	card.Art.texture = Art
-	card.tooltip = card.get_node("Tooltip")
-	card.tooltip.Setup(Lore)
+	if(card is TDCard_Base):
+		print(CardName)
+		card.tooltip = card.get_node("Tooltip")
+		card.tooltip.Setup(Lore)
 	pass
 
 func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:

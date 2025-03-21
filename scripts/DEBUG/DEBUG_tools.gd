@@ -53,7 +53,7 @@ func LoadDeck(special : bool):
 				data = TDCardData_Monster.new(info.CardName, info.TexturePath, info.Value, info.MonsterType, info.Lore)
 				pass
 			info.SuitType.Potions:
-				data = TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.PotionAbility)
+				data = TDCardData_Potion.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.Ability)
 				pass
 			info.SuitType.Weapons:
 				data = TDCardData_Weapon.new(info.CardName, info.TexturePath, info.Value, info.Lore)
