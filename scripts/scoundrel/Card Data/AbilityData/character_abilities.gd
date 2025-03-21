@@ -56,7 +56,7 @@ static func TenOfWeapons(card : TDCard):
 	return
 
 static func JackOfWeapons(card : TDCard):
-	AttackBonus.AddToPassiveBonus(2)
+	WeaponManager.AddToPassiveBonus(2)
 	card.FreeMarker()
 	card.queue_free()
 	return

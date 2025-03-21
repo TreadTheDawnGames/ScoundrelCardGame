@@ -46,6 +46,7 @@ func Equip(card : TDCard):
 	equipped = true
 	card._Played = false
 	card.tooltip.show_tooltip = false
+	WeaponManager.SetActiveWeapon(self)
 	return
 
 func Unequip(card : TDCard):
@@ -56,6 +57,7 @@ func Unequip(card : TDCard):
 	for monster in SlainMonsters:
 		monster.FreeMarker()
 		monster.queue_free()
+	WeaponManager.SetActiveWeapon(null)
 	card.FreeMarker()
 	card.queue_free()
 	return
@@ -93,4 +95,12 @@ func UpdateLastMonster(monstStr : int):
 	
 func AddSlainMonster(monster : TDCard_Monster):
 	SlainMonsters.append(monster)
+	return
+
+func CleanWeapon():
+	for monster in SlainMonsters:
+		monster.FreeMarker()
+		monster.queue_free()
+	SlainMonsters.clear()
+	LastMonsterValue = 15
 	return

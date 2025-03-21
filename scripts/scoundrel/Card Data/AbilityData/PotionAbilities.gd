@@ -20,12 +20,13 @@ static func FourOfPotions(card : TDCard):
 	return
 
 static func FiveOfPotions(card : TDCard):
-	AttackBonus.AddToAttackBonus(2)
+	WeaponManager.AddToAttackBonus(2)
 	card.FreeMarker()
 	card.queue_free()
 	return
 
 static func SixOfPotions(card : TDCard):
+	WeaponManager.GetActiveWeapon().CleanWeapon()
 	card.FreeMarker()
 	card.queue_free()
 	print("Performed " + str(card.CardName)+"'s action.")

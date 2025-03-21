@@ -27,7 +27,7 @@ func Frame(card : TDCard):
 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.get_parent() is not TDCard_Weapon):
-		Attack(MonsterStrength - AttackBonus.GetAndResetBonus())
+		Attack(MonsterStrength - WeaponManager.GetAndResetBonus())
 		card.FreeMarker()
 		card.queue_free()
 	else:
@@ -36,13 +36,13 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		var monsterCard : TDCard_Monster = card
 		if(playArea.GetPlayType().contains("Monster")):
 			if(_WeaponValid(weaponCardData)):
-				Attack(MonsterStrength - weaponCardData.WeaponStrength - AttackBonus.GetAndResetBonus())
+				Attack(MonsterStrength - weaponCardData.WeaponStrength - WeaponManager.GetAndResetBonus())
 				monsterCard.FillMarker(weaponCard.Data.GetUnfilledCardSlot())
 				weaponCardData.MonsterSlots.append(monsterCard.monster_stack_marker)
 				weaponCardData.UpdateLastMonster(MonsterStrength)
 				weaponCardData.AddSlainMonster(monsterCard)
 			else:
-				Attack(MonsterStrength - AttackBonus.GetAndResetBonus())
+				Attack(MonsterStrength - WeaponManager.GetAndResetBonus())
 				monsterCard.FreeMarker()
 				card.queue_free()
 	Room.RemoveFromRoom(card)

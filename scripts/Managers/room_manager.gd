@@ -25,7 +25,7 @@ var specialDeck : Array[CardInfo]=[
 	CardInfo.CreateCardWithAbility("3ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/3ofPotions.png", 3, "Ability Description: 3", PotionAbilities.ThreeOfPotions),
 	CardInfo.CreateCardWithAbility("4ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/4ofPotions.png", 4, "Ability Description: 4", PotionAbilities.FourOfPotions),
 	CardInfo.CreateCardWithAbility("5ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/5ofPotions.png", 5, "+2 to next attack.", PotionAbilities.FiveOfPotions),
-	CardInfo.CreateCardWithAbility("6ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/6ofPotions.png", 6, "Ability Description: 6", PotionAbilities.SixOfPotions),
+	CardInfo.CreateCardWithAbility("6ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/6ofPotions.png", 6, "Completely repairs your weapon.", PotionAbilities.SixOfPotions),
 	CardInfo.CreateCardWithAbility("7ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/7ofPotions.png", 7, "Flee a room for free.", PotionAbilities.SevenOfPotions),
 	CardInfo.CreateCardWithAbility("8ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/8ofPotions.png", 8, "Ability Description: 8", PotionAbilities.EightOfPotions),
 	CardInfo.CreateCardWithAbility("9ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/9ofPotions.png", 9, "Ability Description: 9", PotionAbilities.NineOfPotions),

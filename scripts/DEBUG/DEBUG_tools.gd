@@ -32,9 +32,9 @@ func _process(_delta: float) -> void:
 		Room.Flee()
 		Room.ReplenishRoom()
 	if(Input.is_action_just_pressed("Debug-AddAttackBonus")):
-		AttackBonus.AddToAttackBonus(1)
+		WeaponManager.AddToAttackBonus(1)
 	if(Input.is_action_just_pressed("Debug-AddPassiveBonus")):
-		AttackBonus.AddToPassiveBonus(1)
+		WeaponManager.AddToPassiveBonus(1)
 	return
 	
 func LoadDeck(special : bool):

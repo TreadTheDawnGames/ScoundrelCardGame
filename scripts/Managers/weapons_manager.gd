@@ -1,15 +1,24 @@
 extends Node
-class_name AttackBonusManager
+class_name WeaponsManager
 
 @onready var rich_text_label: RichTextLabel = $/root/Game/DungeonNodes/AttackBonusIcon/RichTextLabel
 
 var _AttackBonus : int = 0
 var _PassiveBonus : int = 0
+var _ActiveWeapon : TDCardData_Weapon
 
 func _ready() -> void:
 	UpdateIcon(GetBonus())
 	return
 
+func SetActiveWeapon(weapon : TDCardData_Weapon):
+	_ActiveWeapon = weapon
+	return
+
+func GetActiveWeapon() -> TDCardData_Weapon:
+	return _ActiveWeapon
+
+#region Attack Bonus
 func GetAndResetAttackBonus() -> int:
 	var buffer = _AttackBonus
 	SetAttackBonus(0)
@@ -59,3 +68,4 @@ func UpdateIcon(amount : int):
 	textAmount += str(amount)
 	rich_text_label.text = textAmount
 	return
+#endregion
