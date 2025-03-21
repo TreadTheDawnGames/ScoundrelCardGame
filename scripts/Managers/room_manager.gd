@@ -27,7 +27,7 @@ var specialDeck : Array[CardInfo]=[
 	CardInfo.CreateCardWithAbility("5ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/5ofPotions.png", 5, "+2 to next attack.", PotionAbilities.FiveOfPotions),
 	CardInfo.CreateCardWithAbility("6ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/6ofPotions.png", 6, "Completely repairs your weapon.", PotionAbilities.SixOfPotions),
 	CardInfo.CreateCardWithAbility("7ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/7ofPotions.png", 7, "Flee a room for free.", PotionAbilities.SevenOfPotions),
-	CardInfo.CreateCardWithAbility("8ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/8ofPotions.png", 8, "Ability Description: 8", PotionAbilities.EightOfPotions),
+	CardInfo.CreateCardWithAbility("8ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/8ofPotions.png", 8, "Peek at the next room.", PotionAbilities.EightOfPotions),
 	CardInfo.CreateCardWithAbility("9ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/9ofPotions.png", 9, "Ability Description: 9", PotionAbilities.NineOfPotions),
 	CardInfo.CreateCardWithAbility("10ofPotions", CardInfo.SuitType.Potions, false,"res://assets/cards/10ofPotions.png", 10, "Ability Description: 10", PotionAbilities.TenOfPotions),
 	CardInfo.CreateCardWithAbility("JackofPotions",CardInfo.SuitType.Potions, false, "res://assets/cards/JackofPotions.png", 11, "Ability Description: Jack", PotionAbilities.JackOfPotions),

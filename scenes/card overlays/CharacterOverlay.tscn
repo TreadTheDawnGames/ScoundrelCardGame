@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgtqex0uo7qc2"]
+
+[ext_resource type="PackedScene" uid="uid://bcbc8la1om7uv" path="res://scenes/card overlays/card_board_overlay.tscn" id="1_vxphm"]
+[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="2_md5mi"]
+[ext_resource type="Script" uid="uid://b1iwj613c43ht" path="res://scripts/card boards/CharacterOverlayBoard.gd" id="2_xugx0"]
+[ext_resource type="PackedScene" uid="uid://cov4qstnbqs4v" path="res://scenes/cards/td_card_data_character.tscn" id="3_6jdes"]
+[ext_resource type="Texture2D" uid="uid://c7w55ty7sbcav" path="res://assets/UI/SelectPanel.png" id="3_xugx0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jdes"]
+size = Vector2(37, 51)
+
+[node name="CharacterOverlay" instance=ExtResource("1_vxphm")]
+script = ExtResource("2_xugx0")
+slots = 3
+label = "Choose Character"
+MaxWidth = 3
+cardSceneSource = ExtResource("3_6jdes")
+
+[node name="MarkerExtents" parent="." index="0"]
+offset_right = 229.0
+
+[node name="Panel" parent="." index="1"]
+mouse_filter = 1
+
+[node name="BoardTitle" parent="Panel" index="0"]
+text = "Choose Character"
+
+[node name="TDCardPlayArea" type="Area2D" parent="." index="3"]
+position = Vector2(397, 34)
+scale = Vector2(4, 4)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("2_md5mi")
+_PlayType = "Select"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TDCardPlayArea" index="0"]
+shape = SubResource("RectangleShape2D_6jdes")
+
+[node name="Sprite2D" type="Sprite2D" parent="TDCardPlayArea" index="1"]
+texture = ExtResource("3_xugx0")

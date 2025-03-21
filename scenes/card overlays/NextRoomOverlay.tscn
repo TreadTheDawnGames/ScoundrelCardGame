@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6xxcbgt623an"]
+
+[ext_resource type="PackedScene" uid="uid://bcbc8la1om7uv" path="res://scenes/card overlays/card_board_overlay.tscn" id="1_sin3k"]
+[ext_resource type="Script" uid="uid://c27mfki3gfwe5" path="res://scripts/card boards/NextRoomOverlay.gd" id="2_alaad"]
+[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="3_u6hcg"]
+
+[node name="CardBoardOverlay" instance=ExtResource("1_sin3k")]
+script = ExtResource("2_alaad")
+slots = 4
+label = "Next Room"
+cardSceneSource = ExtResource("3_u6hcg")
+
+[node name="MarkerExtents" parent="." index="0"]
+offset_left = 55.5
+offset_top = 140.5
+offset_right = 1100.5
+offset_bottom = 548.5
+
+[node name="Panel" parent="." index="1"]
+offset_left = 29.0
+offset_top = 25.0
+offset_right = 1126.0
+offset_bottom = 622.0
+
+[node name="BoardTitle" parent="Panel" index="0"]
+text = "Next Room:"
+
+[node name="Slots" parent="." index="2"]
+position = Vector2(55.5, 140.5)
+
+[node name="Button" type="Button" parent="." index="3"]
+offset_left = 554.5
+offset_top = 559.5
+offset_right = 603.5
+offset_bottom = 590.5
+text = "Done"

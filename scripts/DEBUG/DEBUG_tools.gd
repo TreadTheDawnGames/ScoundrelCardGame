@@ -2,7 +2,7 @@ extends Node2D
 class_name GameHub
 @onready var card_board: TDCardBoard = $DungeonNodes/CardBoard
 @onready var dungeon_nodes: Node2D = $DungeonNodes
-@onready var pregame: Node2D = $Pregame
+@onready var pregame: Node2D = $CharacterOverlay
 
 
 @export

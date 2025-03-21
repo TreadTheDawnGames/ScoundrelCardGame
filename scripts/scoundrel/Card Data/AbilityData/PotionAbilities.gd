@@ -41,6 +41,8 @@ static func SevenOfPotions(card : TDCard):
 	return
 
 static func EightOfPotions(card : TDCard):
+	var nextRoom = load("res://scenes/card overlays/NextRoomOverlay.tscn").instantiate()
+	card.get_tree().root.get_node("Game").add_child(nextRoom)
 	card.FreeMarker()
 	card.queue_free()
 	print("Performed " + str(card.CardName)+"'s action.")

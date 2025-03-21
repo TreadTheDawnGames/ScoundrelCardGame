@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://obwt4udpkhb5"]
+[gd_scene load_steps=20 format=3 uid="uid://obwt4udpkhb5"]
 
 [ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/DEBUG/DEBUG_tools.gd" id="1_yqjtg"]
@@ -18,13 +18,7 @@
 [ext_resource type="Script" uid="uid://bxnwhhm6ss7fq" path="res://scripts/scoundrel/flee_button.gd" id="16_ca42v"]
 [ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="17_rysoc"]
 [ext_resource type="FontFile" uid="uid://b65tlnsb4ba2g" path="res://assets/UI/Fonts/TreadTheDawnPix.ttf" id="18_264po"]
-[ext_resource type="Script" uid="uid://frdiot7biqw2" path="res://scenes/game_setup.gd" id="19_5newe"]
-[ext_resource type="PackedScene" uid="uid://cov4qstnbqs4v" path="res://scenes/cards/td_card_data_character.tscn" id="20_37s47"]
-[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="21_37s47"]
-[ext_resource type="Texture2D" uid="uid://c7w55ty7sbcav" path="res://assets/UI/SelectPanel.png" id="22_bt5mj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
-size = Vector2(37, 51)
+[ext_resource type="PackedScene" uid="uid://cgtqex0uo7qc2" path="res://scenes/card overlays/CharacterOverlay.tscn" id="23_bt5mj"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -152,68 +146,8 @@ text = "Err"
 fit_content = true
 scroll_active = false
 
-[node name="Pregame" type="Node2D" parent="."]
-scale = Vector2(4, 4)
-script = ExtResource("19_5newe")
-
-[node name="Panel" type="Panel" parent="Pregame"]
-offset_left = 12.0
-offset_top = 5.25
-offset_right = 282.0
-offset_bottom = 155.25
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Pregame/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -77.5
-offset_right = 77.5
-offset_bottom = 40.0
-grow_horizontal = 2
-theme_override_fonts/normal_font = ExtResource("18_264po")
-theme_override_font_sizes/normal_font_size = 32
-text = "Choose character"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TDCardBoard" type="Node2D" parent="Pregame"]
-script = ExtResource("1_uwrxv")
-cardSceneSource = ExtResource("20_37s47")
-metadata/_custom_type_script = "uid://b86xq610d61j6"
-
-[node name="StartingCardsSlots" type="Node2D" parent="Pregame"]
-position = Vector2(-18, 2)
-
-[node name="TDCardPositionMarker2D" type="Marker2D" parent="Pregame/StartingCardsSlots"]
-position = Vector2(102, 80.25)
-script = ExtResource("9_0tnpc")
-metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
-
-[node name="TDCardPositionMarker2D2" type="Marker2D" parent="Pregame/StartingCardsSlots"]
-position = Vector2(147, 80.25)
-script = ExtResource("9_0tnpc")
-metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
-
-[node name="TDCardPositionMarker2D3" type="Marker2D" parent="Pregame/StartingCardsSlots"]
-position = Vector2(192, 80.25)
-script = ExtResource("9_0tnpc")
-metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
-
-[node name="TDCardPlayArea" type="Area2D" parent="Pregame"]
-position = Vector2(246, 82.25)
-collision_layer = 32
-collision_mask = 0
-script = ExtResource("21_37s47")
-_PlayType = "Select"
-metadata/_custom_type_script = "uid://e6s4cpiydw0p"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pregame/TDCardPlayArea"]
-shape = SubResource("RectangleShape2D_e1j6l")
-
-[node name="Sprite2D" type="Sprite2D" parent="Pregame/TDCardPlayArea"]
-texture = ExtResource("22_bt5mj")
+[node name="CharacterOverlay" parent="." instance=ExtResource("23_bt5mj")]
+position = Vector2(577, 322)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 326)

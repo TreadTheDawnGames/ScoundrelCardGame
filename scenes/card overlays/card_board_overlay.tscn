@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcbc8la1om7uv"]
+
+[ext_resource type="Script" uid="uid://bocaxsu7fbde" path="res://scripts/card boards/card_board_overlay.gd" id="1_t711d"]
+[ext_resource type="FontFile" uid="uid://byhu3275bckuh" path="res://assets/UI/Fonts/TreadTheDawnPixL.ttf" id="2_7pquq"]
+
+[node name="CardBoardOverlay" type="Node2D"]
+script = ExtResource("1_t711d")
+
+[node name="MarkerExtents" type="ReferenceRect" parent="."]
+offset_left = -522.0
+offset_top = -183.0
+offset_right = 523.0
+offset_bottom = 270.0
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -548.5
+offset_top = -298.5
+offset_right = 548.5
+offset_bottom = 298.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoardTitle" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 30.0
+offset_right = 1098.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("2_7pquq")
+theme_override_font_sizes/normal_font_size = 64
+text = "Title"
+horizontal_alignment = 1
+
+[node name="Slots" type="Node2D" parent="."]
+position = Vector2(-522, -183)
