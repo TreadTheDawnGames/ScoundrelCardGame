@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqi5umfyo82n1"
-path="res://.godot/imported/10ofBeasts.png-f36b05ba978dd0eb9da8c5d8c165ded3.ctex"
+uid="uid://c8v2hxto4sobo"
+path="res://.godot/imported/10OfBeasts.png-28c0fe3336c96d090ad8a1dcdf24c9ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/10ofBeasts.png"
-dest_files=["res://.godot/imported/10ofBeasts.png-f36b05ba978dd0eb9da8c5d8c165ded3.ctex"]
+source_file="res://assets/cards/10OfBeasts.png"
+dest_files=["res://.godot/imported/10OfBeasts.png-28c0fe3336c96d090ad8a1dcdf24c9ba.ctex"]
 
 [params]
 

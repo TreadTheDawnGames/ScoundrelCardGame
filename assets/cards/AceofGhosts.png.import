@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c23nf6g11kafv"
-path="res://.godot/imported/AceofGhosts.png-886462ccc9c5bdc6f0c9e19d724c2e7a.ctex"
+uid="uid://byvta6k12e1h7"
+path="res://.godot/imported/AceOfGhosts.png-082fc053cf1b799d94c7da47c969ef34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/AceofGhosts.png"
-dest_files=["res://.godot/imported/AceofGhosts.png-886462ccc9c5bdc6f0c9e19d724c2e7a.ctex"]
+source_file="res://assets/cards/AceOfGhosts.png"
+dest_files=["res://.godot/imported/AceOfGhosts.png-082fc053cf1b799d94c7da47c969ef34.ctex"]
 
 [params]
 
