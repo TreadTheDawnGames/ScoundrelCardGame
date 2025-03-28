@@ -26,6 +26,7 @@ textures = Array[Texture2D]([ExtResource("2_u5sy4"), ExtResource("3_gee14"), Ext
 specialDeck = true
 
 [node name="DungeonNodes" type="Node2D" parent="."]
+visible = false
 position = Vector2(-16, 8)
 scale = Vector2(4, 4)
 
