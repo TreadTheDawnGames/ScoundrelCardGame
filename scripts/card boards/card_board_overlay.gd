@@ -1,6 +1,6 @@
 extends TDCardBoard
 class_name OverlayCardBoard
-@onready var slotsNode: Node2D = $Slots
+@onready var slotsNode: Node2D = $Panel/Slots
 @onready var board_title: RichTextLabel = $Panel/BoardTitle
 @onready var marker_extents: ReferenceRect = $MarkerExtents
 

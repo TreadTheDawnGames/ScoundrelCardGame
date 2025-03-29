@@ -23,21 +23,21 @@ var usable : bool = false
 
 var CardName : String = ""
 
-var _OGMask : int;
+var _OGMask : int
 
 var _PlayZone : TDCardPlayArea = null
 
 var _Played : bool
 
-func SetUp(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, marker : TDCardPositionMarker2D = null) -> void:
+func SetUp(data : TDCardData, isUsable : bool, useGoToPos : bool = false, marker : TDCardPositionMarker2D = null) -> void:
 	area_entered.connect(CardEnteredZone)
 	area_exited.connect(CardExitedZone)
 	grab_area = get_node("GrabArea")
-	if(not isAesthetic):
+	if(not isUsable):
 		mouse_entered.connect(Hovered)
 		mouse_exited.connect(Unhovered)
 	_OGMask = collision_mask
-	SetDrawn(isAesthetic)
+	SetUsable(isUsable)
 	returnToHome = useGoToPos
 	if(returnToHome):
 		FillMarker(marker)
@@ -48,7 +48,7 @@ func SetUp(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, mar
 		Data.SpecialSetup(self)
 	return
 	
-func SetDrawn(isDrawn : bool) -> void:
+func SetUsable(isDrawn : bool) -> void:
 	collision_mask = _OGMask if isDrawn else 0
 	set_collision_layer_value(17, isDrawn)
 	_beingDrawn = !_beingDrawn
@@ -139,7 +139,8 @@ func CardExitedZone(node : Node2D) -> void:
 	if(node is not TDCardPlayArea):
 		return
 	print("Card exited zone: " + node.name + " PlayType: " + node.GetPlayType())
-	_PlayZone = null
+	if(node == _PlayZone):
+		_PlayZone = null
 	return
 	
 func IsOnTop() -> bool:

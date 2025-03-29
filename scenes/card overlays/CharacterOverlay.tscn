@@ -19,13 +19,10 @@ cardSceneSource = ExtResource("3_6jdes")
 [node name="MarkerExtents" parent="." index="0"]
 offset_right = 229.0
 
-[node name="Panel" parent="." index="1"]
-mouse_filter = 1
-
 [node name="BoardTitle" parent="Panel" index="0"]
 text = "Choose Character"
 
-[node name="TDCardPlayArea" type="Area2D" parent="." index="3"]
+[node name="TDCardPlayArea" type="Area2D" parent="." index="2"]
 position = Vector2(397, 34)
 scale = Vector2(4, 4)
 collision_layer = 32

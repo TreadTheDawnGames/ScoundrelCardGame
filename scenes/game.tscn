@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://obwt4udpkhb5"]
+[gd_scene load_steps=22 format=3 uid="uid://obwt4udpkhb5"]
 
 [ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/DEBUG/DEBUG_tools.gd" id="1_yqjtg"]
@@ -9,12 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://c8v2hxto4sobo" path="res://assets/cards/10ofBeasts.png" id="5_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://7kx26xg2mgak" path="res://assets/UI/HeartIcon.png" id="7_ir15t"]
+[ext_resource type="PackedScene" uid="uid://0hmlepdghuls" path="res://scenes/play_areas/potion_equip_area.tscn" id="8_1kice"]
 [ext_resource type="PackedScene" uid="uid://blkiokofo6p7o" path="res://scenes/play_areas/heal_play_area.tscn" id="8_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0vlc5aygscs5" path="res://assets/UI/AttackBonusIcon.png" id="8_rysoc"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dud3m4x0pe4dj" path="res://scenes/play_areas/discard_play_area.tscn" id="9_ir15t"]
 [ext_resource type="PackedScene" uid="uid://dkyfwxrcvk1u" path="res://scenes/play_areas/equip_play_area.tscn" id="13_kvuet"]
 [ext_resource type="Texture2D" uid="uid://qp6d471c7u4m" path="res://assets/cards/CardRear.png" id="14_ir15t"]
+[ext_resource type="FontFile" uid="uid://byhu3275bckuh" path="res://assets/UI/Fonts/TreadTheDawnPixL.ttf" id="15_5newe"]
 [ext_resource type="Script" uid="uid://bxnwhhm6ss7fq" path="res://scripts/scoundrel/flee_button.gd" id="16_ca42v"]
 [ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="17_rysoc"]
 [ext_resource type="FontFile" uid="uid://b65tlnsb4ba2g" path="res://assets/UI/Fonts/TreadTheDawnPix.ttf" id="18_264po"]
@@ -26,7 +28,6 @@ textures = Array[Texture2D]([ExtResource("2_u5sy4"), ExtResource("3_gee14"), Ext
 specialDeck = true
 
 [node name="DungeonNodes" type="Node2D" parent="."]
-visible = false
 position = Vector2(-16, 8)
 scale = Vector2(4, 4)
 
@@ -39,14 +40,19 @@ collision_mask = 0
 [node name="EquipPlayArea" parent="DungeonNodes" instance=ExtResource("13_kvuet")]
 position = Vector2(48.75, 116.25)
 
+[node name="PotionEquipPlayArea" parent="DungeonNodes" instance=ExtResource("8_1kice")]
+position = Vector2(95.5, 116.25)
+collision_layer = 64
+collision_mask = 0
+
 [node name="HealPlayArea" parent="DungeonNodes" instance=ExtResource("8_ca42v")]
-position = Vector2(223.75, 117.25)
+position = Vector2(257.75, 117.25)
 collision_layer = 4
 collision_mask = 0
 _PlayType = "Heal"
 
 [node name="PotionPlayArea" parent="DungeonNodes" instance=ExtResource("17_rysoc")]
-position = Vector2(174.75, 117.25)
+position = Vector2(192.75, 117.25)
 collision_layer = 8
 collision_mask = 0
 _PlayType = "Potion"
@@ -84,12 +90,15 @@ metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 
 [node name="Button" type="Button" parent="DungeonNodes"]
 offset_left = 28.75
-offset_top = 30.25
-offset_right = 59.75
-offset_bottom = 52.25
+offset_top = 29.75
+offset_right = 162.75
+offset_bottom = 114.75
+scale = Vector2(0.25, 0.25)
 focus_mode = 0
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = ExtResource("15_5newe")
+theme_override_font_sizes/font_size = 56
 text = "Flee!"
+alignment = 2
 script = ExtResource("16_ca42v")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DungeonNodes"]
@@ -147,6 +156,7 @@ fit_content = true
 scroll_active = false
 
 [node name="CharacterOverlay" parent="." instance=ExtResource("23_bt5mj")]
+visible = false
 position = Vector2(583, 331)
 
 [node name="Camera2D" type="Camera2D" parent="."]

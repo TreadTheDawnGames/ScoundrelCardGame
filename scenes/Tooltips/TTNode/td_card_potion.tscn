@@ -9,7 +9,7 @@ size = Vector2(25, 35)
 
 [node name="TDCard_Potion" type="Area2D"]
 collision_layer = 0
-collision_mask = 12
+collision_mask = 76
 script = ExtResource("1_w0grc")
 metadata/_custom_type_script = "uid://duk5bk1m0kddv"
 

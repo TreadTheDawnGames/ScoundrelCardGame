@@ -25,10 +25,7 @@ offset_bottom = 622.0
 [node name="BoardTitle" parent="Panel" index="0"]
 text = "Next Room:"
 
-[node name="Slots" parent="." index="2"]
-position = Vector2(55.5, 140.5)
-
-[node name="Button" type="Button" parent="." index="3"]
+[node name="Button" type="Button" parent="." index="2"]
 offset_left = 554.5
 offset_top = 559.5
 offset_right = 603.5

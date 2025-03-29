@@ -103,6 +103,8 @@ func _determine_position() -> Vector2:
 	return Vector2(final_x, final_y)
 
 func _mouse_entered() -> void:
+	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		return
 	_timer.start(delay)
 
 

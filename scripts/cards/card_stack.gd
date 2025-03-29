@@ -27,6 +27,21 @@ func DrawCard(fromBottom : bool = false) -> TDCardData:
 	else:
 		print("There are no cards in " + name + " to draw.")
 		return null
+		
+
+func DrawMultipleCards(count : int, fromBottom : bool = false) -> Array[TDCardData]:
+	var cards : Array[TDCardData]
+	if(Count() > 0):
+		if(fromBottom):
+			for i in count:
+				cards.append(Cards.pop_front())
+		else:
+			for i in count:
+				cards.append(Cards.pop_back())
+	else:
+		print("There are no cards in " + name + " to draw.")
+	return cards
+
 
 ##Returns and removes the card at index.
 func DrawCardAt(index : int) -> TDCardData:

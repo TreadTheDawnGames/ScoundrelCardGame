@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://0hmlepdghuls"]
+
+[ext_resource type="Script" uid="uid://dntwjkc0ndpwq" path="res://scenes/play_areas/potion_equip_area.gd" id="1_cs2kf"]
+[ext_resource type="Texture2D" uid="uid://blb2thpg2fafh" path="res://assets/UI/PotionHand.png" id="2_6fmu0"]
+[ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_cs2kf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjg5r"]
+size = Vector2(37, 51)
+
+[node name="TDCardPlayArea" type="Area2D"]
+script = ExtResource("1_cs2kf")
+_PlayType = "PEquip"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mjg5r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6fmu0")
+
+[node name="EquippedSlot" type="Marker2D" parent="."]
+position = Vector2(0, 3)
+script = ExtResource("3_cs2kf")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"

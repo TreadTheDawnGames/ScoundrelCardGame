@@ -13,6 +13,8 @@ func RandTex() -> Texture:
 	return textures.pick_random()
 	
 func _ready():
+	dungeon_nodes.hide()
+	pregame.show()
 	LoadDeck(specialDeck)
 	Deck.Shuffle()
 	Room.ReplenishRoom()

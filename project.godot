@@ -72,6 +72,7 @@ Debug-AddPassiveBonus={
 2d_physics/layer_4="PotionPlayArea"
 2d_physics/layer_5="MonsterPlayArea"
 2d_physics/layer_6="CharacterSelect"
+2d_physics/layer_7="PotionEquip"
 
 [rendering]
 

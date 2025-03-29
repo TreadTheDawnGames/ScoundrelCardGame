@@ -11,7 +11,7 @@ func AddCard(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, g
 	if(!card):
 		return
 	add_child(card)
-	card.SetDrawn(true)
+	card.SetUsable(true)
 	_board.push_back(card)
 	return card
 	
@@ -20,7 +20,7 @@ func AddCardFromSource(source : PackedScene, data : TDCardData, isAesthetic : bo
 	if(!card):
 		return
 	add_child(card)
-	card.SetDrawn(true)
+	card.SetUsable(true)
 	_board.push_back(card)
 	return card
 	
@@ -70,3 +70,8 @@ func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool
 		return null
 	return unpackedScene
 	
+func SetBoardActive(active : bool):
+	for card in _board:
+		if(is_instance_valid(card)):
+			card.SetUsable(active)
+	return
