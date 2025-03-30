@@ -1,48 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkrd6d61648ll"]
+[gd_scene load_steps=6 format=3 uid="uid://dkrd6d61648ll"]
 
-[ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_WEAPON.gd" id="1_ebgte"]
-[ext_resource type="Script" uid="uid://c46b2csnvnnhm" path="res://addons/tooltips/tooltip.gd" id="2_23a4c"]
+[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/card.tscn" id="1_ebgte"]
+[ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_WEAPON.gd" id="2_7wxlv"]
 [ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="2_gjhn1"]
-[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_2nvpw"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_lurak"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lurak"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wxlv"]
 size = Vector2(25, 35)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_41fbe"]
-size = Vector2(25, 35)
-
-[node name="TdCardWeapon" type="Area2D"]
-collision_layer = 0
+[node name="TDCard_Weapon" instance=ExtResource("1_ebgte")]
 collision_mask = 3
-script = ExtResource("1_ebgte")
-metadata/_custom_type_script = "uid://duk5bk1m0kddv"
+script = ExtResource("2_7wxlv")
 
-[node name="GrabArea" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_lurak")
-
-[node name="Art" type="Sprite2D" parent="."]
-
-[node name="Tooltip" type="Node" parent="."]
-script = ExtResource("2_23a4c")
-visuals_res = ExtResource("3_2nvpw")
-owner_path = NodePath("..")
-follow_mouse = false
-offset_x = -73.0
-offset_y = -145.0
-metadata/_custom_type_script = "uid://c46b2csnvnnhm"
-
-[node name="UseMonsterArea" type="Area2D" parent="."]
+[node name="UseMonsterArea" type="Area2D" parent="." index="3"]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("2_gjhn1")
 _PlayType = "Monster"
 metadata/_custom_type_script = "uid://e6s4cpiydw0p"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UseMonsterArea"]
-shape = SubResource("RectangleShape2D_41fbe")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UseMonsterArea" index="0"]
+shape = SubResource("RectangleShape2D_7wxlv")
 
-[node name="MonsterPosMarker" type="Marker2D" parent="."]
+[node name="MonsterPosMarker" type="Marker2D" parent="." index="4"]
 position = Vector2(6, 8.5)
 script = ExtResource("3_lurak")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"

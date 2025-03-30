@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dnm7xvahgsr65" path="res://assets/cards/AceofWeapons.png" id="4_0tnpc"]
 [ext_resource type="Script" uid="uid://bl780wqdrgw1p" path="res://scripts/DEBUG/DEBUG_card_counter.gd" id="5_gee14"]
 [ext_resource type="Texture2D" uid="uid://c8v2hxto4sobo" path="res://assets/cards/10ofBeasts.png" id="5_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/card.tscn" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://7kx26xg2mgak" path="res://assets/UI/HeartIcon.png" id="7_ir15t"]
 [ext_resource type="PackedScene" uid="uid://0hmlepdghuls" path="res://scenes/play_areas/potion_equip_area.tscn" id="8_1kice"]
 [ext_resource type="PackedScene" uid="uid://blkiokofo6p7o" path="res://scenes/play_areas/heal_play_area.tscn" id="8_ca42v"]

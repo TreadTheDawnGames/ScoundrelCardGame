@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://csc60awap4om5" path="res://scripts/Managers/room_manager.gd" id="1_34qoo"]
 [ext_resource type="PackedScene" uid="uid://c8tsl4hngvv64" path="res://scenes/cards/TDCard_Monster.tscn" id="2_tb6cv"]
-[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/Tooltips/TTNode/td_card_potion.tscn" id="3_34qoo"]
+[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/td_card_potion.tscn" id="3_34qoo"]
 [ext_resource type="PackedScene" uid="uid://dkrd6d61648ll" path="res://scenes/cards/TDCard_Weapon.tscn" id="4_a4cnn"]
 
 [node name="RoomManager" type="Node"]

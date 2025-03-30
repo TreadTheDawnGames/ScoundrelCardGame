@@ -3,6 +3,7 @@ class_name TDCardData_Art
 var Art : Texture2D
 var useName : String
 var Lore : String = ""
+var Wreaths : Array[Wreath]
 
 func IsUsable(areaPlayName : String) -> bool:
 	return useName.contains(areaPlayName)
@@ -23,6 +24,9 @@ func SpecialSetup(card : TDCard):
 		print(CardName)
 		card.tooltip = card.get_node("Tooltip")
 		card.tooltip.Setup(Lore)
+		card.WreathContainer = card.get_node("WreathContainer")
+		for wreath : Wreath in card.WreathContainer.get_children():
+			wreath.Setup(self)
 	pass
 
 func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
@@ -50,4 +54,12 @@ func HoverEnterAction(card : TDCard):
 	
 func HoverExitAction(card : TDCard):
 	card.z_index = 0
+	return
+
+func AddWreath(wreath : Wreath):
+	Wreaths.append(wreath)
+	return
+	
+func RemoveWreath(wreath : Wreath):
+	Wreaths.erase(wreath)
 	return

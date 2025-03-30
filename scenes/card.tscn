@@ -25,3 +25,5 @@ offset_y = -145.0
 metadata/_custom_type_script = "uid://c46b2csnvnnhm"
 
 [node name="Art" type="Sprite2D" parent="."]
+
+[node name="WreathContainer" type="Node2D" parent="."]
