@@ -1,10 +1,29 @@
-extends Sprite2D
+extends Node
 class_name Wreath
 
-func Setup(cardData : TDCardData):
-	print("Setup for " + cardData.CardName + "!")
+@export
+var art : Texture2D
+
+func Setup(card : TDCard):
+	var bCard : TDCard_Base = card as TDCard_Base
+	var sprite = Sprite2D.new()
+	sprite.texture = art 
+	sprite.position.y+= -6*bCard.WreathContainer.get_child_count()
+	bCard.WreathContainer.add_child(sprite)
 	return
 
-func Play(cardData : TDCardData):
-	print("Play for " + cardData.CardName + "!")
+func PrePlay(cardData : TDCardData):
+	print("Preplay for " + cardData.CardName + "!")
 	return
+	
+func PostPlay(cardData : TDCardData):
+	print("Postplay for " + cardData.CardName + "!")
+	return
+
+func Attach(cardData : TDCardData):
+	print("Attach for " + cardData.CardName + "!")
+	return
+
+func Detach(cardData : TDCardData):
+	print("Detach for " + cardData.CardName + "!")
+	return	

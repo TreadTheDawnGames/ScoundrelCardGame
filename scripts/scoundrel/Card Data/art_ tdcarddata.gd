@@ -24,9 +24,9 @@ func SpecialSetup(card : TDCard):
 		print(CardName)
 		card.tooltip = card.get_node("Tooltip")
 		card.tooltip.Setup(Lore)
-		card.WreathContainer = card.get_node("WreathContainer")
-		for wreath : Wreath in card.WreathContainer.get_children():
-			wreath.Setup(self)
+		card.WreathContainer = card.get_node("Art/WreathContainer")
+		for wreath : Wreath in Wreaths:
+			wreath.Setup(card)
 	pass
 
 func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
@@ -36,6 +36,18 @@ func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
 func GrabAction(card : TDCard):
 	card.get_parent().move_child(card, card.get_parent().get_child_count()-1)
 	card.tooltip.show_tooltip = false
+	print(Wreaths.size())
+	return
+
+func Preplay(_playArea, card):
+	for wreath in Wreaths:
+		wreath.PrePlay(self)
+	Room.card_board.DeselectCard(card)
+	return
+
+func Postplay(_playArea, _card):
+	for wreath in Wreaths:
+		wreath.PostPlay(self)
 	return
 
 func DropAction(card: TDCard):
@@ -50,16 +62,28 @@ func Frame(card : TDCard) -> void:
 	
 func HoverEnterAction(card : TDCard):
 	card.z_index = 500
+	Room.card_board.SelectCard(card)
+	print("selected " + card.CardName)
 	return
 	
 func HoverExitAction(card : TDCard):
 	card.z_index = 0
+	Room.card_board.DeselectCard(card)
+	print("deselected " + card.CardName)
+	
 	return
-
-func AddWreath(wreath : Wreath):
+	
+##card is required for wreath setup.
+func AddWreath(wreath : Wreath, card : TDCard):
+	if(Wreaths.size() > 4):
+		print("Unable to add wreath: Card is at max wreaths.")
+		return
+	wreath.Attach(self)
+	wreath.Setup(card)
 	Wreaths.append(wreath)
 	return
 	
 func RemoveWreath(wreath : Wreath):
+	wreath.Detach(self)
 	Wreaths.erase(wreath)
 	return

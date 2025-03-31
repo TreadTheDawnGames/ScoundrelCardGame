@@ -2,7 +2,7 @@ extends Node2D
 class_name GameHub
 @onready var card_board: TDCardBoard = $DungeonNodes/CardBoard
 @onready var dungeon_nodes: Node2D = $DungeonNodes
-@onready var pregame: Node2D = $CharacterOverlay
+@onready var pregame: CharacterCardBoard = $CharacterOverlay
 
 
 @export
@@ -37,6 +37,15 @@ func _process(_delta: float) -> void:
 		WeaponManager.AddToAttackBonus(1)
 	if(Input.is_action_just_pressed("Debug-AddPassiveBonus")):
 		WeaponManager.AddToPassiveBonus(1)
+	if(Input.is_action_just_pressed("Debug-AddWreath")):
+		for card in card_board._selectedCards:
+			if(!is_instance_valid(card)):
+				continue
+			print(card.CardName)
+			const BASE_WREATH = preload("res://scenes/wreaths/base_wreath.tscn")
+			var Data : TDCardData_Art = card.Data
+			Data.AddWreath(BASE_WREATH.instantiate(), card)
+		pass
 	return
 	
 func LoadDeck(special : bool):

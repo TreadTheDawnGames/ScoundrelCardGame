@@ -19,5 +19,7 @@ func PlayCard(_playArea : TDCardPlayArea, card : TDCard):
 	Health.SetMaxHealth(Value)
 	if(Ability):
 		Ability.call(card)
+	for theCard in game.pregame._board:
+		theCard.FreeMarker()
 	game.pregame.queue_free()
 	return

@@ -36,8 +36,14 @@ func GrabAction(_card : TDCard) -> void:
 func EnterUsable(_playArea : TDCardPlayArea, _card : TDCard) -> void:
 	return
 
+func Preplay(_playArea : TDCardPlayArea, _card : TDCard) -> void:
+	return
+
 func PlayCard(_playArea : TDCardPlayArea, _card : TDCard) -> void:
 	#printerr("[CardData] CardData is intended to be used as an abstract class. Please create a new class and inherit it: PlayCard has not been implemented. card: " + card.cardName + " playType: " + playType)
+	return
+
+func Postplay(_playArea : TDCardPlayArea, _card : TDCard) -> void:
 	return
 
 func ExitUsable(_card : TDCard) -> void:

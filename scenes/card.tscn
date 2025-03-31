@@ -26,4 +26,5 @@ metadata/_custom_type_script = "uid://c46b2csnvnnhm"
 
 [node name="Art" type="Sprite2D" parent="."]
 
-[node name="WreathContainer" type="Node2D" parent="."]
+[node name="WreathContainer" type="Node2D" parent="Art"]
+position = Vector2(0, 15)

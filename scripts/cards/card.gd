@@ -59,7 +59,9 @@ func _PlayCard() -> void:
 		if(grabbed && usable && not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && not _Played):
 			_Played = true
 			usable = false
+			Data.Preplay(_PlayZone, self)
 			Data.PlayCard(_PlayZone, self)
+			Data.Postplay(_PlayZone, self)
 	return
 
 func _DragDropLogic() -> void:
