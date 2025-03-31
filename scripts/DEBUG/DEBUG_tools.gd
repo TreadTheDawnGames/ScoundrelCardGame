@@ -42,7 +42,7 @@ func _process(_delta: float) -> void:
 			if(!is_instance_valid(card)):
 				continue
 			print(card.CardName)
-			const BASE_WREATH = preload("res://scenes/wreaths/base_wreath.tscn")
+			const BASE_WREATH = preload("res://scenes/wreaths/sharp_wreath.tscn")
 			var Data : TDCardData_Art = card.Data
 			Data.AddWreath(BASE_WREATH.instantiate(), card)
 		pass

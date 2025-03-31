@@ -4,12 +4,17 @@ var Art : Texture2D
 var useName : String
 var Lore : String = ""
 var Wreaths : Array[Wreath]
+var Value : int
+var Modifier : int
+var clickTimer : SceneTreeTimer
+var clickTime : float = 0.2
 
 func IsUsable(areaPlayName : String) -> bool:
 	return useName.contains(areaPlayName)
 
-func _init(name : String, art : String, lore : String):
+func _init(name : String, value : int, art : String, lore : String):
 	super._init(name)
+	Value = value
 	Lore = lore
 	if(ResourceLoader.exists(art)):
 		Art = load(art)
@@ -21,7 +26,6 @@ func SpecialSetup(card : TDCard):
 	card.Art = card.get_node("Art")
 	card.Art.texture = Art
 	if(card is TDCard_Base):
-		print(CardName)
 		card.tooltip = card.get_node("Tooltip")
 		card.tooltip.Setup(Lore)
 		card.WreathContainer = card.get_node("Art/WreathContainer")
@@ -36,7 +40,7 @@ func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
 func GrabAction(card : TDCard):
 	card.get_parent().move_child(card, card.get_parent().get_child_count()-1)
 	card.tooltip.show_tooltip = false
-	print(Wreaths.size())
+	clickTimer = card.get_tree().create_timer(clickTime)
 	return
 
 func Preplay(_playArea, card):
@@ -48,12 +52,15 @@ func Preplay(_playArea, card):
 func Postplay(_playArea, _card):
 	for wreath in Wreaths:
 		wreath.PostPlay(self)
+	Modifier = 0
 	return
 
 func DropAction(card: TDCard):
 	var myCard : TDCard_Base = card
 	myCard.tooltip.show_tooltip = true
 	myCard.tooltip._mouse_entered()
+	if(clickTimer.time_left > 0):
+		ClickAction(card)
 	return
 
 func Frame(card : TDCard) -> void:
@@ -78,12 +85,17 @@ func AddWreath(wreath : Wreath, card : TDCard):
 	if(Wreaths.size() > 4):
 		print("Unable to add wreath: Card is at max wreaths.")
 		return
+	if(!wreath.Setup(card)):
+		return
 	wreath.Attach(self)
-	wreath.Setup(card)
 	Wreaths.append(wreath)
 	return
 	
 func RemoveWreath(wreath : Wreath):
 	wreath.Detach(self)
 	Wreaths.erase(wreath)
+	return
+
+func ClickAction(_card : TDCard):
+	print(Wreaths.size())
 	return

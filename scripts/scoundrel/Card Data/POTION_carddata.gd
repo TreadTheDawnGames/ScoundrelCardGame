@@ -1,7 +1,6 @@
 extends TDCardData_Art
 class_name TDCardData_Potion
 
-var HealthValue : int
 var AbilityDescription : String
 var PotionAbility : Callable
 #
@@ -12,10 +11,9 @@ var PotionAbility : Callable
 	#card.queue_free()
 	#return
 
-func _init(name : String, art : String, healValue : int, abilityDescription : String, potionAbility : Callable):
-	super._init(name, art, abilityDescription)
+func _init(name : String, art : String, value : int, abilityDescription : String, potionAbility : Callable):
+	super._init(name, value, art, abilityDescription)
 	useName = "Heal, Potion, PEquip"
-	HealthValue = healValue
 	PotionAbility = potionAbility
 	return
 	
@@ -35,7 +33,7 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("Heal")):
 		print("Heal")
 		card.FreeMarker()
-		Health.Heal(HealthValue)
+		Health.Heal(Value)
 		card.queue_free()
 	elif(playArea.ValidPlayType("Potion")):
 		PotionAbility.call(card)

@@ -1,13 +1,11 @@
 extends TDCardData_Art
 class_name TDCardData_Character
 
-var Value : int
 var Ability : Callable
 
 func _init(name : String, art : String, value:int, lore : String, ability : Callable):
-	super._init(name, art, lore)
+	super._init(name, value, art, lore)
 	useName = "Select"
-	Value = value
 	Ability = ability
 	return
 

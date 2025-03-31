@@ -1,15 +1,13 @@
 extends TDCardData_Art
 class_name TDCardData_Monster
 
-var MonsterStrength : int
 enum MonsterType {Ghost, Beast}
 var Type : MonsterType
 var slain : bool = false
 
-func _init(cardName : String, art : String, monsterStrength : int, type : MonsterType, lore : String):
-	super._init(cardName, art, lore)
+func _init(cardName : String, art : String, value : int, type : MonsterType, lore : String):
+	super._init(cardName, value, art, lore)
 	useName = "Monster"
-	MonsterStrength = monsterStrength
 	Type = type
 	return
 
@@ -27,7 +25,7 @@ func Frame(card : TDCard):
 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.get_parent() is not TDCard_Weapon):
-		Attack(MonsterStrength - WeaponManager.GetAndResetBonus())
+		Attack(Value - WeaponManager.GetAndResetBonus())
 		card.FreeMarker()
 		card.queue_free()
 	else:
@@ -36,13 +34,13 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		var monsterCard : TDCard_Monster = card
 		if(playArea.GetPlayType().contains("Monster")):
 			if(_WeaponValid(weaponCardData)):
-				Attack(MonsterStrength - weaponCardData.WeaponStrength - WeaponManager.GetAndResetBonus())
+				Attack(Value - weaponCardData.Value - WeaponManager.GetAndResetBonus())
 				monsterCard.FillMarker(weaponCard.Data.GetUnfilledCardSlot())
 				weaponCardData.MonsterSlots.append(monsterCard.monster_stack_marker)
-				weaponCardData.UpdateLastMonster(MonsterStrength)
+				weaponCardData.UpdateLastMonster(Value)
 				weaponCardData.AddSlainMonster(monsterCard)
 			else:
-				Attack(MonsterStrength - WeaponManager.GetAndResetBonus())
+				Attack(Value - WeaponManager.GetAndResetBonus())
 				monsterCard.FreeMarker()
 				card.queue_free()
 	Room.RemoveFromRoom(card)
@@ -56,7 +54,7 @@ func _CheckCardValid(card : TDCard) -> bool:
 	return true
 
 func _WeaponValid(weaponData : TDCardData_Weapon) -> bool:
-	if(weaponData.LastMonsterValue > MonsterStrength):
+	if(weaponData.LastMonsterValue > Value):
 		return true
 	return false
 

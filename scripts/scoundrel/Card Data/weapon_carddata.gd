@@ -1,17 +1,15 @@
 extends TDCardData_Art
 class_name TDCardData_Weapon
 
-var WeaponStrength : int
-var LastMonsterValue : int = WeaponStrength
+var LastMonsterValue : int = Value
 var MonsterSlots : Array[TDCardPositionMarker2D]
 var SlainMonsters : Array[TDCard]
 var equipped:bool = false
 var weaponArea : Weapon_TDCardPlayArea
 
-func _init(name : String, art : String, weaponStrength : int, lore : String) -> void:
-	super._init(name, art, lore)
+func _init(name : String, art : String, value : int, lore : String) -> void:
+	super._init(name, value, art, lore)
 	useName = "Equip, Discard"
-	WeaponStrength = weaponStrength
 	LastMonsterValue = 15
 	return
 	

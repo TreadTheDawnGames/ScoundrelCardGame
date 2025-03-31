@@ -4,13 +4,13 @@ class_name Wreath
 @export
 var art : Texture2D
 
-func Setup(card : TDCard):
+func Setup(card : TDCard) -> bool:
 	var bCard : TDCard_Base = card as TDCard_Base
 	var sprite = Sprite2D.new()
 	sprite.texture = art 
-	sprite.position.y+= -6*bCard.WreathContainer.get_child_count()
+	sprite.position.y+= -6 * bCard.WreathContainer.get_child_count()
 	bCard.WreathContainer.add_child(sprite)
-	return
+	return true
 
 func PrePlay(cardData : TDCardData):
 	print("Preplay for " + cardData.CardName + "!")
@@ -21,7 +21,7 @@ func PostPlay(cardData : TDCardData):
 	return
 
 func Attach(cardData : TDCardData):
-	print("Attach for " + cardData.CardName + "!")
+	print("Attach for " + cardData.CardName + "!")	
 	return
 
 func Detach(cardData : TDCardData):
