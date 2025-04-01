@@ -7,11 +7,10 @@ var SlainMonsters : Array[TDCard]
 var equipped:bool = false
 var weaponArea : Weapon_TDCardPlayArea
 
-func _init(name : String, art : String, value : int, lore : String) -> void:
-	super._init(name, value, art, lore)
+func _init(name : String, art : String, value : int, lore : String, suit : SuitType) -> void:
+	super._init(name, value, art, lore, suit)
 	useName = "Equip, Discard"
 	LastMonsterValue = 15
-	Suit = SuitType.Weapon
 	return
 	
 func SpecialSetup(card:TDCard)->void:
@@ -32,8 +31,6 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		if(!equipped and !weaponArea.weaponEquipped):
 			if(playArea.ValidPlayType("Equip")):
 				Equip(card)
-		else:
-			print("Equipped: "+ str(equipped)+" weaponArea.weaponEquipped"+str(weaponArea.weaponEquipped))
 	elif(playArea.ValidPlayType("Discard")):
 		Unequip(card)
 		Transitioner.AddToDiscard(self)
@@ -41,7 +38,6 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	return
 
 func Equip(card : TDCard):
-	print("Equipped " + CardName)
 	weaponArea.SetEquipped(true)
 	card.FillMarker(weaponArea.get_node("EquippedSlot"))
 	card.useMonsterCollisionShape.disabled = false
@@ -52,7 +48,6 @@ func Equip(card : TDCard):
 	return
 
 func Unequip(card : TDCard):
-	print("Unequipped " + CardName)
 	if(weaponArea):
 		weaponArea.SetEquipped(false)
 		

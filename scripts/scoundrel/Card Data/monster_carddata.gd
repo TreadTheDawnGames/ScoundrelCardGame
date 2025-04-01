@@ -1,21 +1,12 @@
 extends TDCardData_Art
 class_name TDCardData_Monster
 
-enum MonsterType {Default, Ghost, Beast}
-var Type : MonsterType
 var slain : bool = false
 
-func _init(cardName : String, art : String, value : int, type : MonsterType, lore : String):
-	super._init(cardName, value, art, lore)
+func _init(cardName : String, art : String, value : int, lore : String, suit : SuitType):
+	super._init(cardName, value, art, lore, suit)
 	useName = "Monster"
-	Type = type
-	#print(MonsterType.keys()[Type])
-	
-	match Type:
-		MonsterType.Ghost:
-			Suit = SuitType.Ghost
-		MonsterType.Beast:
-			Suit = SuitType.Beast
+	Suit = suit
 
 	return
 
@@ -69,13 +60,11 @@ func _WeaponValid(weaponData : TDCardData_Weapon) -> bool:
 	return false
 
 func Attack(amount : int):
-	print("Attack")
 	Health.Damage(amount)
 	return
 	
 func ClickAction(card : TDCard):
 	super.ClickAction(card)
-	print("Slain: " + str(slain))
 	return
 
 func Revive():

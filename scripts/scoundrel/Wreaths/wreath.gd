@@ -12,18 +12,14 @@ func Setup(card : TDCard) -> bool:
 	bCard.WreathContainer.add_child(sprite)
 	return true
 
-func PrePlay(cardData : TDCardData):
-	print("Preplay for " + cardData.CardName + "!")
+func PrePlay(_cardData : TDCardData):
 	return
 	
-func PostPlay(cardData : TDCardData):
-	print("Postplay for " + cardData.CardName + "!")
+func PostPlay(_cardData : TDCardData):
 	return
 
-func Attach(cardData : TDCardData):
-	print("Attach for " + cardData.CardName + "!")	
+func Attach(_cardData : TDCardData):
 	return
 
-func Detach(cardData : TDCardData):
-	print("Detach for " + cardData.CardName + "!")
+func Detach(_cardData : TDCardData):
 	return	

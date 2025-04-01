@@ -15,16 +15,13 @@ func RandTex() -> Texture:
 func _ready():
 	dungeon_nodes.hide()
 	pregame.show()
-	LoadDeck(Room.standardDeck)
+	CardLibrary.SetActiveDeck(CardLibrary.standardDeck)
+	LoadDeck(CardLibrary.ActiveDeck)
 	Deck.Shuffle()
 	Room.ReplenishRoom()
 	return
 
 func _process(_delta: float) -> void:
-	if(Input.is_action_just_pressed("Debug-NewCard")):
-		card_board.AddCard(TDCardData_Monster.new("Dev card", RandTex().resource_path, 14,TDCardData_Monster.MonsterType.Ghost, "Dev card: Monster"), false, true)
-	if(Input.is_action_just_pressed("Debug-ReplenishRoom")):
-		Room.ReplenishRoom()
 	if(Input.is_action_just_pressed("Debug-Shuffle")):
 		Deck.Shuffle()
 	if(Input.is_action_just_pressed("Debug-Flee")):
@@ -45,7 +42,9 @@ func _process(_delta: float) -> void:
 			var Data : TDCardData_Art = card.Data
 			Data.AddWreath(BASE_WREATH.instantiate(), card)
 	if(Input.is_action_just_pressed("Debug-ShowAllCards")):
-		add_child(load("res://scenes/card overlays/Debug/card_board_overlay.tscn").instantiate())
+		add_child(load("res://scenes/card overlays/Debug/debug-show_all_cards_overlay.tscn").instantiate())
+	if(Input.is_action_just_pressed("Debug-OpenShop")):
+		add_child(load("res://scenes/card overlays/shop_overlay.tscn").instantiate())
 	return
 	
 func LoadDeck(deck : Array[CardInfo]):

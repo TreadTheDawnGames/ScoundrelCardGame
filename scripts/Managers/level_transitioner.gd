@@ -65,7 +65,7 @@ func CheckLevelClear() -> bool:
 	print("checking...")
 	var cardsToCheck = Deck.Cards + Room.roomCards
 	for card in cardsToCheck:
-		if(card.CardName.contains("Beasts") or card.CardName.contains("Ghosts")):
+		if(card.Suit == TDCardData_Art.SuitType.Beasts or card.Suit == TDCardData_Art.SuitType.Ghosts):
 			print("Monsters remain.")
 			return false
 	print("All monsters slain.")

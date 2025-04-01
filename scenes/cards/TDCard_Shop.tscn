@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfi4j8h1jnry0"]
+
+[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/td_card_potion.tscn" id="1_it5yw"]
+
+[node name="TDCard_Shop" instance=ExtResource("1_it5yw")]

@@ -22,17 +22,13 @@ func ViewRoom():
 	nextRoom.sort_custom(
 		func(a, b): 
 			if(a.Suit == b.Suit) :
-				if(a is TDCardData_Monster and b is TDCardData_Monster):
-					print(TDCardData_Art.SuitType.keys()[a.Suit] + " | " + TDCardData_Art.SuitType.keys()[b.Suit])
-					print(a.CardName +" | " + b.CardName)
-					
 				return a.Value < b.Value
 			else:
 				return a.Suit < b.Suit )
-	var Weapons =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Weapon)
-	var Potions =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Potion)
-	var Ghosts  =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Ghost)
-	var Beasts =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Beast)
+	var Weapons =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Weapons)
+	var Potions =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Potions)
+	var Ghosts  =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Ghosts)
+	var Beasts =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Beasts)
 
 	var FirstRow =  Slots.slice(0, 13)
 	var SecondRow = Slots.slice(13, 26)

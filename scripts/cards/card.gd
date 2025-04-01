@@ -128,7 +128,6 @@ func Unhovered() -> void:
 	return
 	
 func CardEnteredZone(node : Node2D) -> void:
-	print("CardEntered")
 	if(node is not TDCardPlayArea):
 		return
 	_PlayZone = node
@@ -137,7 +136,6 @@ func CardEnteredZone(node : Node2D) -> void:
 func CardExitedZone(node : Node2D) -> void:
 	if(node is not TDCardPlayArea):
 		return
-	print("Card exited zone: " + node.name + " PlayType: " + node.GetPlayType())
 	if(node == _PlayZone):
 		_PlayZone = null
 	return

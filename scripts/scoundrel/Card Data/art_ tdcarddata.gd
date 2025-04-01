@@ -8,7 +8,7 @@ var Value : int
 var Modifier : int
 var clickTimer : SceneTreeTimer
 var clickTime : float = 0.2
-enum SuitType {Weapon, Potion, Ghost, Beast}
+enum SuitType {Weapons, Potions, Ghosts, Beasts, Shop}
 var Suit : SuitType
 
 func IsUsable(areaPlayName : String) -> bool:
@@ -18,10 +18,11 @@ func Refresh():
 	
 	return
 
-func _init(name : String, value : int, art : String, lore : String):
+func _init(name : String, value : int, art : String, lore : String, suit : SuitType):
 	super._init(name)
 	Value = value
 	Lore = lore
+	Suit = suit
 	if(ResourceLoader.exists(art)):
 		Art = load(art)
 	else:

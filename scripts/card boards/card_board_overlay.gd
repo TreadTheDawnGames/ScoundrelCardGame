@@ -16,14 +16,14 @@ func _ready() -> void:
 		printerr("There are no card slots on "+ name +" because the slot count is set to 0.")
 	board_title = get_node("Panel/BoardTitle")
 	marker_extents = get_node("MarkerExtents")
-	Initialize(slots, label, MaxWidth)
+	Initialize(slots, MaxWidth)
+	board_title.text = label
 	return
 
 var Slots : Array[TDCardPositionMarker2D]
 var RevealedCards : Array[TDCard]
 
-func Initialize(slotCount : int, title : String, maxWidth : int = 10):
-	board_title.text = title
+func Initialize(slotCount : int, maxWidth : int = 10):
 	
 	var anotherThing = (max(slotCount%maxWidth,min(maxWidth, slotCount)))
 	var x = marker_extents.get_rect().size.x

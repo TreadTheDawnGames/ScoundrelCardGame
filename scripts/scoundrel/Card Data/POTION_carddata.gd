@@ -3,19 +3,11 @@ class_name TDCardData_Potion
 
 var AbilityDescription : String
 var PotionAbility : Callable
-#
-#func PotionAbility(card : TDCard) -> void:
-	#print("Potion Ability")
-	#Health.IncreaseMaxHealth(1)
-	#card.FreeMarker()
-	#card.queue_free()
-	#return
 
-func _init(name : String, art : String, value : int, abilityDescription : String, potionAbility : Callable):
-	super._init(name, value, art, abilityDescription)
+func _init(name : String, art : String, value : int, abilityDescription : String, potionAbility : Callable, suit : SuitType):
+	super._init(name, value, art, abilityDescription, suit)
 	useName = "Heal, Potion, PEquip"
 	PotionAbility = potionAbility
-	Suit = SuitType.Potion
 	return
 	
 func EnterUsable(playArea : TDCardPlayArea, card : TDCard)->void:
@@ -32,7 +24,6 @@ func EnterUsable(playArea : TDCardPlayArea, card : TDCard)->void:
 	
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("Heal")):
-		print("Heal")
 		card.FreeMarker()
 		Health.Heal(Value)
 		Transitioner.AddToDiscard(self)
