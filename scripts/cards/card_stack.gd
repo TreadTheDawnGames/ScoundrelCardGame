@@ -60,7 +60,7 @@ func BuryAt(index : int, card : TDCardData):
 	
 ##Places parameter stack on top of this stack.
 func PutStack(stack : TDCardStack) -> void:
-	Cards.append_array(stack.cards)
+	Cards.append_array(stack.Cards)
 	return
 
 ##Places parameter stack on top of this stack.
@@ -83,3 +83,10 @@ func BuryArray(stack : Array[TDCardData]) -> void:
 func Shuffle() -> void:
 	Cards.shuffle()
 	return
+
+func Clear() -> void:
+	Cards.clear()
+	return
+	
+func has(cardData : TDCardData) -> bool:
+	return Cards.has(cardData)

@@ -21,6 +21,7 @@ Deck="*res://scenes/Globals/Deck.tscn"
 Health="*res://scenes/Globals/health_manager.tscn"
 Room="*res://scenes/Globals/room_manager.tscn"
 WeaponManager="*res://scenes/Globals/attack_bonus_manager.tscn"
+Transitioner="*res://scenes/Globals/level_transitioner.tscn"
 
 [display]
 
@@ -66,6 +67,16 @@ Debug-AddPassiveBonus={
 Debug-AddWreath={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
+]
+}
+Debug-Heal={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":72,"key_label":0,"unicode":104,"location":0,"echo":false,"script":null)
+]
+}
+Debug-ShowAllCards={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
 ]
 }
 

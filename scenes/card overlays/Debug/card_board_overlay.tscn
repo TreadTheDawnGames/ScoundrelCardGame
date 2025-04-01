@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4c2hcu740etm"]
+
+[ext_resource type="PackedScene" uid="uid://c6xxcbgt623an" path="res://scenes/card overlays/NextRoomOverlay.tscn" id="1_q4f0h"]
+[ext_resource type="Script" uid="uid://bcrvy7lldlb1l" path="res://scripts/DEBUG/debug_show_all_cards.gd" id="2_08q8h"]
+[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/td_card_potion.tscn" id="3_08q8h"]
+
+[node name="CardBoardOverlay" instance=ExtResource("1_q4f0h")]
+script = ExtResource("2_08q8h")
+slots = 52
+label = "All Cards"
+MaxWidth = 13
+cardSceneSource = ExtResource("3_08q8h")
+
+[node name="MarkerExtents" parent="." index="0"]
+offset_left = 56.0
+offset_top = 156.0
+offset_right = 1101.0
+offset_bottom = 549.0
+
+[node name="Slots" parent="Panel" index="1"]
+position = Vector2(26, 111)

@@ -8,9 +8,15 @@ var Value : int
 var Modifier : int
 var clickTimer : SceneTreeTimer
 var clickTime : float = 0.2
+enum SuitType {Weapon, Potion, Ghost, Beast}
+var Suit : SuitType
 
 func IsUsable(areaPlayName : String) -> bool:
 	return useName.contains(areaPlayName)
+
+func Refresh():
+	
+	return
 
 func _init(name : String, value : int, art : String, lore : String):
 	super._init(name)
@@ -38,7 +44,7 @@ func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
 	return
 
 func GrabAction(card : TDCard):
-	card.get_parent().move_child(card, card.get_parent().get_child_count()-1)
+	#card.get_parent().move_child(card, card.get_parent().get_child_count()-1)
 	card.tooltip.show_tooltip = false
 	clickTimer = card.get_tree().create_timer(clickTime)
 	return
@@ -68,17 +74,16 @@ func Frame(card : TDCard) -> void:
 	return
 	
 func HoverEnterAction(card : TDCard):
+	if(Room.card_board._selectedCards.size() > 0 and Room.card_board._selectedCards[0] != card):
+		return false
 	card.z_index = 500
 	Room.card_board.SelectCard(card)
-	print("selected " + card.CardName)
-	return
+	return true
 	
 func HoverExitAction(card : TDCard):
 	card.z_index = 0
 	Room.card_board.DeselectCard(card)
-	print("deselected " + card.CardName)
-	
-	return
+	return false
 	
 ##card is required for wreath setup.
 func AddWreath(wreath : Wreath, card : TDCard):
@@ -97,5 +102,7 @@ func RemoveWreath(wreath : Wreath):
 	return
 
 func ClickAction(_card : TDCard):
-	print(Wreaths.size())
+	print("----" + CardName + "----")
+	print("Value: " + str(Value))
+	print("Wreath count: "+str(Wreaths.size()))
 	return

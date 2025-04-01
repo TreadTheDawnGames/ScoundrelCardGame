@@ -17,6 +17,8 @@ func ViewRoom():
 		
 	var i = 0
 	for info in nextRoom:
+		if(!is_instance_valid(info)):
+			continue
 		var card = AddCard(info,false,true, Slots[i])
 		card.scale *= 4
 		i+=1

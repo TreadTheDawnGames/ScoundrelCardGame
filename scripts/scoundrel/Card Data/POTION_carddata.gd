@@ -15,6 +15,7 @@ func _init(name : String, art : String, value : int, abilityDescription : String
 	super._init(name, value, art, abilityDescription)
 	useName = "Heal, Potion, PEquip"
 	PotionAbility = potionAbility
+	Suit = SuitType.Potion
 	return
 	
 func EnterUsable(playArea : TDCardPlayArea, card : TDCard)->void:
@@ -34,9 +35,13 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		print("Heal")
 		card.FreeMarker()
 		Health.Heal(Value)
+		Transitioner.AddToDiscard(self)
 		card.queue_free()
 	elif(playArea.ValidPlayType("Potion")):
 		PotionAbility.call(card)
+		Transitioner.AddToDiscard(self)
+		card.queue_free()
+		
 	elif(playArea.ValidPlayType("PEquip")):
 		var slot : TDCardPositionMarker2D = playArea.get_node("EquippedSlot")
 		if(!slot.isFilled):

@@ -4,7 +4,7 @@ var area2D;
 
 var grabbed : bool = false
 var _hovered : bool = false;
-var _beingDrawn : bool = false;
+var preventHoverAction : bool = false;
 ## If true, the card will return to its original position with a Lerp function.
 @export
 var returnToHome : bool = false
@@ -51,7 +51,7 @@ func SetUp(data : TDCardData, isUsable : bool, useGoToPos : bool = false, marker
 func SetUsable(isDrawn : bool) -> void:
 	collision_mask = _OGMask if isDrawn else 0
 	set_collision_layer_value(17, isDrawn)
-	_beingDrawn = !_beingDrawn
+	preventHoverAction = !preventHoverAction
 	return
 
 func _PlayCard() -> void:
@@ -105,13 +105,10 @@ func _process(_delta: float) -> void:
 		
 	_PlayCard()
 	_DragDropLogic()
-	
-
-
 	return
 
 func Hovered() -> void:
-	if(_beingDrawn):
+	if(preventHoverAction):
 		return
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		return

@@ -11,6 +11,7 @@ func _init(name : String, art : String, value : int, lore : String) -> void:
 	super._init(name, value, art, lore)
 	useName = "Equip, Discard"
 	LastMonsterValue = 15
+	Suit = SuitType.Weapon
 	return
 	
 func SpecialSetup(card:TDCard)->void:
@@ -31,8 +32,11 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		if(!equipped and !weaponArea.weaponEquipped):
 			if(playArea.ValidPlayType("Equip")):
 				Equip(card)
+		else:
+			print("Equipped: "+ str(equipped)+" weaponArea.weaponEquipped"+str(weaponArea.weaponEquipped))
 	elif(playArea.ValidPlayType("Discard")):
 		Unequip(card)
+		Transitioner.AddToDiscard(self)
 	Room.RemoveFromRoom(card)
 	return
 
@@ -52,9 +56,8 @@ func Unequip(card : TDCard):
 	if(weaponArea):
 		weaponArea.SetEquipped(false)
 		
-	for monster in SlainMonsters:
-		monster.FreeMarker()
-		monster.queue_free()
+	CleanWeapon()
+	equipped = false
 	WeaponManager.SetActiveWeapon(null)
 	card.FreeMarker()
 	card.queue_free()
@@ -97,8 +100,10 @@ func AddSlainMonster(monster : TDCard_Monster):
 
 func CleanWeapon():
 	for monster in SlainMonsters:
+		monster.Data.Revive()
 		monster.FreeMarker()
 		monster.queue_free()
+		Transitioner.AddToDiscard(monster.Data)
 	SlainMonsters.clear()
 	LastMonsterValue = 15
 	return

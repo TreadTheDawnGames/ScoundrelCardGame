@@ -28,6 +28,9 @@ static func FiveOfPotions(card : TDCard):
 	return
 
 static func SixOfPotions(card : TDCard):
+	if(!WeaponManager.GetActiveWeapon()):
+		print("No weapon to clean!")
+		return
 	WeaponManager.GetActiveWeapon().CleanWeapon()
 	card.FreeMarker()
 	card.queue_free()

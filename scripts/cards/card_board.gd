@@ -9,6 +9,7 @@ var cardSceneSource : PackedScene
 func AddCard(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null) -> TDCard:
 	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos)
 	if(!card):
+		printerr("[TDCardBoard] Unable to create card to add to board.")
 		return
 	add_child(card)
 	card.SetUsable(true)

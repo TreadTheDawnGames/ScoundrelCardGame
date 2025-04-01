@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b025docoadf01"]
+
+[ext_resource type="Script" uid="uid://dxc5hyr713aym" path="res://scripts/Managers/level_transitioner.gd" id="1_j558b"]
+
+[node name="LevelTransitioner" type="Node"]
+script = ExtResource("1_j558b")
