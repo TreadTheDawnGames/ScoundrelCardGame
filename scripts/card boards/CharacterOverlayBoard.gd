@@ -12,7 +12,6 @@ func _ready():
 	var i = 0
 	for info in royalty:
 		var data = TDCardData_Character.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.Ability, TDCardData_Art.SuitType.Weapons)
-		var card = AddCard(data,false,true, Slots[i])
-		card.scale *= 4
+		AddCard(data,false,true, Slots[i])
 		i+=1
 		

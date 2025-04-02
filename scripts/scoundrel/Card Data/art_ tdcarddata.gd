@@ -8,7 +8,7 @@ var Value : int
 var Modifier : int
 var clickTimer : SceneTreeTimer
 var clickTime : float = 0.2
-enum SuitType {Weapons, Potions, Ghosts, Beasts, Shop}
+enum SuitType {Weapons, Potions, Ghosts, Beasts, Purchase, Shop}
 var Suit : SuitType
 
 func IsUsable(areaPlayName : String) -> bool:
@@ -87,11 +87,20 @@ func HoverExitAction(card : TDCard):
 	return false
 	
 ##card is required for wreath setup.
-func AddWreath(wreath : Wreath, card : TDCard):
+func ShowWreath(wreath : Wreath, card : TDCard):
+	if(!wreath.setupFlag):
+		wreath.Setup(card)
+	return
+
+func ShowAllWreaths(card : TDCard):
+	for wreath in Wreaths:
+		ShowWreath(wreath, card)
+
+func AddWreath(wreath : Wreath):
 	if(Wreaths.size() > 4):
 		print("Unable to add wreath: Card is at max wreaths.")
 		return
-	if(!wreath.Setup(card)):
+	if(!wreath.ValidForData(self)):
 		return
 	wreath.Attach(self)
 	Wreaths.append(wreath)

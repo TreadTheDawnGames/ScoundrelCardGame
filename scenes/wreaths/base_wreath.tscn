@@ -6,3 +6,4 @@
 [node name="BaseWreath" type="Node"]
 script = ExtResource("2_w25ry")
 art = ExtResource("1_7jx8a")
+wreathName = "BaseWreath"

@@ -23,10 +23,10 @@ static func CreateCardWithAbility(cardName : String, suit : TDCardData_Art.SuitT
 static func MultipleCardsFromInfo(deck : Array[CardInfo]) -> Array[TDCardData]:
 	var cardsToPut : Array[TDCardData] = []
 	for info in deck:
-		cardsToPut.append(CardFromInfo(info))
+		cardsToPut.append(CardDataFromInfo(info))
 	return cardsToPut
 	
-static func CardFromInfo(info : CardInfo) -> TDCardData:
+static func CardDataFromInfo(info : CardInfo) -> TDCardData:
 	var data : TDCardData
 	match (info.Suit):
 		TDCardData_Art.SuitType.Beasts:
@@ -41,8 +41,9 @@ static func CardFromInfo(info : CardInfo) -> TDCardData:
 			data = TDCardData_Weapon.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.Suit)
 			pass
 		_:
-			printerr("Unable to create card data from info: " + info.CardName)
+			#Default to base type
+			data = TDCardData_Art.new(info.CardName,info.Value, info.TexturePath, info.Lore, info.Suit)
 	return data
 
 static func GetRandomCardArray(infoArray : Array[CardInfo]) -> TDCardData:
-	return CardInfo.CardFromInfo(infoArray.pick_random())
+	return CardInfo.CardDataFromInfo(infoArray.pick_random())

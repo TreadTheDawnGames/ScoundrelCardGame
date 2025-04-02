@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceef0mofkh1hg"
-path="res://.godot/imported/AceofPotions.png-39fac9e81780f9f31dc5301074d72c68.ctex"
+uid="uid://bjyeqlbnyfvyu"
+path="res://.godot/imported/PurchaseCard.png-0637d70073ff55b57969079d6305c9b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/AceofPotions.png"
-dest_files=["res://.godot/imported/AceofPotions.png-39fac9e81780f9f31dc5301074d72c68.ctex"]
+source_file="res://assets/cards/PurchaseCard.png"
+dest_files=["res://.godot/imported/PurchaseCard.png-0637d70073ff55b57969079d6305c9b2.ctex"]
 
 [params]
 

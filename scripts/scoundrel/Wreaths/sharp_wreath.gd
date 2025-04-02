@@ -6,12 +6,11 @@ enum SuitType {Monster, Weapon, Potion}
 @export
 var ValidSuitTargets : Array[SuitType]
 
-func Setup(card : TDCard) -> bool:
-	var data = card.Data
+func ValidForData(data : TDCardData) -> bool:
 	var array : Array[SuitType] = [SuitType.Monster, SuitType.Weapon, SuitType.Potion]
 	for type in ValidSuitTargets:
 		array.erase(type)
-	
+
 	for Suit in array:
 		match(Suit):
 			SuitType.Monster:
@@ -25,7 +24,8 @@ func Setup(card : TDCard) -> bool:
 					continue
 		print("Invalid target: " + data.CardName)
 		return false
-	return super.Setup(card)
+	return true
+
 
 func Attach(data : TDCardData):
 	data.Value += bonus

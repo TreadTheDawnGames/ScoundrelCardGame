@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/DEBUG/DEBUG_tools.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://byvta6k12e1h7" path="res://assets/cards/AceofGhosts.png" id="2_u5sy4"]
-[ext_resource type="Texture2D" uid="uid://ceef0mofkh1hg" path="res://assets/cards/AceOfPotions.png" id="3_gee14"]
+[ext_resource type="Texture2D" uid="uid://ceef0mofkh1hg" path="res://assets/cards/AceofPotions.png" id="3_gee14"]
 [ext_resource type="Texture2D" uid="uid://dnm7xvahgsr65" path="res://assets/cards/AceofWeapons.png" id="4_0tnpc"]
 [ext_resource type="Script" uid="uid://bl780wqdrgw1p" path="res://scripts/DEBUG/DEBUG_card_counter.gd" id="5_gee14"]
 [ext_resource type="Texture2D" uid="uid://c8v2hxto4sobo" path="res://assets/cards/10ofBeasts.png" id="5_kvpfn"]
@@ -29,10 +29,7 @@ textures = Array[Texture2D]([ExtResource("2_u5sy4"), ExtResource("3_gee14"), Ext
 specialDeck = true
 
 [node name="DungeonNodes" type="Node2D" parent="."]
-position = Vector2(-16, 8)
 scale = Vector2(4, 4)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="DungeonNodes"]
 
 [node name="DiscardPlayArea" parent="DungeonNodes" instance=ExtResource("9_ir15t")]
 position = Vector2(268.75, 40.25)
@@ -166,8 +163,7 @@ fit_content = true
 scroll_active = false
 
 [node name="CharacterOverlay" parent="." instance=ExtResource("23_bt5mj")]
-visible = false
-position = Vector2(583, 331)
+position = Vector2(584, 331)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(577, 329)
+position = Vector2(581, 324)

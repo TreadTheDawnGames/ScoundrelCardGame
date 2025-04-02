@@ -7,7 +7,7 @@ static func CreateCard(value : int, suit : TDCardData_Art.SuitType, lore : Strin
 	var cardName = Utils.ConvertToCardName(value) +"of"+TDCardData_Art.SuitType.keys()[suit]
 	print(TDCardData_Art.SuitType.keys()[suit])
 	var info = CardInfo.new(cardName, suit, "res://assets/cards/"+cardName+".png", value, lore)
-	return CardInfo.CardFromInfo(info)
+	return CardInfo.CardDataFromInfo(info)
 	
 static func Level(num : int) -> Array[TDCardData]:
 	return [CreateCard(num, TDCardData_Art.SuitType.Beasts),

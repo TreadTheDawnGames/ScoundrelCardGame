@@ -1,13 +1,12 @@
 extends TDCardData_Art
-class_name TDCardData_Shop
+class_name TDCardData_Purchase
 
 var AbilityDescription : String
 var SaleCard : TDCardData
 
 func _init(name : String, art : String, value : int, lore : String, saleCard : TDCardData):
-	super._init(name, value, art, lore, SuitType.Shop)
+	super._init(name, value, art, lore, SuitType.Purchase)
 	useName = "Buy"
-	Suit = SuitType.Shop
 	SaleCard = saleCard
 	return
 	

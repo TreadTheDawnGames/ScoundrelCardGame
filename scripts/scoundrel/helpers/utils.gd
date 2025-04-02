@@ -13,5 +13,5 @@ static func ConvertToCardName(num : int) -> String:
 		_:
 			return str(num)
 
-static func GetCardsOfSuit(type : TDCardData_Art.SuitType) -> Array[TDCardData]:
+static func GetCardInfosOfSuit(type : TDCardData_Art.SuitType) -> Array[CardInfo]:
 	return CardLibrary.ActiveDeck.filter(func(item): return item.Suit == type)

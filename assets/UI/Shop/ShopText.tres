@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://doyae2xhqstbr"]
+
+[ext_resource type="FontFile" uid="uid://bdj8krv5qxl0i" path="res://assets/UI/Fonts/TreadTheDawnPixResize.ttf" id="1_qv4xl"]
+
+[resource]
+default_font = ExtResource("1_qv4xl")

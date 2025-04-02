@@ -35,9 +35,6 @@ func Initialize(slotCount : int, maxWidth : int = 10):
 	var hOffset : float = cellHeight/2
 	
 	for i in slotCount:
-		#var marker : Sprite2D = Sprite2D.new()
-		#marker.texture = load("res://assets/cards/2ofGhosts.png")
-		#marker.scale *= 4
 		var marker : TDCardPositionMarker2D = TDCardPositionMarker2D.new()
 		slotsNode.add_child(marker)
 		marker.position = Vector2((cellWidth*(i%maxWidth))+wOffset, cellHeight*floor((float(i) / float(maxWidth)))+hOffset)

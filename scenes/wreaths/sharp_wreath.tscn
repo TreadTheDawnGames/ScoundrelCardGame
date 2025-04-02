@@ -9,3 +9,4 @@ script = ExtResource("2_l1fwm")
 bonus = 0
 ValidSuitTargets = Array[int]([0, 1])
 art = ExtResource("3_xadp4")
+wreathName = "PermanentBonusWreath"

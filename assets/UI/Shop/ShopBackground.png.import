@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjyeqlbnyfvyu"
-path="res://.godot/imported/BlankCard-0001.png-3fc8faa35e2df094f9c72f5f56096fca.ctex"
+uid="uid://dwcwjr1afhavh"
+path="res://.godot/imported/ShopBackground.png-56218213abb8f63991108aeb4811490c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/BlankCard-0001.png"
-dest_files=["res://.godot/imported/BlankCard-0001.png-3fc8faa35e2df094f9c72f5f56096fca.ctex"]
+source_file="res://assets/UI/Shop/ShopBackground.png"
+dest_files=["res://.godot/imported/ShopBackground.png-56218213abb8f63991108aeb4811490c.ctex"]
 
 [params]
 

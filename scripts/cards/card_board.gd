@@ -13,6 +13,7 @@ func AddCard(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, g
 		return
 	add_child(card)
 	card.SetUsable(true)
+	card.scale *= 4
 	_board.push_back(card)
 	return card
 	

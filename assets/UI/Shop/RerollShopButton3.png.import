@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceef0mofkh1hg"
-path="res://.godot/imported/AceofPotions.png-39fac9e81780f9f31dc5301074d72c68.ctex"
+uid="uid://d0kpbcpceki2l"
+path="res://.godot/imported/RerollShopButton3.png-d6dd398d173a5725f3095a92d7931757.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/AceofPotions.png"
-dest_files=["res://.godot/imported/AceofPotions.png-39fac9e81780f9f31dc5301074d72c68.ctex"]
+source_file="res://assets/UI/Shop/RerollShopButton3.png"
+dest_files=["res://.godot/imported/RerollShopButton3.png-d6dd398d173a5725f3095a92d7931757.ctex"]
 
 [params]
 

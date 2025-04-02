@@ -57,8 +57,7 @@ func ApplySlots(infos : Array[TDCardData], mySlots : Array[TDCardPositionMarker2
 		if(!is_instance_valid(info)):
 			continue
 		print(info.CardName)
-		var card = AddCard(info,false,true, mySlots[i])
-		card.scale *= 4
+		AddCard(info,false,true, mySlots[i])
 		i+=1
 	i = 0
 	return

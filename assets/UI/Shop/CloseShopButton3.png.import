@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceef0mofkh1hg"
-path="res://.godot/imported/AceofPotions.png-39fac9e81780f9f31dc5301074d72c68.ctex"
+uid="uid://dlr0n4kn0p25k"
+path="res://.godot/imported/CloseShopButton3.png-c64c13b33aa130742ca832d523606e49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/AceofPotions.png"
-dest_files=["res://.godot/imported/AceofPotions.png-39fac9e81780f9f31dc5301074d72c68.ctex"]
+source_file="res://assets/UI/Shop/CloseShopButton3.png"
+dest_files=["res://.godot/imported/CloseShopButton3.png-c64c13b33aa130742ca832d523606e49.ctex"]
 
 [params]
 
