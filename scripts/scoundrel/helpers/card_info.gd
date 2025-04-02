@@ -43,3 +43,6 @@ static func CardFromInfo(info : CardInfo) -> TDCardData:
 		_:
 			printerr("Unable to create card data from info: " + info.CardName)
 	return data
+
+static func GetRandomCardArray(infoArray : Array[CardInfo]) -> TDCardData:
+	return CardInfo.CardFromInfo(infoArray.pick_random())

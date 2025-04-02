@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://qe1g26hqkv6o" path="res://assets/UI/UIBlueprints/ShopBackground.png" id="2_qte6w"]
 
 [node name="ShopOverlay" type="Node2D"]
-scale = Vector2(4, 4)
 script = ExtResource("1_jiys0")
 
 [node name="Panel" type="Sprite2D" parent="."]
-position = Vector2(142.5, 103.25)
+position = Vector2(615, 391)
+scale = Vector2(4, 4)
 texture = ExtResource("2_qte6w")
 
 [node name="Slots" type="Node2D" parent="Panel"]
