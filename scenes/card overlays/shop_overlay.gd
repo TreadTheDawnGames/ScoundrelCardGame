@@ -62,7 +62,7 @@ func AddCardsToShop(suit : TDCardData_Art.SuitType, markerArray : Array[TDCardPo
 					break
 		rerollIfCards.append(chosenCardInfo.CardName)
 		
-		var purchaseData :TDCardData_Art = CardInfo.CardDataFromInfo(chosenCardInfo)
+		var purchaseData : TDCardData_Art = CardInfo.CardDataFromInfo(chosenCardInfo)
 		
 		for i in DetermineWreathCount(advantage):
 			if(guaranteedWreathCompatibility):

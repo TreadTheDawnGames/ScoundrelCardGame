@@ -3,8 +3,8 @@ class_name TDCardData_Character
 
 var Ability : Callable
 
-func _init(name : String, art : String, value:int, lore : String, ability : Callable, suit : SuitType):
-	super._init(name, value, art, lore, suit)
+func _init(name : String, art : String, value:int, lore : String, ability : Callable, suit : SuitType, extraParams : Dictionary[String, Variant]):
+	super._init(name, value, art, lore, suit, extraParams)
 	useName = "Select"
 	Ability = ability
 	return

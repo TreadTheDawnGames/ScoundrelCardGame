@@ -12,6 +12,7 @@ size = Vector2(37, 51)
 [node name="CharacterOverlay" instance=ExtResource("1_vxphm")]
 script = ExtResource("2_xugx0")
 slots = 3
+label = null
 MaxWidth = 3
 cardSceneSource = ExtResource("3_6jdes")
 

@@ -11,7 +11,9 @@ func _ready():
 		
 	var i = 0
 	for info in royalty:
-		var data = TDCardData_Character.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.Ability, TDCardData_Art.SuitType.Weapons)
+		var extraParams : Dictionary[String, Variant]
+		extraParams.get_or_add("Ability", info.Ability)
+		var data = TDCardData_Character.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.Ability, TDCardData_Art.SuitType.Weapons, extraParams)
 		AddCard(data,false,true, Slots[i])
 		i+=1
 		

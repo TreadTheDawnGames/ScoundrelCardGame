@@ -20,7 +20,7 @@ func ValidForData(data : TDCardData) -> bool:
 				if(data is not TDCardData_Weapon):
 					continue
 			SuitType.Potion:
-				if(data is not TDCardData_Potion):
+				if(data is not TDCardData_Ability):
 					continue
 		print("Invalid target: " + data.CardName)
 		return false

@@ -10,6 +10,7 @@ var clickTimer : SceneTreeTimer
 var clickTime : float = 0.2
 enum SuitType {Weapons, Potions, Ghosts, Beasts, Purchase, Shop}
 var Suit : SuitType
+var ExtraParams : Dictionary[String, Variant]
 
 func IsUsable(areaPlayName : String) -> bool:
 	return useName.contains(areaPlayName)
@@ -18,11 +19,12 @@ func Refresh():
 	
 	return
 
-func _init(name : String, value : int, art : String, lore : String, suit : SuitType):
+func _init(name : String, value : int, art : String, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]):
 	super._init(name)
 	Value = value
 	Lore = lore
 	Suit = suit
+	ExtraParams = extraParams
 	if(ResourceLoader.exists(art)):
 		Art = load(art)
 	else:

@@ -3,8 +3,8 @@ class_name TDCardData_Monster
 
 var slain : bool = false
 
-func _init(cardName : String, art : String, value : int, lore : String, suit : SuitType):
-	super._init(cardName, value, art, lore, suit)
+func _init(cardName : String, art : String, value : int, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]):
+	super._init(cardName, value, art, lore, suit, extraParams)
 	useName = "Monster"
 	Suit = suit
 

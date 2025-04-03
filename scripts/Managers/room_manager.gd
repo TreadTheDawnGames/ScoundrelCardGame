@@ -51,7 +51,7 @@ func ReplenishRoom():
 						card = card_board.AddCardFromSource(monsterCard, Deck.DrawCard(), false, true, slot)
 					elif(data is TDCardData_Weapon):
 						card = card_board.AddCardFromSource(weaponCard, Deck.DrawCard(), false, true, slot)
-					elif(data is TDCardData_Potion):
+					elif(data is TDCardData_Ability):
 						card = card_board.AddCardFromSource(potionCard, Deck.DrawCard(), false, true, slot)
 					else:
 						if(data):

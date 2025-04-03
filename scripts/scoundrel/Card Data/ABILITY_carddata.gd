@@ -1,13 +1,14 @@
 extends TDCardData_Art
-class_name TDCardData_Potion
+class_name TDCardData_Ability
 
 var AbilityDescription : String
 var PotionAbility : Callable
 
-func _init(name : String, art : String, value : int, abilityDescription : String, potionAbility : Callable, suit : SuitType):
-	super._init(name, value, art, abilityDescription, suit)
+##Extra params: "PotionAbility"
+func _init(name : String, art : String, value : int, abilityDescription : String,  suit : SuitType, extraParams : Dictionary[String, Variant]):
+	super._init(name, value, art, abilityDescription, suit, extraParams)
 	useName = "Heal, Potion, PEquip"
-	PotionAbility = potionAbility
+	PotionAbility = extraParams["Ability"]
 	return
 	
 func EnterUsable(playArea : TDCardPlayArea, card : TDCard)->void:
