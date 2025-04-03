@@ -35,10 +35,12 @@ static func CardDataFromInfo(info : CardInfo) -> TDCardData:
 			pass
 		TDCardData_Art.SuitType.Weapons:
 			data = TDCardData_Weapon.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.Suit, info.ExtraParams)
+		TDCardData_Art.SuitType.Shops:
+			data = TDCardData_Shop.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.ExtraParams)
 			pass
 		_:
 			#Default to base type
-			data = TDCardData_Art.new(info.CardName,info.Value, info.TexturePath, info.Lore, info.Suit, info.ExtraParams)
+			data = TDCardData_Art.new(info.CardName,info.TexturePath,info.Value,  info.Lore, info.Suit, info.ExtraParams)
 	return data
 
 static func GetRandomCardArray(infoArray : Array[CardInfo]) -> TDCardData:

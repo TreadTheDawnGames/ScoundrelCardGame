@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://32tbh30exg8s"]
+[gd_scene load_steps=6 format=3 uid="uid://32tbh30exg8s"]
 
 [ext_resource type="Script" uid="uid://csc60awap4om5" path="res://scripts/Managers/room_manager.gd" id="1_34qoo"]
 [ext_resource type="PackedScene" uid="uid://c8tsl4hngvv64" path="res://scenes/cards/TDCard_Monster.tscn" id="2_tb6cv"]
-[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/td_card_potion.tscn" id="3_34qoo"]
+[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/TDCard_base.tscn" id="3_34qoo"]
 [ext_resource type="PackedScene" uid="uid://dkrd6d61648ll" path="res://scenes/cards/TDCard_Weapon.tscn" id="4_a4cnn"]
+[ext_resource type="PackedScene" uid="uid://bfi4j8h1jnry0" path="res://scenes/cards/TDCard_Shop.tscn" id="5_tb6cv"]
 
 [node name="RoomManager" type="Node"]
 script = ExtResource("1_34qoo")
 monsterCard = ExtResource("2_tb6cv")
 potionCard = ExtResource("3_34qoo")
 weaponCard = ExtResource("4_a4cnn")
+shopCard = ExtResource("5_tb6cv")

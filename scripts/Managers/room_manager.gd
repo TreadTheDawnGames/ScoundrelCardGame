@@ -8,7 +8,7 @@ var roomCards : Array[TDCard]
 @export var monsterCard : PackedScene
 @export var potionCard : PackedScene
 @export var weaponCard : PackedScene
-
+@export var shopCard : PackedScene
 signal ReplenishingRoom
 signal ReplenishedRoom
 
@@ -45,19 +45,7 @@ func ReplenishRoom():
 			if(Deck.Count()>0):
 				var slot = _GetUnfilledRoomSlot()
 				if(slot):
-					var data = Deck.Peek()
-					var card : TDCard
-					if(data is TDCardData_Monster):
-						card = card_board.AddCardFromSource(monsterCard, Deck.DrawCard(), false, true, slot)
-					elif(data is TDCardData_Weapon):
-						card = card_board.AddCardFromSource(weaponCard, Deck.DrawCard(), false, true, slot)
-					elif(data is TDCardData_Ability):
-						card = card_board.AddCardFromSource(potionCard, Deck.DrawCard(), false, true, slot)
-					else:
-						if(data):
-							printerr("Unrecognized CardData: " + data.CardName)
-						else:
-							printerr("Unreconglized CardData: null")
+					var card : TDCard = card_board.AddCardFromItsScene(Deck.DrawCard(), false, true, slot)
 					roomCards.push_back(card)
 			else: 
 				break

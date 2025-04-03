@@ -8,7 +8,7 @@ var equipped:bool = false
 var weaponArea : Weapon_TDCardPlayArea
 
 func _init(name : String, art : String, value : int, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]) -> void:
-	super._init(name, value, art, lore, suit, extraParams)
+	super._init(name, art, value, lore, suit, extraParams)
 	useName += "Equip, Discard"
 	LastMonsterValue = 15
 	return

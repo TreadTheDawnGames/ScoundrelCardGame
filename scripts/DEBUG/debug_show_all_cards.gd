@@ -1,7 +1,7 @@
 extends OverlayCardBoard
 class_name Debug_ShowAllCards
 
-var nextRoom : Array[TDCardData]
+var allCards : Array[TDCardData]
 @onready var button: Button = $Button
 static var isOpen : bool = false
 
@@ -18,27 +18,32 @@ func _ready():
 func ViewRoom():
 	Room.card_board.SetBoardActive(false)
 
-	nextRoom = Deck.Cards + Room.GetRoomCardData()
-	nextRoom.sort_custom(
+	allCards = Deck.Cards + Room.GetRoomCardData()
+	allCards.sort_custom(
 		func(a, b): 
 			if(a.Suit == b.Suit) :
 				return a.Value < b.Value
 			else:
 				return a.Suit < b.Suit )
-	var Weapons =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Weapons)
-	var Potions =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Potions)
-	var Ghosts  =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Ghosts)
-	var Beasts =  GetAllOfType(nextRoom, TDCardData_Art.SuitType.Beasts)
+	var Weapons =  GetAllOfType(allCards, TDCardData_Art.SuitType.Weapons)
+	var Potions =  GetAllOfType(allCards, TDCardData_Art.SuitType.Potions)
+	var Ghosts  =  GetAllOfType(allCards, TDCardData_Art.SuitType.Ghosts)
+	var Beasts =  GetAllOfType(allCards, TDCardData_Art.SuitType.Beasts)
+	var Shops =  GetAllOfType(allCards, TDCardData_Art.SuitType.Shops)
+
 
 	var FirstRow =  Slots.slice(0, 13)
 	var SecondRow = Slots.slice(13, 26)
 	var ThirdRow =  Slots.slice(26, 39)
 	var FourthRow = Slots.slice(39, 52)
+	var FifthRow = Slots.slice(52, 65)
+	
 	
 	ApplySlots(Weapons, FirstRow)
 	ApplySlots(Potions, SecondRow)
 	ApplySlots(Ghosts,  ThirdRow)
 	ApplySlots(Beasts,  FourthRow)
+	ApplySlots(Shops, FifthRow)
 	
 	
 	return
@@ -47,7 +52,6 @@ func GetAllOfType(array : Array[TDCardData], type : TDCardData_Art.SuitType) -> 
 	var returnMe : Array[TDCardData]
 	for item in array:
 		if item.Suit == type:
-			print(item.Suit)
 			returnMe.append(item)
 	return returnMe
 
@@ -56,8 +60,8 @@ func ApplySlots(infos : Array[TDCardData], mySlots : Array[TDCardPositionMarker2
 	for info in infos:
 		if(!is_instance_valid(info)):
 			continue
-		print(info.CardName)
-		AddCard(info,false,true, mySlots[i])
+		var card : TDCard = AddCardFromItsScene(info,false,true, mySlots[i])
+		card.scale *= 4
 		i+=1
 	i = 0
 	return

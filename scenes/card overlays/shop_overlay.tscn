@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cywqynob1jiss"]
 
 [ext_resource type="Script" uid="uid://ccar62fj72sjy" path="res://scenes/card overlays/shop_overlay.gd" id="1_jiys0"]
-[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/td_card_potion.tscn" id="2_3f3sj"]
+[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/TDCard_base.tscn" id="2_3f3sj"]
 [ext_resource type="Texture2D" uid="uid://qe1g26hqkv6o" path="res://assets/UI/UIBlueprints/ShopBackground.png" id="2_qte6w"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="4_3f3sj"]
 [ext_resource type="Texture2D" uid="uid://cg7hb78l0t2lv" path="res://assets/UI/Shop/RerollShopButton1.png" id="5_ruoej"]
@@ -47,11 +47,11 @@ script = ExtResource("4_3f3sj")
 [node name="Left" type="Node2D" parent="Panel/Slots"]
 
 [node name="WreathMarker1" type="Marker2D" parent="Panel/Slots/Left"]
-position = Vector2(-63, 16)
+position = Vector2(-62.5, 16.5)
 script = ExtResource("4_3f3sj")
 
 [node name="WreathMarker2" type="Marker2D" parent="Panel/Slots/Left"]
-position = Vector2(-26, 16)
+position = Vector2(-25.5, 16.5)
 script = ExtResource("4_3f3sj")
 
 [node name="BoardTitle" type="RichTextLabel" parent="Panel"]

@@ -1,5 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfi4j8h1jnry0"]
+[gd_scene load_steps=3 format=3 uid="uid://bfi4j8h1jnry0"]
 
-[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/td_card_potion.tscn" id="1_it5yw"]
+[ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/TDCard_base.tscn" id="1_it5yw"]
+[ext_resource type="Theme" uid="uid://doyae2xhqstbr" path="res://assets/UI/Shop/ShopText.tres" id="2_qjeib"]
 
 [node name="TDCard_Shop" instance=ExtResource("1_it5yw")]
+
+[node name="LuckinessDisplay" type="RichTextLabel" parent="Art" index="0"]
+offset_top = -16.0
+offset_right = 12.0
+offset_bottom = -12.0
+mouse_filter = 2
+theme = ExtResource("2_qjeib")
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/normal_font_size = 8
+scroll_active = false
+text_direction = 2

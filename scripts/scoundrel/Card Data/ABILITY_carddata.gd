@@ -6,10 +6,11 @@ var AbilityUseName : String
 
 ##Extra params: "Ability"
 func _init(name : String, art : String, value : int, abilityDescription : String,  suit : SuitType, extraParams : Dictionary[String, Variant], abilityUseName : String):
-	super._init(name, value, art, abilityDescription, suit, extraParams)
+	super._init(name, art, value, abilityDescription, suit, extraParams)
 	useName += abilityUseName
 	AbilityUseName = abilityUseName
-	Ability = extraParams["Ability"]
+	if(extraParams.has("Ability")):
+		Ability = extraParams["Ability"]
 	return
 	
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:

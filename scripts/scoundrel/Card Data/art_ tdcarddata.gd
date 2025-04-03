@@ -8,7 +8,7 @@ var Value : int
 var Modifier : int
 var clickTimer : SceneTreeTimer
 var clickTime : float = 0.2
-enum SuitType {Weapons, Potions, Ghosts, Beasts, Purchase, Shop}
+enum SuitType {None, Weapons, Potions, Ghosts, Beasts, Purchases, Shops}
 var Suit : SuitType
 var ExtraParams : Dictionary[String, Variant]
 
@@ -19,7 +19,7 @@ func Refresh():
 	
 	return
 
-func _init(name : String, value : int, art : String, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]):
+func _init(name : String, art : String, value : int, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]):
 	super._init(name)
 	Value = value
 	Lore = lore
@@ -79,12 +79,10 @@ func Frame(card : TDCard) -> void:
 func HoverEnterAction(card : TDCard):
 	if(Room.card_board._selectedCards.size() > 0 and Room.card_board._selectedCards[0] != card):
 		return false
-	card.z_index = 500
 	Room.card_board.SelectCard(card)
 	return true
 	
 func HoverExitAction(card : TDCard):
-	card.z_index = 0
 	Room.card_board.DeselectCard(card)
 	return false
 	

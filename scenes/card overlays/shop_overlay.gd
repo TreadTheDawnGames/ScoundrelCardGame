@@ -7,8 +7,32 @@ var LeftMarkers : Array[TDCardPositionMarker2D]
 @onready var RerollShopButton: TextureButton = $Panel/RerollShop
 @onready var CloseShopButton: TextureButton = $Panel/CloseShop
 @onready var priceText: RichTextLabel = $Panel/RerollShop/Price
+var CardTypes : Array[TDCardData_Art.SuitType]
+const ShopOverlayScene = preload("res://scenes/card overlays/shop_overlay.tscn")
 
 var rerollPrice : int = 5
+var RerollIfCards : PackedStringArray
+
+var ShopInfo : Array[ShopData] 
+
+#func _init(shopInfo : Array[ShopData]):
+	#ShopInfo = shopInfo
+##	ShopInfo = [ShopData.new(TDCardData_Art.SuitType.Potions, [], false, 1),ShopData.new(TDCardData_Art.SuitType.Weapons,  [], false, 1,  ),ShopData.new(TDCardData_Art.SuitType.Purchase, [], true, -1)]
+	#return
+
+static func CreateNew(shopInfo : Array) -> ShopOverlay:
+	var shop = ShopOverlayScene.instantiate()
+	for info in shopInfo:
+		if info is not ShopData:
+			printerr("Error initializing shop: Given element in shopInfo was not ShopData")
+	
+	var trueInfo : Array[ShopData] = []
+	for info in shopInfo.filter(func(a): return a is ShopData):
+		trueInfo.append(info as ShopData)
+	shopInfo = trueInfo
+	
+	shop.ShopInfo = shopInfo
+	return shop
 
 func _ready():
 	marker_extents = get_node("MarkerExtents")
@@ -21,57 +45,72 @@ func _ready():
 		LeftMarkers.append(node) 
 
 	priceText.text = str(rerollPrice) +"$"
-	SetupShop()
+	
+	var currCount : int = ShopInfo.size() 
+	while currCount < 3:
+		ShopInfo.append(ShopInfo[-1])
+		currCount+=1
+		pass
+	
+	SetupShop(ShopInfo)
 	Room.card_board.SetBoardActive(false)
 	RerollShopButton.pressed.connect(RerollShop)
 	CloseShopButton.pressed.connect(CloseShop)
 	return
 
 
-func SetupShop() -> void:
-	AddCardsToShop(TDCardData_Art.SuitType.Potions,  TopRightMarkers, [], false, 1)
-	AddCardsToShop(TDCardData_Art.SuitType.Weapons,  BottomRightMarkers, [], false, 1)
-	AddCardsToShop(TDCardData_Art.SuitType.Purchase, LeftMarkers, [], true, -1)
+func SetupShop(shopDatas : Array[ShopData]) -> void:
+	AddCardsToShop(shopDatas[0], LeftMarkers)
+	AddCardsToShop(shopDatas[1], TopRightMarkers)
+	AddCardsToShop(shopDatas[2], BottomRightMarkers,)
 	
 	return
 	
-func AddCardsToShop(suit : TDCardData_Art.SuitType, markerArray : Array[TDCardPositionMarker2D], rerollCards : Array[TDCardData] = [], guaranteedWreathCompatibility : bool = false, advantage : int = 0, allowedRerolls : int = 1) -> void:
-	var info : Array[CardInfo]
-	if(suit == TDCardData_Art.SuitType.Purchase):
-		info = [CardInfo.new("PurchaseableCard", suit, "res://assets/cards/PurchaseCard.png", 0, "", {"SaleCard":null})]
+func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
+	##get card pool
+	var availableCardInfos : Array[CardInfo]
+	if(shopData.Suit == TDCardData_Art.SuitType.Purchases):
+		availableCardInfos = [CardInfo.new("PurchaseableCard", shopData.Suit, "res://assets/cards/PurchaseCard.png", 0, "", {"SaleCard":null})]
 	else:
-		info = Utils.GetCardInfosOfSuit(suit)
-	var rerollIfCards : PackedStringArray
+		availableCardInfos = Utils.GetCardInfosOfSuit(shopData.Suit)
+	
+	#if there's a minimum value, remove all other cards from the available pool
+	if(shopData.MinimumValue > 0):
+		var trueAvailables = availableCardInfos.filter(func(a): return a.Value >= shopData.MinimumValue)
+		availableCardInfos = trueAvailables
 	
 	#Prime disallowed cards
-	for card in rerollCards:
-		rerollIfCards.append(card.CardName)
+	for card in shopData.RerollCards:
+		RerollIfCards.append(card.CardName)
 	
 	#Fill each marker
-	for marker in markerArray:
+	for marker in MarkerArray:
 		# init chosen card with random
-		var chosenCardInfo : CardInfo = info.pick_random()
+		var chosenCardInfo : CardInfo = availableCardInfos.pick_random()
+		
 		#if the card has already been chosen, reroll it up to the number of allowed times
-		var rerollCount = 0
+		var rerollCount = -1
 		#reroll if not the purchase card suit
-		if (suit != TDCardData_Art.SuitType.Purchase):
-			while(rerollCount < allowedRerolls):
-				if(rerollIfCards.has(chosenCardInfo.CardName)):
-					chosenCardInfo = info.pick_random()
+		if (shopData.Suit != TDCardData_Art.SuitType.Purchases):
+			while(rerollCount < shopData.AllowedRerolls):
+				if(RerollIfCards.has(chosenCardInfo.CardName)):
+					chosenCardInfo = availableCardInfos.pick_random()
 					rerollCount += 1
 				else:
 					break
-		rerollIfCards.append(chosenCardInfo.CardName)
+		#add the chosen card to the reroll cards. This will mean it will reroll if it picks the same card twice in a row, which may pick the same card again.
+		RerollIfCards.append(chosenCardInfo.CardName)
 		
 		var purchaseData : TDCardData_Art = CardInfo.CardDataFromInfo(chosenCardInfo)
 		chosenCardInfo.ExtraParams["SaleCard"] = purchaseData
 		var chosenWreaths : Array[Wreath]
 		
-		for i in DetermineWreathCount(advantage):
-			if(guaranteedWreathCompatibility):
+		for i in DetermineWreathCount(shopData.Advantage):
+			if(shopData.GuaranteedWreathCompatibility):
 				chosenWreaths.append(WreathLibrary.RandCompatible(purchaseData))
 			else:
 				chosenWreaths.append(WreathLibrary.Rand())
+		
 		purchaseData.AddMultipleWreaths(chosenWreaths)
 		var shopCardData = TDCardData_Purchase.new(chosenCardInfo.CardName, chosenCardInfo.TexturePath, chosenCardInfo.Value, chosenCardInfo.Lore, chosenCardInfo.ExtraParams)
 		shopCardData.AddMultipleWreaths(chosenWreaths)
@@ -99,12 +138,13 @@ func DetermineWreathCount(advantage : int) -> int:
 
 func RerollShop():
 	rerollPrice+=1
+	RerollIfCards.clear()
 	priceText.text = str(rerollPrice) +"$"
 	for card in _board:
 		card.FreeMarker()
 		card.queue_free()
 	_board.clear()
-	SetupShop()
+	SetupShop(ShopInfo)
 	return
 
 func CloseShop():
@@ -115,3 +155,19 @@ func CloseShop():
 	Room.card_board.SetBoardActive(true)
 	queue_free()
 	return
+	
+class ShopData:
+	var Suit : TDCardData_Art.SuitType
+	var RerollCards : Array[TDCardData] = []
+	var GuaranteedWreathCompatibility : bool = false
+	var Advantage : int = 0
+	var AllowedRerolls : int = 1
+	var MinimumValue : int = 0
+	func _init(suit : TDCardData_Art.SuitType, rerollCards : Array[TDCardData] = [], guaranteedWreathCompatibility : bool = false, advantage : int = 0, allowedRerolls : int = 1, minimumValue : int = 0):
+		Suit = suit
+		RerollCards = rerollCards
+		GuaranteedWreathCompatibility = guaranteedWreathCompatibility
+		Advantage = advantage
+		AllowedRerolls = allowedRerolls
+		MinimumValue = minimumValue
+		return

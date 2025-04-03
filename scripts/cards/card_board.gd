@@ -16,7 +16,25 @@ func AddCard(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, g
 	card.scale *= 4
 	_board.push_back(card)
 	return card
-	
+
+func AddCardFromItsScene(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, slot : TDCardPositionMarker2D = null) -> TDCard:
+	var card
+	if(data is TDCardData_Monster):
+		card = AddCardFromSource(load("res://scenes/cards/TDCard_Monster.tscn"), data, isAesthetic, useGoToPos, slot)
+	elif(data is TDCardData_Weapon):
+		card = AddCardFromSource(load("res://scenes/cards/TDCard_Weapon.tscn"), data, isAesthetic, useGoToPos, slot)
+	elif(data is TDCardData_Ability):
+		card = AddCardFromSource(load("res://scenes/cards/TDCard_base.tscn"), data, isAesthetic, useGoToPos, slot)
+	elif(data is TDCardData_Shop):
+		card = AddCardFromSource(load("res://scenes/cards/TDCard_Shop.tscn"), data, isAesthetic, useGoToPos, slot)
+	else:
+		if(data):
+			printerr("CardData not recognize for card \"" + data.CardName +".\" Defaulting to Base Card")
+			card = AddCardFromSource(load("res://scenes/cards/TDCard_base.tscn"), data, isAesthetic, useGoToPos, slot)
+		else:
+			printerr("Unreconglized CardData: null")
+	return card
+
 func AddCardFromSource(source : PackedScene, data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null):
 	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos, source)
 	if(!card):

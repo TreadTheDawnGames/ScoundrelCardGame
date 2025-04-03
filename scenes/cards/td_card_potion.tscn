@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgpw51gfo6yit"]
-
-[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/card.tscn" id="1_1o0bp"]
-
-[node name="TDCard_Potion" instance=ExtResource("1_1o0bp")]
-collision_mask = 76
