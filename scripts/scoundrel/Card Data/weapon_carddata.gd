@@ -9,7 +9,7 @@ var weaponArea : Weapon_TDCardPlayArea
 
 func _init(name : String, art : String, value : int, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]) -> void:
 	super._init(name, value, art, lore, suit, extraParams)
-	useName = "Equip, Discard"
+	useName += "Equip, Discard"
 	LastMonsterValue = 15
 	return
 	

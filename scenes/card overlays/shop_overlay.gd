@@ -1,44 +1,44 @@
 extends OverlayCardBoard
 class_name ShopOverlay
 
-var PotionMarkers : Array[TDCardPositionMarker2D]
-var WeaponMarkers : Array[TDCardPositionMarker2D]
-var WreathMarkers : Array[TDCardPositionMarker2D]
+var TopRightMarkers : Array[TDCardPositionMarker2D]
+var BottomRightMarkers : Array[TDCardPositionMarker2D]
+var LeftMarkers : Array[TDCardPositionMarker2D]
 @onready var RerollShopButton: TextureButton = $Panel/RerollShop
 @onready var CloseShopButton: TextureButton = $Panel/CloseShop
 @onready var priceText: RichTextLabel = $Panel/RerollShop/Price
 
 var rerollPrice : int = 5
 
-func _ready() -> void:
+func _ready():
 	marker_extents = get_node("MarkerExtents")
 	#AddShopCards(TDCardData_Art.SuitType.Ghosts)
-	for node in get_node("Panel/Slots/PotionMarkers").get_children():
-		PotionMarkers.append(node) 
-	for node in  get_node("Panel/Slots/WeaponMarkers").get_children():
-		WeaponMarkers.append(node)
-	for node in get_node("Panel/Slots/WreathMarkers").get_children():
-		WreathMarkers.append(node) 
+	for node in get_node("Panel/Slots/TopRight").get_children():
+		TopRightMarkers.append(node) 
+	for node in  get_node("Panel/Slots/BottomRight").get_children():
+		BottomRightMarkers.append(node)
+	for node in get_node("Panel/Slots/Left").get_children():
+		LeftMarkers.append(node) 
 
 	priceText.text = str(rerollPrice) +"$"
 	SetupShop()
 	Room.card_board.SetBoardActive(false)
 	RerollShopButton.pressed.connect(RerollShop)
 	CloseShopButton.pressed.connect(CloseShop)
-	
 	return
 
+
 func SetupShop() -> void:
-	AddCardsToShop(TDCardData_Art.SuitType.Potions, PotionMarkers, [], false, 1)
-	AddCardsToShop(TDCardData_Art.SuitType.Weapons, WeaponMarkers, [], false, 1)
-	AddCardsToShop(TDCardData_Art.SuitType.Purchase, WreathMarkers, [], true, -1)
+	AddCardsToShop(TDCardData_Art.SuitType.Potions,  TopRightMarkers, [], false, 1)
+	AddCardsToShop(TDCardData_Art.SuitType.Weapons,  BottomRightMarkers, [], false, 1)
+	AddCardsToShop(TDCardData_Art.SuitType.Purchase, LeftMarkers, [], true, -1)
 	
 	return
 	
 func AddCardsToShop(suit : TDCardData_Art.SuitType, markerArray : Array[TDCardPositionMarker2D], rerollCards : Array[TDCardData] = [], guaranteedWreathCompatibility : bool = false, advantage : int = 0, allowedRerolls : int = 1) -> void:
 	var info : Array[CardInfo]
 	if(suit == TDCardData_Art.SuitType.Purchase):
-		info = [CardInfo.new("PurchaseableCard", suit, "res://assets/cards/PurchaseCard.png", 0)]
+		info = [CardInfo.new("PurchaseableCard", suit, "res://assets/cards/PurchaseCard.png", 0, "", {"SaleCard":null})]
 	else:
 		info = Utils.GetCardInfosOfSuit(suit)
 	var rerollIfCards : PackedStringArray
@@ -58,19 +58,25 @@ func AddCardsToShop(suit : TDCardData_Art.SuitType, markerArray : Array[TDCardPo
 			while(rerollCount < allowedRerolls):
 				if(rerollIfCards.has(chosenCardInfo.CardName)):
 					chosenCardInfo = info.pick_random()
+					rerollCount += 1
 				else:
 					break
 		rerollIfCards.append(chosenCardInfo.CardName)
 		
 		var purchaseData : TDCardData_Art = CardInfo.CardDataFromInfo(chosenCardInfo)
+		chosenCardInfo.ExtraParams["SaleCard"] = purchaseData
+		var chosenWreaths : Array[Wreath]
 		
 		for i in DetermineWreathCount(advantage):
 			if(guaranteedWreathCompatibility):
-				purchaseData.AddWreath(WreathLibrary.GuaranteedCompat(purchaseData))
+				chosenWreaths.append(WreathLibrary.RandCompatible(purchaseData))
 			else:
-				purchaseData.AddWreath(WreathLibrary.Rand())
-				
-		var card = AddCard(TDCardData_Purchase.new(chosenCardInfo.CardName, chosenCardInfo.TexturePath, chosenCardInfo.Value, chosenCardInfo.Lore, purchaseData),false, true, marker)
+				chosenWreaths.append(WreathLibrary.Rand())
+		purchaseData.AddMultipleWreaths(chosenWreaths)
+		var shopCardData = TDCardData_Purchase.new(chosenCardInfo.CardName, chosenCardInfo.TexturePath, chosenCardInfo.Value, chosenCardInfo.Lore, chosenCardInfo.ExtraParams)
+		shopCardData.AddMultipleWreaths(chosenWreaths)
+		
+		var card = AddCard(shopCardData,false, true, marker)
 		purchaseData.ShowAllWreaths(card)
 	return
 

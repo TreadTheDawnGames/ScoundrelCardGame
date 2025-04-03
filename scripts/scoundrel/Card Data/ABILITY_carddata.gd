@@ -1,43 +1,21 @@
 extends TDCardData_Art
 class_name TDCardData_Ability
 
-var AbilityDescription : String
-var PotionAbility : Callable
+var Ability : Callable
+var AbilityUseName : String
 
-##Extra params: "PotionAbility"
-func _init(name : String, art : String, value : int, abilityDescription : String,  suit : SuitType, extraParams : Dictionary[String, Variant]):
+##Extra params: "Ability"
+func _init(name : String, art : String, value : int, abilityDescription : String,  suit : SuitType, extraParams : Dictionary[String, Variant], abilityUseName : String):
 	super._init(name, value, art, abilityDescription, suit, extraParams)
-	useName = "Heal, Potion, PEquip"
-	PotionAbility = extraParams["Ability"]
-	return
-	
-func EnterUsable(playArea : TDCardPlayArea, card : TDCard)->void:
-	if(playArea is not PotionEquipArea):
-		return
-	var slot : TDCardPositionMarker2D = playArea.get_node("EquippedSlot")
-	if(!slot):
-		return
-	if(slot.isFilled):
-		card.usable = false
-		return
-	super.EnterUsable(playArea, card)
+	useName += abilityUseName
+	AbilityUseName = abilityUseName
+	Ability = extraParams["Ability"]
 	return
 	
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
-	if(playArea.ValidPlayType("Heal")):
-		card.FreeMarker()
-		Health.Heal(Value)
+	if(playArea.ValidPlayType(AbilityUseName)):
+		Ability.call(card)
 		Transitioner.AddToDiscard(self)
 		card.queue_free()
-	elif(playArea.ValidPlayType("Potion")):
-		PotionAbility.call(card)
-		Transitioner.AddToDiscard(self)
-		card.queue_free()
-		
-	elif(playArea.ValidPlayType("PEquip")):
-		var slot : TDCardPositionMarker2D = playArea.get_node("EquippedSlot")
-		if(!slot.isFilled):
-			card.FillMarker(slot)
-			card._Played = false
 	Room.RemoveFromRoom(card)
 	return

@@ -1,12 +1,10 @@
-extends TDCardData_Art
+extends TDCardData_Ability
 class_name TDCardData_Character
 
-var Ability : Callable
 
-func _init(name : String, art : String, value:int, lore : String, ability : Callable, suit : SuitType, extraParams : Dictionary[String, Variant]):
-	super._init(name, value, art, lore, suit, extraParams)
-	useName = "Select"
-	Ability = ability
+func _init(name : String, art : String, value:int, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]):
+	super._init(name, art, value, lore, suit, extraParams, "Select")
+	Ability = extraParams["Ability"]
 	return
 
 func PlayCard(_playArea : TDCardPlayArea, card : TDCard):

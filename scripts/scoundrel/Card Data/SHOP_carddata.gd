@@ -6,7 +6,7 @@ var SaleCard : TDCardData
 
 func _init(name : String, art : String, value : int, lore : String, extraParams : Dictionary[String, Variant]):
 	super._init(name, value, art, lore, SuitType.Purchase, extraParams)
-	useName = "Buy"
+	useName += "Buy"
 	SaleCard = extraParams["SaleCard"]
 	return
 	

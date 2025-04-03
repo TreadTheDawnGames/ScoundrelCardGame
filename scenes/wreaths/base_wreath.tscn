@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy2bdce5bxbu"]
+[gd_scene load_steps=2 format=3 uid="uid://ccachm6g4w0vt"]
 
-[ext_resource type="Texture2D" uid="uid://ccr0ts1nw4qlh" path="res://assets/wreaths/GreenWreath.png" id="1_7jx8a"]
 [ext_resource type="Script" uid="uid://demds7aukmm1k" path="res://scripts/scoundrel/Wreaths/wreath.gd" id="2_w25ry"]
 
 [node name="BaseWreath" type="Node"]
 script = ExtResource("2_w25ry")
-art = ExtResource("1_7jx8a")
-wreathName = "BaseWreath"

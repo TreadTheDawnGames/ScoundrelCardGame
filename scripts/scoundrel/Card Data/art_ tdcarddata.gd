@@ -90,11 +90,12 @@ func HoverExitAction(card : TDCard):
 	
 ##card is required for wreath setup.
 func ShowWreath(wreath : Wreath, card : TDCard):
-	if(!wreath.setupFlag):
-		wreath.Setup(card)
+	wreath.Setup(card)
 	return
 
 func ShowAllWreaths(card : TDCard):
+	for wreathSpr : Sprite2D in card.WreathContainer.get_children():
+		wreathSpr.queue_free()
 	for wreath in Wreaths:
 		ShowWreath(wreath, card)
 
@@ -108,6 +109,11 @@ func AddWreath(wreath : Wreath):
 	Wreaths.append(wreath)
 	return
 	
+func AddMultipleWreaths(wreaths : Array[Wreath]):
+	for wreath in wreaths:
+		AddWreath(wreath)
+	return
+	
 func RemoveWreath(wreath : Wreath):
 	wreath.Detach(self)
 	Wreaths.erase(wreath)
@@ -117,4 +123,6 @@ func ClickAction(_card : TDCard):
 	print("----" + CardName + "----")
 	print("Value: " + str(Value))
 	print("Wreath count: "+str(Wreaths.size()))
+	for wreath in Wreaths:
+		print("- " + wreath.WreathName)
 	return

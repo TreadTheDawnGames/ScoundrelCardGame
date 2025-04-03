@@ -63,9 +63,9 @@ func AddToDiscard(cardData : TDCardData):
 
 func CheckLevelClear() -> bool:
 	print("checking...")
-	var cardsToCheck = Deck.Cards + Room.roomCards
-	for card in cardsToCheck:
-		if(card.Suit == TDCardData_Art.SuitType.Beasts or card.Suit == TDCardData_Art.SuitType.Ghosts):
+	var cardsToCheck = Deck.Cards + Room.GetRoomCardData()
+	for data in cardsToCheck:
+		if(data.Suit == TDCardData_Art.SuitType.Beasts or data.Suit == TDCardData_Art.SuitType.Ghosts):
 			print("Monsters remain.")
 			return false
 	print("All monsters slain.")

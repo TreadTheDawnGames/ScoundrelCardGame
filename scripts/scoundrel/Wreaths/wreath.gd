@@ -1,25 +1,31 @@
-extends Node
 class_name Wreath
 
 @export
-var art : Texture2D
+var Art : Texture2D
 @export
-var wreathName : String = ""
-var setupFlag = false
+var WreathName : String = ""
 
 func ValidForData(_data : TDCardData) -> bool:
 	return true
+	
+func Copy() -> Wreath:
+	return Wreath.new(Art.resource_path, WreathName)
+
+func _init(art : String, wreathName : String):
+	Art = load(art)
+	WreathName = wreathName
+	return
 
 ## Called when visual card is initialized
 func Setup(card : TDCard):
-	if (wreathName.is_empty()):
+	if (WreathName.is_empty()):
 		printerr("Wreath has no name. It will not be findable in the WreathLibrary.")
 	var bCard : TDCard_Base = card as TDCard_Base
 	var sprite = Sprite2D.new()
-	sprite.texture = art 
-	sprite.position.y+= -6 * bCard.WreathContainer.get_child_count()
+	sprite.texture = Art 
+	var data : TDCardData_Art = card.Data
+	sprite.position.y+= -6 * (data.Wreaths.find(self))
 	bCard.WreathContainer.add_child(sprite)
-	setupFlag = true
 	return
 
 func PrePlay(_cardData : TDCardData):

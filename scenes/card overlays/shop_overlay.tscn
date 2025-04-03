@@ -14,9 +14,7 @@
 
 [node name="ShopOverlay" type="Node2D"]
 script = ExtResource("1_jiys0")
-slots = null
 label = "El Shoppe"
-MaxWidth = null
 cardSceneSource = ExtResource("2_3f3sj")
 
 [node name="Panel" type="Sprite2D" parent="."]
@@ -26,33 +24,33 @@ texture = ExtResource("2_qte6w")
 
 [node name="Slots" type="Node2D" parent="Panel"]
 
-[node name="PotionMarkers" type="Node2D" parent="Panel/Slots"]
+[node name="TopRight" type="Node2D" parent="Panel/Slots"]
 
-[node name="PotionMarker1" type="Marker2D" parent="Panel/Slots/PotionMarkers"]
+[node name="PotionMarker1" type="Marker2D" parent="Panel/Slots/TopRight"]
 position = Vector2(21.5, -29.5)
 script = ExtResource("4_3f3sj")
 
-[node name="PotionMarker2" type="Marker2D" parent="Panel/Slots/PotionMarkers"]
+[node name="PotionMarker2" type="Marker2D" parent="Panel/Slots/TopRight"]
 position = Vector2(58.5, -29.5)
 script = ExtResource("4_3f3sj")
 
-[node name="WeaponMarkers" type="Node2D" parent="Panel/Slots"]
+[node name="BottomRight" type="Node2D" parent="Panel/Slots"]
 
-[node name="WeaponMarker1" type="Marker2D" parent="Panel/Slots/WeaponMarkers"]
+[node name="WeaponMarker1" type="Marker2D" parent="Panel/Slots/BottomRight"]
 position = Vector2(21.5, 16.5)
 script = ExtResource("4_3f3sj")
 
-[node name="WeaponMarker2" type="Marker2D" parent="Panel/Slots/WeaponMarkers"]
+[node name="WeaponMarker2" type="Marker2D" parent="Panel/Slots/BottomRight"]
 position = Vector2(58.5, 16.5)
 script = ExtResource("4_3f3sj")
 
-[node name="WreathMarkers" type="Node2D" parent="Panel/Slots"]
+[node name="Left" type="Node2D" parent="Panel/Slots"]
 
-[node name="WreathMarker1" type="Marker2D" parent="Panel/Slots/WreathMarkers"]
+[node name="WreathMarker1" type="Marker2D" parent="Panel/Slots/Left"]
 position = Vector2(-63, 16)
 script = ExtResource("4_3f3sj")
 
-[node name="WreathMarker2" type="Marker2D" parent="Panel/Slots/WreathMarkers"]
+[node name="WreathMarker2" type="Marker2D" parent="Panel/Slots/Left"]
 position = Vector2(-26, 16)
 script = ExtResource("4_3f3sj")
 

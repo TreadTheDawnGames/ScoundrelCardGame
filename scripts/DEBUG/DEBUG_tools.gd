@@ -15,7 +15,7 @@ func RandTex() -> Texture:
 func _ready():
 	dungeon_nodes.hide()
 	pregame.show()
-	CardLibrary.SetActiveDeck(CardLibrary.specialDeck)
+	CardLibrary.SetActiveDeck(CardLibrary.devDeck)
 	LoadDeck(CardLibrary.ActiveDeck)
 	Deck.Shuffle()
 	Room.ReplenishRoom()
@@ -38,9 +38,9 @@ func _process(_delta: float) -> void:
 			if(!is_instance_valid(card)):
 				continue
 			print(card.CardName)
-			const BASE_WREATH = preload("res://scenes/wreaths/sharp_wreath.tscn")
 			var Data : TDCardData_Art = card.Data
-			Data.AddWreath(BASE_WREATH.instantiate())
+			var wreath : Wreath = WreathLibrary.RandCompatible(Data)
+			Data.AddWreath(wreath)
 			Data.ShowAllWreaths(card)
 	if(Input.is_action_just_pressed("Debug-ShowAllCards")):
 		add_child(load("res://scenes/card overlays/Debug/debug-show_all_cards_overlay.tscn").instantiate())

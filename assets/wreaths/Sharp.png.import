@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bujat4ppy5f37"
-path="res://.godot/imported/SharpWreath.png-b4fce1858cd87f210c56982fdf5bfc1c.ctex"
+path="res://.godot/imported/Sharp.png-0437bdfe5195e1850c5906a5c8693ace.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wreaths/SharpWreath.png"
-dest_files=["res://.godot/imported/SharpWreath.png-b4fce1858cd87f210c56982fdf5bfc1c.ctex"]
+source_file="res://assets/wreaths/Sharp.png"
+dest_files=["res://.godot/imported/Sharp.png-0437bdfe5195e1850c5906a5c8693ace.ctex"]
 
 [params]
 
