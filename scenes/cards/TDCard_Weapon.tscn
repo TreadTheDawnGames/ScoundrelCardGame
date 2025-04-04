@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkrd6d61648ll"]
 
-[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/card.tscn" id="1_ebgte"]
+[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="1_ebgte"]
 [ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_WEAPON.gd" id="2_7wxlv"]
 [ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="2_gjhn1"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_lurak"]

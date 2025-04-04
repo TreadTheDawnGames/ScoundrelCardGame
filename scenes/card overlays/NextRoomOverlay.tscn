@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bcbc8la1om7uv" path="res://scenes/card overlays/card_board_overlay.tscn" id="1_sin3k"]
 [ext_resource type="Script" uid="uid://c27mfki3gfwe5" path="res://scripts/card boards/NextRoomOverlay.gd" id="2_alaad"]
-[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/card.tscn" id="3_u6hcg"]
+[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="3_u6hcg"]
 
 [node name="CardBoardOverlay" instance=ExtResource("1_sin3k")]
 script = ExtResource("2_alaad")
