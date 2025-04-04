@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cov4qstnbqs4v"]
+[gd_scene load_steps=2 format=3 uid="uid://cdq8v0tetjmat"]
 
 [ext_resource type="PackedScene" uid="uid://dkrd6d61648ll" path="res://scenes/cards/TDCard_Weapon.tscn" id="1_ol300"]
 

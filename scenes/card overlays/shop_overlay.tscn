@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://cywqynob1jiss"]
 
-[ext_resource type="Script" uid="uid://ccar62fj72sjy" path="res://scenes/card overlays/shop_overlay.gd" id="1_jiys0"]
+[ext_resource type="Script" uid="uid://ccar62fj72sjy" path="res://scripts/card boards/shop_overlay.gd" id="1_jiys0"]
 [ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/TDCard_base.tscn" id="2_3f3sj"]
-[ext_resource type="Texture2D" uid="uid://qe1g26hqkv6o" path="res://assets/UI/UIBlueprints/ShopBackground.png" id="2_qte6w"]
+[ext_resource type="Texture2D" uid="uid://dwcwjr1afhavh" path="res://assets/UI/Shop/ShopBackground.png" id="2_qte6w"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="4_3f3sj"]
 [ext_resource type="Texture2D" uid="uid://cg7hb78l0t2lv" path="res://assets/UI/Shop/RerollShopButton1.png" id="5_ruoej"]
 [ext_resource type="Theme" uid="uid://doyae2xhqstbr" path="res://assets/UI/Shop/ShopText.tres" id="5_v7x5a"]
