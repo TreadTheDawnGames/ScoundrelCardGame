@@ -10,7 +10,7 @@ var preventHoverAction : bool = false;
 var returnToHome : bool = false
 ## The speed at which to return. Only matters if beingDrawn is true.
 @export
-var returnSpeed : float = 0.1
+var returnSpeed : float = 5
 
 var _grabbedOffset : Vector2;
 var _lastMousePos : Vector2;
@@ -64,7 +64,7 @@ func _PlayCard() -> void:
 			Data.Postplay(_PlayZone, self)
 	return
 
-func _DragDropLogic() -> void:
+func _DragDropLogic(delta : float) -> void:
 	if(_hovered):
 		if(Data):
 			Data.WhileHovered(self)
@@ -96,15 +96,15 @@ func _DragDropLogic() -> void:
 	elif returnToHome:
 		if(LocationMarker):
 			if(global_position.distance_to(LocationMarker.global_position) > 0.01):
-				global_position = global_position.lerp(LocationMarker.global_position, returnSpeed)
+				global_position = global_position.lerp(LocationMarker.global_position, returnSpeed * delta)
 	return
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if(Data):
 		Data.Frame(self)
 		
 	_PlayCard()
-	_DragDropLogic()
+	_DragDropLogic(delta)
 	return
 
 func Hovered() -> void:
