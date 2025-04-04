@@ -24,7 +24,6 @@ text = "Choose Character"
 [node name="TDCardPlayArea" type="Area2D" parent="." index="2"]
 position = Vector2(397, 34)
 scale = Vector2(4, 4)
-collision_layer = 32
 collision_mask = 0
 script = ExtResource("2_md5mi")
 _PlayType = "Select"

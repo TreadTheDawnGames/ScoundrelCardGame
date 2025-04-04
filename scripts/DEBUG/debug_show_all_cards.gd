@@ -1,50 +1,64 @@
 extends OverlayCardBoard
 class_name Debug_ShowAllCards
 
-var allCards : Array[TDCardData]
 @onready var button: Button = $Button
 static var isOpen : bool = false
-
 func _ready():
 	if(Debug_ShowAllCards.isOpen):
 		queue_free()
 		return
-	super._ready()
-	ViewRoom()
+	
+	board_title = get_node("Panel/BoardTitle")
+	marker_extents = get_node("MarkerExtents")
+	board_title.text = label
+	var allCards = Deck.Cards + Room.GetRoomCardData()
+	MaxWidth = NumOfCardsInPredominantSuit(allCards)
+	
+	Initialize(GetNumberOfNeededMarkers(allCards), MaxWidth)
+	ViewRoom(allCards)
 	button.pressed.connect(ReturnRoom)
 	isOpen = true
 	return
 
-func ViewRoom():
+func Initialize(slotCount : int, maxWidth : int = 10):
+	
+	var anotherThing = (max(slotCount%maxWidth,min(maxWidth, slotCount)))
+	var x = marker_extents.get_rect().size.x
+	var cellWidth : float = x / anotherThing
+	var wOffset : float = cellWidth/2
+	
+	var thing = ceil(float(slotCount) / float(maxWidth))
+	var cellHeight : float = marker_extents.get_rect().size.y / thing
+	var hOffset : float = cellHeight/2
+	
+	for i in slotCount:
+		var marker : TDCardPositionMarker2D = TDCardPositionMarker2D.new()
+		slotsNode.add_child(marker)
+		marker.position = Vector2((cellWidth*(i%maxWidth))+wOffset, cellHeight*floor((float(i) / float(maxWidth)))+hOffset)
+		Slots.append(marker)
+	return
+
+func ViewRoom(allCards : Array[TDCardData]):
 	Room.card_board.SetBoardActive(false)
 
-	allCards = Deck.Cards + Room.GetRoomCardData()
+	
 	allCards.sort_custom(
 		func(a, b): 
 			if(a.Suit == b.Suit) :
 				return a.Value < b.Value
 			else:
 				return a.Suit < b.Suit )
-	var Weapons =  GetAllOfType(allCards, TDCardData_Art.SuitType.Weapons)
-	var Potions =  GetAllOfType(allCards, TDCardData_Art.SuitType.Potions)
-	var Ghosts  =  GetAllOfType(allCards, TDCardData_Art.SuitType.Ghosts)
-	var Beasts =  GetAllOfType(allCards, TDCardData_Art.SuitType.Beasts)
-	var Shops =  GetAllOfType(allCards, TDCardData_Art.SuitType.Shops)
-
-
-	var FirstRow =  Slots.slice(0, 13)
-	var SecondRow = Slots.slice(13, 26)
-	var ThirdRow =  Slots.slice(26, 39)
-	var FourthRow = Slots.slice(39, 52)
-	var FifthRow = Slots.slice(52, 65)
-	
-	
-	ApplySlots(Weapons, FirstRow)
-	ApplySlots(Potions, SecondRow)
-	ApplySlots(Ghosts,  ThirdRow)
-	ApplySlots(Beasts,  FourthRow)
-	ApplySlots(Shops, FifthRow)
-	
+				
+	var startIndex : int = 0
+	for suit in TDCardData_Art.SuitType:
+		print(suit)
+		var cardsOfSuit =  GetAllOfType(allCards, TDCardData_Art.SuitType.get(suit))
+		if(cardsOfSuit.size() > 0):
+			var row =  Slots.slice(startIndex, startIndex + MaxWidth)
+			ApplySlots(cardsOfSuit, row)
+			startIndex += MaxWidth
+		
+		pass
 	
 	return
 
@@ -54,6 +68,27 @@ func GetAllOfType(array : Array[TDCardData], type : TDCardData_Art.SuitType) -> 
 		if item.Suit == type:
 			returnMe.append(item)
 	return returnMe
+
+func GetNumberOfNeededMarkers(array:Array[TDCardData]) -> int:
+	var needed : int = NumSuitsPresent(array) * NumOfCardsInPredominantSuit(array)
+	return needed
+
+func NumSuitsPresent(array : Array[TDCardData]) -> int:
+	var presentSuits : int = 0
+	for suit in TDCardData_Art.SuitType:
+		if (array.filter(func(a): return a.Suit == TDCardData_Art.SuitType.get(suit)).size() > 0):
+			presentSuits+=1
+			continue
+	return presentSuits
+
+func NumOfCardsInPredominantSuit(array : Array[TDCardData]) -> int:
+	var mostCards : int = 0
+	for suit in TDCardData_Art.SuitType:
+		var suitCount : int = GetAllOfType(array, TDCardData_Art.SuitType.get(suit)).size()
+		if(suitCount > mostCards):
+			mostCards = suitCount
+	return mostCards
+
 
 func ApplySlots(infos : Array[TDCardData], mySlots : Array[TDCardPositionMarker2D]):
 	var i = 0

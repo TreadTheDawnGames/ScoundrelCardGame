@@ -148,7 +148,10 @@ func RerollShop():
 	return
 
 func CloseShop():
+	print("Closing")
 	for card in _board:
+		if(!is_instance_valid(card)):
+			continue
 		card.FreeMarker()
 		card.queue_free()
 	_board.clear()

@@ -19,7 +19,7 @@ func ViewRoom():
 	for info in nextRoom:
 		if(!is_instance_valid(info)):
 			continue
-		AddCard(info,false,true, Slots[i])
+		AddCardFromItsScene(info,false,true, Slots[i])
 		i+=1
 	return
 

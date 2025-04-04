@@ -16,5 +16,8 @@ func _init(name : String, art : String, value : int, lore : String, extraParams 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("Buy")):
 		print("bought Card")
-	Room.RemoveFromRoom(card)
+	Transitioner.AddToDiscard(SaleCard)
+	card.FreeMarker()
+	card.queue_free()
+	#Room.RemoveFromRoom(card)
 	return
