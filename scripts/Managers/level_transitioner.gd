@@ -4,6 +4,9 @@ class_name LevelTransitioner
 var curLevel : int = 0
 var Discard : TDCardStack 
 
+func GetDiscardCardData() -> Array[TDCardData]:
+	return Discard.Cards
+	
 func _ready() -> void:
 	Discard = TDCardStack.new()
 	Room.ReplenishingRoom.connect(TransitionToNextLevel)
