@@ -6,8 +6,8 @@ var SaleCard : TDCardData
 var Luckiness : int
 
 ##Extra params: SaleCard
-func _init(name : String, art : String, value : int, lore : String, extraParams : Dictionary[String, Variant]):
-	super._init(name, art, value, lore, SuitType.Purchases, extraParams)
+func _init(name : String, art : String, value : int, lore : String, suit : TDCardData_Art.SuitType, extraParams : Dictionary[String, Variant]):
+	super._init(name, art, value, lore, suit, extraParams)
 	useName += "Buy"
 	SaleCard = extraParams["SaleCard"]
 	return

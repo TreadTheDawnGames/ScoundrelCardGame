@@ -81,7 +81,7 @@ static var DEV : Array[CardInfo] = [
 	#Shops
 	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/BasicShopCard.png", 0, "General store for Wreaths, Potions, and Weapons.", 
 	{"Luckiness":1,
-	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Purchases, [], false, -1, 0, 0),
+	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], false, -1, 0, 0),
 				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, 0, 0, 0),
 				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Potions, [], false, 0, 0, 0)]}),
 	
@@ -92,7 +92,12 @@ static var DEV : Array[CardInfo] = [
 	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/WeaponShopCard.png", 0, "General store for Wreaths, Potions, and Weapons.", 
 	{"Luckiness":2,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, 0, 0, 0),
-				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, -1, 0, 0)]})
+				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, -1, 0, 0)]}),
+				
+	CardInfo.new("WreathShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 0, "The wreath store.", 
+	{"Luckiness":2,
+	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], false, 1, 0, 0)]}),
+				
 	]
 static var STANDARD : Array[CardInfo] = [
 	#Weapons

@@ -15,11 +15,9 @@ func Copy() -> Wreath:
 	return PermanentBonusWreath.new(Art.resource_path, Bonus, ValidSuitTargets, WreathName)
 
 func ValidForData(data : TDCardData) -> bool:
-	var disallowedSuits : Array[TDCardData_Art.SuitType] = [TDCardData_Art.SuitType.Beasts, TDCardData_Art.SuitType.Ghosts, TDCardData_Art.SuitType.Weapons, TDCardData_Art.SuitType.Potions]
-	for type in ValidSuitTargets:
-		disallowedSuits.erase(type)
-		
-	return !disallowedSuits.has(data.Suit)
+	var isValid = data.Suit in ValidSuitTargets
+	print("Namd / Valid Suits / current / valid: ", data.CardName, " / ", ValidSuitTargets, " / ", data.Suit, " / ", isValid)
+	return isValid 
 
 
 func Attach(data : TDCardData):

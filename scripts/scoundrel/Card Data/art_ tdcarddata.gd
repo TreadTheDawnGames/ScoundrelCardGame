@@ -8,7 +8,7 @@ var Value : int
 var Modifier : int
 var clickTimer : SceneTreeTimer
 var clickTime : float = 0.2
-enum SuitType {None, Weapons, Potions, Ghosts, Beasts, Purchases, Shops}
+enum SuitType {None, Weapons, Potions, Ghosts, Beasts, Wreaths, Shops}
 var Suit : SuitType
 var ExtraParams : Dictionary[String, Variant]
 
@@ -122,7 +122,7 @@ func AddWreath(wreath : Wreath):
 	if(Wreaths.size() > 4):
 		print("Unable to add wreath: Card is at max wreaths.")
 		return
-	if(!wreath.ValidForData(self)):
+	if(!wreath.ValidForData(self) and Suit != SuitType.Wreaths):
 		return
 	wreath.Attach(self)
 	Wreaths.append(wreath)
@@ -140,6 +140,7 @@ func RemoveWreath(wreath : Wreath):
 
 func ClickAction(_card : TDCard):
 	print("----" + CardName + "----")
+	print("Suit: "+str(SuitType.find_key(Suit)))
 	print("Value: " + str(Value))
 	print("Wreath count: "+str(Wreaths.size()))
 	for wreath in Wreaths:

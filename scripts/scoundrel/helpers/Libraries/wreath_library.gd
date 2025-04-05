@@ -22,7 +22,7 @@ static func Rand() -> Wreath:
 	return All.duplicate().pick_random()
 
 static func ByName(string : String) -> Wreath:
-	for wreath in All.duplicate():
+	for wreath in All.duplicate(true):
 		if wreath.wreathName == string:
 			return wreath.Copy()
 	return null
@@ -32,8 +32,10 @@ static func RandCompatible(data : TDCardData) -> Wreath:
 
 static func AllCompatible(data : TDCardData) -> Array[Wreath]:
 	var compatWreaths : Array[Wreath]
-	for wreath : Wreath in All.duplicate():
-		print(wreath.WreathName)
+	if(data.Suit == TDCardData_Art.SuitType.Wreaths):
+		return All.duplicate(true)
+	for wreath : Wreath in All.duplicate(true):
 		if (wreath.ValidForData(data)):
+			print("Adding ", wreath.WreathName, " to ", data.CardName)
 			compatWreaths.append(wreath)
-	return compatWreaths.duplicate()
+	return compatWreaths

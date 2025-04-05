@@ -14,7 +14,6 @@
 
 [node name="ShopOverlay" type="Node2D"]
 script = ExtResource("1_esylk")
-label = "El Shoppe"
 cardSceneSource = ExtResource("2_3f3sj")
 
 [node name="Panel" type="Sprite2D" parent="."]
@@ -55,13 +54,14 @@ position = Vector2(-25.5, 16.5)
 script = ExtResource("4_3f3sj")
 
 [node name="BoardTitle" type="RichTextLabel" parent="Panel"]
-offset_left = -82.0
-offset_top = -51.0
-offset_right = -2.0
-offset_bottom = -35.0
+offset_left = -104.0
+offset_top = -51.25
+offset_right = 26.0
+offset_bottom = -35.25
 theme = ExtResource("5_v7x5a")
 theme_override_colors/default_color = Color(0.23, 0.1334, 0.19941, 1)
-text = "El Shoppe"
+text = "General+++"
+horizontal_alignment = 1
 
 [node name="RerollShop" type="TextureButton" parent="Panel"]
 offset_left = -75.0

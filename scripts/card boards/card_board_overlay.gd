@@ -7,7 +7,7 @@ class_name OverlayCardBoard
 @export
 var slots : int = 0
 @export 
-var label : String = "Placeholder"
+var Title : String = "Placeholder"
 @export
 var MaxWidth : int = 10
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 	board_title = get_node("Panel/BoardTitle")
 	marker_extents = get_node("MarkerExtents")
 	Initialize(slots, MaxWidth)
-	board_title.text = label
+	board_title.text = Title
 	return
 
 var Slots : Array[TDCardPositionMarker2D]

@@ -10,7 +10,7 @@ func _ready():
 	
 	board_title = get_node("Panel/BoardTitle")
 	marker_extents = get_node("MarkerExtents")
-	board_title.text = label
+	board_title.text = Title
 	var allCards = Deck.Cards + Room.GetRoomCardData() + Transitioner.Discard.Cards
 	MaxWidth = NumOfCardsInPredominantSuit(allCards)
 	

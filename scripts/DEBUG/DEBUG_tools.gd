@@ -15,7 +15,7 @@ func RandTex() -> Texture:
 func _ready():
 	dungeon_nodes.hide()
 	pregame.show()
-	CardLibrary.SetActiveDeck(CardLibrary.SPECIAL)
+	CardLibrary.SetActiveDeck(CardLibrary.DEV)
 	LoadDeck(CardLibrary.ActiveDeck)
 	Deck.Shuffle()
 	Room.ReplenishRoom()
@@ -47,7 +47,7 @@ func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("Debug-OpenShop")):
 		var shop = ShopOverlay.CreateNew([ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, 1,50,7),
 						 ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons,  [], false, 1, 3),
-						 ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Purchases, [], true, -5)])
+						 ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], true, -5)])
 		add_child(shop)
 	return
 	
