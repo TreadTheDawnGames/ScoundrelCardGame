@@ -22,6 +22,7 @@ Health="*res://scenes/Globals/health_manager.tscn"
 Room="*res://scenes/Globals/room_manager.tscn"
 WeaponManager="*res://scenes/Globals/attack_bonus_manager.tscn"
 Transitioner="*res://scenes/Globals/level_transitioner.tscn"
+CardHoverChecker="*res://scripts/cards/CardHoverChecker.tscn"
 
 [display]
 

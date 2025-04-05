@@ -74,14 +74,14 @@ func _DragDropLogic(delta : float) -> void:
 		if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not grabbed):
 			if(IsOnTop()):
 				_grabbedOffset = global_position - get_global_mouse_position()
+				grabbed = true
 				if(Data):
 					Data.GrabAction(self)
-				grabbed = true
 				
 		elif(not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and grabbed):
+			grabbed = false
 			if(Data):
 				Data.DropAction(self)
-			grabbed = false
 		_lastMousePos = get_global_mouse_position()
 
 	if(_PlayZone):
@@ -103,8 +103,8 @@ func _DragDropLogic(delta : float) -> void:
 
 func _process(delta: float) -> void:
 	if(Data):
-		Data.Frame(self)
-		
+		Data.Frame(self, delta)
+	
 	_PlayCard()
 	_DragDropLogic(delta)
 	return
@@ -146,7 +146,7 @@ func CardExitedZone(node : Node2D) -> void:
 	
 func IsOnTop() -> bool:
 	if(TDCard.hoveredCards.size() > 0):
-		return TDCard.hoveredCards[0] == self #().get_nodes_in_group("DraggableHovered"):
+		return TDCard.hoveredCards[-1] == self #().get_nodes_in_group("DraggableHovered"):
 	else:
 		return false
 

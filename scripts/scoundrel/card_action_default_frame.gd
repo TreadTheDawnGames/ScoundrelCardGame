@@ -1,7 +1,7 @@
 extends TDCardAction
 class_name TDCardAction_Frame
 
-func Run(card : TDCard) -> void:
+func Run(card : TDCard, _delta : float) -> void:
 	if(TDCard.hoveredCards.size() > 0):
 		if(TDCard.hoveredCards[-1] != card):
 			card._hovered = false

@@ -12,6 +12,7 @@ func _init(name : String, art : String, value : int, lore : String, extraParams 
 	super._init(name,art, value, lore, SuitType.Shops, extraParams)
 	Luckiness = extraParams["Luckiness"]
 	ShopData = extraParams["ShopData"]
+	ShopData.append(Luckiness)
 	useName += "Ability"
 	return
 	

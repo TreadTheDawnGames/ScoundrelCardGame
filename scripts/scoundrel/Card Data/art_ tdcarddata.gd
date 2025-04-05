@@ -72,13 +72,13 @@ func DropAction(card: TDCard):
 	myCard.tooltip.TooltipEnd()
 	if(card._hovered):
 		myCard.tooltip.TooltipStart()
-	
+
 	if(clickTimer.time_left > 0):
 		ClickAction(card)
 	return
 
-func Frame(card : TDCard) -> void:
-	TDCardActions_DefOf.Frame.Run(card)
+func Frame(card : TDCard, delta : float) -> void:
+	TDCardActions_DefOf.Frame.Run(card, delta)
 	return
 	
 func HoverEnterAction(card : TDCard):

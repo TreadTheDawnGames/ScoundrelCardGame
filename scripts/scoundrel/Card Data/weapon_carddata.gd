@@ -82,7 +82,6 @@ func GetUnfilledCardSlot() -> TDCardPositionMarker2D:
 func DropAction(card : TDCard):
 	if(!equipped):
 		super.DropAction(card)
-	card.get_parent().move_child(card, 0)
 	return
 
 func UpdateLastMonster(monstStr : int):

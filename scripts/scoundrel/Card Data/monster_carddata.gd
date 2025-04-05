@@ -15,11 +15,11 @@ func HoverEnterAction(card : TDCard):
 		return super.HoverEnterAction(card)
 	return true
 	
-func Frame(card : TDCard):
+func Frame(card : TDCard, delta : float):
 	if(slain):
 		card.Art.scale = card.Art.scale.lerp(Vector2.ONE, 0.25)
 	else:
-		super.Frame(card)
+		super.Frame(card, delta)
 	return
 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:

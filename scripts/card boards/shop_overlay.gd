@@ -14,6 +14,7 @@ var rerollPrice : int = 5
 var RerollIfCards : PackedStringArray
 
 var ShopInfo : Array[ShopData] 
+var Luck : int = 0
 
 #func _init(shopInfo : Array[ShopData]):
 	#ShopInfo = shopInfo
@@ -24,7 +25,15 @@ static func CreateNew(shopInfo : Array) -> ShopOverlay:
 	var shop = ShopOverlayScene.instantiate()
 	for info in shopInfo:
 		if info is not ShopData:
-			printerr("Error initializing shop: Given element in shopInfo was not ShopData")
+			if info == shopInfo[-1]:
+				if info is not int:
+					printerr("Error initializing shop: Given element in shopInfo was not ShopData")
+			else:
+				printerr("Error initializing shop: Given element in shopInfo was not ShopData")
+	
+	if(shopInfo[-1] is int):
+		shop.Luck = shopInfo[-1]
+		shopInfo.resize(3)
 	
 	var trueInfo : Array[ShopData] = []
 	for info in shopInfo.filter(func(a): return a is ShopData):

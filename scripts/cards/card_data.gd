@@ -16,7 +16,7 @@ func SpecialSetup(_card : TDCard):
 	#printerr("[CardData] CardData is intended to be used as an abstract class. Please create a new class and inherit it: SpecialSetup has not been implemented. card: " + CardName)
 	return
 
-func Frame(_card : TDCard) -> void:
+func Frame(_card : TDCard, _delta : float) -> void:
 	#printerr("[CardData] CardData is intended to be used as an abstract class. Please create a new class and inherit it: Frame has not been implemented. card: " + CardName)
 	return
 
