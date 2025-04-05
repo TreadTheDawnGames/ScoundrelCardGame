@@ -12,6 +12,8 @@ enum SuitType {None, Weapons, Potions, Ghosts, Beasts, Purchases, Shops}
 var Suit : SuitType
 var ExtraParams : Dictionary[String, Variant]
 
+var properChildIndex : int = 0
+
 func IsUsable(areaPlayName : String) -> bool:
 	return useName.contains(areaPlayName)
 
@@ -36,7 +38,7 @@ func SpecialSetup(card : TDCard):
 	card.Art.texture = Art
 	if(card is TDCard_Base):
 		card.tooltip = card.get_node("Tooltip")
-		card.tooltip.Setup(Lore)
+		card.tooltip.Setup(card)
 		card.WreathContainer = card.get_node("Art/WreathContainer")
 		for wreath : Wreath in Wreaths:
 			wreath.Setup(card)
@@ -67,7 +69,10 @@ func Postplay(_playArea, _card):
 func DropAction(card: TDCard):
 	var myCard : TDCard_Base = card
 	myCard.tooltip.show_tooltip = true
-	myCard.tooltip._mouse_entered()
+	myCard.tooltip.TooltipEnd()
+	if(card._hovered):
+		myCard.tooltip.TooltipStart()
+	
 	if(clickTimer.time_left > 0):
 		ClickAction(card)
 	return
@@ -77,13 +82,27 @@ func Frame(card : TDCard) -> void:
 	return
 	
 func HoverEnterAction(card : TDCard):
+	# :PukeFace:
+	var hoveredCards = TDCard.hoveredCards
+	for otherCard in hoveredCards:
+		otherCard.z_index = 0
+		otherCard.tooltip.TooltipEnd()
+		
+	card.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
+	
+	card.tooltip.TooltipStart()
 	if(Room.card_board._selectedCards.size() > 0 and Room.card_board._selectedCards[0] != card):
 		return false
 	Room.card_board.SelectCard(card)
 	return true
 	
 func HoverExitAction(card : TDCard):
+	card.z_index = 0
 	Room.card_board.DeselectCard(card)
+	card.tooltip.TooltipEnd()
+	if(TDCard.hoveredCards.size()>0):
+		var curHovCard = TDCard.hoveredCards[-1]
+		curHovCard.Data.HoverEnterAction(curHovCard)
 	return false
 	
 ##card is required for wreath setup.

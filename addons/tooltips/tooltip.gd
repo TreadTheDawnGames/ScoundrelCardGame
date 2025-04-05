@@ -42,6 +42,7 @@ var _timer: Timer
 @onready var padding: Vector2i = Vector2i(padding_x, padding_y)
 @onready var extents: Vector2
 
+var Card : TDCard
 
 #####################################
 # OVERRIDE FUNCTIONS
@@ -50,7 +51,7 @@ func _init() -> void:
 	pass
 
 
-func Setup(lore : String) -> void:
+func Setup(card : TDCard) -> void:
 	owner_node = get_node(owner_path)
 	# create the visuals
 	_visuals = visuals_res.instantiate()
@@ -58,15 +59,13 @@ func Setup(lore : String) -> void:
 	# calculate the extents
 	extents = _visuals.get_rect().size
 	# connect signals
-	owner_node.connect("mouse_entered", _mouse_entered)
-	owner_node.connect("mouse_exited", _mouse_exited)
 	# initialize the timer
 	_timer = Timer.new()
 	add_child(_timer)
 	_timer.connect("timeout", _custom_show)
 	# default to hide
 	_visuals.hide()
-	_visuals.lore = lore
+	_visuals.lore = card.Data.Lore
 	_visuals.position = Vector2(99999,99999)
 
 
@@ -102,13 +101,13 @@ func _determine_position() -> Vector2:
 		final_y = base_pos.y + offset.y
 	return Vector2(final_x, final_y)
 
-func _mouse_entered() -> void:
+func TooltipStart() -> void:
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		return
 	_timer.start(delay)
 
 
-func _mouse_exited() -> void:
+func TooltipEnd() -> void:
 	_timer.stop()
 	_visuals.hide()
 

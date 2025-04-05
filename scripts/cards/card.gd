@@ -12,6 +12,8 @@ var returnToHome : bool = false
 @export
 var returnSpeed : float = 5
 
+static var hoveredCards : Array[TDCard]
+
 var _grabbedOffset : Vector2;
 var _lastMousePos : Vector2;
 var LocationMarker : TDCardPositionMarker2D;
@@ -112,7 +114,8 @@ func Hovered() -> void:
 		return
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		return
-	add_to_group("DraggableHovered")
+	hoveredCards.append(self)
+	#add_to_group("DraggableHovered")
 	if(Data):
 		Data.HoverEnterAction(self)
 	_hovered = true
@@ -121,7 +124,8 @@ func Hovered() -> void:
 func Unhovered() -> void:
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		return
-	remove_from_group("DraggableHovered")
+	#remove_from_group("DraggableHovered")
+	hoveredCards.erase(self)
 	if(Data):
 		Data.HoverExitAction(self)
 	_hovered = false
@@ -141,10 +145,10 @@ func CardExitedZone(node : Node2D) -> void:
 	return
 	
 func IsOnTop() -> bool:
-	for card in get_tree().get_nodes_in_group("DraggableHovered"):
-		if(card.get_index() > get_index()):
-			return false
-	return true
+	if(TDCard.hoveredCards.size() > 0):
+		return TDCard.hoveredCards[0] == self #().get_nodes_in_group("DraggableHovered"):
+	else:
+		return false
 
 ##Remember to free the marker before freeing the card.
 func FreeMarker():
@@ -168,6 +172,7 @@ func FillMarker(marker : TDCardPositionMarker2D):
 func _exit_tree() -> void:
 	if(is_instance_valid(LocationMarker)):
 		printerr(name + ": Make sure to free the card marker first!")
+	TDCard.hoveredCards.erase(self)
 	return
 
 func StopMouseDetectable():

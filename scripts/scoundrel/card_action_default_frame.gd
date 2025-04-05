@@ -2,6 +2,11 @@ extends TDCardAction
 class_name TDCardAction_Frame
 
 func Run(card : TDCard) -> void:
+	if(TDCard.hoveredCards.size() > 0):
+		if(TDCard.hoveredCards[-1] != card):
+			card._hovered = false
+		else:
+			card._hovered = true
 	if(card._hovered):
 		if(card.grabbed):
 			if(not card.usable):

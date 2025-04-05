@@ -149,7 +149,7 @@ func RerollShop():
 
 func CloseShop():
 	for card in _board:
-		if(!is_instance_valid(card)):
+		if(is_instance_valid(card)):
 			card.FreeMarker()
 			card.queue_free()
 	_board.clear()

@@ -20,7 +20,6 @@ func SpecialSetup(card : TDCard):
 	card.LuckinessDisplay = card.get_node("Art/LuckinessDisplay")
 	clamp(Luckiness, 0, 3)
 	for i in range(Luckiness+1):
-		print(str(i))
 		if(i==0):
 			continue
 		card.LuckinessDisplay.text += "*"
