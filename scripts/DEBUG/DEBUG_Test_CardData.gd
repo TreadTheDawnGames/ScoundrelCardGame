@@ -2,6 +2,8 @@ extends TDCardData
 class_name Test_CardData
 
 func PlayCard(_playArea : TDCardPlayArea, card : TDCard) -> void:
+	if(card._Played):
+		return
 	match _playArea.GetPlayType():
 		"Type1":
 			print("Played Type1")

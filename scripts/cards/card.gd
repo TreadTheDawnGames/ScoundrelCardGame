@@ -59,10 +59,10 @@ func SetUsable(isDrawn : bool) -> void:
 func _PlayCard() -> void:
 	if(_PlayZone && Data):
 		if(grabbed && usable && not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && not _Played):
-			_Played = true
 			usable = false
 			Data.Preplay(_PlayZone, self)
 			Data.PlayCard(_PlayZone, self)
+			_Played = true
 			Data.Postplay(_PlayZone, self)
 	return
 
@@ -116,9 +116,9 @@ func Hovered() -> void:
 		return
 	hoveredCards.append(self)
 	#add_to_group("DraggableHovered")
+	_hovered = true
 	if(Data):
 		Data.HoverEnterAction(self)
-	_hovered = true
 	return
 
 func Unhovered() -> void:

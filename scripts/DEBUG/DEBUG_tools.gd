@@ -15,7 +15,7 @@ func RandTex() -> Texture:
 func _ready():
 	dungeon_nodes.hide()
 	pregame.show()
-	CardLibrary.SetActiveDeck(CardLibrary.STANDARD)
+	CardLibrary.SetActiveDeck(CardLibrary.SPECIAL)
 	LoadDeck(CardLibrary.ActiveDeck)
 	Deck.Shuffle()
 	Room.ReplenishRoom()

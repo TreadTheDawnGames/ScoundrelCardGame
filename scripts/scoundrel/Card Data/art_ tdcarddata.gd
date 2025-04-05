@@ -57,16 +57,18 @@ func GrabAction(card : TDCard):
 func Preplay(_playArea, card):
 	for wreath in Wreaths:
 		wreath.PrePlay(self)
+	card._Played = true
 	Room.card_board.DeselectCard(card)
 	return
 
-func Postplay(_playArea, _card):
+func Postplay(_playArea : TDCardPlayArea, _card : TDCard):
 	for wreath in Wreaths:
 		wreath.PostPlay(self)
 	Modifier = 0
 	return
 
 func DropAction(card: TDCard):
+
 	var myCard : TDCard_Base = card
 	myCard.tooltip.show_tooltip = true
 	myCard.tooltip.TooltipEnd()
@@ -89,7 +91,7 @@ func HoverEnterAction(card : TDCard):
 		otherCard.tooltip.TooltipEnd()
 		
 	card.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
-	
+	card.tooltip.show_tooltip = true
 	card.tooltip.TooltipStart()
 	if(Room.card_board._selectedCards.size() > 0 and Room.card_board._selectedCards[0] != card):
 		return false

@@ -42,9 +42,13 @@ func Equip(card : TDCard):
 	card.FillMarker(weaponArea.get_node("EquippedSlot"))
 	card.useMonsterCollisionShape.disabled = false
 	equipped = true
-	card._Played = false
-	card.tooltip.show_tooltip = false
+	#card.tooltip.show_tooltip = false
 	WeaponManager.SetActiveWeapon(self)
+	return
+
+func Postplay(_area : TDCardPlayArea, _card : TDCard):
+	if(equipped):
+		_card._Played = false
 	return
 
 func Unequip(card : TDCard):
@@ -78,11 +82,6 @@ func GetUnfilledCardSlot() -> TDCardPositionMarker2D:
 			if(!slot.isFilled):
 				return slot
 	return null
-
-func DropAction(card : TDCard):
-	if(!equipped):
-		super.DropAction(card)
-	return
 
 func UpdateLastMonster(monstStr : int):
 	LastMonsterValue = monstStr

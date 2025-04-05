@@ -105,6 +105,7 @@ func TooltipStart() -> void:
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		return
 	_timer.start(delay)
+	
 
 
 func TooltipEnd() -> void:
@@ -115,6 +116,7 @@ func TooltipEnd() -> void:
 func _custom_show() -> void:
 	_timer.stop()
 	if(show_tooltip):
+		_visuals.position = _determine_position()
 		_visuals.show()
 
 
