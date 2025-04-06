@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cywqynob1jiss"]
+[gd_scene load_steps=15 format=3 uid="uid://cywqynob1jiss"]
 
 [ext_resource type="Script" uid="uid://ccar62fj72sjy" path="res://scripts/card boards/shop_overlay.gd" id="1_esylk"]
 [ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/TDCard_base.tscn" id="2_3f3sj"]
@@ -11,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://c7rv62mn0lnla" path="res://assets/UI/Shop/CloseShopButton1.png" id="9_lpou0"]
 [ext_resource type="Texture2D" uid="uid://dlr0n4kn0p25k" path="res://assets/UI/Shop/CloseShopButton3.png" id="10_rbrmy"]
 [ext_resource type="Texture2D" uid="uid://cjkdhxt6mclah" path="res://assets/UI/Shop/CloseShopButton2.png" id="11_sv6i2"]
+[ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="12_rbrmy"]
+[ext_resource type="Texture2D" uid="uid://c8ifgjnewxpof" path="res://assets/UI/BuyPanel.png" id="13_sv6i2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vj7iv"]
+size = Vector2(37, 51)
 
 [node name="ShopOverlay" type="Node2D"]
 script = ExtResource("1_esylk")
@@ -128,6 +133,20 @@ theme_override_colors/default_color = Color(0.23, 0.1334, 0.19941, 1)
 theme_override_font_sizes/normal_font_size = 8
 text = "cards cost their value in $"
 horizontal_alignment = 1
+
+[node name="TDCardPlayArea" type="Area2D" parent="Panel"]
+position = Vector2(-121, 5)
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("12_rbrmy")
+_PlayType = "Buy"
+metadata/_custom_type_script = "uid://e6s4cpiydw0p"
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TDCardPlayArea"]
+texture = ExtResource("13_sv6i2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/TDCardPlayArea"]
+shape = SubResource("RectangleShape2D_vj7iv")
 
 [node name="MarkerExtents" type="ReferenceRect" parent="."]
 visible = false

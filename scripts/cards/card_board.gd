@@ -7,7 +7,8 @@ var _selectedCards : Array[TDCard]
 var cardSceneSource : PackedScene
 var MONSTER_CARD : PackedScene = preload("res://scenes/cards/TDCard_Monster.tscn")
 var WEAPON_CARD : PackedScene = preload("res://scenes/cards/TDCard_Weapon.tscn")
-var BASE_CARD : PackedScene = preload("res://scenes/cards/TDCard_base.tscn")
+var BASE_CARD : PackedScene = preload("res://scenes/cards/card.tscn")
+var POTION_CARD : PackedScene = preload("res://scenes/cards/TDCard_base.tscn")
 var SHOP_CARD : PackedScene = preload("res://scenes/cards/TDCard_Shop.tscn")
 
 
@@ -30,7 +31,7 @@ func AddCardFromItsScene(data : TDCardData, isAesthetic : bool, useGoToPos : boo
 	elif(data is TDCardData_Weapon):
 		card = AddCardFromSource(WEAPON_CARD, data, isAesthetic, useGoToPos, slot)
 	elif(data is TDCardData_Ability):
-		card = AddCardFromSource(BASE_CARD, data, isAesthetic, useGoToPos, slot)
+		card = AddCardFromSource(POTION_CARD, data, isAesthetic, useGoToPos, slot)
 	elif(data is TDCardData_Shop):
 		card = AddCardFromSource(SHOP_CARD, data, isAesthetic, useGoToPos, slot)
 	else:

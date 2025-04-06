@@ -163,6 +163,7 @@ fit_content = true
 scroll_active = false
 
 [node name="CharacterOverlay" parent="." instance=ExtResource("23_bt5mj")]
+visible = false
 position = Vector2(584, 331)
 
 [node name="Camera2D" type="Camera2D" parent="."]

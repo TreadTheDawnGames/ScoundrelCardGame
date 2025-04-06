@@ -1,0 +1,2 @@
+extends OverlayCardBoard
+class_name AssignWreathsOverlay

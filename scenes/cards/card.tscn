@@ -9,7 +9,7 @@ size = Vector2(25, 35)
 
 [node name="Card" type="Area2D"]
 collision_layer = 0
-collision_mask = 12
+collision_mask = 140
 script = ExtResource("1_45qsb")
 
 [node name="GrabArea" type="CollisionShape2D" parent="."]

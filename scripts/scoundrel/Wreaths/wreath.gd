@@ -4,16 +4,17 @@ class_name Wreath
 var Art : Texture2D
 @export
 var WreathName : String = ""
-
+var Price : int = 0
 func ValidForData(_data : TDCardData) -> bool:
 	return true
 	
 func Copy() -> Wreath:
-	return Wreath.new(Art.resource_path, WreathName)
+	return Wreath.new(Art.resource_path, Price, WreathName)
 
-func _init(art : String, wreathName : String):
+func _init(art : String, price : int, wreathName : String):
 	Art = load(art)
 	WreathName = wreathName
+	Price = price
 	return
 
 ## Called when visual card is initialized

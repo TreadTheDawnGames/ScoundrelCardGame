@@ -17,11 +17,15 @@ var ShopInfo : Array[ShopData]
 var wreathProbability : Array[int] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1] # 22.73% chance of success
 var Luck : int = 0
 var _luckMult : int = 2
+
+var BoughtWreaths : Array[Wreath]
+
+const APPLY_WREATHS : PackedScene = preload("res://scenes/card overlays/assign_wreaths_overlay.tscn")
 #func _init(shopInfo : Array[ShopData]):
 	#ShopInfo = shopInfo
 ##	ShopInfo = [ShopData.new(TDCardData_Art.SuitType.Potions, [], false, 1),ShopData.new(TDCardData_Art.SuitType.Weapons,  [], false, 1,  ),ShopData.new(TDCardData_Art.SuitType.Purchase, [], true, -1)]
 	#return
-
+	
 static func CreateNew(shopInfo : Array) -> ShopOverlay:
 	var shop = ShopOverlayScene.instantiate()
 	for info in shopInfo:
@@ -133,7 +137,8 @@ func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
 		var shopCardData = TDCardData_Purchase.new(chosenCardInfo.CardName, chosenCardInfo.TexturePath, chosenCardInfo.Value, chosenCardInfo.Lore, chosenCardInfo.Suit, chosenCardInfo.ExtraParams)
 		shopCardData.Wreaths = chosenWreaths
 		
-		var card = AddCard(shopCardData,false, true, marker)
+		var card = AddCardFromItsScene(shopCardData,false, true, marker)
+		card.scale *= 4
 		purchaseData.ShowAllWreaths(card)
 	return
 
@@ -166,8 +171,9 @@ func RerollShop():
 	RerollIfCards.clear()
 	priceText.text = str(rerollPrice) +"$"
 	for card in _board:
-		card.FreeMarker()
-		card.queue_free()
+		if(is_instance_valid(card)):
+			card.FreeMarker()
+			card.queue_free()
 	_board.clear()
 	SetupShop(ShopInfo)
 	return
@@ -179,6 +185,10 @@ func CloseShop():
 			card.queue_free()
 	_board.clear()
 	Room.card_board.SetBoardActive(true)
+	if(BoughtWreaths.size() > 0):
+		var wreathApplyScene = APPLY_WREATHS.instantiate()
+		get_parent().add_child(wreathApplyScene)
+	
 	queue_free()
 	return
 
@@ -212,7 +222,12 @@ func GetShopName() -> String:
 	print(types)
 	
 	return shopName
-	
+
+func AddBoughtWreaths(array : Array[Wreath]):
+	BoughtWreaths.append_array(array)
+	return
+
+
 class ShopData:
 	var Suit : TDCardData_Art.SuitType
 	var RerollCards : Array[TDCardData] = []

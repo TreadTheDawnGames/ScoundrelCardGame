@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://doyae2xhqstbr" path="res://assets/UI/Shop/ShopText.tres" id="2_qjeib"]
 
 [node name="TDCard_Shop" instance=ExtResource("1_it5yw")]
+collision_mask = 8
 
 [node name="LuckinessDisplay" type="RichTextLabel" parent="Art" index="0"]
 offset_top = -16.0
