@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://bcbc8la1om7uv" path="res://scenes/card overlays/card_board_overlay.tscn" id="1_84h4k"]
 [ext_resource type="Script" uid="uid://cxdm617qd30eg" path="res://scripts/card boards/AssignWreathsOverlay.gd" id="2_fiaqe"]
 
-[node name="AssignWreathsOverlay" node_paths=PackedStringArray("cardAreas") instance=ExtResource("1_84h4k")]
+[node name="AssignWreathsOverlay" node_paths=PackedStringArray("marker_extents") instance=ExtResource("1_84h4k")]
 script = ExtResource("2_fiaqe")
-cardAreas = [NodePath("MarkerExtents"), NodePath("WreathMarkerExtents")]
-slotCounts = Array[int]([4, 4])
+marker_extents = [NodePath("MarkerExtents"), NodePath("WreathMarkerExtents")]
+boardsSlots = Array[int]([4, 0])
 Title = "Assign Wreaths"
-MaxWidth = Array[int]([10, 10])
+MaxWidth = Array[int]([10, 0])
 
 [node name="MarkerExtents" parent="." index="0"]
 offset_left = 51.0
@@ -17,10 +17,8 @@ offset_right = 1096.0
 offset_bottom = 327.0
 
 [node name="WreathMarkerExtents" type="ReferenceRect" parent="." index="1"]
-offset_left = 50.0
-offset_top = 362.0
-offset_right = 1097.0
-offset_bottom = 593.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Panel" parent="." index="2"]
 offset_left = 25.0
@@ -28,5 +26,8 @@ offset_top = 31.0
 offset_right = 1122.0
 offset_bottom = 628.0
 
-[node name="Wreaths" type="Node2D" parent="Panel" index="1"]
+[node name="Slots" parent="Panel" index="1"]
+position = Vector2(26, 137)
+
+[node name="Wreaths" type="Node2D" parent="Panel" index="2"]
 position = Vector2(26, 330)

@@ -84,15 +84,15 @@ func _DragDropLogic(delta : float) -> void:
 				Data.DropAction(self)
 		_lastMousePos = get_global_mouse_position()
 
-	if(_PlayZone):
+	if(_PlayZone and !usable):
 		usable = true
 		if(Data):
 			Data.EnterUsable(_PlayZone, self)
-	else:
+	elif(!_PlayZone and usable):
 		usable = false
 		if(Data):
 			Data.ExitUsable(self)
-
+		
 	if(grabbed):
 		global_position = get_global_mouse_position() + _grabbedOffset
 	elif returnToHome:

@@ -39,7 +39,6 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 				weaponCardData.MonsterSlots.append(monsterCard.monster_stack_marker)
 				weaponCardData.UpdateLastMonster(Value)
 				weaponCardData.AddSlainMonster(monsterCard)
-				monsterCard.get_parent().move_child(monsterCard, monsterCard.get_parent().get_children().find(weaponCard) + weaponCardData.SlainMonsters.size() + 1)
 				
 				slain = true
 			else: #weapon too damaged

@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://bocaxsu7fbde" path="res://scripts/card boards/card_board_overlay.gd" id="1_t711d"]
 [ext_resource type="FontFile" uid="uid://byhu3275bckuh" path="res://assets/UI/Fonts/TreadTheDawnPixL.ttf" id="2_7pquq"]
 
-[node name="CardBoardOverlay" type="Node2D"]
+[node name="CardBoardOverlay" type="Node2D" node_paths=PackedStringArray("cardAreas")]
 script = ExtResource("1_t711d")
+cardAreas = [NodePath("MarkerExtents")]
+slotCounts = Array[int]([0])
 
 [node name="MarkerExtents" type="ReferenceRect" parent="."]
 offset_left = -522.0
@@ -36,6 +38,3 @@ theme_override_fonts/normal_font = ExtResource("2_7pquq")
 theme_override_font_sizes/normal_font_size = 64
 text = "Title"
 horizontal_alignment = 1
-
-[node name="Slots" type="Node2D" parent="Panel"]
-position = Vector2(26, 115)

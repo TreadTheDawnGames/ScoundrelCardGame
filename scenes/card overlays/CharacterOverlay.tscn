@@ -11,8 +11,7 @@ size = Vector2(37, 51)
 
 [node name="CharacterOverlay" instance=ExtResource("1_vxphm")]
 script = ExtResource("2_xugx0")
-slots = 3
-MaxWidth = 3
+Title = "Choose your Character"
 cardSceneSource = ExtResource("3_6jdes")
 
 [node name="MarkerExtents" parent="." index="0"]

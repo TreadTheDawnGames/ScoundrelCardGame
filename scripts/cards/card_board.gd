@@ -42,7 +42,7 @@ func AddCardFromItsScene(data : TDCardData, isAesthetic : bool, useGoToPos : boo
 			printerr("Unreconglized CardData: null")
 	return card
 
-func AddCardFromSource(source : PackedScene, data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null):
+func AddCardFromSource(source : PackedScene, data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null) -> TDCard:
 	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos, source)
 	if(!card):
 		return

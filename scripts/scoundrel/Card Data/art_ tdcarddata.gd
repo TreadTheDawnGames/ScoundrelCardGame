@@ -87,8 +87,9 @@ func HoverEnterAction(card : TDCard):
 	# :PukeFace:
 	var hoveredCards = TDCard.hoveredCards
 	for otherCard in hoveredCards:
-		otherCard.z_index = 0
-		otherCard.tooltip.TooltipEnd()
+		if(is_instance_valid(otherCard)):
+			otherCard.z_index = 0
+			otherCard.tooltip.TooltipEnd()
 		
 	card.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
 	card.tooltip.show_tooltip = true
@@ -104,7 +105,10 @@ func HoverExitAction(card : TDCard):
 	card.tooltip.TooltipEnd()
 	if(TDCard.hoveredCards.size()>0):
 		var curHovCard = TDCard.hoveredCards[-1]
-		curHovCard.Data.HoverEnterAction(curHovCard)
+		if(is_instance_valid(curHovCard)):
+			curHovCard.Data.HoverEnterAction(curHovCard)
+		else:
+			TDCard.hoveredCards.erase(curHovCard)
 	return false
 	
 ##card is required for wreath setup.

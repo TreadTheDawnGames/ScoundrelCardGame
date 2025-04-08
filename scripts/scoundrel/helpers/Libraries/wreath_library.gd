@@ -11,11 +11,11 @@ class_name WreathLibrary
 	#return Wreaths
 	
 static var All : Array[Wreath] = [
-	PermanentBonusWreath.new("res://assets/wreaths/Enraged.png", 1, [TDCardData_Art.SuitType.Ghosts, TDCardData_Art.SuitType.Beasts], 0, "EnragedWreath"),
-	PermanentBonusWreath.new("res://assets/wreaths/Boiled.png", 1, [TDCardData_Art.SuitType.Potions],0, "BoiledWreath"),
-	PermanentBonusWreath.new("res://assets/wreaths/Sharp.png", 1, [TDCardData_Art.SuitType.Weapons],0, "SharpWreath"),
-	Wreath.new("res://assets/wreaths/GreenWreath.png", 0, "BaseWreath"),
-	Wreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath"),
+	PermanentBonusWreath.new("res://assets/wreaths/Enraged.png", 0, false, [TDCardData_Art.SuitType.Ghosts, TDCardData_Art.SuitType.Beasts], 1, "EnragedWreath"),
+	PermanentBonusWreath.new("res://assets/wreaths/Boiled.png", 0, false, [TDCardData_Art.SuitType.Potions], 1, "BoiledWreath"),
+	PermanentBonusWreath.new("res://assets/wreaths/Sharp.png", 0, true, [TDCardData_Art.SuitType.Weapons], 1, "SharpWreath"),
+	Wreath.new("res://assets/wreaths/GreenWreath.png", 0, "BaseWreath", true),
+	Wreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true),
 ]
 
 static func Rand() -> Wreath:

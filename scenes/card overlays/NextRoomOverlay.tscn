@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://c27mfki3gfwe5" path="res://scripts/card boards/NextRoomOverlay.gd" id="2_alaad"]
 [ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="3_u6hcg"]
 
-[node name="CardBoardOverlay" instance=ExtResource("1_sin3k")]
+[node name="CardBoardOverlay" node_paths=PackedStringArray("cardAreas") instance=ExtResource("1_sin3k")]
 script = ExtResource("2_alaad")
-slots = 4
-label = "Next Room"
+cardAreas = [NodePath("MarkerExtents")]
+slotCounts = Array[int]([4])
 cardSceneSource = ExtResource("3_u6hcg")
 
 [node name="MarkerExtents" parent="." index="0"]

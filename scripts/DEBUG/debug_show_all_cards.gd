@@ -9,33 +9,32 @@ func _ready():
 		return
 	
 	board_title = get_node("Panel/BoardTitle")
-	marker_extents = get_node("MarkerExtents")
 	board_title.text = Title
 	var allCards = Deck.Cards + Room.GetRoomCardData() + Transitioner.Discard.Cards
-	MaxWidth = NumOfCardsInPredominantSuit(allCards)
+	MaxWidth[0] = NumOfCardsInPredominantSuit(allCards)
 	
-	Initialize(GetNumberOfNeededMarkers(allCards), MaxWidth)
+	Initialize(GetNumberOfNeededMarkers(allCards), cardAreas[0], MaxWidth[0])
 	ViewRoom(allCards)
 	button.pressed.connect(ReturnRoom)
 	isOpen = true
 	return
 
-func Initialize(slotCount : int, maxWidth : int = 10):
+func Initialize(slotCount : int, markerExtents : ReferenceRect, maxWidth : int = 10):
 	
 	var anotherThing = (max(slotCount%maxWidth,min(maxWidth, slotCount)))
-	var x = marker_extents.get_rect().size.x
+	var x = markerExtents.get_rect().size.x
 	var cellWidth : float = x / anotherThing
 	var wOffset : float = cellWidth/2
 	
 	var thing = ceil(float(slotCount) / float(maxWidth))
-	var cellHeight : float = marker_extents.get_rect().size.y / thing
+	var cellHeight : float = markerExtents.get_rect().size.y / thing
 	var hOffset : float = cellHeight/2
-	
+	Slots.append([])
 	for i in slotCount:
 		var marker : TDCardPositionMarker2D = TDCardPositionMarker2D.new()
-		slotsNode.add_child(marker)
+		markerExtents.add_child(marker)
 		marker.position = Vector2((cellWidth*(i%maxWidth))+wOffset, cellHeight*floor((float(i) / float(maxWidth)))+hOffset)
-		Slots.append(marker)
+		Slots[0].append(marker)
 	return
 
 func ViewRoom(allCards : Array[TDCardData]):
@@ -45,7 +44,10 @@ func ViewRoom(allCards : Array[TDCardData]):
 	allCards.sort_custom(
 		func(a, b): 
 			if(a.Suit == b.Suit) :
-				return a.Value < b.Value
+				if(a.Value==b.Value):
+					return a.Wreaths.size() < b.Wreaths.size()
+				else:
+					return a.Value < b.Value
 			else:
 				return a.Suit < b.Suit )
 				
@@ -54,9 +56,9 @@ func ViewRoom(allCards : Array[TDCardData]):
 		print(suit)
 		var cardsOfSuit =  GetAllOfType(allCards, TDCardData_Art.SuitType.get(suit))
 		if(cardsOfSuit.size() > 0):
-			var row =  Slots.slice(startIndex, startIndex + MaxWidth)
+			var row =  Slots[0].slice(startIndex, startIndex + MaxWidth[0])
 			ApplySlots(cardsOfSuit, row)
-			startIndex += MaxWidth
+			startIndex += MaxWidth[0]
 		
 		pass
 	
@@ -90,7 +92,7 @@ func NumOfCardsInPredominantSuit(array : Array[TDCardData]) -> int:
 	return mostCards
 
 
-func ApplySlots(infos : Array[TDCardData], mySlots : Array[TDCardPositionMarker2D]):
+func ApplySlots(infos : Array[TDCardData], mySlots : Array):
 	var i = 0
 	for info in infos:
 		if(!is_instance_valid(info)):

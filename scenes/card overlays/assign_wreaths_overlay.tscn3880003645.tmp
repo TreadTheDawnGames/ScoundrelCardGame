@@ -5,8 +5,8 @@
 
 [node name="AssignWreathsOverlay" node_paths=PackedStringArray("cardAreas") instance=ExtResource("1_84h4k")]
 script = ExtResource("2_fiaqe")
-cardAreas = [NodePath("MarkerExtents"), NodePath("WreathMarkerExtents")]
-slotCounts = Array[int]([4, 4])
+cardAreas = [NodePath("WreathMarkerExtents")]
+slotCounts = Array[int]([0, 4])
 Title = "Assign Wreaths"
 MaxWidth = Array[int]([10, 10])
 

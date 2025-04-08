@@ -5,16 +5,20 @@ var Art : Texture2D
 @export
 var WreathName : String = ""
 var Price : int = 0
+var AllowedDuplicates : bool
+
 func ValidForData(_data : TDCardData) -> bool:
 	return true
-	
-func Copy() -> Wreath:
-	return Wreath.new(Art.resource_path, Price, WreathName)
 
-func _init(art : String, price : int, wreathName : String):
+
+func Copy() -> Wreath:
+	return Wreath.new(Art.resource_path, Price, WreathName, AllowedDuplicates)
+
+func _init(art : String, price : int, wreathName : String, allowedDuplicates : bool):
 	Art = load(art)
 	WreathName = wreathName
 	Price = price
+	AllowedDuplicates = allowedDuplicates
 	return
 
 ## Called when visual card is initialized

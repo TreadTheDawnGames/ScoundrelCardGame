@@ -4,11 +4,10 @@
 [ext_resource type="Script" uid="uid://bcrvy7lldlb1l" path="res://scripts/DEBUG/debug_show_all_cards.gd" id="2_08q8h"]
 [ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/TDCard_base.tscn" id="3_08q8h"]
 
-[node name="CardBoardOverlay" instance=ExtResource("1_q4f0h")]
+[node name="CardBoardOverlay" node_paths=PackedStringArray("cardAreas") instance=ExtResource("1_q4f0h")]
 script = ExtResource("2_08q8h")
-slots = 65
-label = "All Cards"
-MaxWidth = 13
+cardAreas = [NodePath("MarkerExtents")]
+slotCounts = Array[int]([0])
 cardSceneSource = ExtResource("3_08q8h")
 
 [node name="MarkerExtents" parent="." index="0"]
@@ -17,5 +16,5 @@ offset_top = 156.0
 offset_right = 1101.0
 offset_bottom = 549.0
 
-[node name="Slots" parent="Panel" index="1"]
+[node name="Slots" type="Node2D" parent="Panel" index="1"]
 position = Vector2(26, 111)

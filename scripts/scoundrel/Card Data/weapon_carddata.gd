@@ -42,8 +42,10 @@ func Equip(card : TDCard):
 	card.FillMarker(weaponArea.get_node("EquippedSlot"))
 	card.useMonsterCollisionShape.disabled = false
 	equipped = true
+	card.get_parent().move_child(card, 0)
 	#card.tooltip.show_tooltip = false
 	WeaponManager.SetActiveWeapon(self)
+
 	return
 
 func Postplay(_area : TDCardPlayArea, _card : TDCard):
@@ -96,7 +98,6 @@ func CleanWeapon():
 		monster.Data.Revive()
 		monster.FreeMarker()
 		monster.queue_free()
-		Transitioner.AddToDiscard(monster.Data)
 	SlainMonsters.clear()
 	LastMonsterValue = 15
 	return

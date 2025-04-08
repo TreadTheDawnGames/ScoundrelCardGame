@@ -17,8 +17,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vj7iv"]
 size = Vector2(37, 51)
 
-[node name="ShopOverlay" type="Node2D"]
+[node name="ShopOverlay" type="Node2D" node_paths=PackedStringArray("cardAreas")]
 script = ExtResource("1_esylk")
+cardAreas = [NodePath("MarkerExtents")]
+slotCounts = Array[int]([0])
 cardSceneSource = ExtResource("2_3f3sj")
 
 [node name="Panel" type="Sprite2D" parent="."]

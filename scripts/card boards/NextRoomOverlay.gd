@@ -19,7 +19,7 @@ func ViewRoom():
 	for info in nextRoom:
 		if(!is_instance_valid(info)):
 			continue
-		AddCardFromItsScene(info,false,true, Slots[i])
+		AddCardFromItsScene(info,false,true, Slots[0][i]).scale *= 4
 		i+=1
 	return
 
@@ -29,8 +29,9 @@ func ReturnRoom():
 	nextRoom.clear()
 	
 	for card in _board:
-		card.FreeMarker()
-		card.queue_free()
+		if(is_instance_valid(card)):
+			card.FreeMarker()
+			card.queue_free()
 	_board.clear()
 	Room.card_board.SetBoardActive(true)
 	queue_free()

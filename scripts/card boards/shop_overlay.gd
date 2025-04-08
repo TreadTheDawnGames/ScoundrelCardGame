@@ -48,7 +48,6 @@ static func CreateNew(shopInfo : Array) -> ShopOverlay:
 	return shop
 
 func _ready():
-	marker_extents = get_node("MarkerExtents")
 	#AddShopCards(TDCardData_Art.SuitType.Ghosts)
 	for node in get_node("Panel/Slots/TopRight").get_children():
 		TopRightMarkers.append(node) 
@@ -124,7 +123,7 @@ func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
 		for i in DetermineWreathCount(shopData):
 			var compatWreath : Wreath = WreathLibrary.RandCompatible(purchaseData)
 			#No duplicate wreaths
-			if(!compatWreath.WreathName in chosenWreathNames):
+			if(!compatWreath.WreathName in chosenWreathNames or compatWreath.AllowedDuplicates):
 				chosenWreaths.append(compatWreath)
 				chosenWreathNames.append(compatWreath.WreathName)
 		#Cards always have a chance of rolling a wreath. If it's compatible, add it. Else ignore.
