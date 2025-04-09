@@ -83,7 +83,7 @@ func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
 	##get card pool
 	var availableCardInfos : Array[CardInfo]
 	if(shopData.Suit == TDCardData_Art.SuitType.Wreaths):
-		availableCardInfos = [CardInfo.new("PurchaseableCard", TDCardData_Art.SuitType.Wreaths, "res://assets/cards/PurchaseCard.png", 0, "", {"SaleCard":null})]
+		availableCardInfos = [CardInfo.new("PurchaseableCard", TDCardData_Art.SuitType.Wreaths, "res://assets/cards/ShopCards/PurchaseCard.png", 0, "", {"SaleCard":null})]
 	else:
 		availableCardInfos = Utils.GetCardInfosOfSuit(shopData.Suit)
 	
@@ -185,7 +185,8 @@ func CloseShop():
 	_board.clear()
 	Room.card_board.SetBoardActive(true)
 	if(BoughtWreaths.size() > 0):
-		var wreathApplyScene = APPLY_WREATHS.instantiate()
+		var wreathApplyScene :AssignWreathsOverlay = APPLY_WREATHS.instantiate()
+		wreathApplyScene.boughtWreaths = BoughtWreaths
 		get_parent().add_child(wreathApplyScene)
 	
 	queue_free()

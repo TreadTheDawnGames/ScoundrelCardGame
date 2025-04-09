@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckc45s7luqacx"]
+
+[ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scenes/wreaths/TDCard_Base.gd" id="1_7f2tf"]
+[ext_resource type="Script" uid="uid://c46b2csnvnnhm" path="res://addons/tooltips/tooltip.gd" id="2_w71l5"]
+[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_w71l5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oytra"]
+resource_local_to_scene = true
+size = Vector2(29, 10)
+
+[node name="WreathVisual" type="Area2D"]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("1_7f2tf")
+metadata/_custom_type_script = "uid://b2ly22oubeuou"
+
+[node name="GrabArea" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oytra")
+
+[node name="Art" type="Sprite2D" parent="."]
+
+[node name="WreathContainer" type="Node2D" parent="Art"]
+
+[node name="Tooltip" type="Node" parent="."]
+script = ExtResource("2_w71l5")
+visuals_res = ExtResource("3_w71l5")
+owner_path = NodePath("..")
+offset_x = -73.0
+offset_y = -145.0

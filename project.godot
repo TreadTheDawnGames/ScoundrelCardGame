@@ -96,6 +96,7 @@ Debug-OpenShop={
 2d_physics/layer_6="CharacterSelect"
 2d_physics/layer_7="PotionEquip"
 2d_physics/layer_8="BuyPlayArea"
+2d_physics/layer_9="AddWreathPlayArea"
 
 [rendering]
 

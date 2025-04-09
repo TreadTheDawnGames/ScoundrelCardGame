@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgpw51gfo6yit"]
+[gd_scene load_steps=3 format=3 uid="uid://cgpw51gfo6yit"]
 
 [ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="1_k8rv6"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8rv6"]
+resource_local_to_scene = true
+size = Vector2(25, 35)
+
 [node name="TDCard_Potion" instance=ExtResource("1_k8rv6")]
 collision_mask = 76
+
+[node name="GrabArea" parent="." index="0"]
+shape = SubResource("RectangleShape2D_k8rv6")
+
+[node name="Tooltip" parent="." index="1"]
+follow_mouse = true

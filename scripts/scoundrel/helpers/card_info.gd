@@ -24,6 +24,7 @@ static func MultipleCardsFromInfo(deck : Array[CardInfo]) -> Array[TDCardData]:
 	
 static func CardDataFromInfo(info : CardInfo) -> TDCardData:
 	var data : TDCardData
+	
 	match (info.Suit):
 		TDCardData_Art.SuitType.Beasts:
 			data = TDCardData_Monster.new(info.CardName, info.TexturePath, info.Value, info.Lore, info.Suit, info.ExtraParams)

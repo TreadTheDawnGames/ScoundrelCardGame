@@ -1,7 +1,8 @@
+extends TDCardData_Art
 class_name Wreath
 
-@export
-var Art : Texture2D
+#@export
+#var Art : Texture2D
 @export
 var WreathName : String = ""
 var Price : int = 0

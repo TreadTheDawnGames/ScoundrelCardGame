@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbfgfvpmdudhj"]
+
+[ext_resource type="PackedScene" uid="uid://dkrd6d61648ll" path="res://scenes/cards/TDCard_Weapon.tscn" id="1_m371k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_en23a"]
+resource_local_to_scene = true
+size = Vector2(25, 35)
+
+[node name="AssignWreathCard" instance=ExtResource("1_m371k")]
+collision_mask = 0
+
+[node name="GrabArea" parent="." index="0"]
+shape = SubResource("RectangleShape2D_en23a")
+
+[node name="UseMonsterArea" parent="." index="3"]
+collision_layer = 256
+_PlayType = "AddWreath"
