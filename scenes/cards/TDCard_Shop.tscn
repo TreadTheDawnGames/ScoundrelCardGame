@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfi4j8h1jnry0"]
+[gd_scene load_steps=4 format=3 uid="uid://bfi4j8h1jnry0"]
 
 [ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/TDCard_base.tscn" id="1_it5yw"]
 [ext_resource type="Theme" uid="uid://doyae2xhqstbr" path="res://assets/UI/Shop/ShopText.tres" id="2_qjeib"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjeib"]
+resource_local_to_scene = true
+size = Vector2(25, 35)
+
 [node name="TDCard_Shop" instance=ExtResource("1_it5yw")]
 collision_mask = 8
+
+[node name="GrabArea" parent="." index="0"]
+shape = SubResource("RectangleShape2D_qjeib")
 
 [node name="LuckinessDisplay" type="RichTextLabel" parent="Art" index="0"]
 offset_top = -16.0

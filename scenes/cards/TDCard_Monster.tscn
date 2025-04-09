@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8tsl4hngvv64"]
+[gd_scene load_steps=5 format=3 uid="uid://c8tsl4hngvv64"]
 
 [ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="1_gjhn1"]
-[ext_resource type="Script" uid="uid://bq1tl0uaei7gf" path="res://scripts/scoundrel/Cards/tdcard_MONSTER.gd" id="2_lurak"]
+[ext_resource type="Script" uid="uid://bq1tl0uaei7gf" path="res://scripts/scoundrel/Cards/tdcard_monster.gd" id="2_lurak"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_lurak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lurak"]
+resource_local_to_scene = true
+size = Vector2(25, 35)
 
 [node name="Card" instance=ExtResource("1_gjhn1")]
 collision_mask = 16
 script = ExtResource("2_lurak")
+
+[node name="GrabArea" parent="." index="0"]
+shape = SubResource("RectangleShape2D_lurak")
 
 [node name="MonsterStackMarker" type="Marker2D" parent="." index="3"]
 position = Vector2(6, 8.5)

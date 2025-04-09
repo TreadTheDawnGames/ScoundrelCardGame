@@ -122,15 +122,16 @@ func ShowAllWreaths(card : TDCard):
 	for wreath in Wreaths:
 		ShowWreath(wreath, card)
 
-func AddWreath(wreath : Wreath):
+func AddWreath(wreath : Wreath) -> bool:
+	
 	if(Wreaths.size() > 4):
 		print("Unable to add wreath: Card is at max wreaths.")
-		return
+		return false
 	if(!wreath.ValidForData(self) and Suit != SuitType.Wreaths):
-		return
+		return false
 	wreath.Attach(self)
 	Wreaths.append(wreath)
-	return
+	return true
 	
 func AddMultipleWreaths(wreaths : Array[Wreath]):
 	for wreath in wreaths:

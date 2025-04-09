@@ -18,12 +18,13 @@ func _init(name : String, art : String, value : int, lore : String, extraParams 
 	
 func SpecialSetup(card : TDCard):
 	super.SpecialSetup(card)
-	card.LuckinessDisplay = card.get_node("Art/LuckinessDisplay")
+	card.LuckinessDisplay = card.get_node_or_null("Art/LuckinessDisplay")
 	clamp(Luckiness, 0, 3)
-	for i in range(Luckiness+1):
-		if(i==0):
-			continue
-		card.LuckinessDisplay.text += "*"
+	if(card.LuckinessDisplay):
+		for i in range(Luckiness+1):
+			if(i==0):
+				continue
+			card.LuckinessDisplay.text += "*"
 	return
 	
 func PlayCard(playArea:TDCardPlayArea, card : TDCard):

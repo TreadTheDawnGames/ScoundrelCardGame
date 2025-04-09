@@ -29,5 +29,6 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 			pass
 	card.FreeMarker()
 	card.queue_free()
-	#Room.RemoveFromRoom(card)
+	Room.RemoveFromRoom(card)
+	TDCard.hoveredCards.erase(card)
 	return

@@ -20,6 +20,7 @@ func _init(art : String, price : int, wreathName : String, allowedDuplicates : b
 	WreathName = wreathName
 	Price = price
 	AllowedDuplicates = allowedDuplicates
+	useName = "AddWreath"
 	return
 
 ## Called when visual card is initialized
@@ -33,6 +34,22 @@ func Setup(card : TDCard):
 	sprite.position.y+= -6 * (data.Wreaths.find(self))
 	bCard.WreathContainer.add_child(sprite)
 	return
+	
+	
+func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
+	super.Postplay(playArea, card)
+	if(playArea.ValidPlayType("AddWreath")):
+		print("Assigned ", WreathName)
+		var assigneeCardData : TDCardData_Art = playArea.owner.Data
+		if(assigneeCardData.AddWreath(self)):
+			assigneeCardData.ShowAllWreaths(playArea.owner)
+			card.FreeMarker()
+			card.queue_free()
+		else:
+			card._Played = false
+			printerr("Invalid wreath assignal.")
+	return
+
 
 func PrePlay(_cardData : TDCardData):
 	return
