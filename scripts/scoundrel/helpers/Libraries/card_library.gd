@@ -56,18 +56,51 @@ static var SPECIAL : Array[CardInfo]=[
 	CardInfo.new("AceofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/AceofBeasts.png", 14, "", {}),
 	]
 static var DEV : Array[CardInfo] = [
-	CardInfo.new("2ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/2ofWeapons.png", 2 , "", {}),
+	#Weapons
+	CardInfo.new("2ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/2ofWeapons.png", 2, "", {}),
+	CardInfo.new("3ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/3ofWeapons.png", 3, "", {}),
+	CardInfo.new("4ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/4ofWeapons.png", 4, "", {}),
+	CardInfo.new("5ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/5ofWeapons.png", 5, "", {}),
+	CardInfo.new("6ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/6ofWeapons.png", 6, "", {}),
+	CardInfo.new("7ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/7ofWeapons.png", 7, "", {}),
+	CardInfo.new("8ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/8ofWeapons.png", 8, "", {}),
+	CardInfo.new("9ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/9ofWeapons.png", 9, "", {}),
+	CardInfo.new("10ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/10ofWeapons.png", 10, "", {}),
 	CardInfo.new("AceofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/AceofWeapons.png", 14, "Swird: Killer of many.", {}),
 	#Potions
+	CardInfo.new("2ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/2ofPotions.png", 2, "+1 Max Health", {"Ability": PotionAbilities.TwoOfPotions}),
+	CardInfo.new("3ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/3ofPotions.png", 3, "Ability Description: 3",{"Ability": PotionAbilities.ThreeOfPotions}),
+	CardInfo.new("4ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/4ofPotions.png", 4, "Ability Description: 4",{"Ability": PotionAbilities.FourOfPotions}),
+	CardInfo.new("5ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/5ofPotions.png", 5, "+2 to next attack.",{"Ability": PotionAbilities.FiveOfPotions}),
+	CardInfo.new("6ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/6ofPotions.png", 6, "Completely repairs your weapon.",{"Ability": PotionAbilities.SixOfPotions}),
+	CardInfo.new("7ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/7ofPotions.png", 7, "Flee a room for free.",{"Ability": PotionAbilities.SevenOfPotions}),
+	CardInfo.new("8ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/8ofPotions.png", 8, "Peek at the next room.",{"Ability": PotionAbilities.EightOfPotions}),
+	CardInfo.new("9ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/9ofPotions.png", 9, "Ability Description: 9",{"Ability": PotionAbilities.NineOfPotions}),
+	CardInfo.new("10ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/10ofPotions.png", 10, "Ability Description: 10",{"Ability": PotionAbilities.TenOfPotions}),
+	CardInfo.new("JackofPotions",TDCardData_Art.SuitType.Potions, "res://assets/cards/JackofPotions.png", 11, "Ability Description: Jack",{"Ability": PotionAbilities.JackOfPotions}),
+	CardInfo.new("QueenofPotions",TDCardData_Art.SuitType.Potions, "res://assets/cards/QueenofPotions.png", 12, "Ability Description: Queen",{"Ability": PotionAbilities.QueenOfPotions}),
 	CardInfo.new("KingofPotions",TDCardData_Art.SuitType.Potions, "res://assets/cards/KingofPotions.png", 13, "Ability Description: King",{"Ability": PotionAbilities.KingOfPotions}),
 	CardInfo.new("AceofPotions",TDCardData_Art.SuitType.Potions, "res://assets/cards/AceofPotions.png", 14, "Doesn't do anything. It just has art right now.",{"Ability": PotionAbilities.AceOfPotions}),
 	
 		#Ghosts
-	CardInfo.new("AceofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/AceofGhosts.png", 14,"King Ghost, something something lore.", {}),
+	#Ghosts
+	CardInfo.new("2ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/2ofGhosts.png", 2, "", {}),
+	CardInfo.new("3ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/3ofGhosts.png", 3, "", {}),
+	CardInfo.new("4ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/4ofGhosts.png", 4, "", {}),
+	CardInfo.new("5ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/5ofGhosts.png", 5, "", {}),
+	CardInfo.new("6ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/6ofGhosts.png", 6, "", {}),
+	CardInfo.new("7ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/7ofGhosts.png", 7, "", {}),
+	CardInfo.new("8ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/8ofGhosts.png", 8, "", {}),
+
 	#Beasts
-	CardInfo.new("10ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/10ofBeasts.png", 10, "Issa kitteh. He wants to eat your face.", {}),
-	CardInfo.new("AceofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/QueenofBeasts.png", 12, "", {}),
-	#Shops
+	CardInfo.new("2ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/2ofBeasts.png", 2, "", {}),
+	CardInfo.new("3ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/3ofBeasts.png", 3, "", {}),
+	CardInfo.new("4ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/4ofBeasts.png", 4, "", {}),
+	CardInfo.new("5ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/5ofBeasts.png", 5, "", {}),
+	CardInfo.new("6ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/6ofBeasts.png", 6, "", {}),
+	CardInfo.new("7ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/7ofBeasts.png", 7, "", {}),
+	CardInfo.new("8ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/8ofBeasts.png", 8, "", {}),
+
 	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/BasicShopCard.png", 0, "General store for Wreaths, Potions, and Weapons.", 
 	{"Luckiness":1,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], false, -1, 0, 0),

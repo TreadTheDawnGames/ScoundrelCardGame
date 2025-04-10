@@ -17,10 +17,13 @@ func SpecialSetup(card:TDCard)->void:
 	super.SpecialSetup(card)
 	if(CheckCardValid(card)):
 		var myCard : TDCard_Weapon = card
-		myCard.monster_pos_marker = myCard.get_node("MonsterPosMarker")
-		myCard.useMonsterCollisionShape = myCard.get_node("UseMonsterArea/CollisionShape2D")
-		myCard.useMonsterCollisionShape.disabled = true
-		MonsterSlots.push_back(card.monster_pos_marker)
+		myCard.monster_pos_marker = myCard.get_node_or_null("MonsterPosMarker")
+		if(myCard.monster_pos_marker):
+			MonsterSlots.push_back(card.monster_pos_marker)
+	
+		myCard.useMonsterCollisionShape = myCard.get_node_or_null("UseMonsterArea/CollisionShape2D")
+		if(myCard.useMonsterCollisionShape):
+			myCard.useMonsterCollisionShape.disabled = true
 	else:
 		printerr("Unable to set up card: \"" + card.CardName + ".\" It is not of type TDCard_Weapon. " + card.get_class())
 	return
@@ -101,3 +104,20 @@ func CleanWeapon():
 	SlainMonsters.clear()
 	LastMonsterValue = 15
 	return
+
+func HoverEnterAction(card : TDCard):
+	if(super.HoverEnterAction(card)):
+		card.z_index = RenderingServer.CANVAS_ITEM_Z_MAX - SlainMonsters.size()
+		for monster in SlainMonsters:
+			monster.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
+		return true
+	else:
+		return false
+
+func HoverExitAction(card : TDCard):
+	super.HoverExitAction(card)
+	for monster in SlainMonsters:
+		monster.z_index = 0
+	
+	return false
+	
