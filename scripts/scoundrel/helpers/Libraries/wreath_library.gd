@@ -15,7 +15,7 @@ static var All : Array[Wreath] = [
 	PermanentBonusWreath.new("res://assets/wreaths/Boiled.png", 0, false, [TDCardData_Art.SuitType.Potions], 1, "BoiledWreath"),
 	PermanentBonusWreath.new("res://assets/wreaths/Sharp.png", 0, true, [TDCardData_Art.SuitType.Weapons], 1, "SharpWreath"),
 	Wreath.new("res://assets/wreaths/GreenWreath.png", 0, "BaseWreath", true),
-	Wreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true),
+	GoldWreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true),
 ]
 
 static func Rand() -> Wreath:

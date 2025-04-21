@@ -49,6 +49,8 @@ func _process(_delta: float) -> void:
 						 ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons,  [], false, 1, 3),
 						 ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], true, -5)])
 		add_child(shop)
+	if(Input.is_action_just_pressed("Debug-AddMoney")):
+		Money.AlterMoney(10)
 	return
 	
 func LoadDeck(deck : Array[CardInfo]):

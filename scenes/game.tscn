@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://obwt4udpkhb5"]
+[gd_scene load_steps=24 format=3 uid="uid://obwt4udpkhb5"]
 
 [ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/DEBUG/DEBUG_tools.gd" id="1_yqjtg"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="17_rysoc"]
 [ext_resource type="Script" path="res://scripts/DEBUG/DEBUG_cards_in_discard_label.gd" id="18_37s47"]
 [ext_resource type="FontFile" uid="uid://b65tlnsb4ba2g" path="res://assets/UI/Fonts/TreadTheDawnPix.ttf" id="18_264po"]
+[ext_resource type="Script" uid="uid://dauour6imhbgh" path="res://scenes/money_display.gd" id="22_bt5mj"]
 [ext_resource type="PackedScene" uid="uid://cgtqex0uo7qc2" path="res://scenes/card overlays/CharacterOverlay.tscn" id="23_bt5mj"]
 
 [node name="Game" type="Node2D"]
@@ -100,21 +101,21 @@ alignment = 2
 script = ExtResource("16_ca42v")
 
 [node name="CardsInDeckLabel" type="RichTextLabel" parent="DungeonNodes"]
-offset_left = 4.0
-offset_top = -2.0
-offset_right = 396.0
-offset_bottom = 22.0
+offset_left = 1.25
+offset_top = 0.75
+offset_right = 393.25
+offset_bottom = 24.75
 scale = Vector2(0.25, 0.25)
-text = "Cards in deck: 0"
+text = "Cards in deck: Err"
 script = ExtResource("5_gee14")
 
 [node name="CardsInDiscardLabel" type="RichTextLabel" parent="DungeonNodes"]
-offset_left = 251.0
-offset_top = -1.0
-offset_right = 413.0
-offset_bottom = 23.0
+offset_left = 249.25
+offset_top = 0.5
+offset_right = 411.25
+offset_bottom = 24.5
 scale = Vector2(0.25, 0.25)
-text = "Cards in deck: 0"
+text = "Cards in deck: Err"
 script = ExtResource("18_37s47")
 
 [node name="HealthIcon" type="TextureRect" parent="DungeonNodes"]
@@ -161,6 +162,15 @@ theme_override_font_sizes/normal_font_size = 16
 text = "Err"
 fit_content = true
 scroll_active = false
+
+[node name="MoneyDisplay" type="RichTextLabel" parent="DungeonNodes"]
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 152.0
+offset_bottom = 39.0
+scale = Vector2(0.25, 0.25)
+text = "Money: Err"
+script = ExtResource("22_bt5mj")
 
 [node name="CharacterOverlay" parent="." instance=ExtResource("23_bt5mj")]
 visible = false

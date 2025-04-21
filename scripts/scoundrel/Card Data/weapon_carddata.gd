@@ -52,6 +52,7 @@ func Equip(card : TDCard):
 	return
 
 func Postplay(_area : TDCardPlayArea, _card : TDCard):
+	super.Postplay(_area, _card)
 	if(equipped):
 		_card._Played = false
 	return

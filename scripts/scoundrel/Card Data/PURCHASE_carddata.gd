@@ -13,22 +13,26 @@ func _init(name : String, art : String, value : int, lore : String, suit : TDCar
 	return
 	
 	
-func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
+func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("Buy")):
-		print("bought Card")
-		if(SaleCard.Suit != SuitType.Wreaths):
-			Transitioner.AddToDiscard(SaleCard)
+		if(Money.CanBuy(SaleCard.Value)):
+			super.Postplay(playArea, card)
+			print("bought Card")
+			if(SaleCard.Suit != SuitType.Wreaths):
+				Transitioner.AddToDiscard(SaleCard)
+			else:
+				var maybeShop = playArea.owner
+				if !maybeShop is ShopOverlay:
+					printerr("Play area was not a shop! unable to continue")
+					return
+				var shop : ShopOverlay = maybeShop
+				shop.AddBoughtWreaths(Wreaths)
+				print("Applyable wreaths: ", shop.BoughtWreaths)
+				pass
+			card.FreeMarker()
+			card.queue_free()
+			Room.RemoveFromRoom(card)
+			TDCard.hoveredCards.erase(card)
 		else:
-			var maybeShop = playArea.owner
-			if !maybeShop is ShopOverlay:
-				printerr("Play area was not a shop! unable to continue")
-				return
-			var shop : ShopOverlay = maybeShop
-			shop.AddBoughtWreaths(Wreaths)
-			print("Applyable wreaths: ", shop.BoughtWreaths)
-			pass
-	card.FreeMarker()
-	card.queue_free()
-	Room.RemoveFromRoom(card)
-	TDCard.hoveredCards.erase(card)
+			card._Played = false
 	return

@@ -65,7 +65,8 @@ func _ready():
 		pass
 	board_title.text = GetShopName()
 	
-	SetupShop(ShopInfo)
+	RerollShop(true)
+	#SetupShop(ShopInfo)
 	Room.card_board.SetBoardActive(false)
 	RerollShopButton.pressed.connect(RerollShop)
 	CloseShopButton.pressed.connect(CloseShop)
@@ -165,16 +166,20 @@ func DetermineWreathCount(shopData : ShopData) -> int:
 	
 
 
-func RerollShop():
-	rerollPrice+=1
-	RerollIfCards.clear()
-	priceText.text = str(rerollPrice) +"$"
-	for card in _board:
-		if(is_instance_valid(card)):
-			card.FreeMarker()
-			card.queue_free()
-	_board.clear()
-	SetupShop(ShopInfo)
+func RerollShop(freeRoll : bool = false):
+	if(freeRoll or Money.CanBuy(rerollPrice)):
+		if(!freeRoll):
+			rerollPrice+=1
+		RerollIfCards.clear()
+		priceText.text = str(rerollPrice) +"$"
+		for card in _board:
+			if(is_instance_valid(card)):
+				card.FreeMarker()
+				card.queue_free()
+		_board.clear()
+		SetupShop(ShopInfo)
+		if(rerollPrice > Money.CurrentMoney()):
+			RerollShopButton.disabled = true
 	return
 
 func CloseShop():

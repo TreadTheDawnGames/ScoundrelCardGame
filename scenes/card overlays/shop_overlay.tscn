@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cywqynob1jiss"]
+[gd_scene load_steps=16 format=3 uid="uid://cywqynob1jiss"]
 
 [ext_resource type="Script" uid="uid://ccar62fj72sjy" path="res://scripts/card boards/shop_overlay.gd" id="1_esylk"]
 [ext_resource type="PackedScene" uid="uid://cgpw51gfo6yit" path="res://scenes/cards/TDCard_base.tscn" id="2_3f3sj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d0kpbcpceki2l" path="res://assets/UI/Shop/RerollShopButton3.png" id="6_xdgco"]
 [ext_resource type="Texture2D" uid="uid://osba4rtksrqu" path="res://assets/UI/Shop/RerollShopButton2.png" id="7_lsx2n"]
 [ext_resource type="Texture2D" uid="uid://c7rv62mn0lnla" path="res://assets/UI/Shop/CloseShopButton1.png" id="9_lpou0"]
+[ext_resource type="Texture2D" uid="uid://dm4ya57xrg8kw" path="res://assets/UI/Shop/RerollShopButtonDisabled.png" id="9_sv6i2"]
 [ext_resource type="Texture2D" uid="uid://dlr0n4kn0p25k" path="res://assets/UI/Shop/CloseShopButton3.png" id="10_rbrmy"]
 [ext_resource type="Texture2D" uid="uid://cjkdhxt6mclah" path="res://assets/UI/Shop/CloseShopButton2.png" id="11_sv6i2"]
 [ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="12_rbrmy"]
@@ -78,6 +79,7 @@ offset_bottom = -3.0
 texture_normal = ExtResource("5_ruoej")
 texture_pressed = ExtResource("6_xdgco")
 texture_hover = ExtResource("7_lsx2n")
+texture_disabled = ExtResource("9_sv6i2")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel/RerollShop"]
 layout_mode = 0

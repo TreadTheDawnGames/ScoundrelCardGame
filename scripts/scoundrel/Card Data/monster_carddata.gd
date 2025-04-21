@@ -41,7 +41,7 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 				weaponCardData.AddSlainMonster(monsterCard)
 				card.get_parent().move_child(card, weaponCardData.SlainMonsters.size())
 				slain = true
-			else: #weapon too damaged
+			else: #weaon too damaged
 				Attack(Value - WeaponManager.GetAndResetBonus())
 				Transitioner.AddToDiscard(self)
 				monsterCard.FreeMarker()

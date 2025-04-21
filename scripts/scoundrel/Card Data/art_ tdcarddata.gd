@@ -3,7 +3,7 @@ class_name TDCardData_Art
 var Art : Texture2D
 var useName : String
 var Lore : String = ""
-var Wreaths : Array[Wreath]
+var Wreaths : Array#[Wreath]
 var Value : int
 var Modifier : int
 var clickTimer : SceneTreeTimer
@@ -62,8 +62,10 @@ func Preplay(_playArea, card):
 	return
 
 func Postplay(_playArea : TDCardPlayArea, _card : TDCard):
+	super.Postplay(_playArea, _card)
 	for wreath in Wreaths:
 		wreath.PostPlay(self)
+		print(str(wreath.get_class()))
 	Modifier = 0
 	return
 
@@ -128,9 +130,21 @@ func AddWreath(wreath : Wreath) -> bool:
 		print("Unable to add wreath: Card is at max wreaths.")
 		return false
 	if(!wreath.ValidForData(self) and Suit != SuitType.Wreaths):
+		printerr("Unable to add wreath: Invalid type.")
 		return false
 	wreath.Attach(self)
+	if(wreath is GoldWreath):
+		print("I am a goldwreath")
+	if(wreath is PermanentBonusWreath):
+		print("I am a permanent bonus wreath")
 	Wreaths.append(wreath)
+	for wreathe in Wreaths:
+		print(wreathe.WreathName)
+		if(wreathe is GoldWreath):
+			print("There's a gold wreath here!")
+		if(wreathe is PermanentBonusWreath):
+			print("There's a permanent bonus wreath here")
+
 	return true
 	
 func AddMultipleWreaths(wreaths : Array[Wreath]):

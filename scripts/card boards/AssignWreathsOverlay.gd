@@ -16,6 +16,7 @@ func _ready():
 
 func MakeWreaths(slots : Array) -> Array[TDCardPositionMarker2D]:
 	var slotCount : int = 0
+	#slots.sort_custom(func(a, b): )
 	for slot in slots:
 		AddCardFromSource(WREATH_VISUAL, boughtWreaths[slotCount], false, true, slot).scale *= 4
 		slotCount+=1

@@ -41,7 +41,13 @@ func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("AddWreath")):
 		print("Assigned ", WreathName)
 		var assigneeCardData : TDCardData_Art = playArea.owner.Data
-		if(assigneeCardData.AddWreath(self)):
+		#Okay I think the issue is that AddWrath(self) is adding the 
+		#item as a wreath instead of its type. I'm not sure how to fix 
+		#that other than to duplicate the logic in each wreath type...
+		
+		#Scratch that, duplicate logic didn't work either.
+		print("Type: ", type_string(typeof(GoldWreath)))
+		if(assigneeCardData.AddWreath(self)): #This appears to be the problem?
 			assigneeCardData.ShowAllWreaths(playArea.owner)
 			card.FreeMarker()
 			card.queue_free()
@@ -55,6 +61,7 @@ func PrePlay(_cardData : TDCardData):
 	return
 	
 func PostPlay(_cardData : TDCardData):
+	print("Hi im a wreath")
 	return
 
 func Attach(_cardData : TDCardData):
