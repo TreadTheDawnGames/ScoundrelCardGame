@@ -9,6 +9,13 @@ func _init(art : String, price : int, allowedDuplicates : bool, validSuitTargets
 	super._init(art, price, wreathName, allowedDuplicates)
 	ValidSuitTargets = validSuitTargets
 	Bonus = bonus
+	Lore = "+" + str(bonus) +" to card value. Valid card types: "
+	var index : int = 0
+	for validTarget in ValidSuitTargets:
+		Lore += str(TDCardData_Art.SuitType.find_key(validTarget))
+		index+=1
+		if(index<ValidSuitTargets.size()):
+			Lore+=", "
 	return
 
 func Copy() -> Wreath:

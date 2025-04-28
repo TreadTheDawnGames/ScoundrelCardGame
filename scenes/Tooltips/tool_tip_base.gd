@@ -1,5 +1,6 @@
-extends NinePatchRect
+extends PanelContainer
 var lore : String
+@onready var textLabel: RichTextLabel = $RichTextLabel
 
 func _ready() -> void:
-	get_node("RichTextLabel").text = lore
+	textLabel.text = lore

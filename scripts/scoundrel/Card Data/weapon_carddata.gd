@@ -46,7 +46,6 @@ func Equip(card : TDCard):
 	card.useMonsterCollisionShape.disabled = false
 	equipped = true
 	card.get_parent().move_child(card, 0)
-	#card.tooltip.show_tooltip = false
 	WeaponManager.SetActiveWeapon(self)
 
 	return

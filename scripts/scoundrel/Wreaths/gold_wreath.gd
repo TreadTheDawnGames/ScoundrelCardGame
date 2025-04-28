@@ -3,6 +3,7 @@ class_name GoldWreath
 
 func _init(art : String, price : int, wreathName : String, allowedDuplicates : bool):
 	super._init(art, price, wreathName, allowedDuplicates)
+	Lore = "Gives +VALUE $ when played."
 	return
 
 func PostPlay(cardData : TDCardData):
@@ -11,4 +12,4 @@ func PostPlay(cardData : TDCardData):
 	return
 
 func Copy() -> Wreath:
-	return GoldWreath.new(Art.resource_path, Price, WreathName, AllowedDuplicates )
+	return GoldWreath.new(Art.resource_path, Price, WreathName, AllowedDuplicates)

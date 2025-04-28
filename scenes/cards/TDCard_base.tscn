@@ -11,6 +11,3 @@ collision_mask = 76
 
 [node name="GrabArea" parent="." index="0"]
 shape = SubResource("RectangleShape2D_k8rv6")
-
-[node name="Tooltip" parent="." index="1"]
-follow_mouse = true

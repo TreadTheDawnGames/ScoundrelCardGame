@@ -28,12 +28,23 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		Transitioner.AddToDiscard(self)
 		card.queue_free()
 		handled = true
-	elif(playArea.ValidPlayType("PEquip")):
+	if(handled):
+		Room.RemoveFromRoom(card)
+	else:
+		super.PlayCard(playArea, card)
+	return
+
+
+func Postplay(playArea : TDCardPlayArea, card : TDCard):
+
+	var handled : bool = false
+	if(playArea.ValidPlayType("PEquip")):
 		var slot : TDCardPositionMarker2D = playArea.get_node("EquippedSlot")
 		if(!slot.isFilled):
 			card.FillMarker(slot)
 			card._Played = false
 			handled = true
+
 	if(handled):
 		Room.RemoveFromRoom(card)
 	else:

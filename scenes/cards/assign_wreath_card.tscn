@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbfgfvpmdudhj"]
+[gd_scene load_steps=6 format=3 uid="uid://dbfgfvpmdudhj"]
 
 [ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_weapon.gd" id="1_fp0w8"]
 [ext_resource type="Theme" uid="uid://doyae2xhqstbr" path="res://assets/UI/Shop/ShopText.tres" id="2_en23a"]
-[ext_resource type="Script" uid="uid://c46b2csnvnnhm" path="res://addons/tooltips/tooltip.gd" id="2_kk1i7"]
-[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_04o86"]
 [ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="5_iq1jw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_en23a"]
@@ -20,15 +18,6 @@ script = ExtResource("1_fp0w8")
 
 [node name="GrabArea" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_en23a")
-
-[node name="Tooltip" type="Node" parent="."]
-script = ExtResource("2_kk1i7")
-visuals_res = ExtResource("3_04o86")
-owner_path = NodePath("..")
-follow_mouse = false
-offset_x = -73.0
-offset_y = -145.0
-metadata/_custom_type_script = "uid://c46b2csnvnnhm"
 
 [node name="Art" type="Sprite2D" parent="."]
 

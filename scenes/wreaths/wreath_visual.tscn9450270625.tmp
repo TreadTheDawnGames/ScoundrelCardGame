@@ -1,4 +1,14 @@
-class_name Tooltip
+[gd_scene load_steps=5 format=3 uid="uid://ckc45s7luqacx"]
+
+[ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scenes/wreaths/TDCard_Base.gd" id="1_7f2tf"]
+[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_w71l5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oytra"]
+resource_local_to_scene = true
+size = Vector2(29, 10)
+
+[sub_resource type="GDScript" id="GDScript_7f2tf"]
+script/source = "#class_name Tooltip
 extends Node
 
 
@@ -22,6 +32,7 @@ extends Node
 @export_range (0, 100, 1) var padding_x : float
 @export_range (0, 100, 1) var padding_y : float
 @export var show_tooltip : bool = true
+@export var marginForWreath : int = 15
 
 #####################################
 # PUBLIC VARIABLES 
@@ -62,12 +73,11 @@ func Setup(card : TDCard) -> void:
 	# initialize the timer
 	_timer = Timer.new()
 	add_child(_timer)
-	_timer.connect("timeout", _custom_show)
+	_timer.connect(\"timeout\", _custom_show)
 	# default to hide
 	_visuals.hide()
 	_visuals.lore = card.Data.Lore
 	_visuals.position = Vector2(99999,99999)
-
 
 func _process(delta: float) -> void:
 	if(!_visuals):
@@ -76,7 +86,7 @@ func _process(delta: float) -> void:
 		if(!show_tooltip):
 			_visuals.hide()
 			return
-		_visuals.position = _determine_position()
+		_visuals.position = _determine_position(owner_node.Data.Wreaths.size()>0)
 
 
 #####################################
@@ -87,7 +97,7 @@ func _process(delta: float) -> void:
 # HELPER FUNCTIONS
 #####################################
 
-func _determine_position() -> Vector2:
+func _determine_position(hasWreath : bool) -> Vector2:
 	var border = get_viewport().size - padding
 	extents = _visuals.get_rect().size
 	var base_pos = _get_screen_pos()
@@ -99,6 +109,9 @@ func _determine_position() -> Vector2:
 	var final_y = base_pos.y - extents.y - offset.y
 	if final_y < padding.y:
 		final_y = base_pos.y + offset.y
+		
+	if(hasWreath):
+		final_y += marginForWreath
 	return Vector2(final_x, final_y)
 
 func TooltipStart() -> void:
@@ -116,7 +129,7 @@ func TooltipEnd() -> void:
 func _custom_show() -> void:
 	_timer.stop()
 	if(show_tooltip):
-		_visuals.position = _determine_position()
+		_visuals.position = _determine_position(owner_node.Data.Wreaths.size()>0)
 		_visuals.show()
 
 
@@ -135,3 +148,25 @@ func _get_screen_pos() -> Vector2:
 		position = owner_node.rect_position
 	
 	return position
+"
+
+[node name="WreathVisual" type="Area2D"]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("1_7f2tf")
+metadata/_custom_type_script = "uid://b2ly22oubeuou"
+
+[node name="GrabArea" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oytra")
+
+[node name="Art" type="Sprite2D" parent="."]
+
+[node name="WreathContainer" type="Node2D" parent="Art"]
+
+[node name="Tooltip" type="Node" parent="."]
+script = SubResource("GDScript_7f2tf")
+visuals_res = ExtResource("3_w71l5")
+owner_path = NodePath("..")
+follow_mouse = false
+offset_x = -73.0
+offset_y = -85.0

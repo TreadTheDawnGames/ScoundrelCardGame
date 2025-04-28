@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://qfutoakl0r1q"]
+
+[ext_resource type="Script" uid="uid://d2bbge46hi2q7" path="res://scripts/Managers/tooltip_manager.gd" id="1_f0fos"]
+
+[node name="TooltipManager" type="Node"]
+script = ExtResource("1_f0fos")
+
+[node name="ShowTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

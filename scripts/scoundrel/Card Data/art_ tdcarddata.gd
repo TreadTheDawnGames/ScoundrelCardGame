@@ -37,8 +37,6 @@ func SpecialSetup(card : TDCard):
 	card.Art = card.get_node("Art")
 	card.Art.texture = Art
 	if(card is TDCard_Base):
-		card.tooltip = card.get_node("Tooltip")
-		card.tooltip.Setup(card)
 		card.WreathContainer = card.get_node("Art/WreathContainer")
 		for wreath : Wreath in Wreaths:
 			wreath.Setup(card)
@@ -50,7 +48,7 @@ func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
 
 func GrabAction(card : TDCard):
 	#card.get_parent().move_child(card, card.get_parent().get_child_count()-1)
-	card.tooltip.show_tooltip = false
+	Tooltip.End()
 	clickTimer = card.get_tree().create_timer(clickTime)
 	return
 
@@ -72,10 +70,9 @@ func Postplay(_playArea : TDCardPlayArea, _card : TDCard):
 func DropAction(card: TDCard):
 
 	var myCard : TDCard_Base = card
-	myCard.tooltip.show_tooltip = true
-	myCard.tooltip.TooltipEnd()
+	Tooltip.End()
 	if(card._hovered):
-		myCard.tooltip.TooltipStart()
+		Tooltip.Start(card)
 
 	if(clickTimer.time_left > 0):
 		ClickAction(card)
@@ -91,11 +88,10 @@ func HoverEnterAction(card : TDCard):
 	for otherCard in hoveredCards:
 		if(is_instance_valid(otherCard)):
 			otherCard.z_index = 0
-			otherCard.tooltip.TooltipEnd()
+			Tooltip.End()
 		
 	card.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
-	card.tooltip.show_tooltip = true
-	card.tooltip.TooltipStart()
+	Tooltip.Start(card)
 	if(Room.card_board._selectedCards.size() > 0 and Room.card_board._selectedCards[0] != card):
 		return false
 	Room.card_board.SelectCard(card)
@@ -104,7 +100,7 @@ func HoverEnterAction(card : TDCard):
 func HoverExitAction(card : TDCard):
 	card.z_index = 0
 	Room.card_board.DeselectCard(card)
-	card.tooltip.TooltipEnd()
+	Tooltip.End()
 	if(TDCard.hoveredCards.size()>0):
 		var curHovCard = TDCard.hoveredCards[-1]
 		if(is_instance_valid(curHovCard)):

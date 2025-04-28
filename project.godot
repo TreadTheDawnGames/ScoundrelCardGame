@@ -24,6 +24,7 @@ WeaponManager="*res://scenes/Globals/attack_bonus_manager.tscn"
 Transitioner="*res://scenes/Globals/level_transitioner.tscn"
 CardHoverChecker="*res://scripts/cards/CardHoverChecker.tscn"
 Money="*res://scenes/Globals/money_manager.tscn"
+Tooltip="*res://scenes/Globals/tooltip_manager.tscn"
 
 [display]
 

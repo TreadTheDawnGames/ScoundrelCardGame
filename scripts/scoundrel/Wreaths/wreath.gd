@@ -21,6 +21,7 @@ func _init(art : String, price : int, wreathName : String, allowedDuplicates : b
 	Price = price
 	AllowedDuplicates = allowedDuplicates
 	useName = "AddWreath"
+	Lore = "This wreath either doesn't do anything or Caspian forgot to set the lore."
 	return
 
 ## Called when visual card is initialized
