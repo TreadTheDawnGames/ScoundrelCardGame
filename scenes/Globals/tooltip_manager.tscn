@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://qfutoakl0r1q"]
+[gd_scene load_steps=3 format=3 uid="uid://qfutoakl0r1q"]
 
 [ext_resource type="Script" uid="uid://d2bbge46hi2q7" path="res://scripts/Managers/tooltip_manager.gd" id="1_f0fos"]
+[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tooltip_base.tscn" id="2_6shnu"]
 
 [node name="TooltipManager" type="Node"]
 script = ExtResource("1_f0fos")
+tooltipScene = ExtResource("2_6shnu")
+offsetVec = Vector2(-62, 100)
 
 [node name="ShowTimer" type="Timer" parent="."]
 wait_time = 0.5

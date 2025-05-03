@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckc45s7luqacx"]
 
 [ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scenes/wreaths/TDCard_Base.gd" id="1_7f2tf"]
-[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tool_tip_base.tscn" id="3_w71l5"]
+[ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tooltip_base.tscn" id="3_w71l5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oytra"]
 resource_local_to_scene = true
@@ -50,7 +50,7 @@ var _timer: Timer
 #####################################
 @onready var owner_node = get_node(owner_path)
 @onready var offset: Vector2 = Vector2(offset_x, offset_y)
-@onready var padding: Vector2i = Vector2i(padding_x, padding_y)
+@onready var padding: Vector2i = Vector2i(int(padding_x), int(padding_y))
 @onready var extents: Vector2
 
 var Card : TDCard
@@ -79,7 +79,7 @@ func Setup(card : TDCard) -> void:
 	_visuals.lore = card.Data.Lore
 	_visuals.position = Vector2(99999,99999)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(!_visuals):
 		return
 	if _visuals.visible:

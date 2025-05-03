@@ -69,7 +69,6 @@ func Postplay(_playArea : TDCardPlayArea, _card : TDCard):
 
 func DropAction(card: TDCard):
 
-	var myCard : TDCard_Base = card
 	Tooltip.End()
 	if(card._hovered):
 		Tooltip.Start(card)
