@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://qfutoakl0r1q"]
+[gd_scene load_steps=4 format=3 uid="uid://qfutoakl0r1q"]
 
 [ext_resource type="Script" uid="uid://d2bbge46hi2q7" path="res://scripts/Managers/tooltip_manager.gd" id="1_f0fos"]
 [ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tooltip_base.tscn" id="2_6shnu"]
+[ext_resource type="PackedScene" uid="uid://bn8w7udrduca8" path="res://scenes/Tooltips/tool_tip_wreath.tscn" id="3_7o24d"]
 
 [node name="TooltipManager" type="Node"]
 script = ExtResource("1_f0fos")
 tooltipScene = ExtResource("2_6shnu")
+wreathTipScene = ExtResource("3_7o24d")
 offsetVec = Vector2(-62, 100)
 
 [node name="ShowTimer" type="Timer" parent="."]

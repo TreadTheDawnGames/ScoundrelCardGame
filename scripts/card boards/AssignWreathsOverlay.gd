@@ -5,6 +5,7 @@ const WREATH_VISUAL : PackedScene = preload("res://scenes/wreaths/wreath_visual.
 const CARD_DISPLAY : PackedScene = preload("res://scenes/cards/assign_wreath_card.tscn")
 var boughtWreaths : Array[Wreath]
 var DoneButton : Button
+var shuffleOnClose : bool = false
 
 func _ready():
 	#super._ready()
@@ -24,7 +25,9 @@ func MakeWreaths(slots : Array) -> Array[TDCardPositionMarker2D]:
 	
 func MakeCards(slots : Array) -> Array[TDCardPositionMarker2D]:
 	for slot in slots:
-		AddCardFromSource(CARD_DISPLAY, Deck.DrawCard(), true, true, slot).scale *= 4
+		var card = AddCardFromSource(CARD_DISPLAY, Deck.DrawCard(), true, true, slot)
+		if(card):
+			card.scale *= 4
 	return slots
 
 func Done():
@@ -35,5 +38,7 @@ func Done():
 			if(not data is Wreath):
 				Deck.BuryCard(data)
 			
+	if(shuffleOnClose):
+		Deck.Shuffle()
 	queue_free()
 	return

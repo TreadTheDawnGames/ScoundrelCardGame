@@ -49,4 +49,8 @@ func Postplay(playArea : TDCardPlayArea, card : TDCard):
 		Room.RemoveFromRoom(card)
 	else:
 		super.PlayCard(playArea, card)
+	
+	for wreath in Wreaths:
+		wreath.PostPlay(self)
+		print(str(wreath.get_class()))
 	return

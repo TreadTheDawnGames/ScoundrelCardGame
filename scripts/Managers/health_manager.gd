@@ -2,7 +2,7 @@ extends Node
 class_name HealthManager
 
 #Technically used the Brave search AI to get /root/
-@onready var health_text: RichTextLabel = $"/root/Game/DungeonNodes/HealthIcon/HealthText"
+@onready var health_text: RichTextLabel = $"/root/Game/DungeonNodes/Canvas/CanvasLayer/HealthIcon/HealthText"
 
 @export
 var maxHealth : int = 20

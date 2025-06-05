@@ -1,7 +1,7 @@
 extends Node
 class_name WeaponsManager
 
-@onready var rich_text_label: RichTextLabel = $/root/Game/DungeonNodes/AttackBonusIcon/RichTextLabel
+@onready var rich_text_label: RichTextLabel = $/root/Game/DungeonNodes/Canvas/CanvasLayer/AttackBonusIcon/RichTextLabel
 
 var _AttackBonus : int = 0
 var _PassiveBonus : int = 0

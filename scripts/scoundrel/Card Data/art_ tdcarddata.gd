@@ -69,7 +69,7 @@ func Postplay(_playArea : TDCardPlayArea, _card : TDCard):
 
 func DropAction(card: TDCard):
 
-	Tooltip.End()
+	#Tooltip.End()
 	if(card._hovered):
 		Tooltip.Start(card)
 
@@ -87,7 +87,7 @@ func HoverEnterAction(card : TDCard):
 	for otherCard in hoveredCards:
 		if(is_instance_valid(otherCard)):
 			otherCard.z_index = 0
-			Tooltip.End()
+			#Tooltip.End()
 		
 	card.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
 	Tooltip.Start(card)

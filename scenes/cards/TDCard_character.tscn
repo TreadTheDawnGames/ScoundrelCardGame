@@ -12,5 +12,5 @@ collision_mask = 32
 [node name="GrabArea" parent="." index="0"]
 shape = SubResource("RectangleShape2D_ol300")
 
-[node name="UseMonsterArea" parent="." index="3"]
+[node name="UseMonsterArea" parent="." index="2"]
 collision_layer = 1

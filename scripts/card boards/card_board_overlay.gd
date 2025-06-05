@@ -44,3 +44,7 @@ func Initialize(slotCount : int, markerExtents : ReferenceRect, maxWidth : int =
 		marker.position = Vector2((cellWidth*(i%maxWidth))+wOffset, cellHeight*floor((float(i) / float(maxWidth)))+hOffset)
 		initedSlots.append(marker)
 	return initedSlots
+
+func SetTitle(title : String):
+	$Panel/BoardTitle.text = title
+	return
