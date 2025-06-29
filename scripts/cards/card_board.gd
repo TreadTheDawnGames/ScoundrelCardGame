@@ -34,6 +34,8 @@ func AddCardFromItsScene(data : TDCardData, isAesthetic : bool, useGoToPos : boo
 		card = AddCardFromSource(POTION_CARD, data, isAesthetic, useGoToPos, slot)
 	elif(data is TDCardData_Shop):
 		card = AddCardFromSource(SHOP_CARD, data, isAesthetic, useGoToPos, slot)
+	elif(data is TDCardData_Purchase):
+		card = AddCardFromSource(BASE_CARD, data, isAesthetic, useGoToPos, slot)
 	else:
 		if(data):
 			printerr("CardData not recognize for card \"" + data.CardName +".\" Defaulting to Base Card")

@@ -14,7 +14,9 @@ var rerollPrice : int = 5
 var RerollIfCards : PackedStringArray
 
 var ShopInfo : Array[ShopData] 
-var wreathProbability : Array[int] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1] # 22.73% chance of success
+func wreathProbability() -> float:
+	return randi()%100<23
+	#return 0 #Array[int] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1] # 22.73% chance of success
 var Luck : int = 0
 var _luckMult : int = 2
 
@@ -150,9 +152,9 @@ func DetermineWreathCount(shopData : ShopData) -> int:
 	var numberOfWreaths : int = 0
 	
 	for i in timesToRoll + (Luck * _luckMult):
-		var rand : int = wreathProbability.pick_random()
-		while rand != 0:
-			rand = wreathProbability.pick_random()
+		var rand : bool = wreathProbability()
+		while rand:
+			rand = wreathProbability()
 			numberOfWreaths+=1
 			if(numberOfWreaths>4):
 				return numberOfWreaths
