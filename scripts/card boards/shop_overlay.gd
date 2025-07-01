@@ -197,6 +197,8 @@ func CloseShop():
 		get_parent().add_child(wreathApplyScene)
 	
 	queue_free()
+	Room.roomPaused = false
+	Room.ReplenishRoom()
 	return
 
 func GetShopName() -> String:

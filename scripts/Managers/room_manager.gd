@@ -11,7 +11,7 @@ var roomCards : Array[TDCard]
 @export var shopCard : PackedScene
 signal ReplenishingRoom
 signal ReplenishedRoom
-
+var roomPaused : bool = false
 
 func _ready() -> void:
 	var children = get_node("/root/Game/DungeonNodes/RoomSlots").find_children("*", "TDCardPositionMarker2D", false) as Array[TDCardPositionMarker2D]
@@ -32,6 +32,9 @@ func Flee():
 	return
 
 func ReplenishRoom():
+	if(roomPaused):
+		return;
+		
 	ReplenishingRoom.emit()
 	
 	if(_GetFilledRoomSlotsCount() < 2):

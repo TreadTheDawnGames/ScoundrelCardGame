@@ -33,6 +33,7 @@ func PlayCard(playArea:TDCardPlayArea, card : TDCard):
 		Transitioner.AddToDiscard(self)
 		card.FreeMarker()
 		card.queue_free()
+	Room.roomPaused = true
 	Room.RemoveFromRoom(card)
 	return
 
