@@ -19,7 +19,8 @@ func ViewRoom():
 	for info in nextRoom:
 		if(!is_instance_valid(info)):
 			continue
-		AddCardFromItsScene(info,false,true, Slots[0][i]).scale *= 4
+		#fully aware this is proably the wrong choice in making the card draggable but not usable.
+		AddCardFromItsScene(info,true,false, Slots[0][i]).scale *= 4
 		i+=1
 	return
 

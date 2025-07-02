@@ -48,7 +48,7 @@ func ReplenishRoom():
 			if(Deck.Count()>0):
 				var slot = _GetUnfilledRoomSlot()
 				if(slot):
-					var card : TDCard = card_board.AddCardFromItsScene(Deck.DrawCard(), false, true, slot)
+					var card : TDCard = card_board.AddCardFromItsScene(Deck.DrawCard(), true, true, slot)
 					roomCards.push_back(card)
 			else: 
 				break
@@ -82,3 +82,8 @@ func GetRoomCardData() -> Array[TDCardData]:
 		if(is_instance_valid(card)):
 			datas.append(card.Data)
 	return datas
+
+func PauseRoom(isPaused : bool):
+	roomPaused = isPaused
+	card_board.SetBoardActive(!isPaused)
+	return

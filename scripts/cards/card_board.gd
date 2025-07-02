@@ -12,44 +12,44 @@ var POTION_CARD : PackedScene = preload("res://scenes/cards/TDCard_base.tscn")
 var SHOP_CARD : PackedScene = preload("res://scenes/cards/TDCard_Shop.tscn")
 
 
-
-func AddCard(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null) -> TDCard:
-	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos)
+###Adds a card to this board. 
+func AddCard(data : TDCardData, isDragDroppable : bool, isActionUsable : bool, goToPos : TDCardPositionMarker2D = null) -> TDCard:
+	var card = CreateCardFromData(data, isDragDroppable, isActionUsable, goToPos)
 	if(!card):
 		printerr("[TDCardBoard] Unable to create card to add to board.")
 		return
 	add_child(card)
-	card.SetUsable(true)
+	card.SetGrabbable(true)
 	card.scale *= 4
 	_board.push_back(card)
 	return card
 
-func AddCardFromItsScene(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, slot : TDCardPositionMarker2D = null) -> TDCard:
+func AddCardFromItsScene(data : TDCardData, isDragDroppable : bool, isActionUsable : bool, slot : TDCardPositionMarker2D = null) -> TDCard:
 	var card
 	if(data is TDCardData_Monster):
-		card = AddCardFromSource(MONSTER_CARD, data, isAesthetic, useGoToPos, slot)
+		card = AddCardFromSource(MONSTER_CARD, data, isDragDroppable, isActionUsable, slot)
 	elif(data is TDCardData_Weapon):
-		card = AddCardFromSource(WEAPON_CARD, data, isAesthetic, useGoToPos, slot)
+		card = AddCardFromSource(WEAPON_CARD, data, isDragDroppable, isActionUsable, slot)
 	elif(data is TDCardData_Ability):
-		card = AddCardFromSource(POTION_CARD, data, isAesthetic, useGoToPos, slot)
+		card = AddCardFromSource(POTION_CARD, data, isDragDroppable, isActionUsable, slot)
 	elif(data is TDCardData_Shop):
-		card = AddCardFromSource(SHOP_CARD, data, isAesthetic, useGoToPos, slot)
+		card = AddCardFromSource(SHOP_CARD, data, isDragDroppable, isActionUsable, slot)
 	elif(data is TDCardData_Purchase):
-		card = AddCardFromSource(BASE_CARD, data, isAesthetic, useGoToPos, slot)
+		card = AddCardFromSource(BASE_CARD, data, isDragDroppable, isActionUsable, slot)
 	else:
 		if(data):
 			printerr("CardData not recognize for card \"" + data.CardName +".\" Defaulting to Base Card")
-			card = AddCardFromSource(BASE_CARD, data, isAesthetic, useGoToPos, slot)
+			card = AddCardFromSource(BASE_CARD, data, isDragDroppable, isActionUsable, slot)
 		else:
 			printerr("Unreconglized CardData: null")
 	return card
 
-func AddCardFromSource(source : PackedScene, data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null) -> TDCard:
-	var card = CreateCardFromData(data, isAesthetic, useGoToPos, goToPos, source)
+func AddCardFromSource(source : PackedScene, data : TDCardData, isDragDroppable : bool, isActionUsable : bool, goToPos : TDCardPositionMarker2D = null) -> TDCard:
+	var card = CreateCardFromData(data, isDragDroppable, isActionUsable, goToPos, source)
 	if(!card):
 		return
 	add_child(card)
-	card.SetUsable(true)
+	card.SetGrabbable(true)
 	_board.push_back(card)
 	return card
 	
@@ -73,7 +73,7 @@ func DeselectAll() -> void:
 	_selectedCards.resize(0)
 	return
 
-func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool = false, goToPos : TDCardPositionMarker2D = null, source : PackedScene = null) -> TDCard:
+func CreateCardFromData(data : TDCardData, isDragDroppable : bool, isActionUsable : bool, goToPos : TDCardPositionMarker2D = null, source : PackedScene = null) -> TDCard:
 	if(!data):
 		var reason : String = ""
 		if(!data):
@@ -88,7 +88,7 @@ func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool
 		unpackedScene = cardSceneSource.instantiate()
 	
 	if(unpackedScene is TDCard):
-		unpackedScene.SetUp(data, isAesthetic, useGoToPos, goToPos)
+		unpackedScene.SetUp(data, isDragDroppable, isActionUsable, goToPos)
 	else:
 		printerr("\""+unpackedScene.get_class()+"\"" + " is not a TDCard. The root node of your card object must be a TDCard.")
 		unpackedScene.queue_free()
@@ -98,5 +98,5 @@ func CreateCardFromData(data : TDCardData, isAesthetic : bool, useGoToPos : bool
 func SetBoardActive(active : bool):
 	for card in _board:
 		if(is_instance_valid(card)):
-			card.SetUsable(active)
+			card.SetGrabbable(active)
 	return

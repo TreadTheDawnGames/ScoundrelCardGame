@@ -78,7 +78,21 @@ func DropAction(card: TDCard):
 	return
 
 func Frame(card : TDCard, delta : float) -> void:
-	TDCardActions_DefOf.Frame.Run(card, delta)
+	if(TDCard.hoveredCards.size() > 0):
+		if(TDCard.hoveredCards[-1] != card):
+			card._hovered = false
+		else:
+			card._hovered = true
+	if(card._hovered):
+		if(card.grabbed):
+			if(not card.usable):
+				card.Art.scale = card.Art.scale.lerp(Vector2(1.33,1.33), card.returnSpeed * delta)
+			elif(card._IsActionUsable):
+				card.Art.scale = card.Art.scale.lerp(Vector2(0.75, 0.75), card.returnSpeed * delta) 
+		else:
+			card.Art.scale = card.Art.scale.lerp(Vector2(1.25,1.25), card.returnSpeed * delta)
+	else:
+		card.Art.scale = card.Art.scale.lerp(Vector2.ONE, card.returnSpeed * delta)
 	return
 	
 func HoverEnterAction(card : TDCard):

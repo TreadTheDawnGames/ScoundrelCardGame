@@ -5,12 +5,8 @@ var area2D;
 var grabbed : bool = false
 var _hovered : bool = false;
 var preventHoverAction : bool = false;
-## If true, the card will return to its original position with a Lerp function.
 @export
-var returnToHome : bool = false
-## The speed at which to return. Only matters if beingDrawn is true.
-@export
-var returnSpeed : float = 5
+var returnSpeed : float = 5.0
 
 static var hoveredCards : Array[TDCard]
 
@@ -31,17 +27,19 @@ var _PlayZone : TDCardPlayArea = null
 
 var _Played : bool
 
-func SetUp(data : TDCardData, isUsable : bool, useGoToPos : bool = false, marker : TDCardPositionMarker2D = null) -> void:
+var _IsDragDropable : bool = true
+var _IsActionUsable : bool = true
+
+func SetUp(data : TDCardData, isDragDroppable : bool, isActionUsable : bool, marker : TDCardPositionMarker2D = null) -> void:
 	area_entered.connect(CardEnteredZone)
 	area_exited.connect(CardExitedZone)
 	grab_area = get_node("GrabArea")
-	if(not isUsable):
-		mouse_entered.connect(Hovered)
-		mouse_exited.connect(Unhovered)
+	mouse_entered.connect(Hovered)
+	mouse_exited.connect(Unhovered)
+	_IsActionUsable = isActionUsable
 	_OGMask = collision_mask
-	SetUsable(isUsable)
-	returnToHome = useGoToPos
-	if(returnToHome):
+	SetGrabbable(isDragDroppable)
+	if(marker != null):
 		FillMarker(marker)
 	
 	if(data):
@@ -50,10 +48,9 @@ func SetUp(data : TDCardData, isUsable : bool, useGoToPos : bool = false, marker
 		Data.SpecialSetup(self)
 	return
 	
-func SetUsable(isDrawn : bool) -> void:
-	collision_mask = _OGMask if isDrawn else 0
-	set_collision_layer_value(17, isDrawn)
-	preventHoverAction = !preventHoverAction
+func SetGrabbable(canGrab : bool) -> void:
+	collision_mask = _OGMask if canGrab else 0
+	set_collision_layer_value(17, canGrab)
 	return
 
 func _PlayCard() -> void:
@@ -95,7 +92,7 @@ func _DragDropLogic(delta : float) -> void:
 		
 	if(grabbed):
 		global_position = get_global_mouse_position() + _grabbedOffset
-	elif returnToHome:
+	elif LocationMarker != null:
 		if(LocationMarker):
 			if(global_position.distance_to(LocationMarker.global_position) > 0.01):
 				global_position = global_position.lerp(LocationMarker.global_position, returnSpeed * delta)
@@ -104,9 +101,10 @@ func _DragDropLogic(delta : float) -> void:
 func _process(delta: float) -> void:
 	if(Data):
 		Data.Frame(self, delta)
-	
-	_PlayCard()
-	_DragDropLogic(delta)
+	if(_IsActionUsable):
+		_PlayCard()
+	if(_IsDragDropable):
+		_DragDropLogic(delta)
 	return
 
 func Hovered() -> void:

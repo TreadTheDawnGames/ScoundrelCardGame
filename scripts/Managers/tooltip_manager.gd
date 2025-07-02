@@ -35,6 +35,7 @@ func Start(card : TDCard):
 		var wreathTip : Tip = wreathTipScene.instantiate()
 		wreathTips.append(wreathTip)
 		get_tree().root.add_child(wreathTip)
+		wreathTip.hide()
 		wreathTypes.append(wreath.WreathName)
 		
 		
@@ -69,6 +70,8 @@ func _show():
 		wreathTip.global_position = Vector2(tooltip.global_position.x + tooltip.size.x + 15, tooltip.global_position.y + ((totalAdditionalSpace)))
 		wreathIndex += 1
 		totalAdditionalSpace += int(wreathTip.size.y) + 2
+		wreathTip.show()
+		
 	
 	for wreathTip in wreathTips:
 		wreathTip.global_position.y-=totalAdditionalSpace

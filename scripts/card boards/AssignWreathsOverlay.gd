@@ -13,24 +13,27 @@ func _ready():
 	Slots.append(MakeCards(Initialize(4, cardAreas[0])))
 	DoneButton = get_node("Button")
 	DoneButton.pressed.connect(Done)
+	Room.PauseRoom(true)
 
 
 func MakeWreaths(slots : Array) -> Array[TDCardPositionMarker2D]:
 	var slotCount : int = 0
 	#slots.sort_custom(func(a, b): )
 	for slot in slots:
-		AddCardFromSource(WREATH_VISUAL, boughtWreaths[slotCount], false, true, slot).scale *= 4
+		AddCardFromSource(WREATH_VISUAL, boughtWreaths[slotCount], true, true,slot).scale *= 4
 		slotCount+=1
 	return slots
 	
 func MakeCards(slots : Array) -> Array[TDCardPositionMarker2D]:
 	for slot in slots:
-		var card = AddCardFromSource(CARD_DISPLAY, Deck.DrawCard(), true, true, slot)
+		var card = AddCardFromSource(CARD_DISPLAY, Deck.DrawCard(), true, false, slot)
 		if(card):
 			card.scale *= 4
 	return slots
 
 func Done():
+	Room.PauseRoom(false)
+	
 	for card in _board:
 		if(is_instance_valid(card)):
 			var data : TDCardData = card.Data

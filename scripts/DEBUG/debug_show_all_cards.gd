@@ -97,7 +97,7 @@ func ApplySlots(infos : Array[TDCardData], mySlots : Array):
 	for info in infos:
 		if(!is_instance_valid(info)):
 			continue
-		var card : TDCard = AddCardFromItsScene(info,false,true, mySlots[i])
+		var card : TDCard = AddCardFromItsScene(info,true, false, mySlots[i])
 		card.scale *= 4
 		i+=1
 	i = 0

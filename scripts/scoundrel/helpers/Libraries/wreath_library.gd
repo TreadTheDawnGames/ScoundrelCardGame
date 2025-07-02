@@ -1,21 +1,14 @@
 class_name WreathLibrary
 
-#static func All() -> Array[Wreath]:
-	#var Wreaths : Array[Wreath]
-	#var files = DirAccess.get_files_at("res://scenes/wreaths/")
-	#for file in files:
-		#if (file.ends_with(".tscn")):
-			#var wreathScene : PackedScene = load("res://scenes/wreaths/" + file)
-			#Wreaths.append(wreathScene.instantiate())
-	#
-	#return Wreaths
+static func Enraged() -> Wreath: return PermanentBonusWreath.new("res://assets/wreaths/Enraged.png", 0, false, [TDCardData_Art.SuitType.Ghosts, TDCardData_Art.SuitType.Beasts], 1, "EnragedWreath")
+static func Sharp() -> Wreath: return PermanentBonusWreath.new("res://assets/wreaths/Boiled.png", 0, false, [TDCardData_Art.SuitType.Potions], 1, "BoiledWreath")
+static func Boiled() -> Wreath: return PermanentBonusWreath.new("res://assets/wreaths/Sharp.png", 0, true, [TDCardData_Art.SuitType.Weapons], 1, "SharpWreath")
+static func Green() -> Wreath: return Wreath.new("res://assets/wreaths/GreenWreath.png", 0, "BaseWreath", true)
+static func Gold() -> Wreath: return GoldWreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true)
+
 	
 static var All : Array[Wreath] = [
-	PermanentBonusWreath.new("res://assets/wreaths/Enraged.png", 0, false, [TDCardData_Art.SuitType.Ghosts, TDCardData_Art.SuitType.Beasts], 1, "EnragedWreath"),
-	PermanentBonusWreath.new("res://assets/wreaths/Boiled.png", 0, false, [TDCardData_Art.SuitType.Potions], 1, "BoiledWreath"),
-	PermanentBonusWreath.new("res://assets/wreaths/Sharp.png", 0, true, [TDCardData_Art.SuitType.Weapons], 1, "SharpWreath"),
-	Wreath.new("res://assets/wreaths/GreenWreath.png", 0, "BaseWreath", true),
-	GoldWreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true),
+	Enraged(), Sharp(), Boiled(), Green(), Gold()
 ]
 
 static func Rand() -> Wreath:

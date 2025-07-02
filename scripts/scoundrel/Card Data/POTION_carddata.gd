@@ -30,8 +30,8 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		handled = true
 	if(handled):
 		Room.RemoveFromRoom(card)
-	else:
-		super.PlayCard(playArea, card)
+	#else:
+		#super.PlayCard(playArea, card)
 	return
 
 

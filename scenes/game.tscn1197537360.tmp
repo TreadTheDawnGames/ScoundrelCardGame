@@ -1,0 +1,193 @@
+[gd_scene load_steps=22 format=3 uid="uid://obwt4udpkhb5"]
+
+[ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/DEBUG/DEBUG_tools.gd" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://bl780wqdrgw1p" path="res://scripts/DEBUG/DEBUG_card_counter.gd" id="5_gee14"]
+[ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://7kx26xg2mgak" path="res://assets/UI/HeartIcon.png" id="7_ir15t"]
+[ext_resource type="PackedScene" path="res://scenes/play_areas/potion_equip_area.tscn" id="8_1kice"]
+[ext_resource type="PackedScene" uid="uid://blkiokofo6p7o" path="res://scenes/play_areas/heal_play_area.tscn" id="8_ca42v"]
+[ext_resource type="Texture2D" uid="uid://c0vlc5aygscs5" path="res://assets/UI/AttackBonusIcon.png" id="8_rysoc"]
+[ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://dud3m4x0pe4dj" path="res://scenes/play_areas/discard_play_area.tscn" id="9_ir15t"]
+[ext_resource type="PackedScene" uid="uid://dkyfwxrcvk1u" path="res://scenes/play_areas/equip_play_area.tscn" id="13_kvuet"]
+[ext_resource type="Texture2D" uid="uid://qp6d471c7u4m" path="res://assets/cards/Rear/CardRear.png" id="14_ir15t"]
+[ext_resource type="FontFile" uid="uid://byhu3275bckuh" path="res://assets/UI/Fonts/TreadTheDawnPixL.ttf" id="15_5newe"]
+[ext_resource type="Script" uid="uid://dvyruk4pkpwot" path="res://scenes/canvas.gd" id="15_e1j6l"]
+[ext_resource type="Script" path="res://scripts/scoundrel/flee_button.gd" id="16_ca42v"]
+[ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="17_rysoc"]
+[ext_resource type="Script" path="res://scripts/DEBUG/DEBUG_cards_in_discard_label.gd" id="18_37s47"]
+[ext_resource type="FontFile" uid="uid://b65tlnsb4ba2g" path="res://assets/UI/Fonts/TreadTheDawnPix.ttf" id="18_264po"]
+[ext_resource type="Script" uid="uid://dauour6imhbgh" path="res://scenes/money_display.gd" id="22_bt5mj"]
+[ext_resource type="PackedScene" uid="uid://cgtqex0uo7qc2" path="res://scenes/card overlays/CharacterOverlay.tscn" id="23_bt5mj"]
+[ext_resource type="Texture2D" uid="uid://jfl0vya2ccdr" path="res://assets/UI/BeastsBackTiled.png" id="24_pl11u"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_yqjtg")
+specialDeck = true
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer3"]
+offset_right = 1157.0
+offset_bottom = 648.0
+texture = ExtResource("24_pl11u")
+stretch_mode = 6
+
+[node name="DungeonNodes" type="Node2D" parent="."]
+scale = Vector2(4, 4)
+
+[node name="DiscardPlayArea" parent="DungeonNodes" instance=ExtResource("9_ir15t")]
+position = Vector2(268.75, 40.25)
+collision_mask = 0
+
+[node name="EquipPlayArea" parent="DungeonNodes" instance=ExtResource("13_kvuet")]
+position = Vector2(48.75, 116.25)
+
+[node name="PotionEquipPlayArea" parent="DungeonNodes" instance=ExtResource("8_1kice")]
+position = Vector2(95.5, 116.25)
+collision_layer = 64
+collision_mask = 0
+
+[node name="HealPlayArea" parent="DungeonNodes" instance=ExtResource("8_ca42v")]
+position = Vector2(257.75, 117.25)
+collision_layer = 4
+collision_mask = 0
+_PlayType = "Heal"
+
+[node name="AbilityPlayArea" parent="DungeonNodes" instance=ExtResource("17_rysoc")]
+position = Vector2(192.75, 117.25)
+collision_layer = 8
+collision_mask = 0
+_PlayType = "Ability"
+
+[node name="CardBoard" type="Node2D" parent="DungeonNodes"]
+position = Vector2(76.75, 40.25)
+script = ExtResource("1_uwrxv")
+cardSceneSource = ExtResource("6_p57ef")
+
+[node name="CardRear" type="Sprite2D" parent="DungeonNodes/CardBoard"]
+texture = ExtResource("14_ir15t")
+
+[node name="RoomSlots" type="Node2D" parent="DungeonNodes"]
+position = Vector2(76.75, 40.25)
+
+[node name="Slot1" type="Marker2D" parent="DungeonNodes/RoomSlots"]
+position = Vector2(33, 0)
+script = ExtResource("9_0tnpc")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
+
+[node name="Slot2" type="Marker2D" parent="DungeonNodes/RoomSlots"]
+position = Vector2(66, 0)
+script = ExtResource("9_0tnpc")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
+
+[node name="Slot3" type="Marker2D" parent="DungeonNodes/RoomSlots"]
+position = Vector2(99, 0)
+script = ExtResource("9_0tnpc")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
+
+[node name="Slot4" type="Marker2D" parent="DungeonNodes/RoomSlots"]
+position = Vector2(132, 0)
+script = ExtResource("9_0tnpc")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
+
+[node name="Canvas" type="Node" parent="DungeonNodes"]
+script = ExtResource("15_e1j6l")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="DungeonNodes/Canvas"]
+
+[node name="CardsInDeckLabel" type="RichTextLabel" parent="DungeonNodes/Canvas/CanvasLayer2"]
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 397.0
+offset_bottom = 27.0
+text = "Cards in deck: Err"
+script = ExtResource("5_gee14")
+
+[node name="CardsInDiscardLabel" type="RichTextLabel" parent="DungeonNodes/Canvas/CanvasLayer2"]
+offset_left = 997.0
+offset_top = 2.0
+offset_right = 1159.0
+offset_bottom = 26.0
+text = "Cards in deck: Err"
+script = ExtResource("18_37s47")
+
+[node name="MoneyDisplay" type="RichTextLabel" parent="DungeonNodes/Canvas/CanvasLayer2"]
+offset_left = 4.0
+offset_top = 28.0
+offset_right = 155.0
+offset_bottom = 60.0
+text = "Money: Err"
+script = ExtResource("22_bt5mj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="DungeonNodes/Canvas"]
+layer = -1
+
+[node name="Button" type="Button" parent="DungeonNodes/Canvas/CanvasLayer"]
+offset_left = 115.0
+offset_top = 119.0
+offset_right = 249.0
+offset_bottom = 204.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("15_5newe")
+theme_override_font_sizes/font_size = 56
+text = "Flee!"
+alignment = 2
+script = ExtResource("16_ca42v")
+
+[node name="HealthIcon" type="TextureRect" parent="DungeonNodes/Canvas/CanvasLayer"]
+offset_left = 27.0
+offset_top = 365.0
+offset_right = 43.0
+offset_bottom = 381.0
+scale = Vector2(4, 4)
+texture = ExtResource("7_ir15t")
+
+[node name="HealthText" type="RichTextLabel" parent="DungeonNodes/Canvas/CanvasLayer/HealthIcon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -8.0
+offset_right = 8.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_264po")
+theme_override_font_sizes/normal_font_size = 16
+text = "Err"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="AttackBonusIcon" type="TextureRect" parent="DungeonNodes/Canvas/CanvasLayer"]
+offset_left = 27.0
+offset_top = 433.0
+offset_right = 43.0
+offset_bottom = 449.0
+scale = Vector2(4, 4)
+texture = ExtResource("8_rysoc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DungeonNodes/Canvas/CanvasLayer/AttackBonusIcon"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 29.0
+offset_bottom = 16.0
+theme_override_fonts/normal_font = ExtResource("18_264po")
+theme_override_font_sizes/normal_font_size = 16
+text = "Err"
+fit_content = true
+scroll_active = false
+
+[node name="CharacterOverlay" parent="." instance=ExtResource("23_bt5mj")]
+visible = false
+position = Vector2(584, 331)
+slotCounts = Array[int]([3])
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(581, 324)

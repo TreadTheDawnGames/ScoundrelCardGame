@@ -139,7 +139,7 @@ func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
 		var shopCardData = TDCardData_Purchase.new(chosenCardInfo.CardName, chosenCardInfo.TexturePath, chosenCardInfo.Value, chosenCardInfo.Lore, chosenCardInfo.Suit, chosenCardInfo.ExtraParams)
 		shopCardData.Wreaths = chosenWreaths
 		
-		var card = AddCardFromItsScene(shopCardData,false, true, marker)
+		var card = AddCardFromItsScene(shopCardData,true,true, marker)
 		card.scale *= 4
 		purchaseData.ShowAllWreaths(card)
 	return
@@ -197,7 +197,7 @@ func CloseShop():
 		get_parent().add_child(wreathApplyScene)
 	
 	queue_free()
-	Room.roomPaused = false
+	Room.PauseRoom(false)
 	Room.ReplenishRoom()
 	return
 

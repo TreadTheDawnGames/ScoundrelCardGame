@@ -23,10 +23,7 @@ func _ready():
 	Room.ReplenishRoom()
 	var wreathApplyScene :AssignWreathsOverlay = ShopOverlay.APPLY_WREATHS.instantiate()
 	wreathApplyScene.SetTitle("Assign Gold Wreaths")
-	wreathApplyScene.boughtWreaths = [GoldWreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true),
-		GoldWreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true),
-		GoldWreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true),
-		GoldWreath.new("res://assets/wreaths/GoldWreath.png", 0,"GoldWreath", true)]
+	wreathApplyScene.boughtWreaths = [WreathLibrary.Gold(),WreathLibrary.Gold(),WreathLibrary.Gold(),WreathLibrary.Gold(),]
 	dungeon_nodes.add_child.call_deferred(wreathApplyScene)
 	wreathApplyScene.scale *= 0.25
 	wreathApplyScene.shuffleOnClose = true
