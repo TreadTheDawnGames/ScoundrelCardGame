@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8tsl4hngvv64"]
 
 [ext_resource type="PackedScene" uid="uid://cf0yq1t70q2w3" path="res://scenes/cards/card.tscn" id="1_gjhn1"]
-[ext_resource type="Script" uid="uid://bq1tl0uaei7gf" path="res://scripts/scoundrel/Cards/tdcard_MONSTER.gd" id="2_lurak"]
+[ext_resource type="Script" uid="uid://bq1tl0uaei7gf" path="res://scripts/scoundrel/Cards/tdcard_monster.gd" id="2_lurak"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="3_lurak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lurak"]
@@ -14,6 +14,20 @@ script = ExtResource("2_lurak")
 
 [node name="GrabArea" parent="." index="0"]
 shape = SubResource("RectangleShape2D_lurak")
+
+[node name="RichTextLabel" parent="Art/CardValueDisplay" index="0"]
+anchors_preset = -1
+anchor_left = -9.61539
+anchor_top = -8.0
+anchor_right = -9.61539
+anchor_bottom = -8.0
+
+[node name="RichTextLabel2" parent="Art/CardValueDisplay" index="1"]
+anchors_preset = -1
+anchor_left = 11.5385
+anchor_top = 9.0
+anchor_right = 11.5385
+anchor_bottom = 9.0
 
 [node name="MonsterStackMarker" type="Marker2D" parent="." index="2"]
 position = Vector2(6, 8.5)

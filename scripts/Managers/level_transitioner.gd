@@ -15,8 +15,7 @@ func TransitionToNextLevel():
 		ClearBoard()
 		WeaponManager.SetActiveWeapon(null)
 		#add monsters with 8+level to discard, shuffle, and put into deck.
-
-		Discard.PutArray(Levels.Get(curLevel))
+		Discard.PutArray(CardInfo.MultipleCardsFromInfo(Levels.Get(curLevel)))
 		Discard.Shuffle()
 		
 		Deck.PutStack(Discard)

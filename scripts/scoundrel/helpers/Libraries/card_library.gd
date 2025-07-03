@@ -71,92 +71,37 @@ static var SPECIAL : Array[CardInfo]=[
 	]
 static var DEV : Array[CardInfo] = [
 	#Weapons
-	Wep2(), Wep3(), Wep4(), Wep5(), WepA(),
+	Wep2(), Wep3(), Wep4(), Wep5(), 
+	WepA(),
 	#Potions
 	Pot2(), Pot3(), Pot4(), Pot5(),
 	#Ghosts
-	Gho2(), Gho3(), Gho4(), Gho5(), Gho6(), Gho7(), Gho8(),
+	#Gho2(), Gho3(), Gho4(), Gho5(), Gho6(), Gho7(), Gho8(),
 	##Beasts
-	Bea2(), Bea3(), Bea4(), Bea5(), Bea6(), Bea7(), Bea8(),
+	#Bea2(), Bea3(), Bea4(), Bea5(), Bea6(), Bea7(), 
+	#Bea8(),
 
-	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/BasicShopCard.png", 1, "General store for Wreaths, Potions, and Weapons.", 
+	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/BasicShopCard.png", 0, "General store for Wreaths, Potions, and Weapons.", 
 	{"Luckiness":1,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], false, -1, 0, 0),
 				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, 0, 0, 0),
 				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Potions, [], false, 0, 0, 0)]}),
 	
-	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 1, "General store for Wreaths, Potions, and Weapons.", 
+	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 0, "General store for Wreaths, Potions, and Weapons.", 
 	{"Luckiness":0,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Potions, [], false, 0, 0, 0)]}),
 	
-	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/WeaponShopCard.png", 1, "General store for Wreaths, Potions, and Weapons.", 
+	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/WeaponShopCard.png", 0, "General store for Wreaths, Potions, and Weapons.", 
 	{"Luckiness":2,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, 0, 0, 0),
 				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, -1, 0, 0)]}),
 				
-	CardInfo.new("WreathShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 1, "The wreath store.", 
+	CardInfo.new("WreathShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 0, "The wreath store.", 
 	{"Luckiness":2,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], false, 1, 0, 0)]}),
 				
 	]
-#static var STANDARD : Array[CardInfo] = [
-	##Weapons
-	#CardInfo.new("2ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/2ofWeapons.png", 2, "", {}),
-	#CardInfo.new("3ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/3ofWeapons.png", 3, "", {}),
-	#CardInfo.new("4ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/4ofWeapons.png", 4, "", {}),
-	#CardInfo.new("5ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/5ofWeapons.png", 5, "", {}),
-	#CardInfo.new("6ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/6ofWeapons.png", 6, "", {}),
-	#CardInfo.new("7ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/7ofWeapons.png", 7, "", {}),
-	#CardInfo.new("8ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/8ofWeapons.png", 8, "", {}),
-	#CardInfo.new("9ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/9ofWeapons.png", 9, "", {}),
-	#CardInfo.new("10ofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/10ofWeapons.png", 10, "", {}),
-	#CardInfo.new("JackofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/JackofWeapons.png", 11, "", {}),
-	#CardInfo.new("QueenofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/QueenofWeapons.png", 12, "", {}),
-	#CardInfo.new("KingofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/KingofWeapons.png", 13, "", {}),
-	#CardInfo.new("AceofWeapons", TDCardData_Art.SuitType.Weapons, "res://assets/cards/AceofWeapons.png", 14, "", {}),
-	##Potions
-	#CardInfo.new("2ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/2ofPotions.png", 2, "", {}),
-	#CardInfo.new("3ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/3ofPotions.png", 3, "", {}),
-	#CardInfo.new("4ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/4ofPotions.png", 4, "", {}),
-	#CardInfo.new("5ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/5ofPotions.png", 5, "", {}),
-	#CardInfo.new("6ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/6ofPotions.png", 6, "", {}),
-	#CardInfo.new("7ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/7ofPotions.png", 7, "", {}),
-	#CardInfo.new("8ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/8ofPotions.png", 8, "", {}),
-	#CardInfo.new("9ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/9ofPotions.png", 9, "", {}),
-	#CardInfo.new("10ofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/10ofPotions.png", 10, "", {}),
-	#CardInfo.new("JackofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/JackofPotions.png", 11, "", {}),
-	#CardInfo.new("QueenofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/QueenofPotions.png", 12, "", {}),
-	#CardInfo.new("KingofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/KingofPotions.png", 13, "", {}),
-	#CardInfo.new("AceofPotions", TDCardData_Art.SuitType.Potions, "res://assets/cards/AceofPotions.png", 14, "", {}),
-	##Ghosts
-	#CardInfo.new("2ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/2ofGhosts.png", 2, "", {}),
-	#CardInfo.new("3ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/3ofGhosts.png", 3, "", {}),
-	#CardInfo.new("4ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/4ofGhosts.png", 4, "", {}),
-	#CardInfo.new("5ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/5ofGhosts.png", 5, "", {}),
-	#CardInfo.new("6ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/6ofGhosts.png", 6, "", {}),
-	#CardInfo.new("7ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/7ofGhosts.png", 7, "", {}),
-	#CardInfo.new("8ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/8ofGhosts.png", 8, "", {}),
-	#CardInfo.new("9ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/9ofGhosts.png", 9, "", {}),
-	#CardInfo.new("10ofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/10ofGhosts.png", 10,"", {}),
-	#CardInfo.new("JackofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/JackofGhosts.png", 11,"", {}),
-	#CardInfo.new("QueenofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/QueenofGhosts.png", 12, "", {}),
-	#CardInfo.new("KingofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/KingofGhosts.png", 13,"", {}),
-	#CardInfo.new("AceofGhosts", TDCardData_Art.SuitType.Ghosts, "res://assets/cards/AceofGhosts.png", 14,"", {}),
-	##Beasts
-	#CardInfo.new("2ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/2ofBeasts.png", 2, "", {}),
-	#CardInfo.new("3ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/3ofBeasts.png", 3, "", {}),
-	#CardInfo.new("4ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/4ofBeasts.png", 4, "", {}),
-	#CardInfo.new("5ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/5ofBeasts.png", 5, "", {}),
-	#CardInfo.new("6ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/6ofBeasts.png", 6, "", {}),
-	#CardInfo.new("7ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/7ofBeasts.png", 7, "", {}),
-	#CardInfo.new("8ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/8ofBeasts.png", 8, "", {}),
-	#CardInfo.new("9ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/9ofBeasts.png", 9, "", {}),
-	#CardInfo.new("10ofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/10ofBeasts.png", 10, "", {}),
-	#CardInfo.new("JackofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/JackofBeasts.png", 11, "", {}),
-	#CardInfo.new("QueenofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/QueenofBeasts.png", 12, "", {}),
-	#CardInfo.new("KingofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/KingofBeasts.png", 13, "", {}),
-	#CardInfo.new("AceofBeasts", TDCardData_Art.SuitType.Beasts, "res://assets/cards/AceofBeasts.png", 14, "", {}),
-	#]
+	
 static var ALL : Array[CardInfo] =[
 	Wep2(), Wep3(), Wep4(), Wep5(), Wep6(), Wep7(), Wep8(), Wep9(), Wep10(), WepJ(), WepQ(), WepK(), WepA(),
 	Pot2(), Pot3(), Pot4(), Pot5(), Pot6(), Pot7(), Pot8(), Pot9(), Pot10(), PotJ(), PotQ(), PotK(), PotA(),

@@ -98,6 +98,8 @@ func ApplySlots(infos : Array[TDCardData], mySlots : Array):
 		if(!is_instance_valid(info)):
 			continue
 		var card : TDCard = AddCardFromItsScene(info,true, false, mySlots[i])
+		if(info in Transitioner.Discard.Cards):
+			card.modulate = card.modulate.blend(Color(0,0,0,0.5))
 		card.scale *= 4
 		i+=1
 	i = 0

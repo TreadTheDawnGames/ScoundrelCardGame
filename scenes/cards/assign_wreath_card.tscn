@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbfgfvpmdudhj"]
+[gd_scene load_steps=8 format=3 uid="uid://dbfgfvpmdudhj"]
 
 [ext_resource type="Script" uid="uid://3nf0ol8yeowo" path="res://scripts/scoundrel/Cards/tdcard_weapon.gd" id="1_fp0w8"]
 [ext_resource type="Theme" uid="uid://doyae2xhqstbr" path="res://assets/UI/Shop/ShopText.tres" id="2_en23a"]
+[ext_resource type="Script" uid="uid://bgk7o8vuiyyno" path="res://scripts/cards/card_value_display.gd" id="3_cpo03"]
+[ext_resource type="FontFile" uid="uid://bigwhox6vccgx" path="res://assets/UI/Fonts/DnDFont.ttf" id="4_fp0w8"]
 [ext_resource type="Script" uid="uid://e6s4cpiydw0p" path="res://scripts/cards/card_play_area.gd" id="5_iq1jw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_en23a"]
@@ -20,6 +22,33 @@ script = ExtResource("1_fp0w8")
 shape = SubResource("RectangleShape2D_en23a")
 
 [node name="Art" type="Sprite2D" parent="."]
+
+[node name="CardValueDisplay" type="Node2D" parent="Art"]
+position = Vector2(0.5, 0.5)
+script = ExtResource("3_cpo03")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Art/CardValueDisplay"]
+offset_left = -11.0
+offset_top = -17.0
+offset_right = -5.0
+offset_bottom = -10.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fp0w8")
+theme_override_font_sizes/normal_font_size = 8
+text = "E"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Art/CardValueDisplay"]
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 16.0
+offset_bottom = 23.0
+rotation = 3.14159
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fp0w8")
+theme_override_font_sizes/normal_font_size = 8
+text = "E"
+scroll_active = false
 
 [node name="WreathContainer" type="Node2D" parent="Art"]
 position = Vector2(0, 15)

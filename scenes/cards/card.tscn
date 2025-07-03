@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf0yq1t70q2w3"]
+[gd_scene load_steps=5 format=3 uid="uid://cf0yq1t70q2w3"]
 
 [ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scenes/wreaths/TDCard_Base.gd" id="1_45qsb"]
+[ext_resource type="Script" uid="uid://bgk7o8vuiyyno" path="res://scripts/cards/card_value_display.gd" id="3_73nwn"]
+[ext_resource type="FontFile" uid="uid://bigwhox6vccgx" path="res://assets/UI/Fonts/DnDFont.ttf" id="3_jl6rh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqw3"]
 resource_local_to_scene = true
@@ -15,6 +17,50 @@ script = ExtResource("1_45qsb")
 shape = SubResource("RectangleShape2D_0qqw3")
 
 [node name="Art" type="Sprite2D" parent="."]
+
+[node name="CardValueDisplay" type="Node2D" parent="Art"]
+position = Vector2(0.5, 0.5)
+script = ExtResource("3_73nwn")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Art/CardValueDisplay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -17.0
+offset_right = -5.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_jl6rh")
+theme_override_font_sizes/normal_font_size = 8
+text = "E"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Art/CardValueDisplay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 16.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_jl6rh")
+theme_override_font_sizes/normal_font_size = 8
+text = "E"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
 
 [node name="WreathContainer" type="Node2D" parent="Art"]
 position = Vector2(0, 15)

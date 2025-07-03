@@ -22,7 +22,9 @@ func Copy() -> Wreath:
 	return PermanentBonusWreath.new(Art.resource_path, Price, AllowedDuplicates, ValidSuitTargets, Bonus, WreathName)
 
 func ValidForData(data : TDCardData) -> bool:
-	var isValid = data.Suit in ValidSuitTargets
+	if(data == null):
+		return false
+	var isValid : bool = data.Suit in ValidSuitTargets
 	print("Namd / Valid Suits / current / valid: ", data.CardName, " / ", ValidSuitTargets, " / ", data.Suit, " / ", isValid)
 	return isValid 
 

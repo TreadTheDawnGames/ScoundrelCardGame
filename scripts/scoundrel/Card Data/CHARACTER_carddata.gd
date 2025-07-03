@@ -5,6 +5,8 @@ class_name TDCardData_Character
 func _init(name : String, art : String, value:int, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]):
 	super._init(name, art, value, lore, suit, extraParams, "Select")
 	Ability = extraParams["Ability"]
+	debugClassName = "TDCardData_Character"
+
 	return
 
 func PlayCard(_playArea : TDCardPlayArea, card : TDCard):

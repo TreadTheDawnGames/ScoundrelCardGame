@@ -19,6 +19,20 @@ script = ExtResource("2_7wxlv")
 [node name="GrabArea" parent="." index="0"]
 shape = SubResource("RectangleShape2D_23a4c")
 
+[node name="RichTextLabel" parent="Art/CardValueDisplay" index="0"]
+anchors_preset = -1
+anchor_left = -9.61539
+anchor_top = -8.0
+anchor_right = -9.61539
+anchor_bottom = -8.0
+
+[node name="RichTextLabel2" parent="Art/CardValueDisplay" index="1"]
+anchors_preset = -1
+anchor_left = 11.5385
+anchor_top = 9.0
+anchor_right = 11.5385
+anchor_bottom = 9.0
+
 [node name="UseMonsterArea" type="Area2D" parent="." index="2"]
 collision_layer = 16
 collision_mask = 0

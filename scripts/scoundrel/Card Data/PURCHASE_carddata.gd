@@ -10,16 +10,19 @@ func _init(name : String, art : String, value : int, lore : String, suit : TDCar
 	super._init(name, art, value, lore, suit, extraParams)
 	useName += "Buy"
 	SaleCard = extraParams["SaleCard"]
+	debugClassName = "TDCardData_Purchase"
+
 	return
 	
 	
 func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("Buy")):
-		if(Money.CanBuy(SaleCard.Value)):
+		if(Money.TryBuy(SaleCard.Value)):
 			super.Postplay(playArea, card)
-			print("bought Card")
+			print("bought " + SaleCard.CardName)
 			if(SaleCard.Suit != SuitType.Wreaths):
-				Transitioner.AddToDiscard(SaleCard)
+				Deck.BuryCard(SaleCard)
+#				Transitioner.AddToDiscard(SaleCard)
 			else:
 				var maybeShop = playArea.owner
 				if !maybeShop is ShopOverlay:

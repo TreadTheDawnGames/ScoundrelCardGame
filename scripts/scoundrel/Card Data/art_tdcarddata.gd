@@ -4,15 +4,24 @@ var Art : Texture2D
 var useName : String
 var Lore : String = ""
 var Wreaths : Array#[Wreath]
-var Value : int
+var Value : int:
+	set(value):
+		if(valueDisplay):
+			valueDisplay.SetLables(value)
+		Value = value
+
 var Modifier : int
 var clickTimer : SceneTreeTimer
 var clickTime : float = 0.2
 enum SuitType {None, Weapons, Potions, Ghosts, Beasts, Wreaths, Shops}
 var Suit : SuitType
 var ExtraParams : Dictionary[String, Variant]
+var debugClassName : String = "TDCardData_Art"
+
 
 var properChildIndex : int = 0
+var valueDisplay : CardValueDisplay
+
 
 func IsUsable(areaPlayName : String) -> bool:
 	return useName.contains(areaPlayName)
@@ -36,10 +45,12 @@ func _init(name : String, art : String, value : int, lore : String, suit : SuitT
 func SpecialSetup(card : TDCard):
 	card.Art = card.get_node("Art")
 	card.Art.texture = Art
-	if(card is TDCard_Base):
+	if(card is TDCard_Base and not card is TDCard_WreathVisual):
 		card.WreathContainer = card.get_node("Art/WreathContainer")
 		for wreath : Wreath in Wreaths:
 			wreath.Setup(card)
+		valueDisplay = card.get_node("Art/CardValueDisplay")
+		valueDisplay.SetLables(Value)
 	pass
 
 func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
@@ -134,7 +145,6 @@ func ShowAllWreaths(card : TDCard):
 		ShowWreath(wreath, card)
 
 func AddWreath(wreath : Wreath) -> bool:
-	
 	if(Wreaths.size() > 4):
 		print("Unable to add wreath: Card is at max wreaths.")
 		return false
@@ -142,17 +152,7 @@ func AddWreath(wreath : Wreath) -> bool:
 		printerr("Unable to add wreath: Invalid type.")
 		return false
 	wreath.Attach(self)
-	if(wreath is GoldWreath):
-		print("I am a goldwreath")
-	if(wreath is PermanentBonusWreath):
-		print("I am a permanent bonus wreath")
 	Wreaths.append(wreath)
-	for wreathe in Wreaths:
-		print(wreathe.WreathName)
-		if(wreathe is GoldWreath):
-			print("There's a gold wreath here!")
-		if(wreathe is PermanentBonusWreath):
-			print("There's a permanent bonus wreath here")
 
 	return true
 	
@@ -170,6 +170,7 @@ func ClickAction(_card : TDCard):
 	print("----" + CardName + "----")
 	print("Suit: "+str(SuitType.find_key(Suit)))
 	print("Value: " + str(Value))
+	print("Data Type: " + debugClassName)
 	print("Wreath count: "+str(Wreaths.size()))
 	for wreath in Wreaths:
 		print("- " + wreath.WreathName)

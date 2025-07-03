@@ -26,6 +26,7 @@ func SpecialSetup(card:TDCard)->void:
 			myCard.useMonsterCollisionShape.disabled = true
 	else:
 		printerr("Unable to set up card: \"" + card.CardName + ".\" It is not of type TDCard_Weapon. " + card.get_class())
+	debugClassName = "TDCardData_Weapon"
 	return
 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:

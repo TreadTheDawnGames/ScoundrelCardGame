@@ -14,6 +14,8 @@ func _init(name : String, art : String, value : int, lore : String, extraParams 
 	ShopData = extraParams["ShopData"]
 	ShopData.append(Luckiness)
 	useName += "Ability"
+	debugClassName = "TDCardData_Shop"
+
 	return
 	
 func SpecialSetup(card : TDCard):

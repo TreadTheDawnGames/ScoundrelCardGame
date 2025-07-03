@@ -42,12 +42,12 @@ func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("AddWreath")):
 		print("Assigned ", WreathName)
 		var assigneeCardData : TDCardData_Art = playArea.owner.Data
+		
 		#Okay I think the issue is that AddWrath(self) is adding the 
 		#item as a wreath instead of its type. I'm not sure how to fix 
 		#that other than to duplicate the logic in each wreath type...
 		
 		#Scratch that, duplicate logic didn't work either.
-		print("Type: ", type_string(typeof(GoldWreath)))
 		if(assigneeCardData.AddWreath(self)): #This appears to be the problem?
 			assigneeCardData.ShowAllWreaths(playArea.owner)
 			card.FreeMarker()
@@ -55,6 +55,24 @@ func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 		else:
 			card._Played = false
 			printerr("Invalid wreath assignal.")
+	return
+
+func Frame(card : TDCard, delta : float) -> void:
+	if(TDCard.hoveredCards.size() > 0):
+		if(TDCard.hoveredCards[-1] != card):
+			card._hovered = false
+		else:
+			card._hovered = true
+	if(card._hovered):
+		if(card.grabbed ):
+			if(card.usable and card._IsActionUsable and ValidForData(card._PlayZone.get_parent().Data if card._PlayZone else null)):
+				card.Art.scale = card.Art.scale.lerp(Vector2(0.75, 0.75), card.returnSpeed * delta) 
+			else:
+				card.Art.scale = card.Art.scale.lerp(Vector2(1.33,1.33), card.returnSpeed * delta)
+		else:
+			card.Art.scale = card.Art.scale.lerp(Vector2(1.25,1.25), card.returnSpeed * delta)
+	else:
+		card.Art.scale = card.Art.scale.lerp(Vector2.ONE, card.returnSpeed * delta)
 	return
 
 

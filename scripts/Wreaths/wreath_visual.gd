@@ -1,0 +1,2 @@
+extends TDCard_Base
+class_name TDCard_WreathVisual

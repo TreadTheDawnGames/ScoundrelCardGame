@@ -10,7 +10,7 @@ func AlterMoney(amount : int):
 func CurrentMoney() -> int:
 	return MoneyAmount
 
-func CanBuy(price : int) -> int:
+func TryBuy(price : int) -> int:
 	if(MoneyAmount - price >= 0):
 		AlterMoney(-price)
 		return true

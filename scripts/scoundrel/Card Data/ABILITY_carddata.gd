@@ -7,6 +7,7 @@ var destroyAfterUse : bool = false
 
 ##Extra params: "Ability", "DestroyAfterUse"
 func _init(name : String, art : String, value : int, abilityDescription : String,  suit : SuitType, extraParams : Dictionary[String, Variant], abilityUseName : String):
+	debugClassName = "TDCardData_Ability"
 	super._init(name, art, value, abilityDescription, suit, extraParams)
 	useName += abilityUseName
 	AbilityUseName = abilityUseName

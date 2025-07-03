@@ -11,3 +11,17 @@ collision_mask = 76
 
 [node name="GrabArea" parent="." index="0"]
 shape = SubResource("RectangleShape2D_k8rv6")
+
+[node name="RichTextLabel" parent="Art/CardValueDisplay" index="0"]
+anchors_preset = -1
+anchor_left = -9.61539
+anchor_top = -8.0
+anchor_right = -9.61539
+anchor_bottom = -8.0
+
+[node name="RichTextLabel2" parent="Art/CardValueDisplay" index="1"]
+anchors_preset = -1
+anchor_left = 11.5385
+anchor_top = 8.5
+anchor_right = 11.5385
+anchor_bottom = 8.5

@@ -7,7 +7,7 @@ var _hovered : bool = false;
 var preventHoverAction : bool = false;
 @export
 var returnSpeed : float = 5.0
-
+var debugName : String = "TDCard"
 static var hoveredCards : Array[TDCard]
 
 var _grabbedOffset : Vector2;

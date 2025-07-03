@@ -86,7 +86,7 @@ func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
 	##get card pool
 	var availableCardInfos : Array[CardInfo]
 	if(shopData.Suit == TDCardData_Art.SuitType.Wreaths):
-		availableCardInfos = [CardInfo.new("PurchaseableCard", TDCardData_Art.SuitType.Wreaths, "res://assets/cards/ShopCards/PurchaseCard.png", 0, "", {"SaleCard":null})]
+		availableCardInfos = [CardInfo.new("PurchaseableCard", TDCardData_Art.SuitType.Wreaths, "res://assets/cards/ShopCards/PurchaseCard.png", -1, "", {"SaleCard":null})]
 	else:
 		availableCardInfos = Utils.GetCardInfosOfSuit(shopData.Suit)
 	
@@ -137,8 +137,8 @@ func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
 		
 		purchaseData.AddMultipleWreaths(chosenWreaths)
 		var shopCardData = TDCardData_Purchase.new(chosenCardInfo.CardName, chosenCardInfo.TexturePath, chosenCardInfo.Value, chosenCardInfo.Lore, chosenCardInfo.Suit, chosenCardInfo.ExtraParams)
-		shopCardData.Wreaths = chosenWreaths
-		
+		#shopCardData.Wreaths = chosenWreaths
+		shopCardData.AddMultipleWreaths(chosenWreaths)
 		var card = AddCardFromItsScene(shopCardData,true,true, marker)
 		card.scale *= 4
 		purchaseData.ShowAllWreaths(card)
@@ -169,7 +169,7 @@ func DetermineWreathCount(shopData : ShopData) -> int:
 
 
 func RerollShop(freeRoll : bool = false):
-	if(freeRoll or Money.CanBuy(rerollPrice)):
+	if(freeRoll or Money.TryBuy(rerollPrice)):
 		if(!freeRoll):
 			rerollPrice+=1
 		RerollIfCards.clear()
@@ -232,7 +232,7 @@ func GetShopName() -> String:
 	
 	return shopName
 
-func AddBoughtWreaths(array : Array[Wreath]):
+func AddBoughtWreaths(array : Array):
 	BoughtWreaths.append_array(array)
 	return
 

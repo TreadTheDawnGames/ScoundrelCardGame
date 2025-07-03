@@ -12,5 +12,26 @@ collision_mask = 32
 [node name="GrabArea" parent="." index="0"]
 shape = SubResource("RectangleShape2D_ol300")
 
+[node name="RichTextLabel" parent="Art/CardValueDisplay" index="0"]
+anchors_preset = -1
+anchor_left = -0.275
+anchor_top = -0.425
+anchor_right = -0.275
+anchor_bottom = -0.425
+offset_left = -11.0
+offset_top = -17.0
+offset_right = -5.0
+offset_bottom = -10.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+
+[node name="RichTextLabel2" parent="Art/CardValueDisplay" index="1"]
+anchors_preset = -1
+anchor_left = 0.275
+anchor_top = 0.425
+anchor_right = 0.275
+anchor_bottom = 0.425
+
 [node name="UseMonsterArea" parent="." index="2"]
 collision_layer = 1

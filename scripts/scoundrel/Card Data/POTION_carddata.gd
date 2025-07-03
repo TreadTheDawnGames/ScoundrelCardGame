@@ -4,6 +4,8 @@ class_name TDCardData_Potion
 func _init(name : String, art : String, value : int, abilityDescription : String,  suit : SuitType, extraParams : Dictionary[String, Variant]):
 	super._init(name,art, value, abilityDescription, suit, extraParams, "Ability")
 	useName += "Heal, PEquip"
+	debugClassName = "TDCardData_Potion"
+
 	return
 	
 func EnterUsable(playArea : TDCardPlayArea, card : TDCard)->void:

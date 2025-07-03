@@ -7,6 +7,7 @@ func _init(cardName : String, art : String, value : int, lore : String, suit : S
 	super._init(cardName, art, value, lore, suit, extraParams)
 	useName += "Monster"
 	Suit = suit
+	debugClassName = "TDCardData_Monster"
 
 	return
 

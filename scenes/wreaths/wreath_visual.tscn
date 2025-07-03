@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckc45s7luqacx"]
 
-[ext_resource type="Script" uid="uid://duk5bk1m0kddv" path="res://scenes/wreaths/TDCard_Base.gd" id="1_7f2tf"]
+[ext_resource type="Script" uid="uid://bjy0eonunm00h" path="res://scripts/Wreaths/wreath_visual.gd" id="1_7f2tf"]
 [ext_resource type="PackedScene" uid="uid://dl88k3sc12ja2" path="res://scenes/Tooltips/tooltip_base.tscn" id="3_w71l5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oytra"]
