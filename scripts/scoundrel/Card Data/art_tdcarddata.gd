@@ -30,12 +30,17 @@ func Refresh():
 	
 	return
 
+##Extra Params: StartingWreaths (Array)
 func _init(name : String, art : String, value : int, lore : String, suit : SuitType, extraParams : Dictionary[String, Variant]):
 	super._init(name)
 	Value = value
 	Lore = lore
 	Suit = suit
 	ExtraParams = extraParams
+	if (ExtraParams.has("StartingWreaths") and ExtraParams["StartingWreaths"].size() > 0):
+		print(CardName + " has starting wreaths.")
+		Wreaths = ExtraParams["StartingWreaths"]
+	
 	if(ResourceLoader.exists(art)):
 		Art = load(art)
 	else:

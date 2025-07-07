@@ -21,24 +21,28 @@ func _ready():
 	#print("Tooltip Hidden: " + str(!tooltip.visible))
 	return
 	
+var validWreathIndexes : Array[int] = []
+
 func Start(card : TDCard):
 	End()
 	show_timer.start()
 	_card = card
 	var wreathTypes : Array = []
 	var reversedWreaths = _card.Data.Wreaths
-	reversedWreaths.reverse()
+	#reversedWreaths.reverse()
+	var wreathIndex = -1
 	for wreath : Wreath in reversedWreaths:
+		wreathIndex += 1
 		if(wreathTypes.has(wreath.WreathName)):
 			continue
 		#draw wreath tooltip
 		var wreathTip : Tip = wreathTipScene.instantiate()
+		#wreathTip.hide()
 		wreathTips.append(wreathTip)
 		get_tree().root.add_child(wreathTip)
-		wreathTip.hide()
+		wreathTip.global_position = Vector2(9999,9999)
 		wreathTypes.append(wreath.WreathName)
-		
-		
+		validWreathIndexes.append(wreathIndex)
 	return
 	
 func End():
@@ -62,15 +66,16 @@ func _show():
 	tooltip.global_position = _card.global_position + Vector2(-tooltip.size.x/2, cardArtData.Art.get_size().y*2.6 + extraSpaceForWreath)
 	tooltip.SetLore(_card.Data.Lore)
 	
-	var wreathIndex : int = 0
+	var wreathIndex : int = -1
 	var totalAdditionalSpace : int = 0
 	for wreathTip in wreathTips:
-		var wreath = _card.Data.Wreaths[wreathIndex]
+		var wreath = _card.Data.Wreaths[validWreathIndexes[wreathIndex]]
+		#wreathTip.show()
 		wreathTip.SetLore(wreath.Lore)
 		wreathTip.global_position = Vector2(tooltip.global_position.x + tooltip.size.x + 15, tooltip.global_position.y + ((totalAdditionalSpace)))
-		wreathIndex += 1
+		wreathIndex -= 1
 		totalAdditionalSpace += int(wreathTip.size.y) + 2
-		wreathTip.show()
+		#This fixes showing in the top left but breaks tooltip stacking.
 		
 	
 	for wreathTip in wreathTips:
