@@ -8,7 +8,7 @@
 resource_local_to_scene = true
 size = Vector2(25, 35)
 
-[node name="Card" instance=ExtResource("1_gjhn1")]
+[node name="Card2" instance=ExtResource("1_gjhn1")]
 collision_mask = 16
 script = ExtResource("2_lurak")
 

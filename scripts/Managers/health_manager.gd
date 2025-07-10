@@ -11,8 +11,10 @@ var currentHealth : int
 
 func _ready():
 	currentHealth = maxHealth
-	health_text.text = str(currentHealth)
-
+	if(health_text):
+		health_text.text = str(currentHealth)
+	else:
+		printerr("No health text in the scene")
 func Heal(amount : int):
 	currentHealth+=amount
 	currentHealth = clamp(currentHealth, 0, maxHealth)

@@ -17,11 +17,11 @@ func _init(name : String, art : String, value : int, lore : String, suit : TDCar
 	
 func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("Buy")):
-		if(Money.TryBuy(SaleCard.Value)):
+		if(card.owner.Money.TryBuy(SaleCard.Value)):
 			super.Postplay(playArea, card)
 			print("bought " + SaleCard.CardName)
 			if(SaleCard.Suit != SuitType.Wreaths):
-				Deck.BuryCard(SaleCard)
+				card.owner.Deck.BuryCard(SaleCard)
 #				Transitioner.AddToDiscard(SaleCard)
 			else:
 				var maybeShop = playArea.owner
@@ -34,7 +34,7 @@ func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 				pass
 			card.FreeMarker()
 			card.queue_free()
-			Room.RemoveFromRoom(card)
+			card.owner.Room.RemoveFromRoom(card)
 			TDCard.hoveredCards.erase(card)
 		else:
 			card._Played = false

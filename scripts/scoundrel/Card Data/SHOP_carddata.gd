@@ -32,11 +32,11 @@ func SpecialSetup(card : TDCard):
 func PlayCard(playArea:TDCardPlayArea, card : TDCard):
 	if(playArea.ValidPlayType("Ability")):
 		card.get_tree().root.get_node("Game").add_child(ShopOverlay.CreateNew(ShopData))
-		Transitioner.AddToDiscard(self)
+		card.owner.Transitioner.AddToDiscard(self)
 		card.FreeMarker()
 		card.queue_free()
-	Room.PauseRoom(true)
-	Room.RemoveFromRoom(card)
+	card.owner.Room.PauseRoom(true)
+	card.owner.Room.RemoveFromRoom(card)
 	return
 
 func ClickAction(card : TDCard):

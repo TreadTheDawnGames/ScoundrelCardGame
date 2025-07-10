@@ -64,7 +64,7 @@ func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
 
 func GrabAction(card : TDCard):
 	#card.get_parent().move_child(card, card.get_parent().get_child_count()-1)
-	Tooltip.End()
+	card.owner.Tooltip.End()
 	clickTimer = card.get_tree().create_timer(clickTime)
 	return
 
@@ -72,7 +72,7 @@ func Preplay(_playArea, card):
 	for wreath in Wreaths:
 		wreath.PrePlay(self)
 	card._Played = true
-	Room.card_board.DeselectCard(card)
+	card.owner.Room.card_board.DeselectCard(card)
 	return
 
 func Postplay(_playArea : TDCardPlayArea, _card : TDCard):
@@ -87,7 +87,7 @@ func DropAction(card: TDCard):
 
 	#Tooltip.End()
 	if(card._hovered):
-		Tooltip.Start(card)
+		card.owner.Tooltip.Start(card)
 
 	if(clickTimer.time_left > 0):
 		ClickAction(card)
@@ -120,16 +120,16 @@ func HoverEnterAction(card : TDCard):
 			#Tooltip.End()
 		
 	card.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
-	Tooltip.Start(card)
-	if(Room.card_board._selectedCards.size() > 0 and Room.card_board._selectedCards[0] != card):
+	card.owner.Tooltip.Start(card)
+	if(card.owner.Room.card_board._selectedCards.size() > 0 and card.owner.Room.card_board._selectedCards[0] != card):
 		return false
-	Room.card_board.SelectCard(card)
+	card.owner.Room.card_board.SelectCard(card)
 	return true
 	
 func HoverExitAction(card : TDCard):
 	card.z_index = 0
-	Room.card_board.DeselectCard(card)
-	Tooltip.End()
+	card.owner.Room.card_board.DeselectCard(card)
+	card.owner.Tooltip.End()
 	if(TDCard.hoveredCards.size()>0):
 		var curHovCard = TDCard.hoveredCards[-1]
 		if(is_instance_valid(curHovCard)):

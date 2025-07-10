@@ -11,6 +11,8 @@ var BASE_CARD : PackedScene = preload("res://scenes/cards/card.tscn")
 var POTION_CARD : PackedScene = preload("res://scenes/cards/TDCard_base.tscn")
 var SHOP_CARD : PackedScene = preload("res://scenes/cards/TDCard_Shop.tscn")
 
+@export
+var RoomSlotsPath : NodePath
 
 ###Adds a card to this board. 
 func AddCard(data : TDCardData, isDragDroppable : bool, isActionUsable : bool, goToPos : TDCardPositionMarker2D = null) -> TDCard:

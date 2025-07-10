@@ -66,6 +66,9 @@ func UpdateIcon(amount : int):
 	if(amount >= 0):
 		textAmount = "+"
 	textAmount += str(amount)
-	rich_text_label.text = textAmount
+	if(rich_text_label):
+		rich_text_label.text = textAmount
+	else:
+		printerr("No text for weapon bonus manager")
 	return
 #endregion

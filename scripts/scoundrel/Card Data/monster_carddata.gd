@@ -25,8 +25,8 @@ func Frame(card : TDCard, delta : float):
 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.get_parent() is not TDCard_Weapon): #without weapon
-		Transitioner.AddToDiscard(self)
-		Attack(Value - WeaponManager.GetAndResetBonus())
+		card.owner.Transitioner.AddToDiscard(self)
+		Attack(Value - card.owner.WeaponManager.GetAndResetBonus())
 		card.FreeMarker()
 		card.queue_free()
 	else:
@@ -35,7 +35,7 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		var monsterCard : TDCard_Monster = card
 		if(playArea.GetPlayType().contains("Monster")): #With weapon
 			if(_WeaponValid(weaponCardData)):
-				Attack(Value - weaponCardData.Value - WeaponManager.GetAndResetBonus())
+				Attack(Value - weaponCardData.Value - card.owner.WeaponManager.GetAndResetBonus())
 				monsterCard.FillMarker(weaponCard.Data.GetUnfilledCardSlot())
 				weaponCardData.MonsterSlots.append(monsterCard.monster_stack_marker)
 				weaponCardData.UpdateLastMonster(Value)
@@ -43,11 +43,11 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 				card.get_parent().move_child(card, weaponCardData.SlainMonsters.size())
 				slain = true
 			else: #weaon too damaged
-				Attack(Value - WeaponManager.GetAndResetBonus())
-				Transitioner.AddToDiscard(self)
+				Attack(Value - card.owner.WeaponManager.GetAndResetBonus())
+				card.owner.Transitioner.AddToDiscard(self)
 				monsterCard.FreeMarker()
 				card.queue_free()
-	Room.RemoveFromRoom(card)
+	card.owner.Room.RemoveFromRoom(card)
 	card.StopMouseDetectable()
 	return
 
@@ -62,7 +62,8 @@ func _WeaponValid(weaponData : TDCardData_Weapon) -> bool:
 	return false
 
 func Attack(amount : int):
-	Health.Damage(amount)
+	push_warning("Unable to deal damage due to refactor. this needs fixed. Health used to be global.")
+	#Health.Damage(amount)
 	return
 	
 func ClickAction(card : TDCard):

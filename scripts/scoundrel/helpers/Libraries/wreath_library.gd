@@ -29,6 +29,6 @@ static func AllCompatible(data : TDCardData) -> Array[Wreath]:
 		return All.duplicate(true)
 	for wreath : Wreath in All.duplicate(true):
 		if (wreath.ValidForData(data)):
-			print("Adding ", wreath.WreathName, " to ", data.CardName)
+			#print("Adding ", wreath.WreathName, " to ", data.CardName)
 			compatWreaths.append(wreath)
 	return compatWreaths

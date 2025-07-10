@@ -25,7 +25,7 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType(AbilityUseName)):
 		Ability.call(card)
 		if(!destroyAfterUse):
-			Transitioner.AddToDiscard(self)
+			card.owner.Transitioner.AddToDiscard(self)
 		card.queue_free()
-	Room.RemoveFromRoom(card)
+	card.owner.Room.RemoveFromRoom(card)
 	return

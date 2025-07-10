@@ -19,8 +19,8 @@ func _ready():
 	pregame.show()
 	CardLibrary.SetActiveDeck(CardLibrary.SPECIAL)
 	LoadDeck(CardLibrary.DEV)
-	Deck.Shuffle()
-	Room.ReplenishRoom()
+	owner.Deck.Shuffle()
+	owner.Room.ReplenishRoom()
 	var wreathApplyScene :AssignWreathsOverlay = ShopOverlay.APPLY_WREATHS.instantiate()
 	wreathApplyScene.SetTitle("Assign Gold Wreaths")
 	wreathApplyScene.boughtWreaths = [WreathLibrary.Gold(),WreathLibrary.Gold(),WreathLibrary.Gold(),WreathLibrary.Gold(),]
@@ -31,16 +31,16 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("Debug-Shuffle")):
-		Deck.Shuffle()
+		owner.Deck.Shuffle()
 	if(Input.is_action_just_pressed("Debug-Flee")):
-		Room.Flee()
-		Room.ReplenishRoom()
+		owner.Room.Flee()
+		owner.Room.ReplenishRoom()
 	if(Input.is_action_just_pressed("Debug-AddAttackBonus")):
-		WeaponManager.AddToAttackBonus(1)
+		owner.WeaponManager.AddToAttackBonus(1)
 	if(Input.is_action_just_pressed("Debug-AddPassiveBonus")):
-		WeaponManager.AddToPassiveBonus(1)
+		owner.WeaponManager.AddToPassiveBonus(1)
 	if(Input.is_action_just_pressed("Debug-Heal")):
-		Health.Heal(Health.maxHealth)
+		owner.Health.Heal(owner.Health.maxHealth)
 	if(Input.is_action_just_pressed("Debug-AddWreath")):
 		for card in card_board._selectedCards:
 			if(!is_instance_valid(card)):
@@ -58,9 +58,9 @@ func _process(_delta: float) -> void:
 						 ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], true, -5)])
 		add_child(shop)
 	if(Input.is_action_just_pressed("Debug-AddMoney")):
-		Money.AlterMoney(10)
+		owner.Money.AlterMoney(10)
 	return
 	
 func LoadDeck(deck : Array[CardInfo]):
-	Deck.PutArray(CardInfo.MultipleCardsFromInfo(deck))
+	owner.Deck.PutArray(CardInfo.MultipleCardsFromInfo(deck))
 	return

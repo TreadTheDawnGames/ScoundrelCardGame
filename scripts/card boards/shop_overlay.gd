@@ -69,7 +69,7 @@ func _ready():
 	
 	RerollShop(true)
 	#SetupShop(ShopInfo)
-	Room.card_board.SetBoardActive(false)
+	owner.Room.card_board.SetBoardActive(false)
 	RerollShopButton.pressed.connect(RerollShop)
 	CloseShopButton.pressed.connect(CloseShop)
 	return
@@ -118,7 +118,7 @@ func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
 		RerollIfCards.append(chosenCardInfo.CardName)
 		
 		var purchaseData : TDCardData_Art = CardInfo.CardDataFromInfo(chosenCardInfo)
-		print("purchaseData suit: " + str(TDCardData_Art.SuitType.find_key(purchaseData.Suit)))
+		#print(": " + str(TDCardData_Art.SuitType.find_key(purchaseData.Suit)))
 		chosenCardInfo.ExtraParams["SaleCard"] = purchaseData
 		var chosenWreaths : Array[Wreath]
 		var chosenWreathNames : Array[String]
@@ -169,7 +169,7 @@ func DetermineWreathCount(shopData : ShopData) -> int:
 
 
 func RerollShop(freeRoll : bool = false):
-	if(freeRoll or Money.TryBuy(rerollPrice)):
+	if(freeRoll or owner.Money.TryBuy(rerollPrice)):
 		if(!freeRoll):
 			rerollPrice+=1
 		RerollIfCards.clear()
@@ -180,7 +180,7 @@ func RerollShop(freeRoll : bool = false):
 				card.queue_free()
 		_board.clear()
 		SetupShop(ShopInfo)
-		if(rerollPrice > Money.CurrentMoney()):
+		if(rerollPrice > owner.Money.CurrentMoney()):
 			RerollShopButton.disabled = true
 	return
 
@@ -190,15 +190,15 @@ func CloseShop():
 			card.FreeMarker()
 			card.queue_free()
 	_board.clear()
-	Room.card_board.SetBoardActive(true)
+	owner.Room.card_board.SetBoardActive(true)
 	if(BoughtWreaths.size() > 0):
 		var wreathApplyScene :AssignWreathsOverlay = APPLY_WREATHS.instantiate()
 		wreathApplyScene.boughtWreaths = BoughtWreaths
 		get_parent().add_child(wreathApplyScene)
 	
 	queue_free()
-	Room.PauseRoom(false)
-	Room.ReplenishRoom()
+	owner.Room.PauseRoom(false)
+	owner.Room.ReplenishRoom()
 	return
 
 func GetShopName() -> String:

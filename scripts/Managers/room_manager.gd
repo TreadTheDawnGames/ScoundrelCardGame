@@ -14,8 +14,11 @@ signal ReplenishedRoom
 var roomPaused : bool = false
 
 func _ready() -> void:
-	var children = get_node("/root/Game/DungeonNodes/RoomSlots").find_children("*", "TDCardPositionMarker2D", false) as Array[TDCardPositionMarker2D]
-	roomSlots = children
+	var children = get_node("/root/Game/DungeonNodes/RoomSlots")
+	if(children):
+		roomSlots = children.find_children("*", "TDCardPositionMarker2D", false)
+	else:
+		printerr("No room slots in scene.")
 	return
 
 func Flee():
@@ -28,7 +31,7 @@ func Flee():
 		card.queue_free()
 	roomData.shuffle()
 	roomCards.clear()
-	Deck.BuryArray(roomData)
+	owner.Deck.BuryArray(roomData)
 	return
 
 func ReplenishRoom():
@@ -39,22 +42,22 @@ func ReplenishRoom():
 	
 	if(_GetFilledRoomSlotsCount() < 2):
 		for card in roomCards:
-				if(card.LocationMarker):
-					if(card.LocationMarker != roomSlots.front()):
-						card.FreeMarker()
-						card.FillMarker(_GetUnfilledRoomSlot())
+			if(card.LocationMarker):
+				if(card.LocationMarker != roomSlots.front()):
+					card.FreeMarker()
+					card.FillMarker(_GetUnfilledRoomSlot())
 
 		while _GetUnfilledRoomSlot():
-			if(Deck.Count()>0):
+			if(owner.Deck.Count()>0):
 				var slot = _GetUnfilledRoomSlot()
 				if(slot):
-					var card : TDCard = card_board.AddCardFromItsScene(Deck.DrawCard(), true, true, slot)
+					var card : TDCard = card_board.AddCardFromItsScene(owner.Deck.DrawCard(), true, true, slot)
 					roomCards.push_back(card)
 			else: 
 				break
 		ReplenishedRoom.emit()
 	else:
-		print("Room not cleared yet.")
+		print("Room not cleared yet. Filled slots: " + str(_GetFilledRoomSlotsCount()))
 	return
 
 func _GetUnfilledRoomSlot() -> TDCardPositionMarker2D:

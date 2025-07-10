@@ -56,7 +56,7 @@ static func TenOfWeapons(card : TDCard):
 	return
 
 static func JackOfWeapons(card : TDCard):
-	WeaponManager.AddToPassiveBonus(2)
+	card.owner.WeaponManager.AddToPassiveBonus(2)
 	card.FreeMarker()
 	card.queue_free()
 	return
@@ -70,15 +70,15 @@ static func QueenOfWeapons(card : TDCard):
 	var data2 : TDCardData = TDCardData_Potion.new(info2.CardName, info2.TexturePath, info2.Value, info2.Lore, TDCardData_Art.SuitType.Potions, info2.ExtraParams)
 	var bonusPots : Array[TDCardData] = [data1, data2]
 
-	Deck.PutArray(bonusPots)
-	Deck.Shuffle()
+	card.owner.Deck.PutArray(bonusPots)
+	card.owner.Deck.Shuffle()
 	print("Performed " + str(card.CardName)+"'s action.")
 	return
 
 static func KingOfWeapons(card : TDCard):
 	card.FreeMarker()
 	card.queue_free()
-	Money.AlterMoney(20)
+	card.owner.Money.AlterMoney(20)
 	print("Performed " + str(card.CardName)+"'s action.")
 	return
 

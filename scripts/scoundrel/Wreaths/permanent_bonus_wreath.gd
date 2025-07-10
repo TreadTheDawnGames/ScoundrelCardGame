@@ -25,7 +25,7 @@ func ValidForData(data : TDCardData) -> bool:
 	if(data == null):
 		return false
 	var isValid : bool = data.Suit in ValidSuitTargets
-	print("Namd / Valid Suits / current / valid: ", data.CardName, " / ", ValidSuitTargets, " / ", data.Suit, " / ", isValid)
+	#print("Namd / Valid Suits / current / valid: ", data.CardName, " / ", ValidSuitTargets, " / ", data.Suit, " / ", isValid)
 	return isValid 
 
 

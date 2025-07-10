@@ -37,8 +37,8 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 				Equip(card)
 	elif(playArea.ValidPlayType("Discard")):
 		Unequip(card)
-		Transitioner.AddToDiscard(self)
-	Room.RemoveFromRoom(card)
+		card.owner.Transitioner.AddToDiscard(self)
+	card.owner.Room.RemoveFromRoom(card)
 	return
 
 func Equip(card : TDCard):
@@ -47,7 +47,7 @@ func Equip(card : TDCard):
 	card.useMonsterCollisionShape.disabled = false
 	equipped = true
 	card.get_parent().move_child(card, 0)
-	WeaponManager.SetActiveWeapon(self)
+	card.owner.WeaponManager.SetActiveWeapon(self)
 
 	return
 
@@ -63,7 +63,7 @@ func Unequip(card : TDCard):
 		
 	CleanWeapon()
 	equipped = false
-	WeaponManager.SetActiveWeapon(null)
+	card.owner.WeaponManager.SetActiveWeapon(null)
 	card.FreeMarker()
 	card.queue_free()
 	return

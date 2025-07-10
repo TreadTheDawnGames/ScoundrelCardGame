@@ -17,7 +17,8 @@ func _ready():
 	tooltip = tooltipScene.instantiate()
 	get_tree().root.add_child.call_deferred(tooltip)
 	tooltip.hide()
-	Room.ReplenishedRoom.connect(End)
+	print(owner.name)
+	owner.Room.ReplenishedRoom.connect(End)
 	#print("Tooltip Hidden: " + str(!tooltip.visible))
 	return
 	

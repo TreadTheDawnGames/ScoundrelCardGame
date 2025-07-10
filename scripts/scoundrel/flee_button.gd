@@ -7,6 +7,8 @@ func _ready() -> void:
 	Room.ReplenishedRoom.connect(ResetButton)
 	return
 
+#WHAT IS THIS??? IT CHECKS EVERY FRAME WHETHER IT SHOULD BE ENABLED????
+#WHY DID I LET THIS SLIDE??
 func _process(_delta):
 	if(Room.roomCards.size()<4):
 		disabled = true

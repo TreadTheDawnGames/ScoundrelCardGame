@@ -152,7 +152,7 @@ func IsOnTop() -> bool:
 func FreeMarker():
 	if(LocationMarker):
 		LocationMarker.SetUnfilled()
-	LocationMarker = null
+		LocationMarker = null
 	return
 
 ## Automatically frees the current marker if the card already has one.
@@ -169,8 +169,8 @@ func FillMarker(marker : TDCardPositionMarker2D):
 #technically got this name from Brave AI
 func _exit_tree() -> void:
 	if(is_instance_valid(LocationMarker)):
-		FreeMarker()
-		#printerr(name + ": Make sure to free the card marker first!")
+		#FreeMarker()
+		printerr(name + ": Make sure to free the card marker first!")
 	TDCard.hoveredCards.erase(self)
 	return
 
