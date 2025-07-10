@@ -1,0 +1,84 @@
+[gd_scene load_steps=16 format=3 uid="uid://bptdp3n5iufb3"]
+
+[ext_resource type="Script" path="res://scenes/dungeon.gd" id="1_6nb7m"]
+[ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_riw3k"]
+[ext_resource type="PackedScene" uid="uid://dud3m4x0pe4dj" path="res://scenes/play_areas/discard_play_area.tscn" id="3_43ajv"]
+[ext_resource type="PackedScene" path="res://scenes/play_areas/potion_equip_area.tscn" id="3_tntwt"]
+[ext_resource type="PackedScene" uid="uid://dkyfwxrcvk1u" path="res://scenes/play_areas/equip_play_area.tscn" id="4_tntwt"]
+[ext_resource type="PackedScene" uid="uid://blkiokofo6p7o" path="res://scenes/play_areas/heal_play_area.tscn" id="5_jb54w"]
+[ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="6_bdhm3"]
+[ext_resource type="Texture2D" uid="uid://qp6d471c7u4m" path="res://assets/cards/Rear/CardRear.png" id="8_jb54w"]
+[ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="9_bdhm3"]
+[ext_resource type="PackedScene" path="res://scenes/Globals/attack_bonus_manager.tscn" id="10_6nb7m"]
+[ext_resource type="PackedScene" uid="uid://mjt5ubggo0ck" path="res://scenes/Globals/health_manager.tscn" id="12_hh3g7"]
+[ext_resource type="PackedScene" uid="uid://dt23uvfi576sd" path="res://scenes/Globals/money_manager.tscn" id="13_rfuge"]
+[ext_resource type="PackedScene" uid="uid://32tbh30exg8s" path="res://scenes/Globals/room_manager.tscn" id="14_1o5ds"]
+[ext_resource type="PackedScene" uid="uid://qfutoakl0r1q" path="res://scenes/Globals/tooltip_manager.tscn" id="15_ea5hl"]
+[ext_resource type="PackedScene" uid="uid://b2xw7f867xas" path="res://scenes/Globals/Deck.tscn" id="15_r4vth"]
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_6nb7m")
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="AttackBonusManager" parent="Managers" instance=ExtResource("10_6nb7m")]
+
+[node name="Deck" parent="Managers" instance=ExtResource("15_r4vth")]
+
+[node name="Health" parent="Managers" instance=ExtResource("12_hh3g7")]
+
+[node name="MoneyManager" parent="Managers" instance=ExtResource("13_rfuge")]
+
+[node name="RoomManager" parent="Managers" instance=ExtResource("14_1o5ds")]
+
+[node name="TooltipManager" parent="Managers" instance=ExtResource("15_ea5hl")]
+
+[node name="Card Board" type="Node2D" parent="."]
+script = ExtResource("1_riw3k")
+
+[node name="PlayAreas" type="Node2D" parent="."]
+
+[node name="EquipPlayArea" parent="PlayAreas" instance=ExtResource("4_tntwt")]
+position = Vector2(52, 121)
+
+[node name="PotionEquipPlayArea" parent="PlayAreas" instance=ExtResource("3_tntwt")]
+position = Vector2(97, 120)
+collision_layer = 64
+collision_mask = 0
+
+[node name="DiscardPlayArea" parent="PlayAreas" instance=ExtResource("3_43ajv")]
+position = Vector2(259, 55)
+
+[node name="HealPlayArea" parent="PlayAreas" instance=ExtResource("5_jb54w")]
+position = Vector2(259, 118)
+_PlayType = "Heal"
+
+[node name="TDCardPlayArea" parent="PlayAreas" instance=ExtResource("6_bdhm3")]
+position = Vector2(206, 119)
+_PlayType = "Ability"
+
+[node name="RoomNodes" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="RoomNodes"]
+position = Vector2(67, 47)
+texture = ExtResource("8_jb54w")
+
+[node name="Slot1" type="Marker2D" parent="RoomNodes"]
+position = Vector2(107, 50)
+script = ExtResource("9_bdhm3")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
+
+[node name="Slot2" type="Marker2D" parent="RoomNodes"]
+position = Vector2(141, 50)
+script = ExtResource("9_bdhm3")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
+
+[node name="Slot3" type="Marker2D" parent="RoomNodes"]
+position = Vector2(174, 51)
+script = ExtResource("9_bdhm3")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
+
+[node name="Slot4" type="Marker2D" parent="RoomNodes"]
+position = Vector2(210, 47)
+script = ExtResource("9_bdhm3")
+metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
