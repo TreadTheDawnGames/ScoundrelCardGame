@@ -64,14 +64,14 @@ func _show():
 		extraSpaceForWreath = 10
 	var cardArtData : TDCardData_Art = _card.Data #
 	tooltip.global_position = _card.global_position + Vector2(-tooltip.size.x/2, cardArtData.Art.get_size().y*2.6 + extraSpaceForWreath)
-	tooltip.SetLore(_card.Data.Lore)
+	tooltip.SetLore(_card.Data.Lore, _card.Data)
 	
 	var wreathIndex : int = -1
 	var totalAdditionalSpace : int = 0
 	for wreathTip in wreathTips:
 		var wreath = _card.Data.Wreaths[validWreathIndexes[wreathIndex]]
 		#wreathTip.show()
-		wreathTip.SetLore(wreath.Lore)
+		wreathTip.SetLore(wreath.Lore, _card.Data)
 		wreathTip.global_position = Vector2(tooltip.global_position.x + tooltip.size.x + 15, tooltip.global_position.y + ((totalAdditionalSpace)))
 		wreathIndex -= 1
 		totalAdditionalSpace += int(wreathTip.size.y) + 2

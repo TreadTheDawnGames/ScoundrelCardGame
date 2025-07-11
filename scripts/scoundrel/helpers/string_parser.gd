@@ -11,15 +11,19 @@ static var replacements = {"Health" : Color.RED,
 	"Beast" : Color.CYAN,
 	"Ghost" : Color.PURPLE,
 	"Potion" : Color.WEB_GREEN,
-	
+	"Wreath" : Color.CHARTREUSE,
+	"[Value]" : Color(5,5,5)
 	
 	}
 
-static func Format(input : String) -> String:
-	var updatedInput = input
+static func Format(input : String, card : TDCardData_Art = null) -> String:
+	var updatedInput : String = input
 	
-	for replacementKey in replacements.keys():
-		updatedInput = updatedInput.replace(replacementKey, "[color="+replacements.get(replacementKey).to_html()+"]"+replacementKey+"[/color]")
+	for replacementKey : String in replacements.keys():
+		if(replacementKey == "[Value]" and card != null):
+			updatedInput = updatedInput.replace(replacementKey, str(card.Value))
+			continue
+		updatedInput = updatedInput.replace(replacementKey, "[color="+replacements.get(replacementKey).to_html()+"]"+replacementKey+"[/color]")#.replace(replacementKey.to_lower(), "[color="+replacements.get(replacementKey).to_html()+"]"+replacementKey.to_lower()+"[/color]")
 	
 	return updatedInput
 

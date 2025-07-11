@@ -72,9 +72,9 @@ static var SPECIAL : Array[CardInfo]=[
 static var DEV : Array[CardInfo] = [
 	#Weapons
 	Wep2(), Wep3(), Wep4(), Wep5(), 
-	WepA(),
 	#Potions
-	Pot2(), Pot3(), Pot4(), Pot5(),
+	Pot2(), Pot3(),
+	 #Pot4(), Pot5(),
 	#Ghosts
 	#Gho2(), Gho3(), Gho4(), Gho5(), Gho6(), Gho7(), Gho8(),
 	##Beasts
@@ -87,16 +87,16 @@ static var DEV : Array[CardInfo] = [
 				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, 0, 0, 0),
 				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Potions, [], false, 0, 0, 0)]}),
 	
-	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 0, "General store for Wreaths, Potions, and Weapons.", 
+	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 0, "The Potion store.", 
 	{"Luckiness":0,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Potions, [], false, 0, 0, 0)]}),
 	
-	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/WeaponShopCard.png", 0, "General store for Wreaths, Potions, and Weapons.", 
+	CardInfo.new("BasicShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/WeaponShopCard.png", 0, "The Weapon store.", 
 	{"Luckiness":2,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, 0, 0, 0),
 				ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Weapons, [], false, -1, 0, 0)]}),
 				
-	CardInfo.new("WreathShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 0, "The wreath store.", 
+	CardInfo.new("WreathShop", TDCardData_Art.SuitType.Shops, "res://assets/cards/ShopCards/PotionShopCard.png", 0, "The Wreath store.", 
 	{"Luckiness":2,
 	"ShopData": [ShopOverlay.ShopData.new(TDCardData_Art.SuitType.Wreaths, [], false, 1, 0, 0)]}),
 				

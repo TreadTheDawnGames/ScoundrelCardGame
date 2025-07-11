@@ -7,10 +7,10 @@ var hovered : bool = false
 
 
 
-func SetLore(lore : String) -> int:
+func SetLore(lore : String, card : TDCardData) -> int:
 	#textLabel.get_rect().size.y = 0
 	#set_size(Vector2(size.x, 0))
-	get_node("RichTextLabel").text = StringFormatter.Format(lore)
+	get_node("RichTextLabel").text = StringFormatter.Format(lore, card)
 	reset_size()
 	
 	#textLabel.tooltip_text = StringFormatter.Keywords(lore)

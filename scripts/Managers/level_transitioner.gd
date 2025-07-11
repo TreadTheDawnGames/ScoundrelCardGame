@@ -1,7 +1,7 @@
 extends Node
 class_name LevelTransitioner
 
-var curLevel : int = 0
+var curLevel : int = 1
 var Discard : TDCardStack 
 
 func _ready() -> void:
