@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasItem
 class_name TDCardBoard
 
 var _board : Array[TDCard]

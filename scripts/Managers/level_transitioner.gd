@@ -1,24 +1,24 @@
-extends Node
+extends Manager
 class_name LevelTransitioner
 
 var curLevel : int = 1
 var Discard : TDCardStack 
 
-func _ready() -> void:
+func Setup() -> void:
 	Discard = TDCardStack.new()
-	owner.Room.ReplenishingRoom.connect(TransitionToNextLevel)
+	Dungeon.instance.Room.ReplenishingRoom.connect(TransitionToNextLevel)
 	return
 
 func TransitionToNextLevel():
 	if(CheckLevelClear()):
 		curLevel += 1
 		ClearBoard()
-		owner.WeaponManager.SetActiveWeapon(null)
+		Dungeon.instance.WeaponManager.SetActiveWeapon(null)
 		#add monsters with 8+level to discard, shuffle, and put into deck.
 		Discard.PutArray(CardInfo.MultipleCardsFromInfo(Levels.Get(curLevel)))
 		Discard.Shuffle()
 		
-		owner.Deck.PutStack(Discard)
+		Dungeon.instance.Deck.PutStack(Discard)
 		Discard.Clear()
 		#Deck.Shuffle()
 		#Room.ReplenishRoom()
@@ -29,10 +29,10 @@ func TransitionToNextLevel():
 	return
 
 func ClearBoard():
-	Discard.PutStack(owner.Deck)
-	owner.Deck.Clear()
+	Discard.PutStack(Dungeon.instance.Deck)
+	Dungeon.instance.Deck.Clear()
 	
-	var cardsToCleanup = owner.Room.card_board._board + owner.Room.roomCards
+	var cardsToCleanup = Dungeon.instance.Room.card_board._board + Dungeon.instance.Room.roomCards
 	print("---emptying room---")
 	for card in cardsToCleanup:
 		if(!is_instance_valid(card)):
@@ -49,8 +49,8 @@ func ClearBoard():
 		Discard.PutCard(data)
 		card.FreeMarker()
 		card.queue_free()
-	owner.Room.card_board._board.clear()
-	for slot in owner.Room.roomSlots:
+	Dungeon.instance.Room.card_board._board.clear()
+	for slot in Dungeon.instance.Room.roomSlots:
 		slot.SetUnfilled()
 	print("Cards in discard: "+str(Discard.Cards.size()))
 	print("------")
@@ -62,7 +62,7 @@ func AddToDiscard(cardData : TDCardData):
 
 func CheckLevelClear() -> bool:
 	print("checking level clear...")
-	var cardsToCheck = owner.Deck.Cards + owner.Room.GetRoomCardData()
+	var cardsToCheck = Dungeon.instance.Deck.Cards + Dungeon.instance.Room.GetRoomCardData()
 	for data in cardsToCheck:
 		if(data.Suit == TDCardData_Art.SuitType.Beasts or data.Suit == TDCardData_Art.SuitType.Ghosts):
 			print("Level not cleared. Monsters remain.")

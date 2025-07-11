@@ -5,6 +5,13 @@ var AbilityDescription : String
 var SaleCard : TDCardData
 var Luckiness : int
 
+func SpecialSetup(card : TDCard):
+	super.SpecialSetup(card)
+	var baseCard = card as TDCard_Base
+	if(Suit == SuitType.None or Suit == SuitType.Wreaths):
+		baseCard.valueDisplay.hide()
+	return
+
 ##Extra params: SaleCard
 func _init(name : String, art : String, value : int, lore : String, suit : TDCardData_Art.SuitType, extraParams : Dictionary[String, Variant]):
 	super._init(name, art, value, lore, suit, extraParams)
@@ -17,11 +24,11 @@ func _init(name : String, art : String, value : int, lore : String, suit : TDCar
 	
 func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("Buy")):
-		if(card.owner.Money.TryBuy(SaleCard.Value)):
+		if(Dungeon.instance.Money.TryBuy(SaleCard.Value)):
 			super.Postplay(playArea, card)
 			print("bought " + SaleCard.CardName)
 			if(SaleCard.Suit != SuitType.Wreaths):
-				card.owner.Deck.BuryCard(SaleCard)
+				Dungeon.instance.Deck.BuryCard(SaleCard)
 #				Transitioner.AddToDiscard(SaleCard)
 			else:
 				var maybeShop = playArea.owner
@@ -34,7 +41,7 @@ func Postplay(playArea : TDCardPlayArea, card : TDCard) -> void:
 				pass
 			card.FreeMarker()
 			card.queue_free()
-			card.owner.Room.RemoveFromRoom(card)
+			Dungeon.instance.Room.RemoveFromRoom(card)
 			TDCard.hoveredCards.erase(card)
 		else:
 			card._Played = false

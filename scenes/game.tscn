@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://obwt4udpkhb5"]
 
 [ext_resource type="Script" uid="uid://djancamhvkmsr" path="res://scripts/DEBUG/DEBUG_tools.gd" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://cn7qjcd3dmq7r" path="res://scenes/dungeon.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bptdp3n5iufb3" path="res://scenes/dungeon.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://jfl0vya2ccdr" path="res://assets/UI/BeastsBackTiled.png" id="24_pl11u"]
 
 [node name="Game" type="Node2D"]
@@ -20,4 +20,5 @@ stretch_mode = 6
 [node name="Dungeon" parent="." instance=ExtResource("3_lnu2h")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(581, 324)
+position = Vector2(144, 81)
+zoom = Vector2(4, 4)

@@ -10,7 +10,7 @@ func _ready():
 	
 	board_title = get_node("Panel/BoardTitle")
 	board_title.text = Title
-	var allCards = Deck.Cards + Room.GetRoomCardData() + Transitioner.Discard.Cards
+	var allCards = Dungeon.instance.Deck.Cards + Dungeon.instance.Room.GetRoomCardData() + Dungeon.instance.Transitioner.Discard.Cards
 	MaxWidth[0] = NumOfCardsInPredominantSuit(allCards)
 	
 	Initialize(GetNumberOfNeededMarkers(allCards), cardAreas[0], MaxWidth[0])
@@ -38,7 +38,7 @@ func Initialize(slotCount : int, markerExtents : ReferenceRect, maxWidth : int =
 	return
 
 func ViewRoom(allCards : Array[TDCardData]):
-	Room.card_board.SetBoardActive(false)
+	Dungeon.instance.Room.card_board.SetBoardActive(false)
 
 	
 	allCards.sort_custom(
@@ -98,7 +98,7 @@ func ApplySlots(infos : Array[TDCardData], mySlots : Array):
 		if(!is_instance_valid(info)):
 			continue
 		var card : TDCard = AddCardFromItsScene(info,true, false, mySlots[i])
-		if(info in Transitioner.Discard.Cards):
+		if(info in Dungeon.instance.Transitioner.Discard.Cards):
 			card.modulate = card.modulate.blend(Color(0,0,0,0.5))
 		card.scale *= 4
 		i+=1
@@ -110,7 +110,7 @@ func ReturnRoom():
 		card.FreeMarker()
 		card.queue_free()
 
-	Room.card_board.SetBoardActive(true)
+	Dungeon.instance.Room.card_board.SetBoardActive(true)
 	Debug_ShowAllCards.isOpen = false
 	queue_free()
 	return

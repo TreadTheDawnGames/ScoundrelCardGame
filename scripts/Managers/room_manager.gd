@@ -1,10 +1,10 @@
-extends Node
+extends Manager
 class_name RoomManager
 
-@export
+@export var roomSlotsPath : NodePath 
 var roomSlots : Array[Node]
 var roomCards : Array[TDCard]
-@onready var card_board: TDCardBoard = $"/root/Game/DungeonNodes/CardBoard"
+@export var card_board: TDCardBoard
 @export var monsterCard : PackedScene
 @export var potionCard : PackedScene
 @export var weaponCard : PackedScene
@@ -13,8 +13,8 @@ signal ReplenishingRoom
 signal ReplenishedRoom
 var roomPaused : bool = false
 
-func _ready() -> void:
-	var children = get_node("/root/Game/DungeonNodes/RoomSlots")
+func Setup() -> void:
+	var children = get_node(roomSlotsPath)
 	if(children):
 		roomSlots = children.find_children("*", "TDCardPositionMarker2D", false)
 	else:
@@ -31,7 +31,7 @@ func Flee():
 		card.queue_free()
 	roomData.shuffle()
 	roomCards.clear()
-	owner.Deck.BuryArray(roomData)
+	Dungeon.instance.Deck.BuryArray(roomData)
 	return
 
 func ReplenishRoom():
@@ -48,10 +48,10 @@ func ReplenishRoom():
 					card.FillMarker(_GetUnfilledRoomSlot())
 
 		while _GetUnfilledRoomSlot():
-			if(owner.Deck.Count()>0):
+			if(Dungeon.instance.Deck.Count()>0):
 				var slot = _GetUnfilledRoomSlot()
 				if(slot):
-					var card : TDCard = card_board.AddCardFromItsScene(owner.Deck.DrawCard(), true, true, slot)
+					var card : TDCard = card_board.AddCardFromItsScene(Dungeon.instance.Deck.DrawCard(), true, true, slot)
 					roomCards.push_back(card)
 			else: 
 				break

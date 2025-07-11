@@ -2,7 +2,7 @@ class_name PotionAbilities
 
 ##Max health +1
 static func TwoOfPotions(card : TDCard):
-	card.owner.Health.IncreaseMaxHealth(1)
+	Dungeon.instance.Health.IncreaseMaxHealth(1)
 	card.FreeMarker()
 	card.queue_free()
 	return
@@ -22,16 +22,16 @@ static func FourOfPotions(card : TDCard):
 
 ##Weapon bonus +2
 static func FiveOfPotions(card : TDCard):
-	card.owner.WeaponManager.AddToAttackBonus(2)
+	Dungeon.instance.WeaponManager.AddToAttackBonus(2)
 	card.FreeMarker()
 	card.queue_free()
 	return
 
 static func SixOfPotions(card : TDCard):
-	if(!card.owner.WeaponManager.GetActiveWeapon()):
+	if(!Dungeon.instance.WeaponManager.GetActiveWeapon()):
 		print("No weapon to clean!")
 		return
-	card.owner.WeaponManager.GetActiveWeapon().CleanWeapon()
+	Dungeon.instance.WeaponManager.GetActiveWeapon().CleanWeapon()
 	card.FreeMarker()
 	card.queue_free()
 	print("Performed " + str(card.CardName)+"'s action.")
@@ -41,15 +41,15 @@ static func SixOfPotions(card : TDCard):
 static func SevenOfPotions(card : TDCard):
 	card.FreeMarker()
 	card.queue_free()
-	card.owner.Room.RemoveFromRoom(card)
-	card.owner.Room.Flee()
-	card.owner.Room.ReplenishRoom()
+	Dungeon.instance.Room.RemoveFromRoom(card)
+	Dungeon.instance.Room.Flee()
+	Dungeon.instance.Room.ReplenishRoom()
 	return
 
 ##Peek next room
 static func EightOfPotions(card : TDCard):
 	var nextRoom = load("res://scenes/card overlays/NextRoomOverlay.tscn").instantiate()
-	card.get_tree().root.get_node("Game").add_child(nextRoom)
+	Dungeon.instance.Canvas.add_child(nextRoom)
 	card.FreeMarker()
 	card.queue_free()
 	print("Performed " + str(card.CardName)+"'s action.")

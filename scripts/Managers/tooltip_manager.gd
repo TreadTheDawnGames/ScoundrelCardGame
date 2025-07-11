@@ -1,4 +1,4 @@
-extends Node
+extends Manager
 class_name TooltipManager
 
 @onready var show_timer: Timer = $ShowTimer
@@ -12,13 +12,13 @@ var tooltip : Tip
 
 var _card : TDCard
 
-func _ready():
+func Setup():
 	show_timer.timeout.connect(_show)
 	tooltip = tooltipScene.instantiate()
 	get_tree().root.add_child.call_deferred(tooltip)
 	tooltip.hide()
-	print(owner.name)
-	owner.Room.ReplenishedRoom.connect(End)
+	print(Dungeon.instance.name)
+	Dungeon.instance.Room.ReplenishedRoom.connect(End)
 	#print("Tooltip Hidden: " + str(!tooltip.visible))
 	return
 	

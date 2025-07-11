@@ -69,7 +69,7 @@ func _ready():
 	
 	RerollShop(true)
 	#SetupShop(ShopInfo)
-	owner.Room.card_board.SetBoardActive(false)
+	Dungeon.instance.Room.card_board.SetBoardActive(false)
 	RerollShopButton.pressed.connect(RerollShop)
 	CloseShopButton.pressed.connect(CloseShop)
 	return
@@ -140,7 +140,7 @@ func AddCardsToShop(shopData : ShopData, MarkerArray) -> void:
 		#shopCardData.Wreaths = chosenWreaths
 		shopCardData.AddMultipleWreaths(chosenWreaths)
 		var card = AddCardFromItsScene(shopCardData,true,true, marker)
-		card.scale *= 4
+		#card.scale *= 4
 		purchaseData.ShowAllWreaths(card)
 	return
 
@@ -169,7 +169,7 @@ func DetermineWreathCount(shopData : ShopData) -> int:
 
 
 func RerollShop(freeRoll : bool = false):
-	if(freeRoll or owner.Money.TryBuy(rerollPrice)):
+	if(freeRoll or Dungeon.instance.Money.TryBuy(rerollPrice)):
 		if(!freeRoll):
 			rerollPrice+=1
 		RerollIfCards.clear()
@@ -180,7 +180,7 @@ func RerollShop(freeRoll : bool = false):
 				card.queue_free()
 		_board.clear()
 		SetupShop(ShopInfo)
-		if(rerollPrice > owner.Money.CurrentMoney()):
+		if(rerollPrice > Dungeon.instance.Money.CurrentMoney()):
 			RerollShopButton.disabled = true
 	return
 
@@ -190,15 +190,15 @@ func CloseShop():
 			card.FreeMarker()
 			card.queue_free()
 	_board.clear()
-	owner.Room.card_board.SetBoardActive(true)
+	Dungeon.instance.Room.card_board.SetBoardActive(true)
 	if(BoughtWreaths.size() > 0):
 		var wreathApplyScene :AssignWreathsOverlay = APPLY_WREATHS.instantiate()
 		wreathApplyScene.boughtWreaths = BoughtWreaths
 		get_parent().add_child(wreathApplyScene)
 	
 	queue_free()
-	owner.Room.PauseRoom(false)
-	owner.Room.ReplenishRoom()
+	Dungeon.instance.Room.PauseRoom(false)
+	Dungeon.instance.Room.ReplenishRoom()
 	return
 
 func GetShopName() -> String:

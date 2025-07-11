@@ -14,13 +14,17 @@ script = ExtResource("2_xugx0")
 Title = "Choose your Character"
 cardSceneSource = ExtResource("3_6jdes")
 
-[node name="MarkerExtents" parent="." index="0"]
-offset_right = 229.0
-
 [node name="BoardTitle" parent="Panel" index="0"]
 text = "Choose Character"
 
-[node name="TDCardPlayArea" type="Area2D" parent="." index="2"]
+[node name="MarkerExtents" parent="Panel" index="1"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1045.0
+offset_bottom = 453.0
+
+[node name="TDCardPlayArea" type="Area2D" parent="." index="1"]
 position = Vector2(397, 34)
 scale = Vector2(4, 4)
 collision_layer = 32

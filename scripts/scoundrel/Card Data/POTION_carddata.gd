@@ -26,12 +26,12 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.ValidPlayType("Heal")):
 		print("Heal")
 		card.FreeMarker()
-		card.owner.Health.Heal(Value)
-		card.owner.Transitioner.AddToDiscard(self)
+		Dungeon.instance.Health.Heal(Value)
+		Dungeon.instance.Transitioner.AddToDiscard(self)
 		card.queue_free()
 		handled = true
 	if(handled):
-		card.owner.Room.RemoveFromRoom(card)
+		Dungeon.instance.Room.RemoveFromRoom(card)
 	#else:
 		#super.PlayCard(playArea, card)
 	return
@@ -48,7 +48,7 @@ func Postplay(playArea : TDCardPlayArea, card : TDCard):
 			handled = true
 
 	if(handled):
-		card.owner.Room.RemoveFromRoom(card)
+		Dungeon.instance.Room.RemoveFromRoom(card)
 	else:
 		super.PlayCard(playArea, card)
 	

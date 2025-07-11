@@ -11,9 +11,9 @@ func _ready():
 	return
 
 func ViewRoom():
-	Room.card_board.SetBoardActive(false)
+	Dungeon.instance.Room.card_board.SetBoardActive(false)
 
-	nextRoom = Deck.DrawMultipleCards(4)
+	nextRoom = Dungeon.instance.Deck.DrawMultipleCards(4)
 		
 	var i = 0
 	for info in nextRoom:
@@ -26,7 +26,7 @@ func ViewRoom():
 
 func ReturnRoom():
 	nextRoom.shuffle()
-	Deck.PutArray(nextRoom)
+	Dungeon.instance.Deck.PutArray(nextRoom)
 	nextRoom.clear()
 	
 	for card in _board:
@@ -34,6 +34,6 @@ func ReturnRoom():
 			card.FreeMarker()
 			card.queue_free()
 	_board.clear()
-	Room.card_board.SetBoardActive(true)
+	Dungeon.instance.Room.card_board.SetBoardActive(true)
 	queue_free()
 	return

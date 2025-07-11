@@ -1,13 +1,13 @@
-extends Node
+extends Manager
 class_name WeaponsManager
 
-@onready var rich_text_label: RichTextLabel = $/root/Game/DungeonNodes/Canvas/CanvasLayer/AttackBonusIcon/RichTextLabel
+@export var rich_text_label: RichTextLabel
 
 var _AttackBonus : int = 0
 var _PassiveBonus : int = 0
 var _ActiveWeapon : TDCardData_Weapon
 
-func _ready() -> void:
+func Setup() -> void:
 	UpdateIcon(GetBonus())
 	return
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn7qjcd3dmq7r"]
+[gd_scene load_steps=17 format=3 uid="uid://bptdp3n5iufb3"]
 
 [ext_resource type="Script" uid="uid://bob6kr04gnkhs" path="res://scenes/dungeon.gd" id="1_6nb7m"]
 [ext_resource type="Script" uid="uid://b86xq610d61j6" path="res://scripts/cards/card_board.gd" id="1_riw3k"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dkyfwxrcvk1u" path="res://scenes/play_areas/equip_play_area.tscn" id="4_tntwt"]
 [ext_resource type="PackedScene" uid="uid://blkiokofo6p7o" path="res://scenes/play_areas/heal_play_area.tscn" id="5_jb54w"]
 [ext_resource type="PackedScene" uid="uid://c5hbhxvcl6ohh" path="res://scenes/play_areas/potion_play_area.tscn" id="6_bdhm3"]
+[ext_resource type="PackedScene" uid="uid://bcjb0kysrh8lf" path="res://scenes/Globals/level_transitioner.tscn" id="8_hh3g7"]
 [ext_resource type="Texture2D" uid="uid://qp6d471c7u4m" path="res://assets/cards/Rear/CardRear.png" id="8_jb54w"]
 [ext_resource type="Script" uid="uid://bjtekbx1mr6dq" path="res://scripts/cards/card_goto_marker.gd" id="9_bdhm3"]
 [ext_resource type="PackedScene" path="res://scenes/Globals/attack_bonus_manager.tscn" id="10_6nb7m"]
@@ -29,11 +30,16 @@ script = ExtResource("1_6nb7m")
 
 [node name="MoneyManager" parent="Managers" instance=ExtResource("13_rfuge")]
 
-[node name="RoomManager" parent="Managers" instance=ExtResource("14_1o5ds")]
+[node name="RoomManager" parent="Managers" node_paths=PackedStringArray("card_board") instance=ExtResource("14_1o5ds")]
+roomSlotsPath = NodePath("../../RoomNodes")
+card_board = NodePath("../../Card Board")
 
 [node name="TooltipManager" parent="Managers" instance=ExtResource("15_ea5hl")]
 
+[node name="LevelTransitioner" parent="Managers" instance=ExtResource("8_hh3g7")]
+
 [node name="Card Board" type="Node2D" parent="."]
+position = Vector2(67, 47)
 script = ExtResource("1_riw3k")
 
 [node name="PlayAreas" type="Node2D" parent="."]
@@ -51,10 +57,14 @@ position = Vector2(259, 55)
 
 [node name="HealPlayArea" parent="PlayAreas" instance=ExtResource("5_jb54w")]
 position = Vector2(259, 118)
+collision_layer = 8
+collision_mask = 0
 _PlayType = "Heal"
 
 [node name="TDCardPlayArea" parent="PlayAreas" instance=ExtResource("6_bdhm3")]
 position = Vector2(206, 119)
+collision_layer = 8
+collision_mask = 0
 _PlayType = "Ability"
 
 [node name="RoomNodes" type="Node2D" parent="."]
@@ -82,3 +92,5 @@ metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
 position = Vector2(210, 47)
 script = ExtResource("9_bdhm3")
 metadata/_custom_type_script = "uid://bjtekbx1mr6dq"
+
+[node name="Canvas" type="CanvasLayer" parent="."]

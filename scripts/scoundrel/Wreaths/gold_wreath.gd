@@ -8,8 +8,8 @@ func _init(art : String, price : int, wreathName : String, allowedDuplicates : b
 
 func PostPlay(cardData : TDCardData):
 	print("altering money")
-	push_warning("Unable to alter money. Money used to be global but now is not.")
-	#Money.AlterMoney(cardData.Value)
+	#push_warning("Unable to alter money. Money used to be global but now is not.")
+	Dungeon.instance.Money.AlterMoney(cardData.Value)
 	return
 
 func Copy() -> Wreath:

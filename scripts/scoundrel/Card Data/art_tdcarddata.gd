@@ -56,6 +56,7 @@ func SpecialSetup(card : TDCard):
 			wreath.Setup(card)
 		valueDisplay = card.get_node("Art/CardValueDisplay")
 		valueDisplay.SetLables(Value)
+		card.valueDisplay = valueDisplay
 	pass
 
 func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
@@ -64,7 +65,7 @@ func EnterUsable(_playArea : TDCardPlayArea, card : TDCard)->void:
 
 func GrabAction(card : TDCard):
 	#card.get_parent().move_child(card, card.get_parent().get_child_count()-1)
-	card.owner.Tooltip.End()
+	Dungeon.instance.Tooltip.End()
 	clickTimer = card.get_tree().create_timer(clickTime)
 	return
 
@@ -72,7 +73,7 @@ func Preplay(_playArea, card):
 	for wreath in Wreaths:
 		wreath.PrePlay(self)
 	card._Played = true
-	card.owner.Room.card_board.DeselectCard(card)
+	Dungeon.instance.Room.card_board.DeselectCard(card)
 	return
 
 func Postplay(_playArea : TDCardPlayArea, _card : TDCard):
@@ -87,7 +88,7 @@ func DropAction(card: TDCard):
 
 	#Tooltip.End()
 	if(card._hovered):
-		card.owner.Tooltip.Start(card)
+		Dungeon.instance.Tooltip.Start(card)
 
 	if(clickTimer.time_left > 0):
 		ClickAction(card)
@@ -120,16 +121,16 @@ func HoverEnterAction(card : TDCard):
 			#Tooltip.End()
 		
 	card.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
-	card.owner.Tooltip.Start(card)
-	if(card.owner.Room.card_board._selectedCards.size() > 0 and card.owner.Room.card_board._selectedCards[0] != card):
+	Dungeon.instance.Tooltip.Start(card)
+	if(Dungeon.instance.Room.card_board._selectedCards.size() > 0 and Dungeon.instance.Room.card_board._selectedCards[0] != card):
 		return false
-	card.owner.Room.card_board.SelectCard(card)
+	Dungeon.instance.Room.card_board.SelectCard(card)
 	return true
 	
 func HoverExitAction(card : TDCard):
 	card.z_index = 0
-	card.owner.Room.card_board.DeselectCard(card)
-	card.owner.Tooltip.End()
+	Dungeon.instance.Room.card_board.DeselectCard(card)
+	Dungeon.instance.Tooltip.End()
 	if(TDCard.hoveredCards.size()>0):
 		var curHovCard = TDCard.hoveredCards[-1]
 		if(is_instance_valid(curHovCard)):

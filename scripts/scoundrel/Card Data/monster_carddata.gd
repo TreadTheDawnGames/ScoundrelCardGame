@@ -25,8 +25,8 @@ func Frame(card : TDCard, delta : float):
 
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 	if(playArea.get_parent() is not TDCard_Weapon): #without weapon
-		card.owner.Transitioner.AddToDiscard(self)
-		Attack(Value - card.owner.WeaponManager.GetAndResetBonus())
+		Dungeon.instance.Transitioner.AddToDiscard(self)
+		Attack(Value - Dungeon.instance.WeaponManager.GetAndResetBonus())
 		card.FreeMarker()
 		card.queue_free()
 	else:
@@ -35,7 +35,7 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 		var monsterCard : TDCard_Monster = card
 		if(playArea.GetPlayType().contains("Monster")): #With weapon
 			if(_WeaponValid(weaponCardData)):
-				Attack(Value - weaponCardData.Value - card.owner.WeaponManager.GetAndResetBonus())
+				Attack(Value - weaponCardData.Value - Dungeon.instance.WeaponManager.GetAndResetBonus())
 				monsterCard.FillMarker(weaponCard.Data.GetUnfilledCardSlot())
 				weaponCardData.MonsterSlots.append(monsterCard.monster_stack_marker)
 				weaponCardData.UpdateLastMonster(Value)
@@ -43,11 +43,11 @@ func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:
 				card.get_parent().move_child(card, weaponCardData.SlainMonsters.size())
 				slain = true
 			else: #weaon too damaged
-				Attack(Value - card.owner.WeaponManager.GetAndResetBonus())
-				card.owner.Transitioner.AddToDiscard(self)
+				Attack(Value - Dungeon.instance.WeaponManager.GetAndResetBonus())
+				Dungeon.instance.Transitioner.AddToDiscard(self)
 				monsterCard.FreeMarker()
 				card.queue_free()
-	card.owner.Room.RemoveFromRoom(card)
+	Dungeon.instance.Room.RemoveFromRoom(card)
 	card.StopMouseDetectable()
 	return
 
@@ -62,8 +62,8 @@ func _WeaponValid(weaponData : TDCardData_Weapon) -> bool:
 	return false
 
 func Attack(amount : int):
-	push_warning("Unable to deal damage due to refactor. this needs fixed. Health used to be global.")
-	#Health.Damage(amount)
+	#push_warning("Unable to deal damage due to refactor. this needs fixed. Health used to be global.")
+	Dungeon.instance.Health.Damage(amount)
 	return
 	
 func ClickAction(card : TDCard):

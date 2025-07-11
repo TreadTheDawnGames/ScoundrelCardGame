@@ -13,7 +13,7 @@ func _ready():
 	Slots.append(MakeCards(Initialize(4, cardAreas[0])))
 	DoneButton = get_node("Button")
 	DoneButton.pressed.connect(Done)
-	owner.Room.PauseRoom(true)
+	Dungeon.instance.Room.PauseRoom(true)
 
 
 func MakeWreaths(slots : Array) -> Array[TDCardPositionMarker2D]:
@@ -26,22 +26,22 @@ func MakeWreaths(slots : Array) -> Array[TDCardPositionMarker2D]:
 	
 func MakeCards(slots : Array) -> Array[TDCardPositionMarker2D]:
 	for slot in slots:
-		var card = AddCardFromSource(CARD_DISPLAY, owner.Deck.DrawCard(), true, false, slot)
+		var card = AddCardFromSource(CARD_DISPLAY, Dungeon.instance.Deck.DrawCard(), true, false, slot)
 		if(card):
 			card.scale *= 4
 	return slots
 
 func Done():
-	owner.Room.PauseRoom(false)
+	Dungeon.instance.Room.PauseRoom(false)
 	
 	for card in _board:
 		if(is_instance_valid(card)):
 			var data : TDCardData = card.Data
 			card.FreeMarker()
 			if(not data is Wreath):
-				owner.Deck.BuryCard(data)
+				Dungeon.instance.Deck.BuryCard(data)
 			
 	if(shuffleOnClose):
-		owner.Deck.Shuffle()
+		Dungeon.instance.Deck.Shuffle()
 	queue_free()
 	return

@@ -15,7 +15,7 @@ func PlayCard(_playArea : TDCardPlayArea, card : TDCard):
 	var game : GameHub = card.get_tree().root.get_node("Game")
 	game.dungeon_nodes.show()
 	game.UICanvas.show()
-	card.owner.Health.SetMaxHealth(Value)
+	Dungeon.instance.Health.SetMaxHealth(Value)
 	if(Ability):
 		Ability.call(card)
 	for theCard in game.pregame._board:
