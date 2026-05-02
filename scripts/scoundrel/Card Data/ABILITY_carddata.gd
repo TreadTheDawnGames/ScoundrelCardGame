@@ -11,14 +11,14 @@ func _init(name : String, art : String, value : int, abilityDescription : String
 	super._init(name, art, value, abilityDescription, suit, extraParams)
 	useName += abilityUseName
 	AbilityUseName = abilityUseName
-	if(extraParams.has("Ability")):
-		Ability = extraParams["Ability"]
-	else:
-		printerr(name + " was expecting an extra parameter: Ability, but none was found.")
-	if(extraParams.has("DestroyAfterUse")):
-		destroyAfterUse = extraParams["DestroyAfterUse"]
-	else:
-		printerr(name + " was expecting an extra parameter: DestroyAfterUse, but none was found.")
+	#if(extraParams.has("Ability")):
+		#Ability = extraParams["Ability"]
+	#else:
+		#printerr(name + " was expecting an extra parameter: Ability, but none was found.")
+	#if(extraParams.has("DestroyAfterUse")):
+		#destroyAfterUse = extraParams["DestroyAfterUse"]
+	#else:
+		#printerr(name + " was expecting an extra parameter: DestroyAfterUse, but none was found.")
 	return
 	
 func PlayCard(playArea : TDCardPlayArea, card : TDCard) -> void:

@@ -3,7 +3,7 @@ class_name GameHub
 @onready var card_board: TDCardBoard = $DungeonNodes/CardBoard
 @onready var UICanvas = $DungeonNodes/Canvas
 @onready var dungeon_nodes: Node2D = $DungeonNodes
-@onready var pregame: CharacterCardBoard = $CharacterOverlay
+#@onready var pregame: CharacterCardBoard = $CharacterOverlay
 var hoveredCards : Array[TDCard]
 
 @export
@@ -14,19 +14,21 @@ func RandTex() -> Texture:
 	return textures.pick_random()
 	
 func _ready():
-	dungeon_nodes.hide()
-	UICanvas.hide()
-	pregame.show()
+	#dungeon_nodes.hide()
+	#UICanvas.hide()
+	#pregame.show()
+	Health.SetMaxHealth(20)
+	Health.Heal(Health.maxHealth)
 	CardLibrary.SetActiveDeck(CardLibrary.SPECIAL)
-	LoadDeck(CardLibrary.DEV)
+	LoadDeck(CardLibrary.SPECIAL)
 	Deck.Shuffle()
 	Room.ReplenishRoom()
-	var wreathApplyScene :AssignWreathsOverlay = ShopOverlay.APPLY_WREATHS.instantiate()
-	wreathApplyScene.SetTitle("Assign Gold Wreaths")
-	wreathApplyScene.boughtWreaths = [WreathLibrary.Gold(),WreathLibrary.Gold(),WreathLibrary.Gold(),WreathLibrary.Gold(),]
-	dungeon_nodes.add_child.call_deferred(wreathApplyScene)
-	wreathApplyScene.scale *= 0.25
-	wreathApplyScene.shuffleOnClose = true
+	#var wreathApplyScene :AssignWreathsOverlay = ShopOverlay.APPLY_WREATHS.instantiate()
+	#wreathApplyScene.SetTitle("Assign Gold Wreaths")
+	#wreathApplyScene.boughtWreaths = [WreathLibrary.Gold(),WreathLibrary.Gold(),WreathLibrary.Gold(),WreathLibrary.Gold(),]
+	#dungeon_nodes.add_child.call_deferred(wreathApplyScene)
+	#wreathApplyScene.scale *= 0.25
+	#wreathApplyScene.shuffleOnClose = true
 	return
 
 func _process(_delta: float) -> void:
